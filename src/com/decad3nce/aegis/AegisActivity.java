@@ -172,6 +172,22 @@ public class AegisActivity extends FragmentActivity {
     };
     
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case ACTIVATION_REQUEST:
+                if (resultCode != Activity.RESULT_OK) {
+                    Toast.makeText(this, R.string.device_admin_reason, Toast.LENGTH_LONG).show();
+                    mLockEnabledPreference.setChecked(false);
+                    mWipeEnabledPreference.setChecked(false);
+                    lockEnabled = false;
+                    wipeEnabled = false;
+                }
+                return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         
