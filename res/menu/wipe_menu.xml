@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/wipe_menu_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="ifRoom|withText"
+        android:actionLayout="@layout/wipe_toggle_button" />
+</menu>

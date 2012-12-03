@@ -1,0 +1,14 @@
+<resources>
+    <bool name="config_default_alarm_enabled">true</bool>
+    <bool name="config_default_lock_enabled">false</bool>
+    <bool name="config_default_wipe_enabled">false</bool>
+
+    <string name="config_default_alarm_activation_sms">aeGis alarm</string>
+    <string name="config_default_lock_activation_sms">aeGis lock</string>
+    <string name="config_default_wipe_activation_sms">aeGis wipe</string>
+
+    <string name="config_default_alarm_vibrate">true</string>
+    <string name="config_default_alarm_duration">15</string>
+
+    <string name="config_default_lock_password">aeGis</string>
+</resources>

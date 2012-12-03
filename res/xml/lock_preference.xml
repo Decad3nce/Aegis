@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preferences_lock_category" >
+        <EditTextPreference android:key="lock_activation_sms"
+                android:title="@string/preferences_lock_activation_sms_title"
+                android:summary="@string/preferences_lock_activation_sms_summary"
+                android:maxLength="160"
+                android:defaultValue="@string/config_default_lock_activation_sms" />
+        <EditTextPreference android:key="lock_password"
+                android:title="@string/preferences_lock_password_title"
+                android:summary="@string/preferences_lock_password_summary"
+                android:maxLength="16"
+                android:defaultValue="@string/config_default_lock_password"
+                android:inputType="textPassword" />
+     </PreferenceCategory>
+</PreferenceScreen>

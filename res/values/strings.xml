@@ -1,0 +1,61 @@
+<resources>
+
+    <string name="app_name">aeGis</string>
+    <string name="wipe_section">Wipe</string>
+    <string name="lock_section">Lock</string>
+    <string name="alarm_section">Alarm</string>
+    <string name="about_section">About</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">aeGis</string>
+    
+    <string name="alarm_dialog_stop">Stop alarm!</string>
+
+    <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
+    <string name="aegis_about">Placeholder.</string>
+    <string name="preferences_alarm_category">Alarm</string>
+    <string name="preferences_alarm_enabled_title">Alarm</string>
+    <string name="preferences_alarm_enabled_summary">Play a loud alarm when activation sms is sent.</string>
+    <string name="preferences_alarm_activation_sms_title">Alarm Activation SMS</string>
+    <string name="preferences_alarm_activation_sms_summary">Choose what text to send to activate the alarm. It is recommended to use a PIN in your activation SMS to avoid unauthorised activation of the alarm.</string>
+    <string name="preferences_alarm_vibrate_title">Vibrate</string>
+    <string name="preferences_alarm_vibrate_summary">Whether to vibrate when alarm is activated.</string>
+    <string name="preferences_alarm_duration_title">Alarm duration</string>
+    <string name="preferences_alarm_duration_summary">How long the alarm should last.</string>
+    <string name="preferences_lock_category">Lock</string>
+    <string name="preferences_lock_enabled_title">Lock</string>
+    <string name="preferences_lock_enabled_summary">Lock the device when activation sms is sent.</string>
+    <string name="preferences_lock_activation_sms_title">Lock Activation SMS</string>
+    <string name="preferences_lock_activation_sms_summary">Choose what text to send to lock the device. It is recommended to use a PIN in your activation SMS to avoid unauthorised locking.</string>
+    <string name="preferences_lock_password_title">Default password</string>
+    <string name="preferences_lock_password_summary">Choose what password will be used to lock the device. This is the default password that will be set, custom passwords can be provided when sending SMS by appending the requested password to the SMS. If set to blank, the password/lock method will not be changed but the device will get locked to force re-authentication using the existing password.</string>
+    <string name="preferences_wipe_category">Wipe</string>
+    <string name="preferences_wipe_enabled_title">Wipe</string>
+    <string name="preferences_wipe_enabled_summary">Wipe the device when activation sms is sent.</string>
+    <string name="preferences_wipe_activation_sms_title">Wipe Activation SMS</string>
+    <string name="preferences_wipe_activation_sms_summary">Choose what text to send to wipe the device. It is recommended to use a PIN in your activation SMS to avoid unauthorised wiping.</string>
+
+    <string name="alarm_toggle_text">Alarm</string>
+    <string name="lock_toggle_text">Lock</string>
+    <string name="wipe_toggle_text">Wipe</string>
+    
+    <string-array name="preferences_alarm_duration_entries">
+        <item>5s</item>
+        <item>10s</item>
+        <item>15s</item>
+        <item>20s</item>
+        <item>30s</item>
+        <item>1m</item>
+        <item>2m</item>
+    </string-array>
+    <string-array name="preferences_alarm_duration_values" translatable="false">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+    </string-array>
+        <string name="textview">TextView</string>
+</resources>

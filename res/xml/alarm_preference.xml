@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preferences_alarm_category">
+        <EditTextPreference android:key="alarm_activation_sms"
+                android:title="@string/preferences_alarm_activation_sms_title"
+                android:summary="@string/preferences_alarm_activation_sms_summary"
+                android:maxLength="160"
+                android:defaultValue="@string/config_default_alarm_activation_sms" />
+        <CheckBoxPreference android:key="alarm_vibrate"
+                android:title="@string/preferences_alarm_vibrate_title"
+                android:summary="@string/preferences_alarm_vibrate_summary"
+                android:defaultValue="@string/config_default_alarm_vibrate" />
+        <ListPreference android:key="alarm_duration"
+                android:title="@string/preferences_alarm_duration_title"
+                android:summary="@string/preferences_alarm_duration_summary"
+                android:entries="@array/preferences_alarm_duration_entries"
+                android:entryValues="@array/preferences_alarm_duration_values"
+                android:defaultValue="@string/config_default_alarm_duration" />
+    </PreferenceCategory>
+</PreferenceScreen>

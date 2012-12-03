@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+ 
+<header android:fragment="com.nebkat.smsalarm.SetupActivity$PrefsFragment"
+    android:title="Category 1 prefs" >
+    <extra android:name="pref-resource" android:value="alarm_preferences" />
+</header>        
+ 
+<header android:fragment="com.nebkat.smsalarm.SetupActivity$PrefsFragment"
+    android:title="Category 2 prefs" >
+    <extra android:name="pref-resource" android:value="lock_preferences" />
+</header>
+ 
+<header android:fragment="com.nebkat.smsalarm.SetupActivity$PrefsFragment"
+    android:title="Category 3 prefs" >
+    <extra android:name="pref-resource" android:value="wipe_preferences" />
+</header>
+ 
+</preference-headers>
