@@ -100,28 +100,13 @@ public class AegisActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("alarm_toggle", alarmEnabled);
-        editor.putBoolean("lock_toggle", lockEnabled);
-        editor.putBoolean("wipe_toggle", wipeEnabled);
-        editor.commit();
+        saveSettings();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        
-        SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("alarm_toggle", alarmEnabled);
-        editor.putBoolean("lock_toggle", lockEnabled);
-        editor.putBoolean("wipe_toggle", wipeEnabled);
-        editor.commit();
+        saveSettings();
     }
 
     CompoundButton.OnCheckedChangeListener deviceAdminPreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -135,10 +120,6 @@ public class AegisActivity extends FragmentActivity {
                     alarmEnabled = true;
                 } else {
                     alarmEnabled = false;
-                }
-                
-                if(mAlarmEnabledPreference != null) {
-                    mAlarmEnabledPreference.setOnCheckedChangeListener(null);
                 }
                 
                 break;
@@ -162,11 +143,7 @@ public class AegisActivity extends FragmentActivity {
                                     R.string.device_admin_reason));
                     startActivityForResult(intent, ACTIVATION_REQUEST);
                 }
-                
-                if(mLockEnabledPreference != null){
-                    mLockEnabledPreference.setOnCheckedChangeListener(null);
-                }
-                
+
                 break;
                 
             case R.id.lock_toggle:
@@ -187,11 +164,8 @@ public class AegisActivity extends FragmentActivity {
                             getResources().getString(
                                     R.string.device_admin_reason));
                     startActivityForResult(intent, ACTIVATION_REQUEST);
-                }
+                }                
                 
-                if(mWipeEnabledPreference != null){
-                    mWipeEnabledPreference.setOnCheckedChangeListener(null);
-                }
                 break;
             }
         }
@@ -263,6 +237,17 @@ public class AegisActivity extends FragmentActivity {
             break;
         }
         return true;
+    }
+    
+    protected void saveSettings() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("alarm_toggle", alarmEnabled);
+        editor.putBoolean("lock_toggle", lockEnabled);
+        editor.putBoolean("wipe_toggle", wipeEnabled);
+        editor.commit();
     }
     
     @Override
