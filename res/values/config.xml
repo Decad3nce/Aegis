@@ -3,6 +3,7 @@
     <bool name="config_default_lock_enabled">false</bool>
     <bool name="config_default_wipe_enabled">false</bool>
     <bool name="config_default_locate_enabled">false</bool>
+    <bool name="config_default_aegis_initialized">false</bool>
 
     <string name="config_default_alarm_activation_sms">aeGis alarm</string>
     <string name="config_default_lock_activation_sms">aeGis lock</string>

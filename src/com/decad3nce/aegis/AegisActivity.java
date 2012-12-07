@@ -30,11 +30,13 @@ public class AegisActivity extends FragmentActivity {
     public static final String PREFERENCES_WIPE_ENABLED = "wipe_toggle";
     public static final String PREFERENCES_LOCK_ENABLED = "lock_toggle";
     public static final String PREFERENCES_LOCATE_ENABLED = "locate_toggle";
+    public static final String PREFERENCES_AEGIS_INITIALIZED = "initialized";
 
     protected static boolean alarmEnabled;
     protected static boolean wipeEnabled;
     protected static boolean lockEnabled;
     protected static boolean locateEnabled;
+    private static boolean mInitialized;
 
     private DevicePolicyManager mDevicePolicyManager;
 
@@ -53,7 +55,7 @@ public class AegisActivity extends FragmentActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); 
         setContentView(R.layout.location_layout);
 
         mViewPager = new ViewPager(this);
@@ -86,6 +88,19 @@ public class AegisActivity extends FragmentActivity {
             // TODO: HTML tutorial
         }
 
+        mInitialized = preferences
+                .getBoolean(PREFERENCES_AEGIS_INITIALIZED, this.getResources()
+                        .getBoolean(R.bool.config_default_aegis_initialized));
+        
+        if(!mInitialized) {
+            mInitialized = true;
+            
+            Intent initialIntent = new Intent(AegisActivity.this, InitializationActivity.class);
+            initialIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            initialIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            startActivity(initialIntent);
+        }
+        
         alarmEnabled = preferences
                 .getBoolean(PREFERENCES_ALARM_ENABLED, this.getResources()
                         .getBoolean(R.bool.config_default_alarm_enabled));
@@ -312,6 +327,7 @@ public class AegisActivity extends FragmentActivity {
                 .getDefaultSharedPreferences(this);
 
         SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("initialized", mInitialized);
         editor.putBoolean("alarm_toggle", alarmEnabled);
         editor.putBoolean("lock_toggle", lockEnabled);
         editor.putBoolean("wipe_toggle", wipeEnabled);
