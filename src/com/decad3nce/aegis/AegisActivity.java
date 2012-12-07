@@ -3,9 +3,10 @@ package com.decad3nce.aegis;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
 import com.decad3nce.aegis.Fragments.SMSWipeFragment;
-import com.decad3nce.aegis.Fragments.SplashMenuFragment;
+import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,28 +20,32 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 public class AegisActivity extends FragmentActivity {
 
     private static final String PREFERENCES_DESCRIPTION_DIALOG_SHOWN = "description_dialog_shown";
-    
+
     public static final String PREFERENCES_ALARM_ENABLED = "alarm_toggle";
     public static final String PREFERENCES_WIPE_ENABLED = "wipe_toggle";
     public static final String PREFERENCES_LOCK_ENABLED = "lock_toggle";
-    
+    public static final String PREFERENCES_LOCATE_ENABLED = "locate_toggle";
+
     protected static boolean alarmEnabled;
     protected static boolean wipeEnabled;
     protected static boolean lockEnabled;
+    protected static boolean locateEnabled;
 
     private DevicePolicyManager mDevicePolicyManager;
-    
+
     private Switch mAlarmEnabledPreference;
     private Switch mLockEnabledPreference;
     private Switch mWipeEnabledPreference;
-    
+    private Switch mLocateEnabledPreference;
+
     TabsAdapter mTabsAdapter;
     ViewPager mViewPager;
-    
+
     public static final ComponentName DEVICE_ADMIN_COMPONENT = new ComponentName(
             DeviceAdmin.class.getPackage().getName(),
             DeviceAdmin.class.getName());
@@ -49,11 +54,12 @@ public class AegisActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.location_layout);
 
         mViewPager = new ViewPager(this);
         mViewPager.setId(R.id.pager);
         setContentView(mViewPager);
-        
+
         final ActionBar bar = getActionBar();
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE,
@@ -67,8 +73,8 @@ public class AegisActivity extends FragmentActivity {
                 SMSLockFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.wipe_section),
                 SMSWipeFragment.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.about_section),
-                SplashMenuFragment.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText(R.string.locate_section),
+                SMSLocateFragment.class, null);
         if (savedInstanceState != null) {
             bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
         }
@@ -79,24 +85,29 @@ public class AegisActivity extends FragmentActivity {
                 .getBoolean(PREFERENCES_DESCRIPTION_DIALOG_SHOWN, false)) {
             // TODO: HTML tutorial
         }
-        
-        alarmEnabled = preferences.getBoolean(PREFERENCES_ALARM_ENABLED,
-                this.getResources().getBoolean(R.bool.config_default_alarm_enabled));
-        wipeEnabled = preferences.getBoolean(PREFERENCES_WIPE_ENABLED,
-                this.getResources().getBoolean(R.bool.config_default_wipe_enabled));
-        lockEnabled = preferences.getBoolean(PREFERENCES_LOCK_ENABLED,
-                this.getResources().getBoolean(R.bool.config_default_lock_enabled));
+
+        alarmEnabled = preferences
+                .getBoolean(PREFERENCES_ALARM_ENABLED, this.getResources()
+                        .getBoolean(R.bool.config_default_alarm_enabled));
+        wipeEnabled = preferences.getBoolean(PREFERENCES_WIPE_ENABLED, this
+                .getResources().getBoolean(R.bool.config_default_wipe_enabled));
+        lockEnabled = preferences.getBoolean(PREFERENCES_LOCK_ENABLED, this
+                .getResources().getBoolean(R.bool.config_default_lock_enabled));
+        locateEnabled = preferences.getBoolean(PREFERENCES_LOCATE_ENABLED, this
+                .getResources()
+                .getBoolean(R.bool.config_default_locate_enabled));
+
         invalidateOptionsMenu();
-        
+
         mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
     }
-    
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
     }
-    
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -111,28 +122,41 @@ public class AegisActivity extends FragmentActivity {
 
     CompoundButton.OnCheckedChangeListener deviceAdminPreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            
-            switch(buttonView.getId()) {
+        public void onCheckedChanged(CompoundButton buttonView,
+                boolean isChecked) {
+
+            switch (buttonView.getId()) {
             case R.id.alarm_toggle:
-                
-                if(isChecked) {
+
+                if (isChecked) {
                     alarmEnabled = true;
                 } else {
                     alarmEnabled = false;
                 }
-                
+
                 break;
-                
+
+            case R.id.locate_toggle:
+
+                if (isChecked) {
+                    locateEnabled = true;
+                } else {
+                    locateEnabled = false;
+                }
+
+                break;
+
             case R.id.wipe_toggle:
-                
-                if(isChecked) {
+
+                if (isChecked) {
                     wipeEnabled = true;
                 } else {
                     wipeEnabled = false;
                 }
-                
-                if (isChecked && !mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+
+                if (isChecked
+                        && !mDevicePolicyManager
+                                .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
                     Intent intent = new Intent(
                             DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
                     intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
@@ -145,16 +169,18 @@ public class AegisActivity extends FragmentActivity {
                 }
 
                 break;
-                
+
             case R.id.lock_toggle:
-                
-                if(isChecked) {
+
+                if (isChecked) {
                     lockEnabled = true;
                 } else {
                     lockEnabled = false;
                 }
-                
-                if (isChecked && !mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+
+                if (isChecked
+                        && !mDevicePolicyManager
+                                .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
                     Intent intent = new Intent(
                             DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
                     intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
@@ -164,13 +190,103 @@ public class AegisActivity extends FragmentActivity {
                             getResources().getString(
                                     R.string.device_admin_reason));
                     startActivityForResult(intent, ACTIVATION_REQUEST);
-                }                
-                
+                }
+
                 break;
             }
         }
     };
-    
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+            if (mLockEnabledPreference != null) {
+                mLockEnabledPreference.setChecked(false);
+                lockEnabled = false;
+            }
+            if (mWipeEnabledPreference != null) {
+                mWipeEnabledPreference.setChecked(false);
+                wipeEnabled = false;
+            }
+        }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.clear();
+        MenuInflater inflater = getMenuInflater();
+
+        switch (mTabsAdapter.getCurrentTab()) {
+        case 0:
+            inflater.inflate(R.menu.alarm_menu, menu);
+            mAlarmEnabledPreference = (Switch) menu
+                    .findItem(R.id.alarm_menu_settings).getActionView()
+                    .findViewById(R.id.alarm_toggle);
+
+            if (alarmEnabled) {
+                mAlarmEnabledPreference.setChecked(true);
+            }
+
+            if (mAlarmEnabledPreference != null) {
+                mAlarmEnabledPreference
+                        .setOnCheckedChangeListener(deviceAdminPreferencesOnChangeListener);
+            }
+            break;
+
+        case 1:
+            inflater.inflate(R.menu.lock_menu, menu);
+            mLockEnabledPreference = (Switch) menu
+                    .findItem(R.id.lock_menu_settings).getActionView()
+                    .findViewById(R.id.lock_toggle);
+
+            if (lockEnabled) {
+                mLockEnabledPreference.setChecked(true);
+            }
+
+            if (mLockEnabledPreference != null) {
+                mLockEnabledPreference
+                        .setOnCheckedChangeListener(deviceAdminPreferencesOnChangeListener);
+            }
+            break;
+
+        case 2:
+            inflater.inflate(R.menu.wipe_menu, menu);
+            mWipeEnabledPreference = (Switch) menu
+                    .findItem(R.id.wipe_menu_settings).getActionView()
+                    .findViewById(R.id.wipe_toggle);
+
+            if (wipeEnabled) {
+                mWipeEnabledPreference.setChecked(true);
+            }
+
+            if (mWipeEnabledPreference != null) {
+                mWipeEnabledPreference
+                        .setOnCheckedChangeListener(deviceAdminPreferencesOnChangeListener);
+            }
+            break;
+
+        case 3:
+            inflater.inflate(R.menu.locate_menu, menu);
+            mLocateEnabledPreference = (Switch) menu
+                    .findItem(R.id.locate_menu_settings).getActionView()
+                    .findViewById(R.id.locate_toggle);
+
+            if (locateEnabled) {
+                mLocateEnabledPreference.setChecked(true);
+            }
+
+            if (mLocateEnabledPreference != null) {
+                mLocateEnabledPreference
+                        .setOnCheckedChangeListener(deviceAdminPreferencesOnChangeListener);
+            }
+            break;
+        }
+        return true;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
@@ -191,85 +307,18 @@ public class AegisActivity extends FragmentActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        
-        if (!mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
-            if (mLockEnabledPreference != null) {
-            mLockEnabledPreference.setChecked(false);
-            lockEnabled = false;
-            }
-            if (mWipeEnabledPreference != null) {
-            mWipeEnabledPreference.setChecked(false);
-            wipeEnabled = false;
-            }
-           }
-    }
-    
-    @Override
-    public boolean onPrepareOptionsMenu (Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.clear();
-        MenuInflater inflater = getMenuInflater();
-        
-        switch(mTabsAdapter.getCurrentTab()) {
-        case 0:
-            inflater.inflate(R.menu.alarm_menu, menu);
-            mAlarmEnabledPreference = (Switch) menu.findItem(R.id.alarm_menu_settings).getActionView().findViewById(R.id.alarm_toggle);
-            
-            if(alarmEnabled) {
-                mAlarmEnabledPreference.setChecked(true);
-            }
-            
-            if (mAlarmEnabledPreference != null) {
-                mAlarmEnabledPreference.setOnCheckedChangeListener(deviceAdminPreferencesOnChangeListener);
-            }
-            break;
-            
-        case 1:
-            inflater.inflate(R.menu.lock_menu, menu);
-            mLockEnabledPreference = (Switch) menu.findItem(R.id.lock_menu_settings).getActionView().findViewById(R.id.lock_toggle);
-            
-            if(lockEnabled) {
-                mLockEnabledPreference.setChecked(true);
-            }
-            
-            if (mLockEnabledPreference != null) {
-                mLockEnabledPreference.setOnCheckedChangeListener(deviceAdminPreferencesOnChangeListener);
-            }
-            break;
-            
-        case 2:
-            inflater.inflate(R.menu.wipe_menu, menu);
-            mWipeEnabledPreference = (Switch) menu.findItem(R.id.wipe_menu_settings).getActionView().findViewById(R.id.wipe_toggle);
-            
-            if(wipeEnabled) {
-                mWipeEnabledPreference.setChecked(true);
-            }
-            
-            if (mWipeEnabledPreference != null) {           
-                mWipeEnabledPreference.setOnCheckedChangeListener(deviceAdminPreferencesOnChangeListener);
-            }
-            break;
-            
-        case 3:
-            break;
-        }
-        return true;
-    }
-    
     protected void saveSettings() {
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        
+
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("alarm_toggle", alarmEnabled);
         editor.putBoolean("lock_toggle", lockEnabled);
         editor.putBoolean("wipe_toggle", wipeEnabled);
+        editor.putBoolean("locate_toggle", locateEnabled);
         editor.commit();
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;

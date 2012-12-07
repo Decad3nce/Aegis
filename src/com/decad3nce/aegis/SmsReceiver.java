@@ -2,6 +2,7 @@ package com.decad3nce.aegis;
 
 
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
+import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
 import com.decad3nce.aegis.Fragments.SMSWipeFragment;
 
@@ -18,6 +19,7 @@ public class SmsReceiver extends BroadcastReceiver {
     // Statics
     private static final String ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
     private static final String EXTRA_SMS_PDUS = "pdus";
+    protected static String address;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -29,12 +31,13 @@ public class SmsReceiver extends BroadcastReceiver {
                 SmsMessage[] messages = getMessagesFromIntent(intent);
                 for (SmsMessage sms : messages) {
                     String body = sms.getMessageBody();
+                    address = sms.getOriginatingAddress();
                     // TODO: whitelist/blacklist of allowed senders
-                    // String address = sms.getOriginatingAddress();
 
                     boolean alarmEnabled = AegisActivity.alarmEnabled;
                     boolean lockEnabled = AegisActivity.lockEnabled;
                     boolean wipeEnabled = AegisActivity.wipeEnabled;
+                    boolean locateEnabled = AegisActivity.locateEnabled;
                     
                     String activationAlarmSms = preferences.getString(SMSAlarmFragment.PREFERENCES_ALARM_ACTIVATION_SMS,
                             context.getResources().getString(R.string.config_default_alarm_activation_sms));
@@ -42,6 +45,8 @@ public class SmsReceiver extends BroadcastReceiver {
                             context.getResources().getString(R.string.config_default_lock_activation_sms));
                     String activationWipeSms = preferences.getString(SMSWipeFragment.PREFERENCES_WIPE_ACTIVATION_SMS,
                             context.getResources().getString(R.string.config_default_wipe_activation_sms));
+                    String activationLocateSms= preferences.getString(SMSLocateFragment.PREFERENCES_LOCATE_ACTIVATION_SMS,
+                            context.getResources().getString(R.string.config_default_locate_activation_sms));
                     
                     if (alarmEnabled && body.startsWith(activationAlarmSms)) {
                         Intent alarmIntent = new Intent(context, AlarmDialogActivity.class);
@@ -70,6 +75,14 @@ public class SmsReceiver extends BroadcastReceiver {
                         if (devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
                             devicePolicyManager.wipeData(0);
                         }
+                    }
+                    
+                    if (locateEnabled && body.startsWith(activationLocateSms)) {
+                        Intent locateIntent = new Intent(context, PhoneTrackerActivity.class);
+                        locateIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        locateIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        context.startActivity(locateIntent);
+                        
                     }
                 }
             }
