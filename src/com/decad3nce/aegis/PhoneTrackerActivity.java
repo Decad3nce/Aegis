@@ -53,7 +53,6 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
     private void getDataFrame() {
         Criteria criteria = new Criteria();
-        mBestProvider = mLocationManager.getBestProvider(criteria, false);
         final boolean gpsEnabled = mLocationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
@@ -62,9 +61,14 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
                 enableGPS();
             }
             if(gpsEnabled) {
-                startGPS();
-                mLocationTracking = true;
+                criteria.setAccuracy(Criteria.ACCURACY_FINE);
+            } else {
+                criteria.setAccuracy(Criteria.ACCURACY_COARSE);
             }
+            
+            mLocationTracking = true;
+            mBestProvider = mLocationManager.getBestProvider(criteria, true);
+            startTracking();
         }
 
         if(mLocationTracking && mDisableTracking) {
@@ -78,7 +82,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         mLocationManager.removeUpdates(this);
     }
 
-    public void startGPS() {
+    public void startTracking() {
         mLocationManager.requestLocationUpdates(mBestProvider, 100000, 1, this);
         mLocation = mLocationManager.getLastKnownLocation(mBestProvider);
     }
