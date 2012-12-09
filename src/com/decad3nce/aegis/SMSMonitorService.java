@@ -48,7 +48,7 @@ public class SMSMonitorService extends Service {
             buildNewNotification();
         }
         
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
     
 
@@ -56,6 +56,7 @@ public class SMSMonitorService extends Service {
     private void buildNewNotification() {
         Intent i=new Intent(this, SMSMonitorService.class);
         String msgText = "SMSMonitor service is running";
+        NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
                    Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -72,7 +73,7 @@ public class SMSMonitorService extends Service {
         Notification notification = new Notification.BigTextStyle(builder)
         .bigText(msgText).build();
         
-        startForeground(1337, notification);
+        mManager.notify(1337, notification);
         return;
     }
     
@@ -82,6 +83,7 @@ public class SMSMonitorService extends Service {
 
     @SuppressWarnings("deprecation")
     public void oldNotification() {
+        NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notification = new Notification(R.drawable.ic_launcher, "aeGis service is running", System.currentTimeMillis());
         Intent i=new Intent(this, SMSMonitorService.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
@@ -90,8 +92,8 @@ public class SMSMonitorService extends Service {
         PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
      
         notification.setLatestEventInfo(this, "aeGis", "SMSMonitor", pi);
-        notification.flags |= Notification.FLAG_NO_CLEAR;
-        startForeground(1337, notification);
+        notification.flags |= Notification.PRIORITY_HIGH;
+        mManager.notify(1337, notification);
         return;
     }
 
