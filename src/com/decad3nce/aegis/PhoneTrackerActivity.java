@@ -22,18 +22,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class PhoneTrackerActivity extends Activity implements LocationListener {
 
-    private boolean mLocationTracking = true;
+    private static final String TAG = "AEGIS";
+
+    private boolean mLocationTracking = false;
     private boolean mDisableTracking = false;
-    private LocationManager mLocationManager;
+    private boolean mFirstTrack = true;
+
     private static final int TWO_MINUTES = 1000 * 60 * 2;
+
+    private LocationManager mLocationManager;
     private String mBestProvider;
+
     protected Location mLocation;
     protected LocationListener mLocationListener;
+
     private final Handler handler = new Handler();
 
     @Override
@@ -55,36 +63,66 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         Criteria criteria = new Criteria();
         final boolean gpsEnabled = mLocationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
+        Log.i(TAG, "getDataFrame");
+        
+        if (!mFirstTrack) {
+            if (!mLocationTracking && !mDisableTracking) {
+                if (!gpsEnabled && isGPSToggleable()) {
+                    enableGPS();
+                }
 
-        if(mLocationTracking && !mDisableTracking) {
-            if (!gpsEnabled && isGPSToggleable()) {
-                enableGPS();
+                if (gpsEnabled) {
+                    criteria.setAccuracy(Criteria.ACCURACY_FINE);
+                } else {
+                    criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+                }
+
+                mLocationTracking = true;
+                mBestProvider = mLocationManager
+                        .getBestProvider(criteria, true);
+                startTracking();
             }
-            if(gpsEnabled) {
-                criteria.setAccuracy(Criteria.ACCURACY_FINE);
-            } else {
-                criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-            }
-            
-            mLocationTracking = true;
-            mBestProvider = mLocationManager.getBestProvider(criteria, true);
+        } else {
+            Log.i(TAG, "First Track");
             startTracking();
         }
 
-        if(mLocationTracking && mDisableTracking) {
-            stopGPS();
+        if (mLocationTracking && mDisableTracking) {
+            stopTracking();
         }
 
-        handler.postDelayed(getData,10000);
+        handler.postDelayed(getData, 10000);
     }
 
-    public void stopGPS() {
+    public void stopTracking() {
         mLocationManager.removeUpdates(this);
+        handler.removeCallbacksAndMessages(null);
     }
 
     public void startTracking() {
-        mLocationManager.requestLocationUpdates(mBestProvider, 100000, 1, this);
-        mLocation = mLocationManager.getLastKnownLocation(mBestProvider);
+        final boolean gpsEnabled = mLocationManager
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+        final boolean networkEnabled = mLocationManager
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        if (!mFirstTrack && gpsEnabled) {
+            Log.i(TAG, "Tracking by GPS");
+            mLocationManager.requestLocationUpdates(
+                    mBestProvider, 100000, 1, this);
+            mLocation = mLocationManager.getLastKnownLocation(mBestProvider);
+            
+        } else if (!mFirstTrack && networkEnabled) {
+            Log.i(TAG, "Tracking by Network Location");
+            mLocationManager.requestLocationUpdates(
+                    LocationManager.NETWORK_PROVIDER, 100000, 1, this);
+            mLocation = mLocationManager.getLastKnownLocation(mBestProvider);
+            
+        } else {
+            mFirstTrack = false;
+            Log.i(TAG, "First Track && Tracking by Network Location");
+            mLocationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, null);
+            mLocation = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        }
     }
 
     public void disableTracking(View view) {
@@ -97,6 +135,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     public void onDestroy() {
         super.onDestroy();
         mLocationManager.removeUpdates(this);
+        handler.removeCallbacksAndMessages(null);
     }
 
     private boolean isGPSToggleable() {
@@ -191,11 +230,10 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
         if (isBetterLocation(location, mLocation) && Geocoder.isPresent()) {
             try {
-                sms.sendTextMessage(SmsReceiver.address, null,
+                sms.sendTextMessage(SMSMonitorService.address, null,
                         geoCodedLocation, null, null);
             } catch (IllegalArgumentException e) {
             }
-            mLocation = location;
         }
     }
 
