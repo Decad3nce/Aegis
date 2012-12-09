@@ -5,7 +5,6 @@ import com.decad3nce.aegis.Fragments.SMSLockFragment;
 import com.decad3nce.aegis.Fragments.SMSWipeFragment;
 import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ActivityManager;
