@@ -17,6 +17,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -54,7 +56,7 @@ public class SMSMonitorService extends Service {
 
     @TargetApi(16)
     private void buildNewNotification() {
-        Intent i=new Intent(this, SMSMonitorService.class);
+        Intent i=new Intent(this, AegisActivity.class);
         String msgText = "SMSMonitor service is running";
         NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         
@@ -85,7 +87,7 @@ public class SMSMonitorService extends Service {
     public void oldNotification() {
         NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notification = new Notification(R.drawable.ic_launcher, "aeGis service is running", System.currentTimeMillis());
-        Intent i=new Intent(this, SMSMonitorService.class);
+        Intent i=new Intent(this, AegisActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
                 Intent.FLAG_ACTIVITY_SINGLE_TOP);
      
@@ -95,6 +97,46 @@ public class SMSMonitorService extends Service {
         notification.flags |= Notification.PRIORITY_HIGH;
         mManager.notify(1337, notification);
         return;
+    }
+    
+    @SuppressWarnings("deprecation")
+    private void alarmNotification() {
+        // Get AudioManager
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        
+        Notification notification = new Notification(R.drawable.ic_launcher, "aeGis has overriden sound settings", System.currentTimeMillis());
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        
+        boolean vibrate = preferences.getBoolean(
+                SMSAlarmFragment.PREFERENCES_ALARM_VIBRATE,
+                Boolean.parseBoolean(getResources().getString(
+                        R.string.config_default_alarm_vibrate)));
+        
+        int maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
+        am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, maxVolume,
+                AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+        
+        maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_RING);
+        am.setStreamVolume(AudioManager.STREAM_RING, maxVolume,
+                AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+
+        Intent i=new Intent(this, AegisActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                Intent.FLAG_ACTIVITY_SINGLE_TOP);
+     
+        PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
+     
+        notification.setLatestEventInfo(this, "aeGis", "Sound settings overriden", pi);
+        notification.flags |= Notification.PRIORITY_HIGH;
+        notification.sound = Uri.parse("android.resource://com.decad3nce.aegis/raw/alarm");
+        if(vibrate) {
+        notification.vibrate = new long[]{100, 200, 100, 500};
+        }
+        
+        mManager.notify(1336, notification);
+        
     }
 
     @Override
@@ -153,13 +195,7 @@ public class SMSMonitorService extends Service {
 
                             if (alarmEnabled
                                     && body.startsWith(activationAlarmSms)) {
-                                Intent alarmIntent = new Intent(context,
-                                        AlarmDialogActivity.class);
-                                alarmIntent
-                                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                alarmIntent
-                                        .addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                                context.startActivity(alarmIntent);
+                                alarmNotification();
                             }
 
                             if (lockEnabled
@@ -207,7 +243,6 @@ public class SMSMonitorService extends Service {
                                 locateIntent
                                         .addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                                 context.startActivity(locateIntent);
-
                             }
                         }
                     }
