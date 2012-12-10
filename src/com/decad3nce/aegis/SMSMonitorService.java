@@ -29,7 +29,7 @@ import android.util.Log;
 public class SMSMonitorService extends Service {
 
     private static final String TAG = "AEGIS";
-    
+
     private static final String ACTION = "android.provider.Telephony.SMS_RECEIVED";
     private BroadcastReceiver SmsReceiver;
     private static final String ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
@@ -40,45 +40,42 @@ public class SMSMonitorService extends Service {
     public IBinder onBind(Intent arg0) {
         return null;
     }
-    
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        
+
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {
             oldNotification();
         } else {
             buildNewNotification();
         }
-        
+
         return START_STICKY;
     }
-    
 
     @TargetApi(16)
     private void buildNewNotification() {
-        Intent i=new Intent(this, AegisActivity.class);
+        Intent i = new Intent(this, AegisActivity.class);
         String msgText = "SMSMonitor service is running";
         NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
-                   Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        
+
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
         PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
-        
+
         Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("aeGis")
-        .setContentText("SMSMonitor")
-        .setSmallIcon(R.drawable.ic_launcher)
-        .setAutoCancel(false)
-        .setContentIntent(pi);
-        
+        builder.setContentTitle("aeGis").setContentText("SMSMonitor")
+                .setSmallIcon(R.drawable.ic_launcher).setAutoCancel(false)
+                .setContentIntent(pi);
+
         Notification notification = new Notification.BigTextStyle(builder)
-        .bigText(msgText).build();
-        
+                .bigText(msgText).build();
+
         mManager.notify(1337, notification);
         return;
     }
-    
+
     public NotificationManager getNotificationManager() {
         return (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     }
@@ -86,63 +83,68 @@ public class SMSMonitorService extends Service {
     @SuppressWarnings("deprecation")
     public void oldNotification() {
         NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notification = new Notification(R.drawable.ic_launcher, "aeGis service is running", System.currentTimeMillis());
-        Intent i=new Intent(this, AegisActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
-                Intent.FLAG_ACTIVITY_SINGLE_TOP);
-     
+        Notification notification = new Notification(R.drawable.ic_launcher,
+                "aeGis service is running", System.currentTimeMillis());
+        Intent i = new Intent(this, AegisActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
         PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
-     
+
         notification.setLatestEventInfo(this, "aeGis", "SMSMonitor", pi);
         notification.flags |= Notification.PRIORITY_HIGH;
         mManager.notify(1337, notification);
         return;
     }
-    
+
     @SuppressWarnings("deprecation")
     private void alarmNotification() {
         // Get AudioManager
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        
-        Notification notification = new Notification(R.drawable.ic_launcher, "aeGis has overriden sound settings", System.currentTimeMillis());
+
+        Notification notification = new Notification(R.drawable.ic_launcher,
+                "aeGis has overriden sound settings",
+                System.currentTimeMillis());
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        
+
         boolean vibrate = preferences.getBoolean(
                 SMSAlarmFragment.PREFERENCES_ALARM_VIBRATE,
                 Boolean.parseBoolean(getResources().getString(
                         R.string.config_default_alarm_vibrate)));
-        
+
         int maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
         am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, maxVolume,
                 AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-        
+
         maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_RING);
         am.setStreamVolume(AudioManager.STREAM_RING, maxVolume,
                 AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
-        Intent i=new Intent(this, AegisActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
-                Intent.FLAG_ACTIVITY_SINGLE_TOP);
-     
+        Intent i = new Intent(this, AegisActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
         PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
-     
-        notification.setLatestEventInfo(this, "aeGis", "Sound settings overriden", pi);
+
+        notification.setLatestEventInfo(this, "aeGis",
+                "Sound settings overriden", pi);
         notification.flags |= Notification.PRIORITY_HIGH;
-        notification.sound = Uri.parse("android.resource://com.decad3nce.aegis/raw/alarm");
-        if(vibrate) {
-        notification.vibrate = new long[]{100, 200, 100, 500};
+        notification.sound = Uri
+                .parse("android.resource://com.decad3nce.aegis/raw/alarm");
+        if (vibrate) {
+            notification.vibrate = new long[] { 100, 200, 100, 500 };
         }
-        
+
         mManager.notify(1336, notification);
-        
+
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i(TAG,"New SMSMonitor service has been started");
+        Log.i(TAG, "New SMSMonitor service has been started");
 
         final IntentFilter mFilter = new IntentFilter();
         mFilter.setPriority(999);
@@ -192,14 +194,18 @@ public class SMSMonitorService extends Service {
                                             context.getResources()
                                                     .getString(
                                                             R.string.config_default_locate_activation_sms));
+                            boolean locateLockPref = preferences
+                                    .getBoolean(
+                                            SMSLocateFragment.PREFERENCES_LOCATE_LOCK_PREF,
+                                            context.getResources()
+                                                    .getBoolean(
+                                                            R.bool.config_default_locate_lock_pref));
 
-                            if (alarmEnabled
-                                    && body.startsWith(activationAlarmSms)) {
+                            if (alarmEnabled && body.startsWith(activationAlarmSms)) {
                                 alarmNotification();
                             }
 
-                            if (lockEnabled
-                                    && body.startsWith(activationLockSms)) {
+                            if (lockEnabled && body.startsWith(activationLockSms)) {
                                 DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
                                         .getSystemService(Context.DEVICE_POLICY_SERVICE);
                                 if (devicePolicyManager
@@ -224,8 +230,7 @@ public class SMSMonitorService extends Service {
                                 }
                             }
 
-                            if (wipeEnabled
-                                    && body.startsWith(activationWipeSms)) {
+                            if (wipeEnabled && body.startsWith(activationWipeSms)) {
                                 DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
                                         .getSystemService(Context.DEVICE_POLICY_SERVICE);
                                 if (devicePolicyManager
@@ -234,8 +239,18 @@ public class SMSMonitorService extends Service {
                                 }
                             }
 
-                            if (locateEnabled
-                                    && body.startsWith(activationLocateSms)) {
+                            if (locateEnabled && body.startsWith(activationLocateSms)) {
+                                DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
+                                        .getSystemService(Context.DEVICE_POLICY_SERVICE);
+                                
+                                if (locateLockPref && devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
+                                    String password = preferences.getString(SMSLockFragment.PREFERENCES_LOCK_PASSWORD,
+                                                    context.getResources().getString(R.string.config_default_lock_password));
+                                    
+                                    devicePolicyManager.resetPassword(password,0);
+                                    devicePolicyManager.lockNow();
+                                }
+                                
                                 Intent locateIntent = new Intent(context,
                                         PhoneTrackerActivity.class);
                                 locateIntent
@@ -255,7 +270,7 @@ public class SMSMonitorService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i(TAG,"SMSMonitor service has been stopped");
+        Log.i(TAG, "SMSMonitor service has been stopped");
         this.unregisterReceiver(this.SmsReceiver);
     }
 

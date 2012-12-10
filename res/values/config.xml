@@ -14,4 +14,6 @@
     <string name="config_default_alarm_duration">15</string>
 
     <string name="config_default_lock_password">aeGis</string>
+    
+    <bool name="config_default_locate_lock_pref">false</bool>
 </resources>

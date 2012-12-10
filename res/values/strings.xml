@@ -9,8 +9,6 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">aeGis</string>
     <string name="location_text">aeGis is tracking the devices location\nTo disable tracking, hit the Disable Tracking button</string>
-    
-    <string name="alarm_dialog_stop">Stop alarm!</string>
 
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
     <string name="preferences_alarm_category">Alarm</string>
@@ -39,6 +37,8 @@
     <string name="preferences_locate_enabled_summary">Locate the device when activation sms is sent.</string>
     <string name="preferences_locate_activation_sms_title">Locate Activation SMS</string>
     <string name="preferences_locate_activation_sms_summary">Choose what text to send to locate the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized location tracking.</string>
+    <string name="preferences_locate_lock_pref_title">Lock Device</string>
+    <string name="preferences_locate_lock_pref_summary">Whether to lock device with default lock password when locate is triggered.</string>
     <string name="alarm_toggle_text">Alarm</string>
     <string name="lock_toggle_text">Lock</string>
     <string name="wipe_toggle_text">Wipe</string>

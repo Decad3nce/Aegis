@@ -26,8 +26,6 @@ import android.widget.Toast;
 
 public class AegisActivity extends FragmentActivity {
 
-    private static final String PREFERENCES_DESCRIPTION_DIALOG_SHOWN = "description_dialog_shown";
-
     public static final String PREFERENCES_ALARM_ENABLED = "alarm_toggle";
     public static final String PREFERENCES_WIPE_ENABLED = "wipe_toggle";
     public static final String PREFERENCES_LOCK_ENABLED = "lock_toggle";
@@ -84,12 +82,7 @@ public class AegisActivity extends FragmentActivity {
         }
 
         final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        if (!preferences
-                .getBoolean(PREFERENCES_DESCRIPTION_DIALOG_SHOWN, false)) {
-            // TODO: HTML tutorial
-        }
-        
+                .getDefaultSharedPreferences(this);  
 
         if(!isServiceRunning()) {
             startService(new Intent(this, SMSMonitorService.class));
@@ -165,6 +158,12 @@ public class AegisActivity extends FragmentActivity {
                 } else {
                     locateEnabled = false;
                 }
+                
+                if (isChecked
+                        && !mDevicePolicyManager
+                                .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+                    addAdmin();
+                }
 
                 break;
 
@@ -179,15 +178,7 @@ public class AegisActivity extends FragmentActivity {
                 if (isChecked
                         && !mDevicePolicyManager
                                 .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
-                    Intent intent = new Intent(
-                            DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-                    intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
-                            DEVICE_ADMIN_COMPONENT);
-                    intent.putExtra(
-                            DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                            getResources().getString(
-                                    R.string.device_admin_reason));
-                    startActivityForResult(intent, ACTIVATION_REQUEST);
+                    addAdmin();
                 }
 
                 break;
@@ -203,21 +194,25 @@ public class AegisActivity extends FragmentActivity {
                 if (isChecked
                         && !mDevicePolicyManager
                                 .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
-                    Intent intent = new Intent(
-                            DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-                    intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
-                            DEVICE_ADMIN_COMPONENT);
-                    intent.putExtra(
-                            DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                            getResources().getString(
-                                    R.string.device_admin_reason));
-                    startActivityForResult(intent, ACTIVATION_REQUEST);
+                    addAdmin();
                 }
 
                 break;
             }
         }
     };
+    
+    public void addAdmin() {
+        Intent intent = new Intent(
+                DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
+                DEVICE_ADMIN_COMPONENT);
+        intent.putExtra(
+                DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                getResources().getString(
+                        R.string.device_admin_reason));
+        startActivityForResult(intent, ACTIVATION_REQUEST);
+    }
 
     @Override
     public void onResume() {

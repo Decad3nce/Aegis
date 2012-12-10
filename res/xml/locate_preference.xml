@@ -6,5 +6,9 @@
                 android:summary="@string/preferences_locate_activation_sms_summary"
                 android:maxLength="160"
                 android:defaultValue="@string/config_default_locate_activation_sms" />
+        <CheckBoxPreference android:key="locate_lock_pref"
+                android:title="@string/preferences_locate_lock_pref_title"
+                android:summary="@string/preferences_locate_lock_pref_summary"
+                android:defaultValue="@bool/config_default_locate_lock_pref" />
      </PreferenceCategory>
 </PreferenceScreen>
