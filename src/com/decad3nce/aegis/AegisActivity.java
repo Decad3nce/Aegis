@@ -56,7 +56,6 @@ public class AegisActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); 
-        setContentView(R.layout.location_layout);
 
         mViewPager = new ViewPager(this);
         mViewPager.setId(R.id.pager);
