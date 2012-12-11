@@ -42,9 +42,6 @@
     <string name="lock_toggle_text">Lock</string>
     <string name="wipe_toggle_text">Wipe</string>
     <string name="locate_toggle_text">Locate</string>
-    <string name="action1">action1</string>
-    <string name="action2">action2</string>
-    <string name="action3">action3</string>
     
     <string-array name="preferences_alarm_duration_entries">
         <item>5s</item>
