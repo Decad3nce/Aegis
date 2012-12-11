@@ -7,9 +7,8 @@
         android:id="@+id/locate_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:defaultValue="@bool/config_default_locate_enabled"
-        android:text="@string/locate_toggle_text" />
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:defaultValue="@bool/config_default_locate_enabled"/>
 
 </RelativeLayout>

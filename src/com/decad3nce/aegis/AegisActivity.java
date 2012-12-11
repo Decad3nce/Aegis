@@ -20,6 +20,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -65,6 +66,8 @@ public class AegisActivity extends FragmentActivity {
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE,
                 ActionBar.DISPLAY_SHOW_TITLE);
+        bar.setDisplayShowHomeEnabled(true);
+        bar.setHomeButtonEnabled(true);
         bar.setTitle(R.string.app_name);
 
         mTabsAdapter = new TabsAdapter(this, mViewPager);
@@ -132,6 +135,17 @@ public class AegisActivity extends FragmentActivity {
     protected void onStop() {
         super.onStop();
         saveSettings();
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Toast.makeText(this, R.string.text_stub,
+                        Toast.LENGTH_LONG).show();
+        }
+        
+        return false;
     }
 
     CompoundButton.OnCheckedChangeListener deviceAdminPreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -258,7 +272,7 @@ public class AegisActivity extends FragmentActivity {
                     .findItem(R.id.lock_menu_settings).getActionView()
                     .findViewById(R.id.lock_toggle);
 
-            if (lockEnabled) {
+            if (lockEnabled && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
                 mLockEnabledPreference.setChecked(true);
             }
 
@@ -274,7 +288,7 @@ public class AegisActivity extends FragmentActivity {
                     .findItem(R.id.wipe_menu_settings).getActionView()
                     .findViewById(R.id.wipe_toggle);
 
-            if (wipeEnabled) {
+            if (wipeEnabled && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
                 mWipeEnabledPreference.setChecked(true);
             }
 
@@ -290,7 +304,7 @@ public class AegisActivity extends FragmentActivity {
                     .findItem(R.id.locate_menu_settings).getActionView()
                     .findViewById(R.id.locate_toggle);
 
-            if (locateEnabled) {
+            if (locateEnabled && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
                 mLocateEnabledPreference.setChecked(true);
             }
 

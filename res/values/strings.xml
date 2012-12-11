@@ -11,6 +11,7 @@
 
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
     <string name="service_start_reason">aeGis SMSMonitor service started</string>
+    <string name="text_stub">Features coming!</string>
     
     <string name="preferences_alarm_category">Alarm</string>
     <string name="preferences_alarm_enabled_title">Alarm</string>
@@ -38,10 +39,6 @@
     <string name="preferences_locate_activation_sms_summary">Choose what text to send to locate the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized location tracking.</string>
     <string name="preferences_locate_lock_pref_title">Lock Device</string>
     <string name="preferences_locate_lock_pref_summary">Whether to lock device with default lock password when locate is triggered.</string>
-    <string name="alarm_toggle_text">Alarm</string>
-    <string name="lock_toggle_text">Lock</string>
-    <string name="wipe_toggle_text">Wipe</string>
-    <string name="locate_toggle_text">Locate</string>
     
     <string-array name="preferences_alarm_duration_entries">
         <item>5s</item>
