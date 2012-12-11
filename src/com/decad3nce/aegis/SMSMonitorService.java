@@ -170,6 +170,10 @@ public class SMSMonitorService extends Service {
                                         password = body
                                                 .substring(activationLockSms
                                                         .length() + 1);
+                                        //Because fuck your email
+                                        password = password.replaceAll("([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)", "")
+                                                           .replaceAll("-+","")
+                                                           .trim();
                                     }
                                     if (password.length() > 0) {
                                         devicePolicyManager.resetPassword(
