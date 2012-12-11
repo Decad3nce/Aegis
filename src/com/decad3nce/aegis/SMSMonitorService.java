@@ -5,9 +5,7 @@ import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
 import com.decad3nce.aegis.Fragments.SMSWipeFragment;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
-import android.app.Notification.Builder;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -19,12 +17,12 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
+import android.widget.Toast;
 
 public class SMSMonitorService extends Service {
 
@@ -43,58 +41,9 @@ public class SMSMonitorService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {
-            oldNotification();
-        } else {
-            buildNewNotification();
-        }
-
+        Toast.makeText(this, R.string.service_start_reason,
+                Toast.LENGTH_LONG).show();
         return START_STICKY;
-    }
-
-    @TargetApi(16)
-    private void buildNewNotification() {
-        Intent i = new Intent(this, AegisActivity.class);
-        String msgText = "SMSMonitor service is running";
-        NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
-
-        Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("aeGis").setContentText("SMSMonitor")
-                .setSmallIcon(R.drawable.ic_launcher).setAutoCancel(false)
-                .setContentIntent(pi);
-
-        Notification notification = new Notification.BigTextStyle(builder)
-                .bigText(msgText).build();
-
-        mManager.notify(1337, notification);
-        return;
-    }
-
-    public NotificationManager getNotificationManager() {
-        return (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-    }
-
-    @SuppressWarnings("deprecation")
-    public void oldNotification() {
-        NotificationManager mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notification = new Notification(R.drawable.ic_launcher,
-                "aeGis service is running", System.currentTimeMillis());
-        Intent i = new Intent(this, AegisActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
-
-        notification.setLatestEventInfo(this, "aeGis", "SMSMonitor", pi);
-        notification.flags |= Notification.PRIORITY_HIGH;
-        mManager.notify(1337, notification);
-        return;
     }
 
     @SuppressWarnings("deprecation")

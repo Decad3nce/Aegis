@@ -5,12 +5,13 @@
     <string name="lock_section">Lock</string>
     <string name="alarm_section">Alarm</string>
     <string name="locate_section">Locate</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">aeGis</string>
     <string name="location_text">aeGis is tracking the devices location\nTo disable tracking, hit the Disable Tracking button</string>
 
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
+    <string name="service_start_reason">aeGis SMSMonitor service started</string>
+    
     <string name="preferences_alarm_category">Alarm</string>
     <string name="preferences_alarm_enabled_title">Alarm</string>
     <string name="preferences_alarm_enabled_summary">Play an alarm and enable ringer sound on device.</string>
@@ -41,6 +42,9 @@
     <string name="lock_toggle_text">Lock</string>
     <string name="wipe_toggle_text">Wipe</string>
     <string name="locate_toggle_text">Locate</string>
+    <string name="action1">action1</string>
+    <string name="action2">action2</string>
+    <string name="action3">action3</string>
     
     <string-array name="preferences_alarm_duration_entries">
         <item>5s</item>
