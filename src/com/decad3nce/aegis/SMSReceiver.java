@@ -18,12 +18,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 public class SMSReceiver extends BroadcastReceiver {
     private static final String ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
     private static final String EXTRA_SMS_PDUS = "pdus";
     private static String address;
-    
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ACTION_SMS_RECEIVED)) {
@@ -32,16 +33,30 @@ public class SMSReceiver extends BroadcastReceiver {
                 SharedPreferences preferences = PreferenceManager
                         .getDefaultSharedPreferences(context);
 
+                Log.i("aeGis", "Received SMS");
+
                 SmsMessage[] messages = getMessagesFromIntent(intent);
                 for (SmsMessage sms : messages) {
                     String body = sms.getMessageBody();
                     address = sms.getOriginatingAddress();
                     // TODO: whitelist/blacklist of allowed senders
 
-                    boolean alarmEnabled = AegisActivity.alarmEnabled;
-                    boolean lockEnabled = AegisActivity.lockEnabled;
-                    boolean wipeEnabled = AegisActivity.wipeEnabled;
-                    boolean locateEnabled = AegisActivity.locateEnabled;
+                    boolean alarmEnabled = preferences.getBoolean(
+                            AegisActivity.PREFERENCES_ALARM_ENABLED,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_alarm_enabled));
+                    boolean lockEnabled = preferences.getBoolean(
+                            AegisActivity.PREFERENCES_LOCK_ENABLED,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_lock_enabled));
+                    boolean wipeEnabled = preferences.getBoolean(
+                            AegisActivity.PREFERENCES_WIPE_ENABLED,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_wipe_enabled));
+                    boolean locateEnabled = preferences.getBoolean(
+                            AegisActivity.PREFERENCES_LOCATE_ENABLED,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_locate_enabled));
 
                     String activationAlarmSms = preferences
                             .getString(
@@ -67,15 +82,19 @@ public class SMSReceiver extends BroadcastReceiver {
                                     context.getResources()
                                             .getString(
                                                     R.string.config_default_locate_activation_sms));
-                    boolean locateLockPref = preferences
-                            .getBoolean(
-                                    SMSLocateFragment.PREFERENCES_LOCATE_LOCK_PREF,
-                                    context.getResources()
-                                            .getBoolean(
-                                                    R.bool.config_default_locate_lock_pref));
+                    boolean locateLockPref = preferences.getBoolean(
+                            SMSLocateFragment.PREFERENCES_LOCATE_LOCK_PREF,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_locate_lock_pref));
 
                     if (alarmEnabled && body.startsWith(activationAlarmSms)) {
-                        alarmNotification(context);
+                        try {
+                            alarmNotification(context);
+                            Log.i("aeGis", "Alarm successfully started");
+                        } catch (Exception e) {
+                            Log.e("aeGis", "Failed to alarm");
+                            Log.e("aeGis", e.toString());
+                        }
                     }
 
                     if (lockEnabled && body.startsWith(activationLockSms)) {
@@ -89,21 +108,25 @@ public class SMSReceiver extends BroadcastReceiver {
                                             context.getResources()
                                                     .getString(
                                                             R.string.config_default_lock_password));
-                            if (body.length() > activationLockSms
-                                    .length() + 1) {
-                                password = body
-                                        .substring(activationLockSms
-                                                .length() + 1);
-                                //Because fuck your email
-                                password = password.replaceAll("([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)", "")
-                                                   .replaceAll("-+","")
-                                                   .trim();
+                            if (body.length() > activationLockSms.length() + 1) {
+                                password = body.substring(activationLockSms
+                                        .length() + 1);
+                                // Because fuck your email
+                                password = password
+                                        .replaceAll(
+                                                "([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)",
+                                                "").replaceAll("-+", "").trim();
                             }
                             if (password.length() > 0) {
-                                devicePolicyManager.resetPassword(
-                                        password, 0);
+                                devicePolicyManager.resetPassword(password, 0);
                             }
-                            devicePolicyManager.lockNow();
+                            try {
+                                Log.i("aeGis", "Locking device");
+                                devicePolicyManager.lockNow();
+                            } catch (Exception e) {
+                                Log.i("aeGis", "Failed to lock device");
+                                Log.v("aeGis", e.toString());
+                            }
                         }
                     }
 
@@ -112,37 +135,62 @@ public class SMSReceiver extends BroadcastReceiver {
                                 .getSystemService(Context.DEVICE_POLICY_SERVICE);
                         if (devicePolicyManager
                                 .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                            devicePolicyManager.wipeData(0);
+                            try {
+                                Log.i("aeGis", "Wiping device");
+                                devicePolicyManager.wipeData(0);
+                            } catch (Exception e) {
+                                Log.e("aeGis", "Failed to wipe device");
+                                Log.e("aeGis", e.toString());
+                            }
                         }
                     }
 
                     if (locateEnabled && body.startsWith(activationLocateSms)) {
                         DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
                                 .getSystemService(Context.DEVICE_POLICY_SERVICE);
-                        
-                        if (locateLockPref && devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                            String password = preferences.getString(SMSLockFragment.PREFERENCES_LOCK_PASSWORD,
-                                            context.getResources().getString(R.string.config_default_lock_password));
-                            
-                            devicePolicyManager.resetPassword(password,0);
-                            devicePolicyManager.lockNow();
+
+                        if (locateLockPref
+                                && devicePolicyManager
+                                        .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
+                            String password = preferences
+                                    .getString(
+                                            SMSLockFragment.PREFERENCES_LOCK_PASSWORD,
+                                            context.getResources()
+                                                    .getString(
+                                                            R.string.config_default_lock_password));
+                            try {
+                                Log.i("aeGis", "Locking device");
+                                devicePolicyManager.resetPassword(password, 0);
+                                devicePolicyManager.lockNow();
+                            } catch (Exception e) {
+                                Log.e("aeGis", "Failed to lock device");
+                                Log.e("aeGis", e.toString());
+                            }
                         }
-                        
-                        Intent locateIntent = new Intent(context,
-                                PhoneTrackerActivity.class);
-                        locateIntent
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        locateIntent
-                                .addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                        locateIntent
-                                .putExtra("address", address);
-                        context.startActivity(locateIntent);
+
+                        try {
+                            Intent locateIntent = new Intent(context,
+                                    PhoneTrackerActivity.class);
+                            locateIntent
+                                    .addFlags(
+                                            Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    .addFlags(
+                                            Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                                    .putExtra("address", address);
+                            context.startActivity(locateIntent);
+
+                            Log.i("aeGis", "Intent sent");
+                        } catch (Exception e) {
+                            Log.e("aeGis", "Failed to locate device");
+                            Log.e("aeGis", e.toString());
+                        }
                     }
                 }
             }
         }
     }
-    
+
     private SmsMessage[] getMessagesFromIntent(Intent intent) {
         Object[] messages = (Object[]) intent
                 .getSerializableExtra(EXTRA_SMS_PDUS);
@@ -160,12 +208,14 @@ public class SMSReceiver extends BroadcastReceiver {
         }
         return msgs;
     }
-    
+
     @SuppressWarnings("deprecation")
     private void alarmNotification(Context context) {
         // Get AudioManager
-        AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        NotificationManager mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        AudioManager am = (AudioManager) context
+                .getSystemService(Context.AUDIO_SERVICE);
+        NotificationManager mManager = (NotificationManager) context
+                .getSystemService(Context.NOTIFICATION_SERVICE);
 
         Notification notification = new Notification(R.drawable.ic_launcher,
                 "aeGis has overriden sound settings",

@@ -49,9 +49,13 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     public void onCreate(Bundle savedInstances) {
         super.onCreate(savedInstances);
         setContentView(R.layout.location_layout);
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
         Bundle extras = getIntent().getExtras();
         originatingAddress = extras.getString("address");
-
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         handler.post(getData);
     }
