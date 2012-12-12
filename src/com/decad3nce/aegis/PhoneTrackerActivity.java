@@ -30,6 +30,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
     private static final String TAG = "AEGIS";
 
+    private String originatingAddress;
     private boolean mLocationTracking = false;
     private boolean mDisableTracking = false;
     private boolean mFirstTrack = true;
@@ -48,6 +49,8 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     public void onCreate(Bundle savedInstances) {
         super.onCreate(savedInstances);
         setContentView(R.layout.location_layout);
+        Bundle extras = getIntent().getExtras();
+        originatingAddress = extras.getString("address");
 
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         handler.post(getData);
@@ -230,7 +233,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
         if (isBetterLocation(location, mLocation) && Geocoder.isPresent()) {
             try {
-                sms.sendTextMessage(SMSMonitorService.address, null,
+                sms.sendTextMessage(originatingAddress, null,
                         geoCodedLocation, null, null);
             } catch (IllegalArgumentException e) {
             }

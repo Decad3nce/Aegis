@@ -7,8 +7,6 @@ import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningServiceInfo;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -85,10 +83,6 @@ public class AegisActivity extends FragmentActivity {
 
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);  
-
-        if(!isServiceRunning()) {
-            startService(new Intent(this, SMSMonitorService.class));
-        }
         
         mInitialized = preferences
                 .getBoolean(PREFERENCES_AEGIS_INITIALIZED, this.getResources()
@@ -337,16 +331,6 @@ public class AegisActivity extends FragmentActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
     
-    public boolean isServiceRunning() {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (SMSMonitorService.class.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     protected void saveSettings() {
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
