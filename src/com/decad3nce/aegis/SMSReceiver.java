@@ -21,6 +21,8 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 
 public class SMSReceiver extends BroadcastReceiver {
+    private static final String TAG = "aeGis";
+    
     private static final String ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
     private static final String EXTRA_SMS_PDUS = "pdus";
     private static String address;
@@ -33,7 +35,7 @@ public class SMSReceiver extends BroadcastReceiver {
                 SharedPreferences preferences = PreferenceManager
                         .getDefaultSharedPreferences(context);
 
-                Log.i("aeGis", "Received SMS");
+                Log.i(TAG, "Received SMS");
 
                 SmsMessage[] messages = getMessagesFromIntent(intent);
                 for (SmsMessage sms : messages) {
@@ -90,12 +92,12 @@ public class SMSReceiver extends BroadcastReceiver {
                     if (alarmEnabled && body.startsWith(activationAlarmSms)) {
                         try {
                             alarmNotification(context);
-                            Log.i("aeGis", "Alarm successfully started");
+                            Log.i(TAG, "Alarm successfully started");
                             Utils.sendSMS(context, address,
                                     "aeGis: Alarm successfully started");
                         } catch (Exception e) {
-                            Log.e("aeGis", "Failed to alarm");
-                            Log.e("aeGis", e.toString());
+                            Log.e(TAG, "Failed to alarm");
+                            Log.e(TAG, e.toString());
                             Utils.sendSMS(context, address,
                                     "aeGis: Failed to override sound settings");
                         }
@@ -113,13 +115,13 @@ public class SMSReceiver extends BroadcastReceiver {
                         if (devicePolicyManager
                                 .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
                             try {
-                                Log.i("aeGis", "Wiping device");
+                                Log.i(TAG, "Wiping device");
                                 devicePolicyManager.wipeData(0);
                                 Utils.sendSMS(context, address,
                                         "aeGis: Wiping device");
                             } catch (Exception e) {
-                                Log.e("aeGis", "Failed to wipe device");
-                                Log.e("aeGis", e.toString());
+                                Log.e(TAG, "Failed to wipe device");
+                                Log.e(TAG, e.toString());
                                 Utils.sendSMS(context, address,
                                         "aeGis: Failed to wipe device");
                             }
@@ -139,10 +141,10 @@ public class SMSReceiver extends BroadcastReceiver {
                                     .putExtra("address", address);
                             context.startActivity(locateIntent);
 
-                            Log.i("aeGis", "Locate intent sent");
+                            Log.i(TAG, "Locate intent sent");
                         } catch (Exception e) {
-                            Log.e("aeGis", "Failed to locate device");
-                            Log.e("aeGis", e.toString());
+                            Log.e(TAG, "Failed to locate device");
+                            Log.e(TAG, e.toString());
                             Utils.sendSMS(context, address,
                                     "aeGis: Failed to locate device. Error: "
                                             + e.toString());
@@ -206,13 +208,13 @@ public class SMSReceiver extends BroadcastReceiver {
             }
 
             try {
-                Log.i("aeGis", "Locking device");
+                Log.i(TAG, "Locking device");
                 devicePolicyManager.lockNow();
                 Utils.sendSMS(context, address,
                         "aeGis: Locked device with password: " + password);
             } catch (Exception e) {
-                Log.wtf("aeGis", "Failed to lock device");
-                Log.wtf("aeGis", e.toString());
+                Log.wtf(TAG, "Failed to lock device");
+                Log.wtf(TAG, e.toString());
                 Utils.sendSMS(context, address,
                         "aeGis: Failed to lock device. Error: " + e.toString());
             }

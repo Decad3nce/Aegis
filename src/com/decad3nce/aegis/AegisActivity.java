@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +25,8 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 public class AegisActivity extends FragmentActivity {
+    
+    private static final String TAG = "aeGis";
 
     public static final String PREFERENCES_ALARM_ENABLED = "alarm_toggle";
     public static final String PREFERENCES_WIPE_ENABLED = "wipe_toggle";
@@ -332,6 +335,7 @@ public class AegisActivity extends FragmentActivity {
     }
     
     protected void saveSettings() {
+        Log.i(TAG, "Saving settings.");
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
