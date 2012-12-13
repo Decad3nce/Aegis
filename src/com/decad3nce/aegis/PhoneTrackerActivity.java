@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import com.decad3nce.aegis.Fragments.SMSLocateFragment;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -20,6 +23,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -27,14 +31,12 @@ import android.widget.Button;
 
 public class PhoneTrackerActivity extends Activity implements LocationListener {
 
-    private static final String TAG = "AEGIS";
+    private static final String TAG = "aeGis";
 
     private String originatingAddress;
     private boolean mLocationTracking = false;
     private boolean mDisableTracking = false;
     private boolean mFirstTrack = true;
-
-    private static final int TWO_MINUTES = 1000 * 60 * 2;
 
     private LocationManager mLocationManager;
     private String mBestProvider;
@@ -110,17 +112,48 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
         final boolean networkEnabled = mLocationManager
                 .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
 
         if (!mFirstTrack && gpsEnabled) {
             Log.i(TAG, "Tracking by GPS");
+            
+            int mLocateUpdateDuration = Integer.parseInt(preferences.getString(
+                    SMSLocateFragment.PREFERENCES_LOCATE_UPDATE_DURATION, getResources()
+                    .getString(R.string.config_default_locate_update_duration)));
+            
+            mLocateUpdateDuration = mLocateUpdateDuration * 1000;
+            
+            int mLocateMinimumDistance = Integer.parseInt(preferences.getString(
+                    SMSLocateFragment.PREFERENCES_LOCATE_MINIMUM_DISTANCE, getResources()
+                    .getString(R.string.config_default_locate_minimum_distance)));
+            
+            Log.i(TAG, "Location update interval is set at: " + mLocateUpdateDuration);
+            Log.i(TAG, "Location minimum distance is set at: " + mLocateMinimumDistance);
+            
             mLocationManager.requestLocationUpdates(
-                    mBestProvider, 100000, 1, this);
+                    mBestProvider, mLocateUpdateDuration, mLocateMinimumDistance, this);
             mLocation = mLocationManager.getLastKnownLocation(mBestProvider);
             
         } else if (!mFirstTrack && networkEnabled) {
             Log.i(TAG, "Tracking by Network Location");
+            
+            int mLocateUpdateDuration = Integer.parseInt(preferences.getString(
+                    SMSLocateFragment.PREFERENCES_LOCATE_UPDATE_DURATION, getResources()
+                    .getString(R.string.config_default_locate_update_duration)));
+            
+            mLocateUpdateDuration = mLocateUpdateDuration * 1000;
+            
+            int mLocateMinimumDistance = Integer.parseInt(preferences.getString(
+                    SMSLocateFragment.PREFERENCES_LOCATE_MINIMUM_DISTANCE, getResources()
+                    .getString(R.string.config_default_locate_minimum_distance)));
+            
+            Log.i(TAG, "Location update interval is set at: " + mLocateUpdateDuration);
+            Log.i(TAG, "Location minimum distance is set at: " + mLocateMinimumDistance);
+            
             mLocationManager.requestLocationUpdates(
-                    LocationManager.NETWORK_PROVIDER, 100000, 1, this);
+                    LocationManager.NETWORK_PROVIDER, mLocateUpdateDuration, mLocateMinimumDistance, this);
             mLocation = mLocationManager.getLastKnownLocation(mBestProvider);
             
         } else {
@@ -184,13 +217,26 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
     protected boolean isBetterLocation(Location location,
             Location currentBestLocation) {
+        
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        
+        int mLocateUpdateDurationOlder = Integer.parseInt(preferences.getString(
+                SMSLocateFragment.PREFERENCES_LOCATE_UPDATE_DURATION, getResources()
+                .getString(R.string.config_default_locate_update_duration)));
+        
+        //Multiply chosen value by 2 to return a location regardless if more accurate or not.
+        mLocateUpdateDurationOlder = mLocateUpdateDurationOlder * 1000 * 2;
+        
+        Log.i(TAG, "Signficantly Older interval is set at: " + mLocateUpdateDurationOlder);
+                
         if (currentBestLocation == null) {
             return true;
         }
 
         long timeDelta = location.getTime() - currentBestLocation.getTime();
-        boolean isSignificantlyNewer = timeDelta > TWO_MINUTES;
-        boolean isSignificantlyOlder = timeDelta < -TWO_MINUTES;
+        boolean isSignificantlyNewer = timeDelta > mLocateUpdateDurationOlder;
+        boolean isSignificantlyOlder = timeDelta < mLocateUpdateDurationOlder;
         boolean isNewer = timeDelta > 0;
 
         if (isSignificantlyNewer) {
@@ -233,8 +279,9 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         geoCodedLocation = geoCodeMyLocation(location.getLatitude(),
                 location.getLongitude());
 
-        if (isBetterLocation(location, mLocation) && Geocoder.isPresent()) {
+        if ((isBetterLocation(location, mLocation) && Geocoder.isPresent()) || mFirstTrack) {
             try {
+                Log.i(TAG, "Sending SMS location update");
                 Utils.sendSMS(this, originatingAddress, geoCodedLocation);
             } catch (IllegalArgumentException e) {
             }

@@ -10,5 +10,17 @@
                 android:title="@string/preferences_locate_lock_pref_title"
                 android:summary="@string/preferences_locate_lock_pref_summary"
                 android:defaultValue="@bool/config_default_locate_lock_pref" />
+        <ListPreference android:key="locate_update_duration"
+                android:title="@string/preferences_locate_update_duration_title"
+                android:summary="@string/preferences_locate_update_duration_summary"
+                android:entries="@array/preferences_locate_update_duration_entries"
+                android:entryValues="@array/preferences_locate_update_duration_values"
+                android:defaultValue="@string/config_default_locate_update_duration" />
+        <ListPreference android:key="locate_minimum_distance"
+                android:title="@string/preferences_locate_minimum_distance_title"
+                android:summary="@string/preferences_locate_minimum_distance_summary"
+                android:entries="@array/preferences_locate_minimum_distance_entries"
+                android:entryValues="@array/preferences_locate_minimum_distance_values"
+                android:defaultValue="@string/config_default_locate_minimum_distance" />
      </PreferenceCategory>
 </PreferenceScreen>

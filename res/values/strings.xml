@@ -9,6 +9,7 @@
     <string name="title_activity_main">aeGis</string>
     <string name="location_text">aeGis is tracking the devices location\nTo disable tracking, hit the Disable Tracking button</string>
 
+    <string name="disable_tracking_button">Disable Tracking</string>
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
     <string name="service_start_reason">aeGis SMSMonitor service started</string>
     <string name="text_stub">Features coming!</string>
@@ -39,24 +40,8 @@
     <string name="preferences_locate_activation_sms_summary">Choose what text to send to locate the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized location tracking.</string>
     <string name="preferences_locate_lock_pref_title">Lock Device</string>
     <string name="preferences_locate_lock_pref_summary">Whether to lock device with default lock password or appended password when locate is triggered.</string>
-    
-    <string-array name="preferences_alarm_duration_entries">
-        <item>5s</item>
-        <item>10s</item>
-        <item>15s</item>
-        <item>20s</item>
-        <item>30s</item>
-        <item>1m</item>
-        <item>2m</item>
-    </string-array>
-    <string-array name="preferences_alarm_duration_values" translatable="false">
-        <item>5</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>30</item>
-        <item>60</item>
-        <item>120</item>
-    </string-array>
-        <string name="disable_tracking_button">Disable Tracking</string>
+    <string name="preferences_locate_update_duration_title">Location Update Interval</string>
+    <string name="preferences_locate_update_duration_summary">Choose how often to have location provider attempt to get a more accurate location from the device being tracked. A lower time will drain more battery on device.</string>
+    <string name="preferences_locate_minimum_distance_title">Location Minimum Distance</string>
+    <string name="preferences_locate_minimum_distance_summary">Choose the minimum distance of change the location service will trigger an update for.</string>
 </resources>

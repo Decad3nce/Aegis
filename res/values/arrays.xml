@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="preferences_locate_update_duration_entries">
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+        <item>3 minutes</item>
+        <item>5 minutes</item>
+    </string-array>
+    <string-array name="preferences_locate_update_duration_values" translatable="false">
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>180</item>
+        <item>300</item>
+    </string-array>
+    
+    <string-array name="preferences_locate_minimum_distance_entries">
+        <item>Always update, regardless of changed distance between points.</item>
+        <item>1 Meter</item>
+        <item>10 Meters</item>
+        <item>25 Meters</item>
+        <item>50 Meters</item>
+        <item>100 Meters</item>
+        <item>500 Meters</item>
+    </string-array>
+    <string-array name="preferences_locate_minimum_distance_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>100</item>
+        <item>500</item>
+    </string-array>
+</resources>
