@@ -38,7 +38,7 @@
     <string name="preferences_locate_activation_sms_title">Locate Activation SMS</string>
     <string name="preferences_locate_activation_sms_summary">Choose what text to send to locate the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized location tracking.</string>
     <string name="preferences_locate_lock_pref_title">Lock Device</string>
-    <string name="preferences_locate_lock_pref_summary">Whether to lock device with default lock password when locate is triggered.</string>
+    <string name="preferences_locate_lock_pref_summary">Whether to lock device with default lock password or appended password when locate is triggered.</string>
     
     <string-array name="preferences_alarm_duration_entries">
         <item>5s</item>

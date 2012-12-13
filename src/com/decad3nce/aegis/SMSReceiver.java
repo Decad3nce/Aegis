@@ -91,43 +91,20 @@ public class SMSReceiver extends BroadcastReceiver {
                         try {
                             alarmNotification(context);
                             Log.i("aeGis", "Alarm successfully started");
+                            Utils.sendSMS(context, address,
+                                    "aeGis: Alarm successfully started");
                         } catch (Exception e) {
                             Log.e("aeGis", "Failed to alarm");
                             Log.e("aeGis", e.toString());
+                            Utils.sendSMS(context, address,
+                                    "aeGis: Failed to override sound settings");
                         }
                     }
 
-                    if (lockEnabled && body.startsWith(activationLockSms)) {
-                        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
-                                .getSystemService(Context.DEVICE_POLICY_SERVICE);
-                        if (devicePolicyManager
-                                .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                            String password = preferences
-                                    .getString(
-                                            SMSLockFragment.PREFERENCES_LOCK_PASSWORD,
-                                            context.getResources()
-                                                    .getString(
-                                                            R.string.config_default_lock_password));
-                            if (body.length() > activationLockSms.length() + 1) {
-                                password = body.substring(activationLockSms
-                                        .length() + 1);
-                                // Because fuck your email
-                                password = password
-                                        .replaceAll(
-                                                "([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)",
-                                                "").replaceAll("-+", "").trim();
-                            }
-                            if (password.length() > 0) {
-                                devicePolicyManager.resetPassword(password, 0);
-                            }
-                            try {
-                                Log.i("aeGis", "Locking device");
-                                devicePolicyManager.lockNow();
-                            } catch (Exception e) {
-                                Log.i("aeGis", "Failed to lock device");
-                                Log.v("aeGis", e.toString());
-                            }
-                        }
+                    if ((lockEnabled && body.startsWith(activationLockSms))
+                            || (locateLockPref && body
+                                    .startsWith(activationLocateSms))) {
+                        lockDevice(context, body, preferences, activationLockSms, activationLocateSms);
                     }
 
                     if (wipeEnabled && body.startsWith(activationWipeSms)) {
@@ -138,36 +115,18 @@ public class SMSReceiver extends BroadcastReceiver {
                             try {
                                 Log.i("aeGis", "Wiping device");
                                 devicePolicyManager.wipeData(0);
+                                Utils.sendSMS(context, address,
+                                        "aeGis: Wiping device");
                             } catch (Exception e) {
                                 Log.e("aeGis", "Failed to wipe device");
                                 Log.e("aeGis", e.toString());
+                                Utils.sendSMS(context, address,
+                                        "aeGis: Failed to wipe device");
                             }
                         }
                     }
 
                     if (locateEnabled && body.startsWith(activationLocateSms)) {
-                        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
-                                .getSystemService(Context.DEVICE_POLICY_SERVICE);
-
-                        if (locateLockPref
-                                && devicePolicyManager
-                                        .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                            String password = preferences
-                                    .getString(
-                                            SMSLockFragment.PREFERENCES_LOCK_PASSWORD,
-                                            context.getResources()
-                                                    .getString(
-                                                            R.string.config_default_lock_password));
-                            try {
-                                Log.i("aeGis", "Locking device");
-                                devicePolicyManager.resetPassword(password, 0);
-                                devicePolicyManager.lockNow();
-                            } catch (Exception e) {
-                                Log.e("aeGis", "Failed to lock device");
-                                Log.e("aeGis", e.toString());
-                            }
-                        }
-
                         try {
                             Intent locateIntent = new Intent(context,
                                     PhoneTrackerActivity.class);
@@ -180,10 +139,13 @@ public class SMSReceiver extends BroadcastReceiver {
                                     .putExtra("address", address);
                             context.startActivity(locateIntent);
 
-                            Log.i("aeGis", "Intent sent");
+                            Log.i("aeGis", "Locate intent sent");
                         } catch (Exception e) {
                             Log.e("aeGis", "Failed to locate device");
                             Log.e("aeGis", e.toString());
+                            Utils.sendSMS(context, address,
+                                    "aeGis: Failed to locate device. Error: "
+                                            + e.toString());
                         }
                     }
                 }
@@ -207,6 +169,54 @@ public class SMSReceiver extends BroadcastReceiver {
             msgs[i] = SmsMessage.createFromPdu(pdus[i]);
         }
         return msgs;
+    }
+
+    private void lockDevice(Context context, String body, SharedPreferences preferences, String activationLockSms, String activationLocateSms) {
+        
+        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
+                .getSystemService(Context.DEVICE_POLICY_SERVICE);
+
+        if (devicePolicyManager
+                .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
+            String password = preferences.getString(
+                    SMSLockFragment.PREFERENCES_LOCK_PASSWORD,
+                    context.getResources().getString(
+                            R.string.config_default_lock_password));
+
+            if (!body.startsWith(activationLocateSms)) {
+                if (body.length() > activationLockSms.length() + 1) {
+                    password = body.substring(activationLockSms.length() + 1);
+                    password = password
+                            .replaceAll(
+                                    "([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)",
+                                    "").replaceAll("-+", "").trim();
+                }
+            } else {
+                if (body.length() > activationLocateSms.length() + 1) {
+                    password = body.substring(activationLocateSms.length() + 1);
+                    password = password
+                            .replaceAll(
+                                    "([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)",
+                                    "").replaceAll("-+", "").trim();
+                }
+            }
+
+            if (password.length() > 0) {
+                devicePolicyManager.resetPassword(password, 0);
+            }
+
+            try {
+                Log.i("aeGis", "Locking device");
+                devicePolicyManager.lockNow();
+                Utils.sendSMS(context, address,
+                        "aeGis: Locked device with password: " + password);
+            } catch (Exception e) {
+                Log.wtf("aeGis", "Failed to lock device");
+                Log.wtf("aeGis", e.toString());
+                Utils.sendSMS(context, address,
+                        "aeGis: Failed to lock device. Error: " + e.toString());
+            }
+        }
     }
 
     @SuppressWarnings("deprecation")

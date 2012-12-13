@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -229,7 +228,6 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        SmsManager sms = SmsManager.getDefault();
         String geoCodedLocation;
 
         geoCodedLocation = geoCodeMyLocation(location.getLatitude(),
@@ -237,8 +235,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
         if (isBetterLocation(location, mLocation) && Geocoder.isPresent()) {
             try {
-                sms.sendTextMessage(originatingAddress, null,
-                        geoCodedLocation, null, null);
+                Utils.sendSMS(this, originatingAddress, geoCodedLocation);
             } catch (IllegalArgumentException e) {
             }
         }
