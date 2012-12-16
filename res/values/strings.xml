@@ -11,7 +11,6 @@
 
     <string name="disable_tracking_button">Disable Tracking</string>
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
-    <string name="service_start_reason">aeGis SMSMonitor service started</string>
     <string name="text_stub">Features coming!</string>
     
     <string name="preferences_alarm_category">Alarm</string>
@@ -44,4 +43,14 @@
     <string name="preferences_locate_update_duration_summary">Choose how often to have location provider attempt to get a more accurate location from the device being tracked. A lower time will drain more battery on device.</string>
     <string name="preferences_locate_minimum_distance_title">Location Minimum Distance</string>
     <string name="preferences_locate_minimum_distance_summary">Choose the minimum distance of change the location service will trigger an update for.</string>
+    
+    <string name="util_sendsms_alarm_pass">aeGis: Sound successfully enabled.</string>
+    <string name="util_sendsms_alarm_fail">aeGis: Failed to override sound settings. Error:</string>
+    <string name="util_sendsms_lock_pass">aeGis: Locked device with password:</string>
+    <string name="util_sendsms_lock_fail">aeGis: Failed to lock device. Error:</string>
+    <string name="util_sendsms_wipe_pass">aeGis: Wiping device.</string>
+    <string name="util_sendsms_wipe_fail">aeGis: Failed to wipe device. Error:</string>
+    <string name="util_sendsms_locate_fail">aeGis: Failed to locate device. Error:</string>
+    
+    <string name="receiver_alarm_override">aeGis has overriden sound settings.</string>
 </resources>

@@ -94,12 +94,12 @@ public class SMSReceiver extends BroadcastReceiver {
                             alarmNotification(context);
                             Log.i(TAG, "Alarm successfully started");
                             Utils.sendSMS(context, address,
-                                    "aeGis: Alarm successfully started");
+                                    context.getResources().getString(R.string.util_sendsms_alarm_pass));
                         } catch (Exception e) {
                             Log.e(TAG, "Failed to alarm");
                             Log.e(TAG, e.toString());
                             Utils.sendSMS(context, address,
-                                    "aeGis: Failed to override sound settings");
+                                    context.getResources().getString(R.string.util_sendsms_alarm_fail) + " " + e.toString());
                         }
                     }
 
@@ -118,12 +118,12 @@ public class SMSReceiver extends BroadcastReceiver {
                                 Log.i(TAG, "Wiping device");
                                 devicePolicyManager.wipeData(0);
                                 Utils.sendSMS(context, address,
-                                        "aeGis: Wiping device");
+                                        context.getResources().getString(R.string.util_sendsms_wipe_pass));
                             } catch (Exception e) {
                                 Log.e(TAG, "Failed to wipe device");
                                 Log.e(TAG, e.toString());
                                 Utils.sendSMS(context, address,
-                                        "aeGis: Failed to wipe device");
+                                        context.getResources().getString(R.string.util_sendsms_wipe_fail) + " " + e.toString());
                             }
                         }
                     }
@@ -146,7 +146,7 @@ public class SMSReceiver extends BroadcastReceiver {
                             Log.e(TAG, "Failed to locate device");
                             Log.e(TAG, e.toString());
                             Utils.sendSMS(context, address,
-                                    "aeGis: Failed to locate device. Error: "
+                                    context.getResources().getString(R.string.util_sendsms_locate_fail) + " "
                                             + e.toString());
                         }
                     }
@@ -211,12 +211,12 @@ public class SMSReceiver extends BroadcastReceiver {
                 Log.i(TAG, "Locking device");
                 devicePolicyManager.lockNow();
                 Utils.sendSMS(context, address,
-                        "aeGis: Locked device with password: " + password);
+                        context.getResources().getString(R.string.util_sendsms_lock_pass) + " " + password);
             } catch (Exception e) {
                 Log.wtf(TAG, "Failed to lock device");
                 Log.wtf(TAG, e.toString());
                 Utils.sendSMS(context, address,
-                        "aeGis: Failed to lock device. Error: " + e.toString());
+                        context.getResources().getString(R.string.util_sendsms_lock_fail) + " " + e.toString());
             }
         }
     }
@@ -230,7 +230,7 @@ public class SMSReceiver extends BroadcastReceiver {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
         Notification notification = new Notification(R.drawable.ic_launcher,
-                "aeGis has overriden sound settings",
+                context.getResources().getString(R.string.receiver_alarm_override),
                 System.currentTimeMillis());
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
@@ -255,7 +255,7 @@ public class SMSReceiver extends BroadcastReceiver {
         PendingIntent pi = PendingIntent.getActivity(context, 0, i, 0);
 
         notification.setLatestEventInfo(context, "aeGis",
-                "Sound settings overriden", pi);
+                context.getResources().getString(R.string.receiver_alarm_override), pi);
         notification.flags |= Notification.PRIORITY_HIGH;
         notification.sound = Uri
                 .parse("android.resource://com.decad3nce.aegis/raw/alarm");
