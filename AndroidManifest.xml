@@ -24,16 +24,27 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".AegisActivity"
-            android:label="@string/title_activity_main" >
+        <activity android:name=".LoginActivity"
+                  android:label="@string/title_activity_main">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AegisActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".InitializationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
