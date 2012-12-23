@@ -5,13 +5,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
+    private static final String TAG = "aeGis";
+    
     private static boolean mPasswordSet;
+    private static boolean mPasswordWanted;
     private String mCurrentPassword;
     EditText mPassword;
 
@@ -32,8 +36,25 @@ public class LoginActivity extends Activity {
                 RegisterActivity.PREFERENCES_AEGIS_PASSWORD_SET,
                 this.getResources().getBoolean(
                         R.bool.config_default_password_set));
+        
+        mPasswordWanted = preferences.getBoolean(
+                RegisterActivity.PREFERENCES_AEGIS_PASSWORD_SET,
+                this.getResources().getBoolean(
+                        R.bool.config_default_password_wanted));
+        
+        Log.e(TAG, "Login mPasswordWanted is now: " + mPasswordWanted);
 
-        if (!mPasswordSet) {
+        if (!mPasswordWanted) {
+            Intent aeGisIntent = new Intent(LoginActivity.this,
+                    AegisActivity.class);
+            aeGisIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            aeGisIntent
+                    .addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            startActivity(aeGisIntent);
+            finish();
+        }
+        
+        if (!mPasswordSet && mPasswordWanted) {
             mPasswordSet = true;
             Intent registerIntent = new Intent(LoginActivity.this,
                     RegisterActivity.class);
@@ -52,7 +73,7 @@ public class LoginActivity extends Activity {
             public void onClick(View arg0) {
                 if (mPassword == null) {
                     Toast.makeText(getApplicationContext(),
-                            "Please enter the password", Toast.LENGTH_LONG)
+                            getResources().getString(R.string.login_password_toast_password_enter), Toast.LENGTH_LONG)
                             .show();
                 }
 
@@ -68,7 +89,7 @@ public class LoginActivity extends Activity {
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Password is incorrect.", Toast.LENGTH_LONG).show();
+                            getResources().getString(R.string.login_password_toast_password_fail), Toast.LENGTH_LONG).show();
                 }
 
             }

@@ -38,6 +38,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AboutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".InitializationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>

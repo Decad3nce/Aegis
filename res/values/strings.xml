@@ -12,6 +12,7 @@
     <string name="disable_tracking_button">Disable Tracking</string>
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
     <string name="text_stub">Features coming!</string>
+    <string name="descr_overflow_button">overflow</string>
     
     <string name="preferences_alarm_category">Alarm</string>
     <string name="preferences_alarm_enabled_title">Alarm</string>
@@ -51,6 +52,25 @@
     <string name="util_sendsms_wipe_pass">aeGis: Wiping device.</string>
     <string name="util_sendsms_wipe_fail">aeGis: Failed to wipe device. Error:</string>
     <string name="util_sendsms_locate_fail">aeGis: Failed to locate device. Error:</string>
+    
+    <string name="register_password_textview">Password</string>
+    <string name="register_password_confirm_textview">Confirm Password</string>
+    <string name="register_password_button">Continue</string>
+    <string name="register_password_toast_password_set">Passwords is set as</string>
+    <string name="register_password_toast_password_fail">Please enter a password and confirm it</string>
+    <string name="register_password_toast_password_match_fail">Passwords do not match</string>
+    <string name="register_password_checkbox_summary">Disable Password Login</string>
+    <string name="register_password_summary">Please enter a password to lock aeGis with whenever the session is exited. Passwords may contain any characters or be of any length.\n You can also choose to disable login by clicking the checkbox.</string>
+    
+    <string name="login_password_textview">Password</string>
+    <string name="login_password_button">Login</string>
+    <string name="login_password_toast_password_fail">Password is incorrect</string>
+    <string name="login_password_toast_password_enter">Please enter the password</string>
+    <string name="login_password_summary">Please login to continue to aeGis</string>
+    
+    <string name="about_developer_name">Copyright(C) 2012 Adnan Begovic</string>
+    <string name="about_github_link">Github source link</string>
+    <string name="about_email_link">Send email to developer</string>
     
     <string name="receiver_alarm_override">aeGis has overriden sound settings.</string>
 </resources>

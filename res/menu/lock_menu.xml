@@ -1,6 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/lock_menu_settings"
-        android:title="@string/menu_settings"
-        android:showAsAction="ifRoom|withText"
-        android:actionLayout="@layout/lock_toggle_button" />
-</menu>

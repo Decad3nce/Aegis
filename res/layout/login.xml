@@ -4,42 +4,59 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
   android:fillViewport="true">
-  <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:background="#fff">
 
-          <Button
-              android:id="@+id/btnLogin"
+  <RelativeLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="#fff" >
+
+      <Button
+          android:id="@+id/btnLogin"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentLeft="true"
+          android:text="@string/login_password_button" />
+
+      <TextView
+          android:id="@+id/textView1"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentTop="true"
+          android:layout_centerInParent="true"
+          android:gravity="center_horizontal" 
+          android:layout_marginTop="50dp"
+          android:text="@string/login_password_summary"
+          android:textColor="#372c24" />
+
+      <LinearLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/textView1"
+          android:layout_marginTop="68dp"
+          android:orientation="vertical"
+          android:padding="10dip" >
+
+          <TextView
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:layout_alignParentBottom="true"
-              android:layout_alignParentLeft="true"
-              android:text="Login" />
+              android:text="@string/login_password_textview"
+              android:textColor="#372c24" />
 
-          <LinearLayout
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
+          <EditText
+              android:id="@+id/login_password"
+              android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:layout_alignParentLeft="true"
-              android:layout_alignParentTop="true"
-              android:layout_marginTop="90dp"
-              android:orientation="vertical"
-              android:padding="10dip" >
+              android:layout_marginTop="5dip"
+              android:inputType="textPassword"
+              android:singleLine="true" >
 
-              <TextView
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:text="Password"
-                  android:textColor="#372c24" />
-
-              <EditText
-                  android:id="@+id/login_password"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="5dip"
-                  android:password="true"
-                  android:singleLine="true" />
-          </LinearLayout>
-          
+              <requestFocus />
+          </EditText>
+      </LinearLayout>
   </RelativeLayout>
+
 </ScrollView>

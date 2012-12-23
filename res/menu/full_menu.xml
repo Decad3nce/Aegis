@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+        <item android:id="@+id/alarm_menu_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="ifRoom|withText"
+        android:visible="false"
+        android:actionLayout="@layout/alarm_toggle_button" />
+        <item android:id="@+id/lock_menu_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="ifRoom|withText"
+        android:visible="false"
+        android:actionLayout="@layout/lock_toggle_button" />
+        <item android:id="@+id/locate_menu_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="ifRoom|withText"
+        android:visible="false"
+        android:actionLayout="@layout/locate_toggle_button" />
+        <item android:id="@+id/wipe_menu_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="ifRoom|withText"
+        android:visible="false"
+        android:actionLayout="@layout/wipe_toggle_button" />
+        <item android:id="@+id/full_menu_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_overflow">
+            <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+               <group android:id="@+id/group_popupmenu">
+                     <item android:id="@+id/settings"
+                           android:title="Change Password"/>
+                     <item android:id="@+id/licenses"
+                           android:title="Licenses"/>
+                     <item android:id="@+id/about"
+                           android:title="About"/>
+               </group>
+            </menu>
+         </item>
+</menu>
