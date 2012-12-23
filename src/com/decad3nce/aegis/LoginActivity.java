@@ -24,9 +24,15 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         // Set View to login.xml
         setContentView(R.layout.login);
-
-        final SharedPreferences preferences = PreferenceManager
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        
+        SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
+        
         mCurrentPassword = preferences.getString(
                 RegisterActivity.PREFERENCES_CURRENT_PASSWORD,
                 this.getResources().getString(
@@ -38,7 +44,7 @@ public class LoginActivity extends Activity {
                         R.bool.config_default_password_set));
         
         mPasswordWanted = preferences.getBoolean(
-                RegisterActivity.PREFERENCES_AEGIS_PASSWORD_SET,
+                RegisterActivity.PREFERENCES_PASSWORD_WANTED,
                 this.getResources().getBoolean(
                         R.bool.config_default_password_wanted));
         

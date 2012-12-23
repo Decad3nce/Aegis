@@ -37,74 +37,79 @@ public class RegisterActivity extends Activity {
         if (intent.hasExtra("fromAegis")) {
             mFromAegis = true;
         }
-        
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
+        }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+            final SharedPreferences preferences = PreferenceManager
+                    .getDefaultSharedPreferences(this);
 
-        mCurrentPassword = preferences.getString(
-                PREFERENCES_CURRENT_PASSWORD,
-                this.getResources().getString(
-                        R.string.config_default_login_password));
+            mCurrentPassword = preferences.getString(
+                    PREFERENCES_CURRENT_PASSWORD,
+                    this.getResources().getString(
+                            R.string.config_default_login_password));
 
-        mPasswordWanted = preferences.getBoolean(
-                RegisterActivity.PREFERENCES_PASSWORD_WANTED,
-                this.getResources().getBoolean(
-                        R.bool.config_default_password_wanted));
+            mPasswordWanted = preferences.getBoolean(
+                    RegisterActivity.PREFERENCES_PASSWORD_WANTED,
+                    this.getResources().getBoolean(
+                            R.bool.config_default_password_wanted));
 
-        mPassword = (EditText) findViewById(R.id.reg_password);
-        mPasswordConfirm = (EditText) findViewById(R.id.reg_password_confirm);
+            mPassword = (EditText) findViewById(R.id.reg_password);
+            mPasswordConfirm = (EditText) findViewById(R.id.reg_password_confirm);
 
-        Button registerScreen = (Button) findViewById(R.id.btnRegister);
-        CheckBox checkBox = (CheckBox) findViewById(R.id.disablePassword);
-        checkBox.setChecked(!mPasswordWanted);
-        
-        registerScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                case R.id.btnRegister:     
-                        if (mPasswordWanted) {
-                            if (mPassword == null || mPasswordConfirm == null) {
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                        getResources()
-                                                .getString(
-                                                        R.string.register_password_toast_password_fail),
-                                        Toast.LENGTH_LONG).show();
-                            }
+            Button registerScreen = (Button) findViewById(R.id.btnRegister);
+            CheckBox checkBox = (CheckBox) findViewById(R.id.disablePassword);
+            checkBox.setChecked(!mPasswordWanted);
+            
+            registerScreen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (v.getId()) {
+                    case R.id.btnRegister:     
+                            if (mPasswordWanted) {
+                                if (mPassword == null || mPasswordConfirm == null) {
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            getResources()
+                                                    .getString(
+                                                            R.string.register_password_toast_password_fail),
+                                            Toast.LENGTH_LONG).show();
+                                }
 
-                            String mPasswordText = mPassword.getText().toString();
-                            String mPasswordConfirmText = mPasswordConfirm.getText()
-                                    .toString();
+                                String mPasswordText = mPassword.getText().toString();
+                                String mPasswordConfirmText = mPasswordConfirm.getText()
+                                        .toString();
 
-                            if (mPasswordConfirmText.equals(mPasswordText)) {
-                                mCurrentPassword = mPasswordText;
-                                mPasswordSet = true;
-                                
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                        getResources()
-                                                .getString(
-                                                        R.string.register_password_toast_password_set)
-                                                + ": " + mPasswordText,
-                                        Toast.LENGTH_LONG).show();
+                                if (mPasswordConfirmText.equals(mPasswordText)) {
+                                    mCurrentPassword = mPasswordText;
+                                    mPasswordSet = true;
+                                    
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            getResources()
+                                                    .getString(
+                                                            R.string.register_password_toast_password_set)
+                                                    + ": " + mPasswordText,
+                                            Toast.LENGTH_LONG).show();
+                                    startAegis();
+                                } else {
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            getResources()
+                                                    .getString(
+                                                            R.string.register_password_toast_password_match_fail),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            } else {                            
                                 startAegis();
-                            } else {
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                        getResources()
-                                                .getString(
-                                                        R.string.register_password_toast_password_match_fail),
-                                        Toast.LENGTH_LONG).show();
                             }
-                        } else {                            
-                            startAegis();
-                        }
+
+                    }
 
                 }
-
-            }
-        }); }
+            });
+        }
     
     private void startAegis() {
         if (mFromAegis) {
@@ -139,17 +144,12 @@ public class RegisterActivity extends Activity {
         super.onPause();
         saveSettings();
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        saveSettings();
-    }
     
     protected void saveSettings() {
-        SharedPreferences preferences = PreferenceManager
+        final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
+        Log.v(TAG, "Saving settings");
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("current_password", mCurrentPassword);
         editor.putBoolean("password_set", mPasswordSet);
