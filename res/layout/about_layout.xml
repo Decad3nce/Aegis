@@ -73,30 +73,32 @@
         android:layout_height="1dp"
         android:layout_alignBottom="@+id/shareclick"
         android:background="@android:color/darker_gray" />
-    
 
     <ImageView
         android:id="@+id/emailicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/githubclick"
-        android:layout_toRightOf="@+id/developername"
+        android:layout_above="@+id/view1"
+        android:paddingRight="20dp"
+        android:layout_alignParentRight="true"
         android:src="@drawable/ic_content_email" />
 
     <ImageView
         android:id="@+id/githubicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/githubclick"
-        android:layout_toRightOf="@+id/developername"
+        android:layout_above="@+id/shareclick"
+        android:paddingRight="20dp"
+        android:layout_alignParentRight="true"
         android:src="@drawable/ic_github" />
-    
+
     <ImageView
         android:id="@+id/shareicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/shareclick"
-        android:layout_toRightOf="@+id/developername"
+        android:paddingRight="20dp"
+        android:layout_alignParentRight="true"
         android:src="@drawable/ic_social_share" />
 
 </RelativeLayout>
