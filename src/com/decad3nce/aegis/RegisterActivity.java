@@ -130,10 +130,8 @@ public class RegisterActivity extends Activity {
         case R.id.disablePassword:
             if (checked) {
                 mPasswordWanted = false;
-                Log.e(TAG, "mPasswordWanted is now: " + mPasswordWanted);
             } else {
                 mPasswordWanted = true;
-                Log.e(TAG, "mPasswordWanted is now: " + mPasswordWanted);
             }
             break;
         }
@@ -149,7 +147,6 @@ public class RegisterActivity extends Activity {
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
-        Log.v(TAG, "Saving settings");
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("current_password", mCurrentPassword);
         editor.putBoolean("password_set", mPasswordSet);

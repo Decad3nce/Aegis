@@ -32,5 +32,20 @@ public class AboutActivity extends Activity {
                 "aeGis Questions");
         startActivity(Intent.createChooser(emailIntent, "Send mail..."));
     }
+    
+    public void onShareClick(View v) {
+        try
+        { Intent i = new Intent(Intent.ACTION_SEND);  
+          i.setType("text/plain");
+          i.putExtra(Intent.EXTRA_SUBJECT, "aeGis");
+          String mInfo = "\nCheck out aeGis!\n\n";
+          mInfo = mInfo + "https://play.google.com/store/apps/details?id=com.decad3nce.aegis \n\n";
+          i.putExtra(Intent.EXTRA_TEXT, mInfo);  
+          startActivity(Intent.createChooser(i, "choose one"));
+        }
+        catch(Exception e)
+        { //e.toString();
+        }   
+    }
 
 }

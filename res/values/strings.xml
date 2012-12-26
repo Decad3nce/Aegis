@@ -60,7 +60,7 @@
     <string name="register_password_toast_password_fail">Please enter a password and confirm it</string>
     <string name="register_password_toast_password_match_fail">Passwords do not match</string>
     <string name="register_password_checkbox_summary">Disable Password Login</string>
-    <string name="register_password_summary">Please enter a password to lock aeGis with whenever the session is exited. Passwords may contain any characters or be of any length.\n You can also choose to disable login by clicking the checkbox.</string>
+    <string name="register_password_summary">Please enter a password to lock aeGis with whenever the session is exited.</string>
     
     <string name="login_password_textview">Password</string>
     <string name="login_password_button">Login</string>
@@ -68,9 +68,10 @@
     <string name="login_password_toast_password_enter">Please enter the password</string>
     <string name="login_password_summary">Please login to continue to aeGis</string>
     
-    <string name="about_developer_name">Copyright(C) 2012 Adnan Begovic</string>
+    <string name="about_developer_name">Copyright(&#169;) 2012 Adnan Begovic</string>
     <string name="about_github_link">Github source link</string>
     <string name="about_email_link">Send email to developer</string>
+    <string name="about_share_link">Share aeGis</string>
     
     <string name="receiver_alarm_override">aeGis has overriden sound settings.</string>
 </resources>
