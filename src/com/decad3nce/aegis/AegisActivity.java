@@ -257,7 +257,7 @@ public class AegisActivity extends FragmentActivity {
             mAlarmEnabledPreference = (Switch) menu
                     .findItem(R.id.alarm_menu_settings).getActionView()
                     .findViewById(R.id.alarm_toggle);
-            addAdminListener(alarmEnabled, mAlarmEnabledPreference);
+            addAdminListener(R.id.alarm_toggle, alarmEnabled, mAlarmEnabledPreference);
             break;
 
         case 1:
@@ -265,7 +265,7 @@ public class AegisActivity extends FragmentActivity {
             mLockEnabledPreference = (Switch) menu
                     .findItem(R.id.lock_menu_settings).getActionView()
                     .findViewById(R.id.lock_toggle);
-            addAdminListener(lockEnabled, mLockEnabledPreference);
+            addAdminListener(R.id.lock_toggle, lockEnabled, mLockEnabledPreference);
             break;
 
         case 2:
@@ -273,7 +273,7 @@ public class AegisActivity extends FragmentActivity {
             mWipeEnabledPreference = (Switch) menu
                     .findItem(R.id.wipe_menu_settings).getActionView()
                     .findViewById(R.id.wipe_toggle);
-            addAdminListener(wipeEnabled, mWipeEnabledPreference);
+            addAdminListener(R.id.wipe_toggle, wipeEnabled, mWipeEnabledPreference);
             break;
 
         case 3:
@@ -281,7 +281,7 @@ public class AegisActivity extends FragmentActivity {
             mLocateEnabledPreference = (Switch) menu
                     .findItem(R.id.locate_menu_settings).getActionView()
                     .findViewById(R.id.locate_toggle);
-            addAdminListener(locateEnabled, mLocateEnabledPreference);
+            addAdminListener(R.id.locate_toggle, locateEnabled, mLocateEnabledPreference);
             break;
         }
         return true;
@@ -314,11 +314,22 @@ public class AegisActivity extends FragmentActivity {
     }
     
     
-    private void addAdminListener(boolean what, Switch who) {
-        if (what != alarmEnabled && (what && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT))) {
-            who.setChecked(true);
-        } else if (what == alarmEnabled) {
-            who.setChecked(true);
+    private void addAdminListener(int toggle, boolean what, Switch who) {
+        switch(toggle) {
+        case R.id.alarm_toggle:
+            if(what) {
+                who.setChecked(true);
+                }
+            break;
+        case R.id.lock_toggle:
+        case R.id.wipe_toggle:
+        case R.id.locate_toggle:
+            
+            if(what && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+                who.setChecked(true);
+            }
+            break;
+            
         }
 
         if (who != null) {
