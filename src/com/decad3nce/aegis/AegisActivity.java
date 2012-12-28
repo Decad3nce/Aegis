@@ -325,8 +325,10 @@ public class AegisActivity extends FragmentActivity {
         case R.id.wipe_toggle:
         case R.id.locate_toggle:
             
-            if(what && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
-                who.setChecked(true);
+            if (mDevicePolicyManager.getActiveAdmins() != null) {
+                if (what && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+                    who.setChecked(true);
+                }
             }
             break;
             
