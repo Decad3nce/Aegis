@@ -1,0 +1,77 @@
+<resources>
+
+    <string name="app_name">"aeGis"</string>
+    <string name="wipe_section">"Wipe"</string>
+    <string name="lock_section">"Blocco"</string>
+    <string name="alarm_section">"Allarme"</string>
+    <string name="locate_section">"Localizza"</string>
+    <string name="menu_settings">"Impostazioni"</string>
+    <string name="title_activity_main">"aeGis"</string>
+    <string name="location_text">"aeGis sta tracciando la posizione del dispositivo\nPer disattivare il tracciamento, clicca sul pulsante Disattiva tracciamento"</string>
+
+    <string name="disable_tracking_button">"Disattiva tracciamento"</string>
+    <string name="device_admin_reason">"aeGis richiede i controlli amministrativi per le funzioni di wipe e blocco."</string>
+    <string name="text_stub">"Prossimamente!"</string>
+    <string name="descr_overflow_button">"overflow"</string>
+    
+    <string name="preferences_alarm_category">"Allarme"</string>
+    <string name="preferences_alarm_enabled_title">"Allarme"</string>
+    <string name="preferences_alarm_enabled_summary">"Riproduzione dell'allarme tramite altoparlante quando viene inviato il relativo SMS di attivazione."</string>
+    <string name="preferences_alarm_activation_sms_title">"SMS attivazione allarme"</string>
+    <string name="preferences_alarm_activation_sms_summary">"Scegli il testo da inviare per attivare l'allarme. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie dell'allarme."</string>
+    <string name="preferences_alarm_vibrate_title">"Vibrazione"</string>
+    <string name="preferences_alarm_vibrate_summary">"Vibra se viene attivato l'allarme."</string>
+    <string name="preferences_lock_category">"Blocco"</string>
+    <string name="preferences_lock_enabled_title">"Blocco"</string>
+    <string name="preferences_lock_enabled_summary">"Blocca il dispositivo quando viene inviato il relativo SMS di attivazione."</string>
+    <string name="preferences_lock_activation_sms_title">"SMS attivazione blocco"</string>
+    <string name="preferences_lock_activation_sms_summary">"Scegli il testo da inviare per bloccare il dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del blocco. "</string>
+    <string name="preferences_lock_password_title">"Password di default"</string>
+    <string name="preferences_lock_password_summary">"Scegli la password da utilizzare per il blocco del dispositivo. Questa sarà la password impostata di default, ma ne può essere impostata una diversa durante l'invio aggiungendola nell'SMS stesso dopo il comando di attivazione. Se non impostata durante l'invio, il dispositivo verrà bloccato utilizzando la password esistente."</string>
+    <string name="preferences_wipe_category">"Wipe"</string>
+    <string name="preferences_wipe_enabled_title">"Wipe"</string>
+    <string name="preferences_wipe_enabled_summary">"Wipe del dispositivo quando viene inviato il relativo SMS di attivazione."</string>
+    <string name="preferences_wipe_activation_sms_title">"SMS attivazione wipe"</string>
+    <string name="preferences_wipe_activation_sms_summary">"Scegli il testo da inviare per eseguire il wipe del dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del wipe. "</string>
+    <string name="preferences_locate_category">"Localizzazione"</string>
+    <string name="preferences_locate_enabled_title">"Localizzazione"</string>
+    <string name="preferences_locate_enabled_summary">"Localizza il dispositivo quando viene inviato il relativo SMS di attivazione"</string>
+    <string name="preferences_locate_activation_sms_title">"SMS attivazione localizzazione"</string>
+    <string name="preferences_locate_activation_sms_summary">"Scegli il testo da inviare per localizzare il dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie della localizzazione. "</string>
+    <string name="preferences_locate_lock_pref_title">"Blocca il dispositivo"</string>
+    <string name="preferences_locate_lock_pref_summary">"Blocca il dispositivo con la password di default o aggiunta all'SMS di attivazione quando viene attivata la localizzazione."</string>
+    <string name="preferences_locate_update_duration_title">"Intervallo di aggiornamento della posizione"</string>
+    <string name="preferences_locate_update_duration_summary">"Scegli quanto spesso sarà aggiornata la posizione per ottenere informazioni più accurate. Un tempo minore ridurrà l'autonomia della batteria. "</string>
+    <string name="preferences_locate_minimum_distance_title">"Distanza minima spostamento"</string>
+    <string name="preferences_locate_minimum_distance_summary">"Scegli lo spostamento minimo per cui verrà inviato un aggiornamento sulla posizione."</string>
+    
+    <string name="util_sendsms_alarm_pass">"aeGis: Suoni abilitati con successo."</string>
+    <string name="util_sendsms_alarm_fail">"aeGis: Impossibile modificare le impostazioni audio. Errore:"</string>
+    <string name="util_sendsms_lock_pass">"aeGis: Dispositivo bloccato con la password:"</string>
+    <string name="util_sendsms_lock_fail">"aeGis: Impossibile bloccare il dispositivo. Errore:"</string>
+    <string name="util_sendsms_wipe_pass">"aeGis: Wiping del dispositivo in corso."</string>
+    <string name="util_sendsms_wipe_fail">"aeGis: Impossibile fare il wipe del dispositivo. Errore:"</string>
+    <string name="util_sendsms_locate_fail">"aeGis: Impossibile localizzare il dispositivo. Errore:"</string>
+    
+    <string name="register_password_textview">"Password"</string>
+    <string name="register_password_confirm_textview">"Conferma password"</string>
+    <string name="register_password_button">"Continua"</string>
+    <string name="register_password_toast_password_set">"La passwords è impostata come"</string>
+    <string name="register_password_toast_password_fail">"Inserisci una password e ripetila per conferma"</string>
+    <string name="register_password_toast_password_match_fail">"Le passwords non combaciano"</string>
+    <string name="register_password_checkbox_summary">"Disattiva il login con password"</string>
+    <string name="register_password_summary">"Inserisci una password per bloccare aeGis quando viene chiuso."</string>
+    
+    <string name="login_password_textview">"Password"</string>
+    <string name="login_password_button">"Login"</string>
+    <string name="login_password_toast_password_fail">"Password errata"</string>
+    <string name="login_password_toast_password_enter">"Inserisci la password."</string>
+    <string name="login_password_summary">"Esegui il login per proseguire"</string>
+    
+    <string name="about_developer_name">"Copyright (©) 2012 Adnan Begovic"</string>
+    <string name="about_github_link">"Codice su Github"</string>
+    <string name="about_email_link">"Invia un'email allo sviluppatore"</string>
+    <string name="about_share_link">"Condividi aeGis"</string>
+    
+    <string name="receiver_alarm_override">"aeGis ha sovrascritto le impostazioni audio."</string>
+</resources>
