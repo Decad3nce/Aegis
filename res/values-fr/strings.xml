@@ -1,0 +1,78 @@
+<resources>
+
+    <string name="app_name">"aeGis"</string>
+    <string name="wipe_section">"Effacement"</string>
+    <string name="lock_section">"Verrouillage"</string>
+    <string name="alarm_section">"Alarme"</string>
+    <string name="locate_section">"Localisation"</string>
+    <string name="menu_settings">"Paramètres"</string>
+    <string name="title_activity_main">"aeGis"</string>
+    <string name="location_text">"aeGis localise la position de l'appareil\nPour désactiver la localisation, appuyer sur le bouton Désactiver la localisation"</string>
+
+    <string name="disable_tracking_button">"Désactiver la localisation"</string>
+    <string name="device_admin_reason">"aeGis a besoin des droits administrateur pour les fonctions verrouillage/effacement."</string>
+    <string name="text_stub">"Fonctionnalités à venir!"</string>
+    <string name="descr_overflow_button">"Menu supplémentaire"</string>
+    
+    <string name="preferences_alarm_category">"Alarme"</string>
+    <string name="preferences_alarm_enabled_title">"Alarme"</string>
+    <string name="preferences_alarm_enabled_summary">"Faire sonner une alarme et activer la sonnerie sur l'appareil."</string>
+    <string name="preferences_alarm_activation_sms_title">"Activation d'alarme par SMS"</string>
+    <string name="preferences_alarm_activation_sms_summary">"Choisir quel message envoyer pour activer l'alarme. Il est recommandé d'utiliser un code PIN dans votre sms d'activation pour éviter une activation non autorisée de l'alarme."</string>
+    <string name="preferences_alarm_vibrate_title">"Vibration"</string>
+    <string name="preferences_alarm_vibrate_summary">"Vibrer quand l'alarme est activée."</string>
+    <string name="preferences_lock_category">"Verrouillage"</string>
+    <string name="preferences_lock_enabled_title">"Verrouillage"</string>
+    <string name="preferences_lock_enabled_summary">"Verrouiller l'appareil quand le SMS d'activation est envoyé."</string>
+    <string name="preferences_lock_activation_sms_title">"SMS d’activation du verrouillage"</string>
+    <string name="preferences_lock_activation_sms_summary">"Choisir quel message envoyer pour verrouiller l’appareil. Il est recommandé d'utiliser un code PIN dans votre sms d'activation pour éviter une activation non autorisée de l'alarme."</string>
+    <string name="preferences_lock_password_title">"Mot de passe par défaut"</string>
+    <string name="preferences_lock_password_summary">"Choisir quel mot de passe sera utilisé pour verrouiller l’appareil. C’est le mot de passe qui sera utilisé par défaut, des mots de passe personnalisés peuvent être fournis quand le sms est envoyé en ajoutant le mot de passe souhaité au sms. Laissé vide, le mot de passe/la méthode de verrouillage ne sera pas changé mais l’appareil sera verrouillé pour forcer une nouvelle identification utilisant le mot de passe existant."</string>
+    <string name="preferences_wipe_category">"Effacer"</string>
+    <string name="preferences_wipe_enabled_title">"Effacer"</string>
+    <string name="preferences_wipe_enabled_summary">"Efface le contenu de l’appareil quand le SMS d’activation est envoyé."</string>
+    <string name="preferences_wipe_activation_sms_title">"SMS d’activation de l’effacement"</string>
+    <string name="preferences_wipe_activation_sms_summary">"Choisir quel message doit être envoyé pour effacer l’appareil. Il est recommandé d'utiliser un code PIN dans votre sms d'activation pour éviter une activation non autorisée de l’effacement."</string>
+    <string name="preferences_locate_category">"Localiser"</string>
+    <string name="preferences_locate_enabled_title">"Localiser"</string>
+    <string name="preferences_locate_enabled_summary">"Localiser l’appareil quand le sms d’activation est envoyé."</string>
+    <string name="preferences_locate_activation_sms_title">"SMS d’activation de la localisation"</string>
+    <string name="preferences_locate_activation_sms_summary">"Choisir quel message envoyer pour localiser l’appareil. Il est recommandé d'utiliser un code PIN dans votre sms d'activation pour éviter une activation non autorisée de la localisation."</string>
+    <string name="preferences_locate_lock_pref_title">"Verrouiller l’appareil"</string>
+    <string name="preferences_locate_lock_pref_summary">"Activer l’appareil avec le mot de passe par défaut ou le celui ajouté quand « localiser » est actif."</string>
+    <string name="preferences_locate_update_duration_title">"Fréquence de mise à jour de la location"</string>
+    <string name="preferences_locate_update_duration_summary">"Choisir à quelle fréquence l’appareil doit tenter d’obtenir une localisation plus précise de l’appareil. Un temps plus faible utilisera plus de batterie."</string>
+    <string name="preferences_locate_minimum_distance_title">"Distance Minimale de Localisation"</string>
+    <string name="preferences_locate_minimum_distance_summary">"Choisir la distance minimale de déplacement avant de mettre à jour la position."</string>
+    
+    <string name="util_sendsms_alarm_pass">"aeGis: Son activé avec succès."</string>
+    <string name="util_sendsms_alarm_fail">"aeGis: Impossible d’outrepasser les paramètres sonores. Erreur : "</string>
+    <string name="util_sendsms_lock_pass">"aeGis: Appareil verrouillé avec le mot de passe : "</string>
+    <string name="util_sendsms_lock_fail">"aeGis: Impossible de verrouiller l’appareil. Erreur :"</string>
+    <string name="util_sendsms_wipe_pass">"aeGis: Effacement de l’appareil."</string>
+    <string name="util_sendsms_wipe_fail">"aeGis: Impossible d’effacer l’appareil. Erreur:"</string>
+    <string name="util_sendsms_locate_fail">"aeGis: Impossible de localiser l’appareil. Erreur :"</string>
+    
+    <string name="register_password_textview">"Mot de passe"</string>
+    <string name="register_password_confirm_textview">"Confirmer Mot de Passe"</string>
+    <string name="register_password_button">"Continuer"</string>
+    <string name="register_password_toast_password_set">"Le mot de passe est "</string>
+    <string name="register_password_toast_password_fail">"Merci d’entrer un mot de passe et de le confirmer."</string>
+    <string name="register_password_toast_password_match_fail">"Les mots de passe sont différents."</string>
+    <string name="register_password_checkbox_summary">"Désactiver la connexion par mot de passe."</string>
+    <string name="register_password_summary">"Merci d’entrer un mot de passe avec lequel verrouiller aeGis quand la session est fermée."</string>
+    
+    <string name="login_password_textview">"Mot de passe"</string>
+    <string name="login_password_button">"Identifiant"</string>
+    <string name="login_password_toast_password_fail">"Le mot de passe est erroné"</string>
+    <string name="login_password_toast_password_enter">"Merci d’entrer le mot de passe."</string>
+    <string name="login_password_summary">"Merci de vous connecter pour continuer à utiliser aeGis."</string>
+    
+    <string name="about_developer_name">"Copyright (©) 2012 Adnan Begovic"</string>
+    <string name="about_github_link">"Lien source Github"</string>
+    <string name="about_email_link">"Envoyer un e-mail au développeur"</string>
+    <string name="about_share_link">"Aegis Partager"</string>
+    
+    <string name="receiver_alarm_override">"aeGis a outrepassé les paramètres sonores."</string>
+    
+</resources>
