@@ -1,0 +1,78 @@
+<resources>
+    
+    <string name="app_name">"aeGis"</string>
+    <string name="wipe_section">"Obrisati"</string>
+    <string name="lock_section">"Zakljucatij"</string>
+    <string name="alarm_section">"Alarm"</string>
+    <string name="locate_section">"Lociraj"</string>
+    <string name="menu_settings">"Podesavanja"</string>
+    <string name="title_activity_main">"aeGis"</string>
+    <string name="location_text">"aeGis prati lokaciju uredjaja\nDa biste ugasili pracenje, pritisnite dugme za Deaktivaciju pracenja"</string>
+
+    <string name="disable_tracking_button">"Deaktivacija pracenja"</string>
+    <string name="device_admin_reason">"aeGis zahteva kontrolu administratora uredjaja za funkcije brisanja/zakljucavanja."</string>
+    <string name="text_stub">"Opcije dolaze!"</string>
+    <string name="descr_overflow_button">"overflow"</string>
+    
+    <string name="preferences_alarm_category">"Alarm"</string>
+    <string name="preferences_alarm_enabled_title">"Alarm"</string>
+    <string name="preferences_alarm_enabled_summary">"Pusti alarm i omoguci zvuk zvona na uredjaju."</string>
+    <string name="preferences_alarm_activation_sms_title">"Alarm aktivacioni SMS"</string>
+    <string name="preferences_alarm_activation_sms_summary">"Odaberite koji tekst da posaljete da aktivirate alarm. Preporuceno je da se se koristi PIN kod u Vasem aktivacionom SMS-u kako bi se izbeglo ne dozvoljeno aktiviranje alarma."</string>
+    <string name="preferences_alarm_vibrate_title">"Vibriranje"</string>
+    <string name="preferences_alarm_vibrate_summary">"Da li da uredjaj vibrira dok je alarm aktiviran."</string>
+    <string name="preferences_lock_category">"Zakljucavanje"</string>
+    <string name="preferences_lock_enabled_title">"Zakljucavanje"</string>
+    <string name="preferences_lock_enabled_summary">"Zakljucati uredjaj kada je aktivacioni SMS poslat."</string>
+    <string name="preferences_lock_activation_sms_title">"SMS za zakljucavanje uredjaj"</string>
+    <string name="preferences_lock_activation_sms_summary">"Odaberite kojim tekstom SMS poruke se uredjaj zakljucava. Preporuceno je koristiti PIN kod u Vasem aktivacionom SMS-u kako bi se izbeglo ne dozvoljeno zakljucavanje."</string>
+    <string name="preferences_lock_password_title">"Podrazumevana sifra"</string>
+    <string name="preferences_lock_password_summary">"Odaberite koja ce se sifra koristiti za zakljucavanje uredjaja. Ovo je podrazumevana sifra koja ce biti koriscena, Vase sifre se mogu ukucati prilikom slanja SMS can be provided tako sto ce te prilikom slanja SMS-a dodati sifru. Ako je ostavljeno prazno, sifra/zakljucavanje metoda nece biti promenjena li ce uredjaj postati zakljucan kako bi se prisilila provera koriscenjem vec postojece sifre."</string>
+    <string name="preferences_wipe_category">"Brisanje"</string>
+    <string name="preferences_wipe_enabled_title">"Brisanje"</string>
+    <string name="preferences_wipe_enabled_summary">"Brisanje memorije uredjaja kada je aktivacioni SMS poslat."</string>
+    <string name="preferences_wipe_activation_sms_title">"Aktivacioni SMS brisanja"</string>
+    <string name="preferences_wipe_activation_sms_summary">"Odaberite koji tekst da posaljete da obrisete memoriju uredjaja. Preporuceno je da se se koristi PIN kod u Vasem aktivacionom SMS-u kako bi se izbeglo ne dozvoljeno brisanje."</string>
+    <string name="preferences_locate_category">"Lociranje"</string>
+    <string name="preferences_locate_enabled_title">"Lociranje"</string>
+    <string name="preferences_locate_enabled_summary">"Locirajte uredjaj kada je aktivacioni SMS poslat."</string>
+    <string name="preferences_locate_activation_sms_title">"Aktivacioni SMS lociranja."</string>
+    <string name="preferences_locate_activation_sms_summary">"Odaberite koji tekst da posaljete da aktivirate lociranje. Preporuceno je da se se koristi PIN kod u Vasem aktivacionom SMS-u kako bi se izbeglo ne dozvoljeno lociranje uredjaja."</string>
+    <string name="preferences_locate_lock_pref_title">"Zakljucavanje uredjaja"</string>
+    <string name="preferences_locate_lock_pref_summary">"Da li zelite da se uredjaj zakljuca podrazumevanom sifrom ili Vasom sifrom prilikom aktivacije lociranja."</string>
+    <string name="preferences_locate_update_duration_title">"Interval osvezavanja pozicije"</string>
+    <string name="preferences_locate_update_duration_summary">"Odaberite koliko cesto da provajder lociranja pokusava da dodje to preciznije lokacije uredjaja koji se prati. Nize vreme ce trositi manje baterije."</string>
+    <string name="preferences_locate_minimum_distance_title">"Minimalna distanca lociranja"</string>
+    <string name="preferences_locate_minimum_distance_summary">"Odaberiti minimalnu distancu promene lokacije pre nego sto se ponovo pokrene servis lociranja"</string>
+    
+    <string name="util_sendsms_alarm_pass">"aeGis: Zvuk uspesno omogucen."</string>
+    <string name="util_sendsms_alarm_fail">"aeGis: Menjanje podesavanja zvuka nije uspelo. Greska:"</string>
+    <string name="util_sendsms_lock_pass">"aeGis: Uredjaj zakljucan sifrom:"</string>
+    <string name="util_sendsms_lock_fail">"aeGis: Zakljucavanje uredjaja sifrom nije uspelo. Greska:"</string>
+    <string name="util_sendsms_wipe_pass">"aeGis: Memorija uredjaja se brise"</string>
+    <string name="util_sendsms_wipe_fail">"aeGis: Brisanje memorije uredjaja nije uspelo. Greska:"</string>
+    <string name="util_sendsms_locate_fail">"aeGis: Pokusaj lociranja uredjaja nije uspeo. Greska:"</string>
+    
+    <string name="register_password_textview">"Šifra"</string>
+    <string name="register_password_confirm_textview">"Potvrdite sifru"</string>
+    <string name="register_password_button">"Dalje"</string>
+    <string name="register_password_toast_password_set">"Za sifru postavljeno je"</string>
+    <string name="register_password_toast_password_fail">"Molimo unesite sifru i potvrdite je"</string>
+    <string name="register_password_toast_password_match_fail">"Sifre se ne poklapaju"</string>
+    <string name="register_password_checkbox_summary">"Onemoguciti Login putem sifre"</string>
+    <string name="register_password_summary">"Molimo unesite sifru kako bi se aeGis kada se trenutna sesija zavrsi."</string>
+    
+    <string name="login_password_textview">"Šifra"</string>
+    <string name="login_password_button">"Login"</string>
+    <string name="login_password_toast_password_fail">"Uneli ste pogresnu sifru"</string>
+    <string name="login_password_toast_password_enter">"Molimo unesite sifru"</string>
+    <string name="login_password_summary">"Molimo Vas da se ulogujete kako bi ste nastavili u aeGis"</string>
+    
+    <string name="about_developer_name">"Copyright (©) 2012 Adnan Begović"</string>
+    <string name="about_github_link">"Github izvor"</string>
+    <string name="about_email_link">"Poslati e-mail razvojnom timu"</string>
+    <string name="about_share_link">"Udio aeGis"</string>
+    
+    <string name="receiver_alarm_override">"aeGis je premostio podesavanja za zvuk."</string>
+    
+</resources>
