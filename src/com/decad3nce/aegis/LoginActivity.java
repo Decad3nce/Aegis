@@ -24,13 +24,8 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         // Set View to login.xml
         setContentView(R.layout.login);
-    }
-    
-    @Override
-    public void onResume() {
-        super.onResume();
         
-        SharedPreferences preferences = PreferenceManager
+        final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
         
         mCurrentPassword = preferences.getString(
@@ -47,8 +42,11 @@ public class LoginActivity extends Activity {
                 RegisterActivity.PREFERENCES_PASSWORD_WANTED,
                 this.getResources().getBoolean(
                         R.bool.config_default_password_wanted));
-        
-        Log.e(TAG, "Login mPasswordWanted is now: " + mPasswordWanted);
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
 
         if (!mPasswordWanted) {
             Intent aeGisIntent = new Intent(LoginActivity.this,
