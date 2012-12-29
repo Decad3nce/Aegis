@@ -1,0 +1,85 @@
+<resources>
+
+    <string name="app_name">"aeGis"</string>
+    <string name="wipe_section">"Löschen"</string>
+    <string name="lock_section">"Sperren"</string>
+    <string name="alarm_section">"Alarm"</string>
+    <string name="locate_section">"Lokalisieren"</string>
+    <string name="menu_settings">"Einstellungen"</string>
+    <string name="title_activity_main">"aeGis"</string>
+    <string name="location_text">"aeGis verfolgt den Standort des Gerätes.\nZum Abschalten \"Verfolgung deaktivieren\" drücken."</string>
+
+    <string name="disable_tracking_button">"Standortverfolgung deaktivieren"</string>
+    <string name="device_admin_reason">"aeGis benötigt Geräteadministratorrechte für die Löschen-/Sperren-Funktionen.
+"</string>
+    <string name="text_stub">"Zukünftige Funktionen!"</string>
+    <string name="descr_overflow_button">"overflow"</string>
+    
+    <string name="preferences_alarm_category">"Alarm"</string>
+    <string name="preferences_alarm_enabled_title">"Alarm"</string>
+    <string name="preferences_alarm_enabled_summary">"Alarm abspielen und Klingelton aktivieren."</string>
+    <string name="preferences_alarm_activation_sms_title">"Alarm-SMS"</string>
+    <string name="preferences_alarm_activation_sms_summary">"Text der SMS festlegen, mit der der Alarm aktiviert wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Aktivierungen zu verhindern."</string>
+    <string name="preferences_alarm_vibrate_title">"Vibrieren"</string>
+    <string name="preferences_alarm_vibrate_summary">"Vibrieren bei aktivem Alarm."</string>
+    <string name="preferences_lock_category">"Sperren"</string>
+    <string name="preferences_lock_enabled_title">"Sperren"</string>
+    <string name="preferences_lock_enabled_summary">"Gerät sperren, wenn Aktivierungs-SMS empfangen wird."</string>
+    <string name="preferences_lock_activation_sms_title">"Sperr-SMS"</string>
+    <string name="preferences_lock_activation_sms_summary">"Text der SMS festlegen, mit der das Gerät gesperrt wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigtes Sperren zu verhindern.
+"</string>
+    <string name="preferences_lock_password_title">"Standard-Passwort"</string>
+    <string name="preferences_lock_password_summary">"Passwort für den Sperrbildschirm festlegen. Dieses Passwort kann geändert werden, indem das gewünschte Passwort an die Aktivierungs-SMS angehängt wird. 
+Falls Sie das Feld leer lassen, wird der Sperrbildschirm nicht geändert. Das Gerät wird nur gesperrt und der Benutzer muss es mit der in den Systemeinstellungen festgelegten Methode entsperren.
+"</string>
+    <string name="preferences_wipe_category">"Löschen"</string>
+    <string name="preferences_wipe_enabled_title">"Löschen"</string>
+    <string name="preferences_wipe_enabled_summary">"Beim Empfang der Aktivierungs-SMS werden alle Daten auf dem Gerät gelöscht."</string>
+    <string name="preferences_wipe_activation_sms_title">"Lösch-SMS"</string>
+    <string name="preferences_wipe_activation_sms_summary">"Text der SMS festlegen, mit der alle Daten auf dem Gerät gelöscht werden. Es wird dringend empfohlen, eine PIN zu benutzen, um unberechtigtes Löschen zu verhindern."</string>
+    <string name="preferences_locate_category">"Lokalisieren"</string>
+    <string name="preferences_locate_enabled_title">"Lokalisieren"</string>
+    <string name="preferences_locate_enabled_summary">"Gerät lokalisieren, wenn die Aktivierungs-SMS empfangen wird."</string>
+    <string name="preferences_locate_activation_sms_title">"Lokalisierungs-SMS"</string>
+    <string name="preferences_locate_activation_sms_summary">"Text der SMS festlegen, mit der das Gerät lokalisiert wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigtes Lokalisieren zu verhindern."</string>
+    <string name="preferences_locate_lock_pref_title">"Gerät sperren"</string>
+    <string name="preferences_locate_lock_pref_summary">"Legt fest, ob bei einer Lokalisierung das Gerät zusätzlich auch gesperrt wird."</string>
+    <string name="preferences_locate_update_duration_title">"Standort-Aktualisierung"</string>
+    <string name="preferences_locate_update_duration_summary">"Legt fest, wie häufig der Gerätestandort aktualisiert werden soll. Kürzere Zeiten verursachen einen höheren Batterieverbrauch."</string>
+    <string name="preferences_locate_minimum_distance_title">"Standort-Mindestabstand"</string>
+    <string name="preferences_locate_minimum_distance_summary">"Legt den Mindestabstand zum vorherigen Standort fest, ab dem ein neuer Standort gespeichert wird."</string>
+    
+    <string name="util_sendsms_alarm_pass">"aeGis: Sound erfolgreich aktiviert."</string>
+    <string name="util_sendsms_alarm_fail">"aeGis: Fehler beim Überschreiben der Sound-Einstellungen:"</string>
+    <string name="util_sendsms_lock_pass">"aeGis: Gerät gesperrt mit Passwort:"</string>
+    <string name="util_sendsms_lock_fail">"aeGis: Fehler beim Sperren des Gerätes:"</string>
+    <string name="util_sendsms_wipe_pass">"aeGis: Alle Daten werden gelöscht."</string>
+    <string name="util_sendsms_wipe_fail">"aeGis: Fehler beim Löschen aller Daten:"</string>
+    <string name="util_sendsms_locate_fail">"aeGis: Fehler beim Lokalisieren des Gerätes:"</string>
+    
+    <string name="register_password_textview">"Passwort"</string>
+    <string name="register_password_confirm_textview">"Passwort bestätigen"</string>
+    <string name="register_password_button">"Weiter"</string>
+    <string name="register_password_toast_password_set">"Passwort ist jetzt"</string>
+    <string name="register_password_toast_password_fail">"Bitte geben Sie ein Passwort ein und bestätigen Sie es"</string>
+    <string name="register_password_toast_password_match_fail">"Die Passwörter stimmen nicht überein."</string>
+    <string name="register_password_checkbox_summary">"Passwort-Anmeldung deaktivieren."</string>
+    <string name="register_password_summary">"Bitte geben Sie ein Passwort ein, mit dem aeGis gesperrt wird, wenn Sie das Programm verlassen."</string>
+    
+    <string name="login_password_textview">"Passwort"</string>
+    <string name="login_password_button">"Anmelden"</string>
+    <string name="login_password_toast_password_fail">"Falsches Passwort"</string>
+    <string name="login_password_toast_password_enter">"Bitte geben Sie das Passwort ein"</string>
+    <string name="login_password_summary">"Bitte melden Sie sich an, um aeGis zu starten."</string>
+    
+    <string name="about_developer_name">"Copyright(©) 2012 Adnan Begovic"</string>
+    <string name="about_github_link">"Github-Link"</string>
+    <string name="about_email_link">"E-Mail an Entwickler senden"</string>
+    <string name="about_share_link">"aeGis teilen"</string>
+    
+    <string name="overflow_settings">Passwort ändern</string>
+    <string name="overflow_licenses">Lizenzen</string>
+    <string name="overflow_about">Über</string>
+    
+    <string name="receiver_alarm_override">"aeGis hat die Sound-Einstellungen überschrieben."</string>
+</resources>
