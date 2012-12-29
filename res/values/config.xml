@@ -19,7 +19,7 @@
 
     <string name="config_default_lock_password">aeGis</string>
     
-    <string name="config_default_locate_update_duration">60</string>
+    <string name="config_default_locate_update_duration">120</string>
     <string name="config_default_locate_minimum_distance">1</string>
     <bool name="config_default_locate_lock_pref">false</bool>
 </resources>
