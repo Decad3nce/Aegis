@@ -40,6 +40,8 @@
     <string name="preferences_locate_activation_sms_summary">Choose what text to send to locate the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized location tracking.</string>
     <string name="preferences_locate_lock_pref_title">Lock Device</string>
     <string name="preferences_locate_lock_pref_summary">Whether to lock device with default lock password or appended password when locate is triggered.</string>
+    <string name="preferences_locate_geocode_pref_title">Enable Geocoded Response</string>
+    <string name="preferences_locate_geocode_pref_summary">Whether to return the location as a formatted address based on US localization.</string>
     <string name="preferences_locate_update_duration_title">Location Update Interval</string>
     <string name="preferences_locate_update_duration_summary">Choose how often to have location provider attempt to get a more accurate location from the device being tracked. A lower time will drain more battery on device.</string>
     <string name="preferences_locate_minimum_distance_title">Location Minimum Distance</string>

@@ -274,15 +274,26 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        String geoCodedLocation;
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        
+        String mLocationToSend = null;
+        boolean mLocateGeocodePref = preferences.getBoolean(
+                SMSLocateFragment.PREFERENCES_LOCATE_GEOCODE_PREF, getResources()
+                .getBoolean(R.bool.config_default_locate_geocode_pref));
 
-        geoCodedLocation = geoCodeMyLocation(location.getLatitude(),
-                location.getLongitude());
+        if (mLocateGeocodePref) {
+            mLocationToSend = geoCodeMyLocation(location.getLatitude(),
+                    location.getLongitude());
+        } else {
+            mLocationToSend = String.format("latitude = %f longitude = %f",
+                    location.getLatitude(), location.getLongitude());
+        }
 
         if ((isBetterLocation(location, mLocation) && Geocoder.isPresent()) || mFirstTrack) {
             try {
                 Log.i(TAG, "Sending SMS location update");
-                Utils.sendSMS(this, originatingAddress, geoCodedLocation);
+                Utils.sendSMS(this, originatingAddress, mLocationToSend);
             } catch (IllegalArgumentException e) {
             }
         }

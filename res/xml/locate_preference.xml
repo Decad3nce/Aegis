@@ -10,6 +10,10 @@
                 android:title="@string/preferences_locate_lock_pref_title"
                 android:summary="@string/preferences_locate_lock_pref_summary"
                 android:defaultValue="@bool/config_default_locate_lock_pref" />
+        <CheckBoxPreference android:key="locate_geocode_pref"
+                android:title="@string/preferences_locate_geocode_pref_title"
+                android:summary="@string/preferences_locate_geocode_pref_summary"
+                android:defaultValue="@bool/config_default_locate_geocode_pref" />
         <ListPreference android:key="locate_update_duration"
                 android:title="@string/preferences_locate_update_duration_title"
                 android:summary="@string/preferences_locate_update_duration_summary"
