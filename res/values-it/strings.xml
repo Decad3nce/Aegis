@@ -12,7 +12,7 @@
     <string name="disable_tracking_button">"Disattiva tracciamento"</string>
     <string name="device_admin_reason">"aeGis richiede i controlli amministrativi per le funzioni di wipe e blocco."</string>
     <string name="text_stub">"Prossimamente!"</string>
-    <string name="descr_overflow_button">"overflow"</string>
+    <string name="descr_overflow_button">"extra"</string>
     
     <string name="preferences_alarm_category">"Allarme"</string>
     <string name="preferences_alarm_enabled_title">"Allarme"</string>
@@ -40,6 +40,8 @@
     <string name="preferences_locate_activation_sms_summary">"Scegli il testo da inviare per localizzare il dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie della localizzazione. "</string>
     <string name="preferences_locate_lock_pref_title">"Blocca il dispositivo"</string>
     <string name="preferences_locate_lock_pref_summary">"Blocca il dispositivo con la password di default o aggiunta all'SMS di attivazione quando viene attivata la localizzazione."</string>
+    <string name="preferences_locate_geocode_pref_title">Geocodifica coordinate</string>
+    <string name="preferences_locate_geocode_pref_summary">Invia la posizione come indirizzo testuale anzichè coordinate.</string>
     <string name="preferences_locate_update_duration_title">"Intervallo di aggiornamento della posizione"</string>
     <string name="preferences_locate_update_duration_summary">"Scegli quanto spesso sarà aggiornata la posizione per ottenere informazioni più accurate. Un tempo minore ridurrà l'autonomia della batteria. "</string>
     <string name="preferences_locate_minimum_distance_title">"Distanza minima spostamento"</string>
@@ -72,6 +74,10 @@
     <string name="about_github_link">"Codice su Github"</string>
     <string name="about_email_link">"Invia un'email allo sviluppatore"</string>
     <string name="about_share_link">"Condividi aeGis"</string>
+    
+    <string name="overflow_settings">Cambia password</string>
+    <string name="overflow_licenses">Licenza</string>
+    <string name="overflow_about">Info e contatti</string>
     
     <string name="receiver_alarm_override">"aeGis ha sovrascritto le impostazioni audio."</string>
 </resources>
