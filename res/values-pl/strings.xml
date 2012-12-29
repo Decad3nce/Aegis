@@ -1,0 +1,77 @@
+<resources>
+
+    <string name="app_name">aeGis</string>
+    <string name="wipe_section">Czyszczenie</string>
+    <string name="lock_section">Blokada</string>
+    <string name="alarm_section">Alarm</string>
+    <string name="locate_section">Lokalizacja</string>
+    <string name="menu_settings">Ustawienia</string>
+    <string name="title_activity_main">aeGis</string>
+    <string name="location_text">aeGis monitoruje lokalizację urządzenia\nAby dezaktywować lokalizowanie naciśnij przycisk Anulowania</string>
+
+    <string name="disable_tracking_button">Anuluj Lokalizację</string>
+    <string name="device_admin_reason">aeGis potrzebuje uprawnień administratora do opcji blokowania/czyszczenia.</string>
+    <string name="text_stub">Nowe funkcje już niedługo!</string>
+    <string name="descr_overflow_button">nadmiar</string>
+    
+    <string name="preferences_alarm_category">Alarm</string>
+    <string name="preferences_alarm_enabled_title">Alarm</string>
+    <string name="preferences_alarm_enabled_summary">Uruchom alarm i odtwórz dźwięki na urządzeniu</string>
+    <string name="preferences_alarm_activation_sms_title">SMS aktywacji alarmu</string>
+    <string name="preferences_alarm_activation_sms_summary">Zdecyduj jakim tekstem będzie aktywowany alarm. Zalecane jest użycie kodu PIN w wiadomości aktywacyjnej, aby uniknąć przypadkowych uruchomień alarmu.</string>
+    <string name="preferences_alarm_vibrate_title">Wibracje</string>
+    <string name="preferences_alarm_vibrate_summary">Czy urządzenie ma wibrować, gdy alarm jest włączony.</string>
+    <string name="preferences_lock_category">Blokada</string>
+    <string name="preferences_lock_enabled_title">Blokada</string>
+    <string name="preferences_lock_enabled_summary">Zablokuj urządzenie jeśli zostanie wysłana wiadomość aktywacyjna.</string>
+    <string name="preferences_lock_activation_sms_title">SMS aktywacji blokady</string>
+    <string name="preferences_lock_activation_sms_summary">Zdecyduj jakim tekstem będzie aktywowana blokada. Zalecane jest użycie kodu PIN w wiadomości aktywacyjnej, aby uniknąć przypadkowych uruchomień blokady.</string>
+    <string name="preferences_lock_password_title">Domyślne hasło</string>
+    <string name="preferences_lock_password_summary">Wybierz jakie hasło będzie używane do blokowania urządzenia. To będzie domyślne hasło, inne hasło możesz ustalić dołączając je do wiadomości aktywacyjnej. Jeśli pozostanie puste to ustawienia hasła/blokady nie będą zmienione, ale urządzenie będzie zablokowane wymuszając ponowne uwierzytelnienie używając aktualnego hasła.</string>
+    <string name="preferences_wipe_category">Czyszczenie</string>
+    <string name="preferences_wipe_enabled_title">Czyszczenie danych</string>
+    <string name="preferences_wipe_enabled_summary">Urządzenie zostanie wyczyszczone z danych jeśli zostanie wysłana wiadomość aktywacyjna.</string>
+    <string name="preferences_wipe_activation_sms_title">SMS aktywujący czyszczenie</string>
+    <string name="preferences_wipe_activation_sms_summary">Zdecyduj jakim tekstem będzie aktywowane czyszczenie danych urządzenia. Zalecane jest użycie kodu PIN w wiadomości aktywacyjnej, aby uniknąć przypadkowego wyczyszczenia danych.</string>
+    <string name="preferences_locate_category">Lokalizacja</string>
+    <string name="preferences_locate_enabled_title">Lokalizacja</string>
+    <string name="preferences_locate_enabled_summary">Zlokalizuj urządzenie jeśli zostanie wysłana wiadomość aktywacyjna.</string>
+    <string name="preferences_locate_activation_sms_title">SMS aktywujący lokalizację</string>
+    <string name="preferences_locate_activation_sms_summary">Zdecyduj jakim tekstem będzie aktywowana lokalizacja urządzenia. Zalecane jest użycie kodu PIN w wiadomości aktywacyjnej, aby uniknąć przypadkowych uruchomień lokalizacji.</string>
+    <string name="preferences_locate_lock_pref_title">Blokada urządzenia</string>
+    <string name="preferences_locate_lock_pref_summary">Czy aby zablokować urządzenie z domyślnym hasłem lub załączonym hasłem podczas lokalizowania?</string>
+    <string name="preferences_locate_update_duration_title">Częstotliwość aktualizowania położenia</string>
+    <string name="preferences_locate_update_duration_summary">Wybierz jak często aktualizować położenie, aby uzyskać dokładniejsze dane. Częstsza aktualizacja spowoduje szybsze zużycie baterii.</string>
+    <string name="preferences_locate_minimum_distance_title">Minimalny dystans</string>
+    <string name="preferences_locate_minimum_distance_summary">Wybierz poniżej jakiej wartości ma być ignorowana aktualizacja położenia.</string>
+    
+    <string name="util_sendsms_alarm_pass">aeGis: Dźwięki włączone.</string>
+    <string name="util_sendsms_alarm_fail">aeGis: Nie udało się nadpisać ustawień dźwięków. Błąd:</string>
+    <string name="util_sendsms_lock_pass">aeGis: Zablokowano urządzenie hasłem:</string>
+    <string name="util_sendsms_lock_fail">aeGis: Nie udało się zablokować urządzenia. Błąd:</string>
+    <string name="util_sendsms_wipe_pass">aeGis: Czyszczenie urządzenia.</string>
+    <string name="util_sendsms_wipe_fail">aeGis: Nie udało się wyczyścić urządzenia. Błąd:</string>
+    <string name="util_sendsms_locate_fail">aeGis: Nie udało się zlokalizować urządzenia. Błąd:</string>
+    
+    <string name="register_password_textview">Hasło</string>
+    <string name="register_password_confirm_textview">Potwierdź hasło</string>
+    <string name="register_password_button">Kontynuuj</string>
+    <string name="register_password_toast_password_set">Ustawione hasło: </string>
+    <string name="register_password_toast_password_fail">Wpisz hasło i potwierdź je</string>
+    <string name="register_password_toast_password_match_fail">Hasła nie są identyczne</string>
+    <string name="register_password_checkbox_summary">Wyłącz logowanie</string>
+    <string name="register_password_summary">Wprowadź hasło, aby zablokować aeGis ze gdy skończy się sesja.</string>
+    
+    <string name="login_password_textview">Hasło</string>
+    <string name="login_password_button">Zaloguj</string>
+    <string name="login_password_toast_password_fail">Wpisane hasło jest nieprawidłowe.</string>
+    <string name="login_password_toast_password_enter">Proszę podać hasło</string>
+    <string name="login_password_summary">Zaloguj się, aby kontynuować</string>
+    
+    <string name="about_developer_name">Copyright (©) 2012 Adnan Begovic</string>
+    <string name="about_github_link">Link do źródła na Github</string>
+    <string name="about_email_link">Wyślij e-mail do autora</string>
+    <string name="about_share_link">Podziel się aeGis</string>
+    
+    <string name="receiver_alarm_override">aeGis nadpisał ustawienia dźwięków.</string>
+</resources>
