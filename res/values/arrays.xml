@@ -16,7 +16,6 @@
     </string-array>
     
     <string-array name="preferences_locate_minimum_distance_entries">
-        <item>Always update, regardless of changed distance between points.</item>
         <item>1 Meter</item>
         <item>10 Meters</item>
         <item>25 Meters</item>
@@ -25,7 +24,6 @@
         <item>500 Meters</item>
     </string-array>
     <string-array name="preferences_locate_minimum_distance_values" translatable="false">
-        <item>0</item>
         <item>1</item>
         <item>10</item>
         <item>25</item>
