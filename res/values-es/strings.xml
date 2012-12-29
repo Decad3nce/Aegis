@@ -27,7 +27,7 @@
     <string name="preferences_lock_activation_sms_title">SMS de activación de Bloqueo</string>
     <string name="preferences_lock_activation_sms_summary">Elija un texto para Bloquear el dispositivo. Se recomienda el uso de un PIN en sus SMS para evitar la activación no autorizada del Bloqueo.</string>
     <string name="preferences_lock_password_title">Contraseña por defecto.</string>
-    <string name="preferences_lock_password_summary">Elija una contraseña que será utiliza para bloquear el dispositivo. Esta es la contraseña predeterminada que se establece, las contraseñas personalizadas se pueden proporcionar al enviar el SMS añadiendo la contraseña requerida al SMS. Si se establece en blanco, el método de la contraseña / bloqueo no se puede cambiar, pero el dispositivo se queda encerrado para obligar a la reautenticación con la contraseña existente.</string>
+    <string name="preferences_lock_password_summary">Elija una contraseña para bloquear el dispositivo. Es la contraseña predeterminada establecida, contraseñas personalizadas se pueden proporcionar añadiendo la contraseña al SMS. Si se establece en blanco, el método de la contraseña o bloqueo no se puede cambiar, pero el dispositivo se queda encerrado para obligar a la reautenticación con la contraseña existente.</string>
     <string name="preferences_wipe_category">Borrar</string>
     <string name="preferences_wipe_enabled_title">Borrar</string>
     <string name="preferences_wipe_enabled_summary">Borra el dispositivo con el SMS de Borrado.</string>
