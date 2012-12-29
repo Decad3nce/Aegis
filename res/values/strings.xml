@@ -58,7 +58,7 @@
     <string name="register_password_textview">Password</string>
     <string name="register_password_confirm_textview">Confirm Password</string>
     <string name="register_password_button">Continue</string>
-    <string name="register_password_toast_password_set">Passwords is set as</string>
+    <string name="register_password_toast_password_set">Passwords changed</string>
     <string name="register_password_toast_password_fail">Please enter a password and confirm it</string>
     <string name="register_password_toast_password_match_fail">Passwords do not match</string>
     <string name="register_password_checkbox_summary">Disable Password Login</string>
