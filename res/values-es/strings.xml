@@ -72,6 +72,10 @@
     <string name="about_github_link">Link a Github</string>
     <string name="about_email_link">Envia un email al creador</string>
     <string name="about_share_link">Comparte aeGis</string>
+        
+    <string name="overflow_settings">Cambiar contraseña</string>
+    <string name="overflow_licenses">Licencias</string>
+    <string name="overflow_about">Acerca de</string>
     
     <string name="receiver_alarm_override">aeGis ha sobreescrito la configuración del sonido.</string>
 </resources>
