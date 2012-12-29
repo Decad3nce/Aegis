@@ -59,6 +59,7 @@ public class RegisterActivity extends Activity {
             mPasswordConfirm = (EditText) findViewById(R.id.reg_password_confirm);
 
             Button registerScreen = (Button) findViewById(R.id.btnRegister);
+            registerScreen.getBackground().setAlpha(255);
             CheckBox checkBox = (CheckBox) findViewById(R.id.disablePassword);
             checkBox.setChecked(!mPasswordWanted);
             
