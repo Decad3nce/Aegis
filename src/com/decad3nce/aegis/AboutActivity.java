@@ -41,7 +41,7 @@ public class AboutActivity extends Activity {
           String mInfo = "\nCheck out aeGis!\n\n";
           mInfo = mInfo + "https://play.google.com/store/apps/details?id=com.decad3nce.aegis \n\n";
           i.putExtra(Intent.EXTRA_TEXT, mInfo);  
-          startActivity(Intent.createChooser(i, "choose one"));
+          startActivity(Intent.createChooser(i, "Choose App"));
         }
         catch(Exception e)
         { //e.toString();
