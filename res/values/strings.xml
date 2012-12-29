@@ -73,5 +73,9 @@
     <string name="about_email_link">Send email to developer</string>
     <string name="about_share_link">Share aeGis</string>
     
+    <string name="overflow_settings">Change Password</string>
+    <string name="overflow_licenses">Licenses</string>
+    <string name="overflow_about">About</string>
+    
     <string name="receiver_alarm_override">aeGis has overriden sound settings.</string>
 </resources>

@@ -27,11 +27,11 @@
             <menu xmlns:android="http://schemas.android.com/apk/res/android" >
                <group android:id="@+id/group_popupmenu">
                      <item android:id="@+id/settings"
-                           android:title="Change Password"/>
+                           android:title="@string/overflow_settings"/>
                      <item android:id="@+id/licenses"
-                           android:title="Licenses"/>
+                           android:title="@string/overflow_licenses"/>
                      <item android:id="@+id/about"
-                           android:title="About"/>
+                           android:title="@string/overflow_about"/>
                </group>
             </menu>
          </item>
