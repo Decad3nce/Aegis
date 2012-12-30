@@ -232,14 +232,16 @@ public class AegisActivity extends FragmentActivity {
     public void onResume() {
         super.onResume();
 
-        if (!mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
-            if (mLockEnabledPreference != null) {
-                mLockEnabledPreference.setChecked(false);
-                lockEnabled = false;
-            }
-            if (mWipeEnabledPreference != null) {
-                mWipeEnabledPreference.setChecked(false);
-                wipeEnabled = false;
+        if (mDevicePolicyManager.getActiveAdmins() != null) {
+            if (!mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+                if (mLockEnabledPreference != null) {
+                    mLockEnabledPreference.setChecked(false);
+                    lockEnabled = false;
+                }
+                if (mWipeEnabledPreference != null) {
+                    mWipeEnabledPreference.setChecked(false);
+                    wipeEnabled = false;
+                }
             }
         }
     }
