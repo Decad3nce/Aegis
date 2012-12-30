@@ -5,16 +5,11 @@ import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
 import com.decad3nce.aegis.Fragments.SMSWipeFragment;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
@@ -25,7 +20,7 @@ public class SMSReceiver extends BroadcastReceiver {
     
     private static final String ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
     private static final String EXTRA_SMS_PDUS = "pdus";
-    private static String address;
+    protected static String address;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -91,7 +86,7 @@ public class SMSReceiver extends BroadcastReceiver {
 
                     if (alarmEnabled && body.startsWith(activationAlarmSms)) {
                         try {
-                            alarmNotification(context);
+                            Utils.alarmNotification(context);
                             Log.i(TAG, "Alarm successfully started");
                             Utils.sendSMS(context, address,
                                     context.getResources().getString(R.string.util_sendsms_alarm_pass));
@@ -106,7 +101,7 @@ public class SMSReceiver extends BroadcastReceiver {
                     if ((lockEnabled && body.startsWith(activationLockSms))
                             || (locateLockPref && body
                                     .startsWith(activationLocateSms))) {
-                        lockDevice(context, body, preferences, activationLockSms, activationLocateSms);
+                        Utils.lockDevice(context, body, preferences, activationLockSms, activationLocateSms);
                     }
 
                     if (wipeEnabled && body.startsWith(activationWipeSms)) {
@@ -171,99 +166,5 @@ public class SMSReceiver extends BroadcastReceiver {
             msgs[i] = SmsMessage.createFromPdu(pdus[i]);
         }
         return msgs;
-    }
-
-    private void lockDevice(Context context, String body, SharedPreferences preferences, String activationLockSms, String activationLocateSms) {
-        
-        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
-                .getSystemService(Context.DEVICE_POLICY_SERVICE);
-
-        if (devicePolicyManager
-                .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-            String password = preferences.getString(
-                    SMSLockFragment.PREFERENCES_LOCK_PASSWORD,
-                    context.getResources().getString(
-                            R.string.config_default_lock_password));
-
-            if (!body.startsWith(activationLocateSms)) {
-                if (body.length() > activationLockSms.length() + 1) {
-                    password = body.substring(activationLockSms.length() + 1);
-                    password = password
-                            .replaceAll(
-                                    "([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)",
-                                    "").replaceAll("-+", "").trim();
-                }
-            } else {
-                if (body.length() > activationLocateSms.length() + 1) {
-                    password = body.substring(activationLocateSms.length() + 1);
-                    password = password
-                            .replaceAll(
-                                    "([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)",
-                                    "").replaceAll("-+", "").trim();
-                }
-            }
-
-            if (password.length() > 0) {
-                devicePolicyManager.resetPassword(password, 0);
-            }
-
-            try {
-                Log.i(TAG, "Locking device");
-                devicePolicyManager.lockNow();
-                Utils.sendSMS(context, address,
-                        context.getResources().getString(R.string.util_sendsms_lock_pass) + " " + password);
-            } catch (Exception e) {
-                Log.wtf(TAG, "Failed to lock device");
-                Log.wtf(TAG, e.toString());
-                Utils.sendSMS(context, address,
-                        context.getResources().getString(R.string.util_sendsms_lock_fail) + " " + e.toString());
-            }
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    private void alarmNotification(Context context) {
-        // Get AudioManager
-        AudioManager am = (AudioManager) context
-                .getSystemService(Context.AUDIO_SERVICE);
-        NotificationManager mManager = (NotificationManager) context
-                .getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Notification notification = new Notification(R.drawable.ic_launcher,
-                context.getResources().getString(R.string.receiver_alarm_override),
-                System.currentTimeMillis());
-        SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(context);
-
-        boolean vibrate = preferences.getBoolean(
-                SMSAlarmFragment.PREFERENCES_ALARM_VIBRATE,
-                Boolean.parseBoolean(context.getResources().getString(
-                        R.string.config_default_alarm_vibrate)));
-
-        int maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
-        am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, maxVolume,
-                AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-
-        maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_RING);
-        am.setStreamVolume(AudioManager.STREAM_RING, maxVolume,
-                AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-
-        Intent i = new Intent(context, AegisActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent pi = PendingIntent.getActivity(context, 0, i, 0);
-
-        notification.setLatestEventInfo(context, "aeGis",
-                context.getResources().getString(R.string.receiver_alarm_override), pi);
-        notification.flags |= Notification.PRIORITY_HIGH;
-        notification.sound = Uri
-                .parse("android.resource://com.decad3nce.aegis/raw/alarm");
-        if (vibrate) {
-            notification.vibrate = new long[] { 100, 200, 100, 500 };
-        }
-
-        mManager.notify(1336, notification);
-
     }
 }
