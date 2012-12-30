@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="preferences_locate_update_duration_entries">
-        <item>30 seconds</item>
-        <item>1 minute</item>
-        <item>2 minutes</item>
-        <item>3 minutes</item>
-        <item>5 minutes</item>
+        <item>@string/array_update_item1</item>
+        <item>@string/array_update_item2</item>
+        <item>@string/array_update_item3</item>
+        <item>@string/array_update_item4</item>
+        <item>@string/array_update_item5</item>
     </string-array>
     <string-array name="preferences_locate_update_duration_values" translatable="false">
         <item>30</item>
@@ -16,11 +16,11 @@
     </string-array>
     
     <string-array name="preferences_locate_minimum_distance_entries">
-        <item>10 Meters</item>
-        <item>25 Meters</item>
-        <item>50 Meters</item>
-        <item>100 Meters</item>
-        <item>500 Meters</item>
+        <item>@string/array_distance_item1</item>
+        <item>@string/array_distance_item2</item>
+        <item>@string/array_distance_item3</item>
+        <item>@string/array_distance_item4</item>
+        <item>@string/array_distance_item5</item>
     </string-array>
     <string-array name="preferences_locate_minimum_distance_values" translatable="false">
         <item>10</item>

@@ -79,5 +79,17 @@
     <string name="overflow_licenses">Licenses</string>
     <string name="overflow_about">About</string>
     
+    <string name="array_update_item1">30 seconds</string>
+    <string name="array_update_item2">1 minute</string>
+    <string name="array_update_item3">2 minutes</string>
+    <string name="array_update_item4">3 minutes</string>
+    <string name="array_update_item5">5 minutes</string>
+    
+    <string name="array_distance_item1">10 Meters</string>
+    <string name="array_distance_item2">25 Meters</string>
+    <string name="array_distance_item3">50 Meters</string>
+    <string name="array_distance_item4">100 Meters</string>
+    <string name="array_distance_item5">500 Meters</string>
+    
     <string name="receiver_alarm_override">aeGis has overriden sound settings.</string>
 </resources>
