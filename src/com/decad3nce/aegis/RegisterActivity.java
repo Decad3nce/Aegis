@@ -31,13 +31,13 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         // Set View to register.xml
         setContentView(R.layout.register);
-        
+
         Intent intent = getIntent();
-        
+
         if (intent.hasExtra("fromAegis")) {
             mFromAegis = true;
         }
-        
+
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
@@ -53,7 +53,7 @@ public class RegisterActivity extends Activity {
 
         mPassword = (EditText) findViewById(R.id.reg_password);
         mPasswordConfirm = (EditText) findViewById(R.id.reg_password_confirm);
-        }
+    }
     
     @Override
     public void onResume() {
