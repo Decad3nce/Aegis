@@ -14,6 +14,10 @@
     <string name="text_stub">Futuras características!</string>
     <string name="descr_overflow_button">overflow</string>
     
+    <string name="preferences_advanced_category">Configuración avanzada</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS de confirmación</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Para enviar un SMS de confirmación sobre la acción completada.</string>
+    <string name="preferences_advanced_change_password">Cambiar contraseña</string>
     <string name="preferences_alarm_category">Alarma</string>
     <string name="preferences_alarm_enabled_title">Alarma</string>
     <string name="preferences_alarm_enabled_summary">Reproduce una alarma y activa el sonido del timbre en el dispositivo.</string>
@@ -40,6 +44,8 @@
     <string name="preferences_locate_activation_sms_summary">Elija un texto para Localizar el dispositivo. Se recomienda el uso de un PIN en sus SMS para evitar la activación no autorizada de la Localización.</string>
     <string name="preferences_locate_lock_pref_title">Bloquear dispositivo</string>
     <string name="preferences_locate_lock_pref_summary">Para bloquear el dispositivo con una contraseña predeterminada o contraseña adjunta cuando la localización se dispara.</string>
+    <string name="preferences_locate_geocode_pref_title">Activar Respuesta geocodificada</string>
+    <string name="preferences_locate_geocode_pref_summary">Para devolver la ubicación como una dirección basada en la localización EE.UU.</string>
     <string name="preferences_locate_update_duration_title">El Intervalo de Actualización de la Ubicación.</string>
     <string name="preferences_locate_update_duration_summary">Elija la frecuencia con que tiene lugar el intento para obtener una localización más exacta del dispositivo que está siendo rastreado. Un menor tiempo de provocara que la batería se agote más rapido en el dispositivo.</string>
     <string name="preferences_locate_minimum_distance_title">Distancia mínima de ubicación</string>
@@ -76,6 +82,18 @@
     <string name="overflow_settings">Cambiar contraseña</string>
     <string name="overflow_licenses">Licencias</string>
     <string name="overflow_about">Acerca de</string>
+    
+    <string name="array_update_item1">30 segundos</string>
+    <string name="array_update_item2">1 minutos</string>
+    <string name="array_update_item3">2 minutos</string>
+    <string name="array_update_item4">3 minutos</string>
+    <string name="array_update_item5">5 minutos</string>
+    
+    <string name="array_distance_item1">10 metros</string>
+    <string name="array_distance_item2">25 metros</string>
+    <string name="array_distance_item3">50 metros</string>
+    <string name="array_distance_item4">100 metros</string>
+    <string name="array_distance_item5">500 metros</string>
     
     <string name="receiver_alarm_override">aeGis ha sobreescrito la configuración del sonido.</string>
 </resources>
