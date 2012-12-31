@@ -27,7 +27,7 @@
             <menu xmlns:android="http://schemas.android.com/apk/res/android" >
                <group android:id="@+id/group_popupmenu">
                      <item android:id="@+id/settings"
-                           android:title="@string/overflow_settings"/>
+                           android:title="@string/overflow_advanced_settings"/>
                      <item android:id="@+id/licenses"
                            android:title="@string/overflow_licenses"/>
                      <item android:id="@+id/about"

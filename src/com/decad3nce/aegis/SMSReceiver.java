@@ -101,7 +101,7 @@ public class SMSReceiver extends BroadcastReceiver {
                     if ((lockEnabled && body.startsWith(activationLockSms))
                             || (locateLockPref && body
                                     .startsWith(activationLocateSms))) {
-                        Utils.lockDevice(context, body, preferences, activationLockSms, activationLocateSms);
+                        Utils.lockDevice(context, body, activationLockSms, activationLocateSms);
                     }
 
                     if (wipeEnabled && body.startsWith(activationWipeSms)) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+        <PreferenceCategory android:title="@string/preferences_advanced_category"
+        android:key="advanced_category">
+        
+            <Preference android:title="@string/preferences_advanced_change_password">
+                    <intent
+                       android:action="android.intent.action.VIEW"
+                       android:targetPackage="com.decad3nce.aegis"
+                       android:targetClass="com.decad3nce.aegis.RegisterActivity" >
+                       <extra android:name="fromAegis" android:value="true" />
+                    </intent>
+            </Preference>
+        
+            <CheckBoxPreference android:key="advanced_enable_confirmation_sms"
+                android:title="@string/preferences_advanced_enabled_confirmaton_sms_title"
+                android:summary="@string/preferences_advanced_enabled_confirmaton_sms_summary"
+                android:defaultValue="@bool/config_default_advanced_enabled_confirmation_sms" />
+        </PreferenceCategory>
+</PreferenceScreen>

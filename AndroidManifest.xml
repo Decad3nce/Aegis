@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.decad3nce.aegis"
-    android:versionCode="19"
-    android:versionName="1.3.1.5" >
+    android:versionCode="21"
+    android:versionName="1.3.2" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -39,6 +39,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdvancedSettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

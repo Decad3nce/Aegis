@@ -1,5 +1,6 @@
 package com.decad3nce.aegis;
 
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
 
@@ -24,6 +25,14 @@ public class Utils {
     {        
         String SENT = "SMS_SENT";
         String DELIVERED = "SMS_DELIVERED";
+        
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        
+        boolean confirmationSMSEnabled  = preferences.getBoolean(
+                AdvancedSettingsFragment.PREFERENCES_CONFIRMATION_SMS,
+                context.getResources().getBoolean(
+                        R.bool.config_default_advanced_enabled_confirmation_sms));
  
         PendingIntent sentPI = PendingIntent.getBroadcast(context, 0,
             new Intent(SENT), 0);
@@ -32,7 +41,14 @@ public class Utils {
             new Intent(DELIVERED), 0);
  
         SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(address, null, content, sentPI, deliveredPI);        
+        
+        if (context instanceof PhoneTrackerActivity) {
+            confirmationSMSEnabled = true;
+        }
+        
+        if (confirmationSMSEnabled) {
+            sms.sendTextMessage(address, null, content, sentPI, deliveredPI);
+        }
     }
     
     @SuppressWarnings("deprecation")
@@ -81,10 +97,13 @@ public class Utils {
 
     }
     
-    protected static void lockDevice(Context context, String body, SharedPreferences preferences, String activationLockSms, String activationLocateSms) {
+    protected static void lockDevice(Context context, String body, String activationLockSms, String activationLocateSms) {
         
         DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
                 .getSystemService(Context.DEVICE_POLICY_SERVICE);
+        
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
 
         if (devicePolicyManager
                 .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {

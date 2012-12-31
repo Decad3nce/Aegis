@@ -125,12 +125,12 @@ public class AegisActivity extends FragmentActivity {
             case android.R.id.home:
                 return true;
             case R.id.settings:
-                Intent registerIntent = new Intent(AegisActivity.this,
-                        RegisterActivity.class);
-                registerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                registerIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                registerIntent.putExtra("fromAegis", true);
-                startActivity(registerIntent);
+                Intent settingsIntent = new Intent(AegisActivity.this,
+                        AdvancedSettingsActivity.class);
+                settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                settingsIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                //settingsIntent.putExtra("fromAegis", true);
+                startActivity(settingsIntent);
                 return true;
             case R.id.licenses:
                 Intent initialIntent = new Intent(AegisActivity.this, InitializationActivity.class);
@@ -231,6 +231,8 @@ public class AegisActivity extends FragmentActivity {
     @Override
     public void onResume() {
         super.onResume();
+        
+        mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 
         if (mDevicePolicyManager.getActiveAdmins() != null) {
             if (!mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
