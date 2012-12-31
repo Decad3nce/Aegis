@@ -61,7 +61,7 @@
     
     <string name="register_password_textview">Contraseña</string>
     <string name="register_password_confirm_textview">Confirme la Contraseña</string>
-    <string name="register_password_button">Continue</string>
+    <string name="register_password_button">Continúe</string>
     <string name="register_password_toast_password_set">La contraseña es:</string>
     <string name="register_password_toast_password_fail">Ingrese la contraseña y valide</string>
     <string name="register_password_toast_password_match_fail">Error de coincidencia</string>
