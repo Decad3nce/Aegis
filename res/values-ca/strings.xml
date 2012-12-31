@@ -1,0 +1,99 @@
+<resources>
+
+    <string name="app_name">aeGis</string>
+    <string name="wipe_section">Borrar</string>
+    <string name="lock_section">Bloquear</string>
+    <string name="alarm_section">Alarma</string>
+    <string name="locate_section">Localizar</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="title_activity_main">aeGis</string>
+    <string name="location_text">aeGis esta localizando la ubicación de los dispositivos. Para deshabilitar el seguimiento, pulse el botón Desactivar seguimiento</string>
+
+    <string name="disable_tracking_button">Desactivar seguimiento</string>
+    <string name="device_admin_reason">aeGis requiere el acceso al administrador de dispositivos para las utilidades de Borrar i Bloquear.</string>
+    <string name="text_stub">Futuras características!</string>
+    <string name="descr_overflow_button">overflow</string>
+    
+    <string name="preferences_advanced_category">Configuración avanzada</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS de confirmación</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Para enviar un SMS de confirmación sobre la acción completada.</string>
+    <string name="preferences_advanced_change_password">Cambiar contraseña</string>
+    <string name="preferences_alarm_category">Alarma</string>
+    <string name="preferences_alarm_enabled_title">Alarma</string>
+    <string name="preferences_alarm_enabled_summary">Reproduce una alarma y activa el sonido del timbre en el dispositivo.</string>
+    <string name="preferences_alarm_activation_sms_title">SMS de activación de alarma</string>
+    <string name="preferences_alarm_activation_sms_summary">Elija un texto para activar la alarma. Se recomienda el uso de un PIN en sus SMS para evitar la activación no autorizada de la alarma.</string>
+    <string name="preferences_alarm_vibrate_title">Vibrar</string>
+    <string name="preferences_alarm_vibrate_summary">Para que vibre cuando la alarma está activada.</string>
+    <string name="preferences_lock_category">Bloquear</string>
+    <string name="preferences_lock_enabled_title">Bloquear</string>
+    <string name="preferences_lock_enabled_summary">Bloquea el dispositivo con el SMS de Bloqueo.</string>
+    <string name="preferences_lock_activation_sms_title">SMS de activación de Bloqueo</string>
+    <string name="preferences_lock_activation_sms_summary">Elija un texto para Bloquear el dispositivo. Se recomienda el uso de un PIN en sus SMS para evitar la activación no autorizada del Bloqueo.</string>
+    <string name="preferences_lock_password_title">Contraseña por defecto.</string>
+    <string name="preferences_lock_password_summary">Elija una contraseña para bloquear el dispositivo. Es la contraseña predeterminada establecida, contraseñas personalizadas se pueden proporcionar añadiendo la contraseña al SMS. Si se establece en blanco, el método de la contraseña o bloqueo no se puede cambiar, pero el dispositivo se queda encerrado para obligar a la reautenticación con la contraseña existente.</string>
+    <string name="preferences_wipe_category">Borrar</string>
+    <string name="preferences_wipe_enabled_title">Borrar</string>
+    <string name="preferences_wipe_enabled_summary">Borra el dispositivo con el SMS de Borrado.</string>
+    <string name="preferences_wipe_activation_sms_title">SMS de activación de Borrado</string>
+    <string name="preferences_wipe_activation_sms_summary">Elija un texto para Borrar el dispositivo. Se recomienda el uso de un PIN en sus SMS para evitar la activación no autorizada del Borrado.</string>
+    <string name="preferences_locate_category">Localizar</string>
+    <string name="preferences_locate_enabled_title">Localizar</string>
+    <string name="preferences_locate_enabled_summary">Localiza el dispositivo con el SMS de Localización.</string>
+    <string name="preferences_locate_activation_sms_title">SMS de activación de Localización</string>
+    <string name="preferences_locate_activation_sms_summary">Elija un texto para Localizar el dispositivo. Se recomienda el uso de un PIN en sus SMS para evitar la activación no autorizada de la Localización.</string>
+    <string name="preferences_locate_lock_pref_title">Bloquear dispositivo</string>
+    <string name="preferences_locate_lock_pref_summary">Para bloquear el dispositivo con una contraseña predeterminada o contraseña adjunta cuando la localización se dispara.</string>
+    <string name="preferences_locate_geocode_pref_title">Activar Respuesta geocodificada</string>
+    <string name="preferences_locate_geocode_pref_summary">Para devolver la ubicación como una dirección basada en la localización EE.UU.</string>
+    <string name="preferences_locate_update_duration_title">El Intervalo de Actualización de la Ubicación.</string>
+    <string name="preferences_locate_update_duration_summary">Elija la frecuencia con que tiene lugar el intento para obtener una localización más exacta del dispositivo que está siendo rastreado. Un menor tiempo de provocara que la batería se agote más rapido en el dispositivo.</string>
+    <string name="preferences_locate_minimum_distance_title">Distancia mínima de ubicación</string>
+    <string name="preferences_locate_minimum_distance_summary">Elegir la distancia mínima de cambio del servicio de localización que provocará una actualización de la ubicación.</string>
+    
+    <string name="util_sendsms_alarm_pass">aeGis: Activado el Sonido.</string>
+    <string name="util_sendsms_alarm_fail">aeGis: No se ha podido anular la configuración de sonido. Error:</string>
+    <string name="util_sendsms_lock_pass">aeGis: Bloqueado el dispositivo con la contraseña:</string>
+    <string name="util_sendsms_lock_fail">aeGis: No se ha podido bloquear el dispositivo. Error:</string>
+    <string name="util_sendsms_wipe_pass">aeGis: Borrando Dispositivo.</string>
+    <string name="util_sendsms_wipe_fail">aeGis: No se ha podido borrar el dispositivo. Error:</string>
+    <string name="util_sendsms_locate_fail">aeGis: No se ha podido localizar el dispositivo. Error:</string>
+    
+    <string name="register_password_textview">Contraseña</string>
+    <string name="register_password_confirm_textview">Confirme la Contraseña</string>
+    <string name="register_password_button">Continue</string>
+    <string name="register_password_toast_password_set">La contraseña es:</string>
+    <string name="register_password_toast_password_fail">Ingrese la contraseña y valide</string>
+    <string name="register_password_toast_password_match_fail">Error de coincidencia</string>
+    <string name="register_password_checkbox_summary">Deshabilitar el uso de contraseña</string>
+    <string name="register_password_summary">Por favor, introduzca una contraseña para bloquear aeGis durante cada sesión.</string>
+    
+    <string name="login_password_textview">Contraseña</string>
+    <string name="login_password_button">Login</string>
+    <string name="login_password_toast_password_fail">Contraseña incorrecta</string>
+    <string name="login_password_toast_password_enter">Por favor, introduzca la contraseña</string>
+    <string name="login_password_summary">Por favor, inicie sesion para desbloquear aeGis</string>
+    
+    <string name="about_developer_name">Copyright(©) 2012 Adnan Begovic</string>
+    <string name="about_github_link">Link a Github</string>
+    <string name="about_email_link">Envia un email al creador</string>
+    <string name="about_share_link">Comparte aeGis</string>
+        
+    <string name="overflow_settings">Cambiar contraseña</string>
+    <string name="overflow_licenses">Licencias</string>
+    <string name="overflow_about">Acerca de</string>
+    
+    <string name="array_update_item1">30 segundos</string>
+    <string name="array_update_item2">1 minutos</string>
+    <string name="array_update_item3">2 minutos</string>
+    <string name="array_update_item4">3 minutos</string>
+    <string name="array_update_item5">5 minutos</string>
+    
+    <string name="array_distance_item1">10 metros</string>
+    <string name="array_distance_item2">25 metros</string>
+    <string name="array_distance_item3">50 metros</string>
+    <string name="array_distance_item4">100 metros</string>
+    <string name="array_distance_item5">500 metros</string>
+    
+    <string name="receiver_alarm_override">aeGis ha sobreescrito la configuración del sonido.</string>
+</resources>
