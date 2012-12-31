@@ -14,6 +14,11 @@
     <string name="text_stub">"Prossimamente!"</string>
     <string name="descr_overflow_button">"extra"</string>
     
+    <string name="preferences_advanced_category">Impostazioni avanzate</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS di conferma</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Invio di un SMS di conferma per le azioni completate.</string>
+    <string name="preferences_advanced_change_password">Cambia password</string>
+    
     <string name="preferences_alarm_category">"Allarme"</string>
     <string name="preferences_alarm_enabled_title">"Allarme"</string>
     <string name="preferences_alarm_enabled_summary">"Riproduzione dell'allarme tramite altoparlante quando viene inviato il relativo SMS di attivazione."</string>
@@ -75,9 +80,21 @@
     <string name="about_email_link">"Invia un'email allo sviluppatore"</string>
     <string name="about_share_link">"Condividi aeGis"</string>
     
-    <string name="overflow_settings">Cambia password</string>
+    <string name="overflow_advanced_settings">Impostazioni</string>
     <string name="overflow_licenses">Licenza</string>
     <string name="overflow_about">Info e contatti</string>
+    
+    <string name="array_update_item1">30 secondi</string>
+    <string name="array_update_item2">1 minuto</string>
+    <string name="array_update_item3">2 minuti</string>
+    <string name="array_update_item4">3 minuti</string>
+    <string name="array_update_item5">5 minuti</string>
+    
+    <string name="array_distance_item1">10 Metri</string>
+    <string name="array_distance_item2">25 Metri</string>
+    <string name="array_distance_item3">50 Metri</string>
+    <string name="array_distance_item4">100 Metri</string>
+    <string name="array_distance_item5">500 Metri</string>
     
     <string name="receiver_alarm_override">"aeGis ha sovrascritto le impostazioni audio."</string>
 </resources>
