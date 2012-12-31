@@ -49,7 +49,7 @@
     <string name="preferences_locate_update_duration_title">El Intervalo de Actualización de la Ubicación.</string>
     <string name="preferences_locate_update_duration_summary">Elija la frecuencia con que tiene lugar el intento para obtener una localización más exacta del dispositivo que está siendo rastreado. Un menor tiempo de provocara que la batería se agote más rapido en el dispositivo.</string>
     <string name="preferences_locate_minimum_distance_title">Distancia mínima de ubicación</string>
-    <string name="preferences_locate_minimum_distance_summary">Elegir la distancia mínima de cambio del servicio de localización que provocará una actualización de*la ubicación.</string>
+    <string name="preferences_locate_minimum_distance_summary">Elegir la distancia mínima de cambio del servicio de localización que provocará una actualización de la ubicación.</string>
     
     <string name="util_sendsms_alarm_pass">aeGis: Activado el Sonido.</string>
     <string name="util_sendsms_alarm_fail">aeGis: No se ha podido anular la configuración de sonido. Error:</string>
