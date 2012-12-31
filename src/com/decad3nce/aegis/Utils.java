@@ -117,6 +117,8 @@ public class Utils {
 
             try {
                 Log.i(TAG, "Locking device");
+                //Override time to lock for some HTC/Motorola devices
+                devicePolicyManager.setMaximumTimeToLock(AegisActivity.DEVICE_ADMIN_COMPONENT, 1000);
                 devicePolicyManager.lockNow();
                 Utils.sendSMS(context, SMSReceiver.address,
                         context.getResources().getString(R.string.util_sendsms_lock_pass) + " " + password);
