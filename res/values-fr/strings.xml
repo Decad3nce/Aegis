@@ -68,7 +68,7 @@
     <string name="login_password_toast_password_enter">"Merci d’entrer le mot de passe."</string>
     <string name="login_password_summary">"Merci de vous connecter pour continuer à utiliser aeGis."</string>
     
-    <string name="about_developer_name">"Copyright (©) 2012 Adnan Begovic"</string>
+    <string name="about_developer_name">"Copyright (©) 2013 Adnan Begovic"</string>
     <string name="about_github_link">"Lien source Github"</string>
     <string name="about_email_link">"Envoyer un e-mail au développeur"</string>
     <string name="about_share_link">"Aegis Partager"</string>
