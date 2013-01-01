@@ -1,89 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/developername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/about_developer_name"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
+    <Button
         android:id="@+id/emailclick"
-        style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:clickable="true"
+        android:drawableRight="@drawable/ic_content_email"
         android:onClick="onEmailClick"
         android:paddingLeft="20dp"
-        android:paddingTop="25dp"
         android:text="@string/about_email_link"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
+    <Button
         android:id="@+id/githubclick"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/emailclick"
         android:clickable="true"
+        android:drawableRight="@drawable/ic_github"
         android:onClick="onGithubClick"
         android:paddingLeft="20dp"
-        android:paddingTop="25dp"
         android:text="@string/about_github_link"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-    
+
     <TextView
         android:id="@+id/shareclick"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/githubclick"
         android:clickable="true"
+        android:drawableRight="@drawable/ic_social_share"
         android:onClick="onShareClick"
         android:paddingLeft="20dp"
-        android:paddingTop="25dp"
         android:text="@string/about_share_link"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-    
-    <ImageView
-        android:id="@+id/githubicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/githubclick"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/githubclick"
-        android:paddingRight="20dp"
-        android:src="@drawable/ic_github" />
 
-    <ImageView
-        android:id="@+id/emailicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/emailclick"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:paddingRight="20dp"
-        android:src="@drawable/ic_content_email" />
+<TextView
+    android:id="@+id/developername"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom|center_vertical|center_horizontal"
+    android:text="@string/about_developer_name"
+    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <ImageView
-        android:id="@+id/shareicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/shareclick"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/githubclick"
-        android:paddingRight="20dp"
-        android:src="@drawable/ic_social_share" />
-
-</RelativeLayout>
+</LinearLayout>
