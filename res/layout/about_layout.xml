@@ -27,7 +27,7 @@
         android:text="@string/about_github_link"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
+    <Button
         android:id="@+id/shareclick"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
