@@ -78,7 +78,7 @@ public class Utils {
         am.setStreamVolume(AudioManager.STREAM_RING, maxVolume,
                 AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
-        Intent i = new Intent(context, AegisActivity.class);
+        Intent i = new Intent(context, LoginActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
