@@ -8,7 +8,8 @@
   <RelativeLayout
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:background="#fff" >
+      android:background="#fff"
+      android:orientation="vertical" >
 
       <Button
           android:id="@+id/btnLogin"
@@ -18,25 +19,12 @@
           android:layout_alignParentLeft="true"
           android:text="@string/login_password_button" />
 
-      <TextView
-          android:id="@+id/textView1"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentTop="true"
-          android:layout_centerInParent="true"
-          android:gravity="center_horizontal" 
-          android:layout_marginTop="10dp"
-          android:text="@string/login_password_summary"
-          android:textColor="#372c24" />
-
       <LinearLayout
           xmlns:android="http://schemas.android.com/apk/res/android"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_alignParentLeft="true"
-          android:layout_below="@+id/textView1"
-          android:layout_marginTop="25dp"
+          android:layout_marginTop="5dp"
           android:orientation="vertical"
           android:padding="10dip" >
 
@@ -57,6 +45,17 @@
               <requestFocus />
           </EditText>
       </LinearLayout>
+
+      <TextView
+          android:id="@+id/textView1"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_above="@+id/btnLogin"
+          android:layout_alignParentLeft="true"
+          android:gravity="center_horizontal"
+          android:text="@string/login_password_summary"
+          android:textColor="#372c24" />
+
   </RelativeLayout>
 
 </ScrollView>
