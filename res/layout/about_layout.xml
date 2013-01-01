@@ -17,7 +17,6 @@
 
     <Button
         android:id="@+id/githubclick"
-        style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -29,7 +28,6 @@
 
     <Button
         android:id="@+id/shareclick"
-        style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
