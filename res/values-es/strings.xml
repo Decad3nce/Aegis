@@ -74,7 +74,7 @@
     <string name="login_password_toast_password_enter">Por favor, introduzca la contraseña</string>
     <string name="login_password_summary">Por favor, inicie sesion para desbloquear aeGis</string>
     
-    <string name="about_developer_name">Copyright(©) 2012 Adnan Begovic</string>
+    <string name="about_developer_name">Copyright(©) 2013 Adnan Begovic</string>
     <string name="about_github_link">Link a Github</string>
     <string name="about_email_link">Envia un email al creador</string>
     <string name="about_share_link">Comparte aeGis</string>
