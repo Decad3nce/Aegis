@@ -68,7 +68,7 @@
     <string name="login_password_toast_password_enter">"Molimo unesite sifru"</string>
     <string name="login_password_summary">"Molimo Vas da se ulogujete kako bi ste nastavili u aeGis"</string>
     
-    <string name="about_developer_name">"Copyright (©) 2012 Adnan Begović"</string>
+    <string name="about_developer_name">"Copyright (©) 2013 Adnan Begović"</string>
     <string name="about_github_link">"Github izvor"</string>
     <string name="about_email_link">"Poslati e-mail razvojnom timu"</string>
     <string name="about_share_link">"Udio aeGis"</string>
