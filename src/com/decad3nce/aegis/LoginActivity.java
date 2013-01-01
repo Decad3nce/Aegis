@@ -70,6 +70,7 @@ public class LoginActivity extends Activity {
 
         mPassword = (EditText) findViewById(R.id.login_password);
         Button loginScreen = (Button) findViewById(R.id.btnLogin);
+        loginScreen.getBackground().setAlpha(255);
 
         // Listening to Login Screen button
         loginScreen.setOnClickListener(new View.OnClickListener() {
