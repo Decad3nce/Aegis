@@ -5,18 +5,28 @@
   android:layout_height="fill_parent"
   android:fillViewport="true">
 
-  <LinearLayout
+  <RelativeLayout
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:background="#fff"
-      android:orientation="vertical" >
+      android:background="#fff" >
+
+      <Button
+          android:id="@+id/btnLogin"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentLeft="true"
+          android:text="@string/login_password_button" />
 
       <TextView
           android:id="@+id/textView1"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="25dp"
-          android:gravity="center_horizontal"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentTop="true"
+          android:layout_centerInParent="true"
+          android:gravity="center_horizontal" 
+          android:layout_marginTop="50dp"
           android:text="@string/login_password_summary"
           android:textColor="#372c24" />
 
@@ -24,7 +34,9 @@
           xmlns:android="http://schemas.android.com/apk/res/android"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="40dp"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/textView1"
+          android:layout_marginTop="68dp"
           android:orientation="vertical"
           android:padding="10dip" >
 
@@ -45,13 +57,6 @@
               <requestFocus />
           </EditText>
       </LinearLayout>
-
-      <Button
-          android:id="@+id/btnLogin"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:layout_alignParentLeft="true"
-          android:text="@string/login_password_button" />
+  </RelativeLayout>
 
 </ScrollView>
