@@ -68,7 +68,7 @@
     <string name="login_password_toast_password_enter">Proszę podać hasło</string>
     <string name="login_password_summary">Zaloguj się, aby kontynuować</string>
     
-    <string name="about_developer_name">Copyright (©) 2012 Adnan Begovic</string>
+    <string name="about_developer_name">Copyright (©) 2013 Adnan Begovic</string>
     <string name="about_github_link">Link do źródła na Github</string>
     <string name="about_email_link">Wyślij e-mail do autora</string>
     <string name="about_share_link">Podziel się aeGis</string>
