@@ -10,7 +10,7 @@
     <string name="location_text">aeGis esta localitzant la ubicació dels dispositius. Per desactivar el seguiment, premi el botó Desactivar seguiment.</string>
     
     <string name="disable_tracking_button">Desactivar seguiment</string>
-    <string name="device_admin_reason">aeGis requereix l'accés a l'administrador de dispositius per les utilitats de Esborrar i Bloquejar.</string>
+    <string name="device_admin_reason">aeGis requereix l\'accés a l\'administrador de dispositius per les utilitats de Esborrar i Bloquejar.</string>
     <string name="text_stub">Futures característiques!</string>
     <string name="descr_overflow_button">overflow</string>
     
@@ -21,43 +21,43 @@
     <string name="preferences_alarm_category">Alarma</string>
     <string name="preferences_alarm_enabled_title">Alarma</string>
     <string name="preferences_alarm_enabled_summary">Reprodueix una alarma i activa el so del timbre al dispositiu.</string>
-    <string name="preferences_alarm_activation_sms_title">SMS de activació de l'alarma</string>
-    <string name="preferences_alarm_activation_sms_summary">Tria un text per activar l'alarma. Es recomana l'ús d'un PIN en els seus SMS per evitar l'activació no autoritzada de l'alarma.</string>
+    <string name="preferences_alarm_activation_sms_title">SMS de activació de l\'alarma</string>
+    <string name="preferences_alarm_activation_sms_summary">Tria un text per activar l\'alarma. Es recomana l\'ús d\'un PIN en els seus SMS per evitar l\'activació no autoritzada de l\'alarma.</string>
     <string name="preferences_alarm_vibrate_title">Vibrar</string>
-    <string name="preferences_alarm_vibrate_summary">Perquè vibri quan l'alarma està activada.</string>
+    <string name="preferences_alarm_vibrate_summary">Perquè vibri quan l\'alarma està activada.</string>
     <string name="preferences_lock_category">Bloquejar</string>
     <string name="preferences_lock_enabled_title">Bloquejar</string>
     <string name="preferences_lock_enabled_summary">Bloqueja el dispositiu amb el SMS de bloqueig.</string>
     <string name="preferences_lock_activation_sms_title">SMS de activació de Bloqueig</string>
-    <string name="preferences_lock_activation_sms_summary">Tria un text per Blocar el dispositiu. Es recomana l'ús d'un PIN en els seus SMS per evitar l'activació no autoritzada del Bloqueig.</string>
+    <string name="preferences_lock_activation_sms_summary">Tria un text per Blocar el dispositiu. Es recomana l\'ús d\'un PIN en els seus SMS per evitar l\'activació no autoritzada del Bloqueig.</string>
     <string name="preferences_lock_password_title">Contrasenya per defecte.</string>
-    <string name="preferences_lock_password_summary">Trieu una contrasenya per bloquejar el dispositiu. És la contrasenya per defecte establerta, contrasenyes personalitzades es poden proporcionar afegint la contrasenya al SMS. Si s'estableix en blanc, el mètode de la contrasenya o bloqueig no es pot canviar, però el dispositiu es queda tancat per obligar la reautenticació amb la contrasenya existent.</string>
+    <string name="preferences_lock_password_summary">Trieu una contrasenya per bloquejar el dispositiu. És la contrasenya per defecte establerta, contrasenyes personalitzades es poden proporcionar afegint la contrasenya al SMS. Si s\'estableix en blanc, el mètode de la contrasenya o bloqueig no es pot canviar, però el dispositiu es queda tancat per obligar la reautenticació amb la contrasenya existent.</string>
     <string name="preferences_wipe_category">Esborrar</string>
     <string name="preferences_wipe_enabled_title">Esborrar</string>
-    <string name="preferences_wipe_enabled_summary">Esborra el dispositiu amb l'SMS de Esborrat.</string>
+    <string name="preferences_wipe_enabled_summary">Esborra el dispositiu amb l\'SMS de Esborrat.</string>
     <string name="preferences_wipe_activation_sms_title">SMS de activació del Esborrat</string>
-    <string name="preferences_wipe_activation_sms_summary">Tria un text per Esborrar el dispositiu. Es recomana l'ús d'un PIN en els seus SMS per evitar l'activació no autoritzada del Esborrat.</string>
+    <string name="preferences_wipe_activation_sms_summary">Tria un text per Esborrar el dispositiu. Es recomana l\'ús d\'un PIN en els seus SMS per evitar l\'activació no autoritzada del Esborrat.</string>
     <string name="preferences_locate_category">Localitzar</string>
     <string name="preferences_locate_enabled_title">Localitzar</string>
     <string name="preferences_locate_enabled_summary">Localitza el dispositiu amb el SMS de Localització.</string>
     <string name="preferences_locate_activation_sms_title">SMS de activació de Localizació</string>
-    <string name="preferences_locate_activation_sms_summary">Tria un text per Localitzar el dispositiu. Es recomana l'ús d'un PIN en els seus SMS per evitar l'activació no autoritzada de la Localització.</string>
+    <string name="preferences_locate_activation_sms_summary">Tria un text per Localitzar el dispositiu. Es recomana l\'ús d\'un PIN en els seus SMS per evitar l\'activació no autoritzada de la Localització.</string>
     <string name="preferences_locate_lock_pref_title">Bloquejar dispositiu</string>
     <string name="preferences_locate_lock_pref_summary">Per bloquejar el dispositiu amb una contrasenya per defecte o contrasenya adjunta quan la localització es dispara.</string>
     <string name="preferences_locate_geocode_pref_title">Activar Resposta geocodificada</string>
     <string name="preferences_locate_geocode_pref_summary">Per tornar la ubicació com una direcció basada en la localització a EUA</string>
-    <string name="preferences_locate_update_duration_title">El Interval d'Actualització de la Ubicació.</string>
-    <string name="preferences_locate_update_duration_summary">Trieu la freqüència amb què té lloc l'intent per obtenir una localització més exacta del dispositiu que està sent rastrejat. Un menor temps provocarà que la bateria s'esgoti més ràpid en el dispositiu.</string>
-    <string name="preferences_locate_minimum_distance_title">Distància mínima d'ubicació</string>
+    <string name="preferences_locate_update_duration_title">El Interval d\'Actualització de la Ubicació.</string>
+    <string name="preferences_locate_update_duration_summary">Trieu la freqüència amb què té lloc l\'intent per obtenir una localització més exacta del dispositiu que està sent rastrejat. Un menor temps provocarà que la bateria s\'esgoti més ràpid en el dispositiu.</string>
+    <string name="preferences_locate_minimum_distance_title">Distància mínima d\'ubicació</string>
     <string name="preferences_locate_minimum_distance_summary">Trieu la distància mínima de canvi del servei de localització que provocarà una actualització de la ubicació.</string>
     
     <string name="util_sendsms_alarm_pass">aeGis: Activat el So.</string>
-    <string name="util_sendsms_alarm_fail">aeGis: No s'ha pogut apagar la configuració de so. Error:</string>
+    <string name="util_sendsms_alarm_fail">aeGis: No s\'ha pogut apagar la configuració de so. Error:</string>
     <string name="util_sendsms_lock_pass">aeGis: Bloquejat el dispositiu amb la contrasenya:</string>
-    <string name="util_sendsms_lock_fail">aeGis: No s'ha pogut bloquejar el dispositiu. Error:</string>
+    <string name="util_sendsms_lock_fail">aeGis: No s\'ha pogut bloquejar el dispositiu. Error:</string>
     <string name="util_sendsms_wipe_pass">aeGis: Esborrant Dispositiu.</string>
-    <string name="util_sendsms_wipe_fail">aeGis: No s'ha pogut esborrar el dispositiu. Error:</string>
-    <string name="util_sendsms_locate_fail">aeGis: No s'ha pogut localitzar el dispositiu. Error:</string>
+    <string name="util_sendsms_wipe_fail">aeGis: No s\'ha pogut esborrar el dispositiu. Error:</string>
+    <string name="util_sendsms_locate_fail">aeGis: No s\'ha pogut localitzar el dispositiu. Error:</string>
     
     <string name="register_password_textview">Contrasenya</string>
     <string name="register_password_confirm_textview">Confirmi la contrasenya</string>
@@ -65,7 +65,7 @@
     <string name="register_password_toast_password_set">La contrasenya és:</string>
     <string name="register_password_toast_password_fail">Introduïu la contrasenya i validi</string>
     <string name="register_password_toast_password_match_fail">Error de coincidència</string>
-    <string name="register_password_checkbox_summary">Deshabilitar l'ús de contrasenya</string>
+    <string name="register_password_checkbox_summary">Deshabilitar l\'ús de contrasenya</string>
     <string name="register_password_summary">Si us plau, introduïu una contrasenya per bloquejar aeGis durant cada sessió.</string>
     
     <string name="login_password_textview">Contrasenya</string>
