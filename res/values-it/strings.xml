@@ -75,7 +75,7 @@
     <string name="login_password_toast_password_enter">"Inserisci la password."</string>
     <string name="login_password_summary">"Esegui il login per proseguire"</string>
     
-    <string name="about_developer_name">"Copyright (©) 2012 Adnan Begovic"</string>
+    <string name="about_developer_name">"Copyright (©) 2013 Adnan Begovic"</string>
     <string name="about_github_link">"Codice su Github"</string>
     <string name="about_email_link">"Invia un'email allo sviluppatore"</string>
     <string name="about_share_link">"Condividi aeGis"</string>
