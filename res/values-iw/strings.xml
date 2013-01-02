@@ -1,0 +1,94 @@
+﻿<resources>    
+	<string name="app_name">aeGis</string>
+	<string name="wipe_section">מחיקה</string>
+	<string name="lock_section">נעילה</string>
+	<string name="alarm_section">אזעקה</string>
+	<string name="locate_section">איתור</string>
+	<string name="menu_settings">הגדרות</string>
+	<string name="title_activity_main">aeGis</string>
+	<string name="location_text">aeGis עוקב אחרי המכשירים\nכדי לבטל את אפשרות המעקב, לחץ על "אל-תאפשר מעקב"."</string>
+	<string name="disable_tracking_button">אל-תאפשר מעקב</string>
+	<string name="device_admin_reason">aeGis צריך הרשאות מנהל על-מנת למחוק/לנעול את המכשיר.</string>
+	<string name="text_stub">אפשרויות נוספות!</string>
+	<string name="descr_overflow_button">תפריט צף</string>
+	<string name="preferences_advanced_category">הגדרות מתקדמות</string>
+	
+	<string name="preferences_advanced_enabled_confirmaton_sms_title">אישור SMS</string>
+	<string name="preferences_advanced_enabled_confirmaton_sms_summary">האם לשלוח SMS אישור על פעולה שהושלמה.</string>
+	<string name="preferences_advanced_change_password">שנה סיסמה</string>
+	<string name="preferences_alarm_category">אזעקה</string>
+	<string name="preferences_alarm_enabled_title">אזעקה</string>
+	<string name="preferences_alarm_enabled_summary">הפעל אזעקה וצליל במכשירך.</string>
+	<string name="preferences_alarm_activation_sms_title">להפעלת אזעקה SMS</string>
+	<string name="preferences_alarm_activation_sms_summary">בחר מה הטקסט שישלח כדי להפעיל את האזעקה. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך כדי להימנע מהפעלה בלתי מורשה של האזעקה.</string>
+	<string name="preferences_alarm_vibrate_title">רטט</string>
+	<string name="preferences_alarm_vibrate_summary">האם המכשיר ירטוט כאשר האזעקה מופעלת.</string>
+	<string name="preferences_lock_category">נעילה</string>
+	<string name="preferences_lock_enabled_title">נעילה</string>
+	<string name="preferences_lock_enabled_summary">נעל את המכשיר כאשר קוד ה-SMS נשלח.</string>
+	<string name="preferences_lock_activation_sms_title">נעילה SMS</string>
+	<string name="preferences_lock_activation_sms_summary">בחר מה הטקסט שישלח כדי לנעול את המכשיר. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך, כדי למנוע נעילה לא מורשה.</string>
+	<string name="preferences_lock_password_title">סיסמת ברירת-מחדל</string>
+	<string name="preferences_lock_password_summary">בחר מה הסיסמא שתשמש כדי לנעול את המכשיר. זו סיסמת ברירת-המחדל שתקבע, סיסמאות מותאמות אישית יכולות להיות מסופקות בעת שליחת SMS על ידי צירוף הסיסמה המבוקשת ל-SMS. אם הוגדר כריק, סיסמת הנעילה לא תשתנה אבל המכשיר יחייב אימות מחדש באמצעות סיסמא הקיימת.</string>
+	<string name="preferences_wipe_category">מחיקה</string>
+	<string name="preferences_wipe_enabled_title">מחיקה</string>
+	<string name="preferences_wipe_enabled_summary">מחק את המכשיר כאשר קוד ה-SMS נשלח.</string>
+	<string name="preferences_wipe_activation_sms_title">מחיקה SMS</string>
+	<string name="preferences_wipe_activation_sms_summary">בחר מה הטקסט שישלח כדי למחוק את תוכן המכשיר. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך כדי להימנע ממחיקה לא מכוונת.</string>
+	<string name="preferences_locate_category">איתור</string>
+	<string name="preferences_locate_enabled_title">איתור</string>
+	<string name="preferences_locate_enabled_summary">אתר את המכשיר כאשר קוד ה-SMS נשלח.</string>
+	<string name="preferences_locate_activation_sms_title">איתור SMS</string>
+	<string name="preferences_locate_activation_sms_summary">בחר מה הטקסט שישלח כדי לאתר את המכשיר. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך, כדי למנוע מעקב לא מורשה אחר מיקומך.</string>
+	<string name="preferences_locate_lock_pref_title">נעל מכשיר</string>
+	<string name="preferences_locate_lock_pref_summary">האם לנעול מכשיר עם סיסמת ברירת-המחדל של נעילה או דרוש סיסמה כאשר האיתור מופעל.</string>
+	<string name="preferences_locate_geocode_pref_title">אפשר תגובה מעוצבת</string>
+	<string name="preferences_locate_geocode_pref_summary">אם להחזיר את המיקום ככתובת מעוצבת המבוססת על הלוקליזציה של ארה"ב.</string>
+	<string name="preferences_locate_update_duration_title">תדירות עדכון האיתור</string>
+	<string name="preferences_locate_update_duration_summary">קבע כל כמה זמן היישום יבקש מיקום יותר מדויק, זמן קצר יותר יגרום לצריכת סוללה גבוהה יותר.</string>
+	<string name="preferences_locate_minimum_distance_title">מרחק מינימלי לאיתור</string>
+	<string name="preferences_locate_minimum_distance_summary">המרחק המינימלי שיעבור המכשיר שבו יופעל עידכון איתור.</string>
+	
+	<string name="util_sendsms_alarm_pass">aeGis: קול הופעל.</string>
+	<string name="receiver_alarm_override">aeGis: הפעלת קול הצליחה.</string>
+	<string name="util_sendsms_alarm_fail">aeGis: שגיאה: הפעלת צליל נכשלה</string>
+	<string name="util_sendsms_lock_pass">aeGis: המכשיר ננעל.</string>
+	<string name="util_sendsms_lock_fail">aeGis: שגיאה: נעילה נכשלה</string>
+	<string name="util_sendsms_wipe_pass">aeGis: מוחק מכשיר.</string>
+	<string name="util_sendsms_wipe_fail">aeGis: שגיאה: מחיקה נכשלה</string>
+	<string name="util_sendsms_locate_fail">aeGis: שגיאה: איתור המכשיר נכשל</string>
+	
+	<string name="register_password_textview">סיסמה</string>
+	<string name="register_password_confirm_textview">אשר סיסמה</string>
+	<string name="register_password_button">המשך</string>
+	<string name="register_password_toast_password_set">סיסמאות שונו</string>
+	<string name="register_password_toast_password_fail">הכנס סיסמה ואשר אותה</string>
+	<string name="register_password_toast_password_match_fail">סיסמאות לא תואמות</string>
+	<string name="register_password_checkbox_summary">בטל כניסה באמצעות סיסמה</string>
+	<string name="register_password_summary">הכנס סיסמה שתנעל את aeGis בכל פעם שתצא מהיישום.</string>
+	<string name="login_password_textview">סיסמה</string>
+	<string name="login_password_button">הכנס</string>
+	<string name="login_password_toast_password_fail">סיסמה שגויה</string>
+	<string name="login_password_toast_password_enter">הכנס סיסמה</string>
+	<string name="login_password_summary">התחבר על-מנת להשתמש ב- aeGis</string>
+	
+	<string name="about_developer_name">Copyright(&#169;) 2013 Adnan Begovic</string>
+	<string name="about_github_link">קוד מקור ב-Github</string>
+	<string name="about_email_link">שלח אימייל למפתח</string>
+	<string name="about_share_link">שתף את aeGis</string>
+	<string name="overflow_advanced_settings">הגדרות</string>
+	<string name="overflow_licenses">אישורים</string>
+	<string name="overflow_about">אודות</string>
+	
+	<string name="array_update_item1">30 שניות</string>
+	<string name="array_update_item2">דקה</string>
+	<string name="array_update_item3">2 דקות</string>
+	<string name="array_update_item4">3 דקות</string>
+	<string name="array_update_item5">5 דקות</string>
+	
+	<string name="array_distance_item1">10 מטרים</string>
+	<string name="array_distance_item2">25 מטרים</string>
+	<string name="array_distance_item3">50 מטרים</string>
+	<string name="array_distance_item4">100 מטרים</string>
+	<string name="array_distance_item5">500 מטרים</string>
+</resources>
