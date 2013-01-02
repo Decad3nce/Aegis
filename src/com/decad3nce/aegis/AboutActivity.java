@@ -2,16 +2,29 @@ package com.decad3nce.aegis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class AboutActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstances) {
         super.onCreate(savedInstances);
-        setContentView(R.layout.about_layout);
+        setContentView(R.layout.about_layout);      
+        String version = "UKNOWN";
+
+        try {
+            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (NameNotFoundException e) {
+            //Shouldn't happen
+        }
+        
+        TextView tV;
+        tV = (TextView)findViewById(R.id.currentversion);  
+        tV.setText(version);
     }
 
     public void onGithubClick(View v) {

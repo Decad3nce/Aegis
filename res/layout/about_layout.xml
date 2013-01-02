@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
     <Button
         android:id="@+id/emailclick"
@@ -19,6 +18,8 @@
         android:id="@+id/githubclick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/emailclick"
         android:clickable="true"
         android:drawableRight="@drawable/ic_github"
         android:onClick="onGithubClick"
@@ -30,6 +31,8 @@
         android:id="@+id/shareclick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/githubclick"
         android:clickable="true"
         android:drawableRight="@drawable/ic_social_share"
         android:onClick="onShareClick"
@@ -37,12 +40,23 @@
         android:text="@string/about_share_link"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-<TextView
-    android:id="@+id/developername"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom|center_vertical|center_horizontal"
-    android:text="@string/about_developer_name"
-    android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/developername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="bottom|center_vertical|center_horizontal"
+        android:text="@string/about_developer_name"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/currentversion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/developername"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
