@@ -17,6 +17,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,6 +45,8 @@ public class AegisActivity extends FragmentActivity {
     private Switch mLockEnabledPreference;
     private Switch mWipeEnabledPreference;
     private Switch mLocateEnabledPreference;
+    
+    private Menu fullMenu;
 
     TabsAdapter mTabsAdapter;
     ViewPager mViewPager;
@@ -120,6 +123,16 @@ public class AegisActivity extends FragmentActivity {
     }
     
     @Override
+    public boolean onKeyUp(int keycode, KeyEvent e) {
+            switch (keycode) {
+            case KeyEvent.KEYCODE_MENU:
+                fullMenu.performIdentifierAction(R.id.full_menu_settings, 0);
+                return true;
+            }
+        return super.onKeyUp(keycode, e);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -129,7 +142,6 @@ public class AegisActivity extends FragmentActivity {
                         AdvancedSettingsActivity.class);
                 settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 settingsIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                //settingsIntent.putExtra("fromAegis", true);
                 startActivity(settingsIntent);
                 return true;
             case R.id.licenses:
@@ -254,6 +266,7 @@ public class AegisActivity extends FragmentActivity {
         menu.clear();
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.full_menu, menu);
+        fullMenu = menu;
 
         switch (mTabsAdapter.getCurrentTab()) {
         case 0:       
