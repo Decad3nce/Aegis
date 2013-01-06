@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,6 +37,9 @@ public class RegisterActivity extends Activity {
 
         if (intent.hasExtra("fromAegis")) {
             mFromAegis = true;
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        } else {
+            getActionBar().setHomeButtonEnabled(false);
         }
 
         final SharedPreferences preferences = PreferenceManager
@@ -135,6 +139,23 @@ public class RegisterActivity extends Activity {
             }
             break;
         }
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            if (mFromAegis) {
+                Intent parentActivityIntent = new Intent(this,
+                        AegisActivity.class);
+                parentActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(parentActivityIntent);
+                finish();
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     
     @Override
