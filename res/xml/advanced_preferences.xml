@@ -16,5 +16,11 @@
                 android:title="@string/preferences_advanced_enabled_confirmaton_sms_title"
                 android:summary="@string/preferences_advanced_enabled_confirmaton_sms_summary"
                 android:defaultValue="@bool/config_default_advanced_enabled_confirmation_sms" />
+            
+            <Preference android:title="@string/preferences_advanced_remove_admin"
+                android:key="remove_admin"
+                android:summary="@string/preferences_advanced_remove_admin_summary">
+                
+            </Preference>
         </PreferenceCategory>
 </PreferenceScreen>

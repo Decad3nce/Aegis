@@ -18,6 +18,9 @@
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Confirmation SMS</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Whether to send confirmation SMS on completed action.</string>
     <string name="preferences_advanced_change_password">Change Password</string>
+    <string name="preferences_advanced_remove_admin">Remove aeGis as Administrator</string>
+    <string name="preferences_advanced_remove_admin_summary">Allows you to directly uninstall application.</string>
+    <string name="preferences_advanced_remove_admin_completed">aeGis is no longer an admin</string>
     <string name="preferences_alarm_category">Alarm</string>
     <string name="preferences_alarm_enabled_title">Alarm</string>
     <string name="preferences_alarm_enabled_summary">Play an alarm and enable ringer sound on device.</string>
