@@ -6,6 +6,8 @@
     <bool name="config_default_aegis_initialized">false</bool>
     <bool name="config_default_password_set">false</bool>
     <bool name="config_default_password_wanted">true</bool>
+    <bool name="config_default_locate_lock_pref">false</bool>
+    <bool name="config_default_locate_geocode_pref">true</bool>
     <bool name="config_default_advanced_enabled_confirmation_sms">true</bool>
     
     <string name="config_default_login_password">aeGis</string>
@@ -22,6 +24,4 @@
     
     <string name="config_default_locate_update_duration">120</string>
     <string name="config_default_locate_minimum_distance">10</string>
-    <bool name="config_default_locate_lock_pref">false</bool>
-    <bool name="config_default_locate_geocode_pref">true</bool>
 </resources>

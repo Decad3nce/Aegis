@@ -10,13 +10,17 @@ import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 public class AdvancedSettingsActivity extends PreferenceActivity implements InstallToSystemDialogFragment.NoticeDialogListener {
+    private static final String TAG = "aeGis";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,16 +46,32 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Inst
     }
     
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-        Toast.makeText(this, "Shit was installed, dog",
-                Toast.LENGTH_LONG).show();
-        (new Startup()).setContext(this).execute();
+    public void onDialogPositiveClick(DialogFragment dialog) {      
+        boolean installedAsSystem = isAppInstalledAsSystem("com.decad3nce.aegis");
+        
+        if (!installedAsSystem) {
+            (new Startup()).setContext(this).execute();
+        } else {
+            Toast.makeText(this, getResources().getString(R.string.advanced_install_to_system_fail), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean isAppInstalledAsSystem(String uri) {
+        PackageManager pm = getPackageManager();
+        try {
+            ApplicationInfo ai = pm.getApplicationInfo(uri, 0);
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+                return true;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+        return false;
     }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
-        Toast.makeText(this, "Shit was cancelled, yo.",
-                Toast.LENGTH_LONG).show();
     }
     
     private class Startup extends AsyncTask<Void, Void, Void> {

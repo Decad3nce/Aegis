@@ -91,6 +91,7 @@
     <string name="advanced_dialog_install_to_system">Do you want to install aeGis to the system?\n\nDoing so prevents uninstall even if the device is factory reset.\n\nWarning: Your device will reboot to confirm completion.\nThis cannot be undone.</string>
     <string name="advanced_dialog_install">Install</string>
     <string name="advanced_dialog_cancel">Cancel</string>
+    <string name="advanced_install_to_system_fail">aeGis is already a system app</string>
     
     <string name="array_update_item1">30 seconds</string>
     <string name="array_update_item2">1 minute</string>
