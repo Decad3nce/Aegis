@@ -91,7 +91,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Inst
         protected void onPreExecute() {
             dialog = new ProgressDialog(context);
             dialog.setTitle("aeGis");
-            dialog.setMessage("Installng to system...");
+            dialog.setMessage("Installing to system...");
             dialog.setIndeterminate(true);
             dialog.setCancelable(false);
             dialog.show();
