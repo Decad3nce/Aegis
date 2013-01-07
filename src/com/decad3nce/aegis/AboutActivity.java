@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,9 +23,25 @@ public class AboutActivity extends Activity {
             //Shouldn't happen
         }
         
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         TextView tV;
         tV = (TextView)findViewById(R.id.currentversion);  
         tV.setText(version);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent parentActivityIntent = new Intent(this, AegisActivity.class);
+                parentActivityIntent.addFlags(
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(parentActivityIntent);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void onGithubClick(View v) {
