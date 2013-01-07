@@ -18,6 +18,11 @@
     <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS de confirmación</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Para enviar un SMS de confirmación sobre la acción completada.</string>
     <string name="preferences_advanced_change_password">Cambiar contraseña</string>
+    <string name="preferences_advanced_remove_admin">Elimina aeGis del Administrador de dispositivos.</string>
+    <string name="preferences_advanced_remove_admin_summary">Te permite desinstalar aeGis de tu dispositivo.</string>
+    <string name="preferences_advanced_remove_admin_completed">aeGis no vuelve a estar en el Administrador de Dispositivos</string>
+    <string name="preferences_advanced_install_to_system">Instala aeGis como aplicación del sistema.</string>
+    <string name="preferences_advanced_install_to_system_summary">Previene que aeGis sea desinstalado aun si resetean el dispositivo.</string>
     <string name="preferences_alarm_category">Alarma</string>
     <string name="preferences_alarm_enabled_title">Alarma</string>
     <string name="preferences_alarm_enabled_summary">Reproduce una alarma y activa el sonido del timbre en el dispositivo.</string>
@@ -82,6 +87,11 @@
     <string name="overflow_settings">Cambiar contraseña</string>
     <string name="overflow_licenses">Licencias</string>
     <string name="overflow_about">Acerca de</string>
+   
+    <string name="advanced_dialog_install_to_system">¿Quieres instalar aeGis al sistema?\n\nSi lo hace impediras que aeGis sea desinstalada aun si se resetea el dispositivo.\n\nAdvertencia: Tu dispositivo se reiniciara para verificar el proceso.\nNo se puede deshacer</string>
+    <string name="advanced_dialog_install">Instalar</string>
+    <string name="advanced_dialog_cancel">Cancelar</string>
+    <string name="advanced_install_to_system_fail">aeGis ya es una aplicacion del sistema</string>
     
     <string name="array_update_item1">30 segundos</string>
     <string name="array_update_item2">1 minutos</string>
