@@ -17,10 +17,13 @@
                 android:summary="@string/preferences_advanced_enabled_confirmaton_sms_summary"
                 android:defaultValue="@bool/config_default_advanced_enabled_confirmation_sms" />
             
+            <Preference android:title="@string/preferences_advanced_install_to_system"
+                android:key="install_to_system"
+                android:summary="@string/preferences_advanced_install_to_system_summary" />
+            
             <Preference android:title="@string/preferences_advanced_remove_admin"
                 android:key="remove_admin"
-                android:summary="@string/preferences_advanced_remove_admin_summary">
-                
-            </Preference>
+                android:summary="@string/preferences_advanced_remove_admin_summary" />
+            
         </PreferenceCategory>
 </PreferenceScreen>
