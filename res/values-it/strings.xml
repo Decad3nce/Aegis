@@ -18,7 +18,11 @@
     <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS di conferma</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Invio di un SMS di conferma per le azioni completate.</string>
     <string name="preferences_advanced_change_password">Cambia password</string>
-    
+    <string name="preferences_advanced_remove_admin">Disattiva Amministrazione Dispositivo</string>
+    <string name="preferences_advanced_remove_admin_summary">Permette la disinstallazione diretta di aeGis.</string>
+    <string name="preferences_advanced_remove_admin_completed">Amministrazione dispositivo disattivata</string>
+    <string name="preferences_advanced_install_to_system">Installa aeGis come app di sistema</string>
+    <string name="preferences_advanced_install_to_system_summary">Evita la rimozione di aeGis in caso di reset del dispositivo.</string>
     <string name="preferences_alarm_category">"Allarme"</string>
     <string name="preferences_alarm_enabled_title">"Allarme"</string>
     <string name="preferences_alarm_enabled_summary">"Riproduzione dell'allarme tramite altoparlante quando viene inviato il relativo SMS di attivazione."</string>
@@ -79,10 +83,18 @@
     <string name="about_github_link">"Codice su Github"</string>
     <string name="about_email_link">"Invia un'email allo sviluppatore"</string>
     <string name="about_share_link">"Condividi aeGis"</string>
+    <string name="about_xda_link">Discussione di supporto su XDA</string>
     
     <string name="overflow_advanced_settings">Impostazioni</string>
     <string name="overflow_licenses">Licenza</string>
     <string name="overflow_about">Info e contatti</string>
+    
+    <string name="advanced_dialog_install_to_system">Vuoi che aeGis venga installato come app di sistema?\n\nQuesto eviterà la sua disinstallazione in caso di factory reset.\n\nAttenzione: Il dispositivo sarà riavviato per completare la procedura che è inoltre irreversibile.</string>
+    <string name="advanced_dialog_install">Installa</string>
+    <string name="advanced_dialog_cancel">Annulla</string>
+    <string name="advanced_dialog_installing">Installazione in corso...</string>
+    <string name="advanced_dialog_installing_failed">Accesso come superuser necessario per l'installazione in system</string>
+    <string name="advanced_install_to_system_fail">aeGis è già installato come app di sistema</string>
     
     <string name="array_update_item1">30 secondi</string>
     <string name="array_update_item2">1 minuto</string>
