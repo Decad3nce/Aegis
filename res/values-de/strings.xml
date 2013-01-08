@@ -18,7 +18,11 @@
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Nach einer Aktion eine SMS zur Bestätigung zurücksenden.</string>
     <string name="preferences_advanced_change_password">Passwort ändern</string>
-    
+    <string name="preferences_advanced_remove_admin">Als Geräte-Administrator entfernen</string>
+    <string name="preferences_advanced_remove_admin_summary">Erlaubt es, aeGis direkt zu deinstallieren</string>
+    <string name="preferences_advanced_remove_admin_completed">Kein Geräte-Administrator mehr</string>
+    <string name="preferences_advanced_install_to_system">aeGis als Systemanwendung installieren</string>
+    <string name="preferences_advanced_install_to_system_summary">App wird vor dem Zurücksetzen des Gerätes geschützt</string>
     <string name="preferences_alarm_category">"Alarm"</string>
     <string name="preferences_alarm_enabled_title">"Alarm"</string>
     <string name="preferences_alarm_enabled_summary">"Alarm abspielen und Klingelton aktivieren."</string>
@@ -79,10 +83,18 @@
     <string name="about_github_link">"Github-Link"</string>
     <string name="about_email_link">"E-Mail an Entwickler senden"</string>
     <string name="about_share_link">"aeGis teilen"</string>
+    <string name="about_xda_link">Support-Thread bei XDA</string>
     
     <string name="overflow_advanced_settings">Einstellungen</string>
     <string name="overflow_licenses">Lizenzen</string>
     <string name="overflow_about">Über</string>
+
+    <string name="advanced_dialog_install_to_system">Möchten Sie aeGis als System-App installieren?\n\nDies verhindert, dass aeGis bei dem Zurücksetzen des Gerätes entfernt wird.\n\nAchtung: Ihr Gerät wird zur Bestätigung neu starten.\nDies kann nicht rückgängig gemacht werden.</string>
+    <string name="advanced_dialog_install">Installieren</string>
+    <string name="advanced_dialog_cancel">Abbrechen</string>
+    <string name="advanced_dialog_installing">Wird ins System installiert...</string>
+    <string name="advanced_dialog_installing_failed">Superuser-Rechte werden für die Systeminstallation benötigt</string>
+    <string name="advanced_install_to_system_fail">aeGis ist bereits als System App installiert</string>
 
     <string name="array_update_item1">30 Sekunden</string>
     <string name="array_update_item2">1 Minute</string>
