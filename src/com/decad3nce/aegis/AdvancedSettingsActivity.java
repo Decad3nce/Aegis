@@ -6,17 +6,21 @@ import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.InstallToSystemDialogFragment;
 import eu.chainfire.libsuperuser.Shell;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class AdvancedSettingsActivity extends PreferenceActivity implements InstallToSystemDialogFragment.NoticeDialogListener {
@@ -76,6 +80,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Inst
     
     private class Startup extends AsyncTask<Void, Void, Void> {
         private ProgressDialog dialog = null;
+        public Dialog dialog1 = null;
         private Context context = null;
         private boolean suAvailable = false;
         private String suVersion = null;
@@ -90,11 +95,16 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Inst
         @Override
         protected void onPreExecute() {
             dialog = new ProgressDialog(context);
-            dialog.setTitle("aeGis");
-            dialog.setMessage("Installing to system...");
+            dialog.setTitle(getResources().getString(R.string.app_name));
+            dialog.setMessage(getResources().getString(R.string.advanced_dialog_installing));
             dialog.setIndeterminate(true);
             dialog.setCancelable(false);
             dialog.show();
+            
+            dialog1 = new Dialog(context);
+            dialog1.setTitle(getResources().getString(R.string.app_name));
+            dialog1.setContentView(R.layout.dialog_view);
+            dialog1.setCancelable(true);
         }
 
         @Override
@@ -109,6 +119,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Inst
                     "busybox cp /data/app/com.decad3nce.aegis-*.apk /system/app/",
                     "busybox chmod 644 /system/app/com.decad3nce.aegis-*.apk",
                     "busybox pm uninstall com.decad3nce.aegis",
+                    "busybox rmdir /data/app-lib/com.decad3nce*",
                     "busybox rm /data/app/com.decad3nce.aegis-*.apk",
                     "busybox mount -o remount,ro /system",
                     "busybox reboot"
@@ -121,6 +132,10 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Inst
         @Override
         protected void onPostExecute(Void result) {
             dialog.dismiss();
+            
+            if(!suAvailable) {
+                    dialog1.show();
+                }
         }
     }
 }
