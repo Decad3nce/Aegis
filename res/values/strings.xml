@@ -83,6 +83,7 @@
     <string name="about_github_link">Github source link</string>
     <string name="about_email_link">Send email to developer</string>
     <string name="about_share_link">Share aeGis</string>
+    <string name="about_xda_link">Support thread on XDA</string>
     
     <string name="overflow_advanced_settings">Settings</string>
     <string name="overflow_licenses">Licenses</string>

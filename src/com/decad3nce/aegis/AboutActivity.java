@@ -43,14 +43,7 @@ public class AboutActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void onGithubClick(View v) {
-        String url = "http://www.github.com/Decad3nce/Aegis";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
-    }
-
+    
     public void onEmailClick(View v) {
         final Intent emailIntent = new Intent(
                 android.content.Intent.ACTION_SEND);
@@ -61,6 +54,13 @@ public class AboutActivity extends Activity {
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
                 "aeGis Questions");
         startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+    }
+
+    public void onGithubClick(View v) {
+        String url = "http://www.github.com/Decad3nce/Aegis";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
     
     public void onShareClick(View v) {
@@ -76,6 +76,13 @@ public class AboutActivity extends Activity {
         catch(Exception e)
         { //e.toString();
         }   
+    }
+    
+    public void onXDAClick(View v) {
+        String url = "http://forum.xda-developers.com/showthread.php?t=2038762";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
 }
