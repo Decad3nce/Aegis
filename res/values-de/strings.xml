@@ -13,6 +13,8 @@
     <string name="device_admin_reason">"aeGis benötigt Geräteadministratorrechte für die Löschen-/Sperren-Funktionen."</string>
     <string name="text_stub">"Zukünftige Funktionen!"</string>
     <string name="descr_overflow_button">"overflow"</string>
+    <string name="aegis_location_services_not_enabled">Damit aeGis den Standort des Gerätes erfassen kann, müssen Sie zuerst der Standortzugriff freigeben.</string>
+    <string name="aegis_open_location_settings">Einschalten</string>
     
     <string name="preferences_advanced_category">Erweiterte Einstellungen</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
