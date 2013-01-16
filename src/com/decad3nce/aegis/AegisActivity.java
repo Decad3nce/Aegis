@@ -342,6 +342,7 @@ public class AegisActivity extends FragmentActivity {
         case R.id.wipe_toggle:
         case R.id.locate_toggle:
             
+            mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE); 
             if (mDevicePolicyManager.getActiveAdmins() != null) {
                 if (what && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
                     who.setChecked(true);
@@ -370,6 +371,8 @@ public class AegisActivity extends FragmentActivity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.full_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 }
