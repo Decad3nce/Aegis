@@ -7,13 +7,18 @@ import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -180,7 +185,11 @@ public class AegisActivity extends FragmentActivity {
             case R.id.locate_toggle:
 
                 if (isChecked) {
-                    locateEnabled = true;
+                    if (isLocationServicesEnabled()) {
+                        locateEnabled = true;
+                    } else {
+                        showLocationServicesDialog();
+                    }
                 } else {
                     locateEnabled = false;
                 }
@@ -238,6 +247,36 @@ public class AegisActivity extends FragmentActivity {
                 getResources().getString(
                         R.string.device_admin_reason));
         startActivityForResult(intent, ACTIVATION_REQUEST);
+    }
+
+    protected void showLocationServicesDialog() {
+        Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(getResources().getString(R.string.aegis_location_services_not_enabled));
+        dialog.setPositiveButton(getResources().getString(R.string.aegis_open_location_settings), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                Intent locIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(locIntent);
+            }
+        });
+        dialog.setNegativeButton(getResources().getString(R.string.advanced_dialog_cancel), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+            }
+        });
+        dialog.show();
+        
+    }
+
+    protected boolean isLocationServicesEnabled() {
+        LocationManager mLM = (LocationManager) this.getSystemService(this.LOCATION_SERVICE);
+        
+        if(!mLM.isProviderEnabled(LocationManager.GPS_PROVIDER) && !mLM.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

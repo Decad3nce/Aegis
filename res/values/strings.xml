@@ -13,6 +13,8 @@
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
     <string name="text_stub">Features coming!</string>
     <string name="descr_overflow_button">overflow</string>
+    <string name="aegis_location_services_not_enabled">Location services are not active. You need to enable location services for aeGis to be able to track your device.</string>
+    <string name="aegis_open_location_settings">Enable</string>
     
     <string name="preferences_advanced_category">Advanced Settings</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Confirmation SMS</string>
