@@ -93,7 +93,7 @@
     <string name="advanced_dialog_install">Installa</string>
     <string name="advanced_dialog_cancel">Annulla</string>
     <string name="advanced_dialog_installing">Installazione in corso...</string>
-    <string name="advanced_dialog_installing_failed">Accesso come superuser necessario per l'installazione in system</string>
+    <string name="advanced_dialog_installing_failed">"Accesso come superuser necessario per l'installazione in system"</string>
     <string name="advanced_install_to_system_fail">aeGis è già installato come app di sistema</string>
     
     <string name="array_update_item1">30 secondi</string>
