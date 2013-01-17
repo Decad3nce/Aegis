@@ -14,6 +14,7 @@ import android.preference.PreferenceFragment;
 
 public class AdvancedSettingsFragment extends PreferenceFragment {
     public static final String PREFERENCES_CONFIRMATION_SMS = "advanced_enable_confirmation_sms";
+    public static final String PREFERENCES_ABORT_BROADCAST = "advanced_enable_abort_broadcast";
     private static final String ADVANCED_PREFERENCES_REMOVE_ADMIN = "remove_admin";
     private static final String ADVANCED_PREFERENCES_INSTALL_TO_SYSTEM = "install_to_system";
 

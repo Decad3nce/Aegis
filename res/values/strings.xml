@@ -17,8 +17,11 @@
     <string name="aegis_open_location_settings">Enable</string>
     
     <string name="preferences_advanced_category">Advanced Settings</string>
+    <string name="preferences_advanced_sms_category">SMS Settings</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Confirmation SMS</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Whether to send confirmation SMS on completed action.</string>
+    <string name="preferences_advanced_enable_abort_broadcast">Abort Broadcast</string>
+    <string name="preferences_advanced_enable_abort_broadcast_summary">Whether to have activation SMS be received by messaging app.</string>
     <string name="preferences_advanced_change_password">Change Password</string>
     <string name="preferences_advanced_remove_admin">Remove as Device Admin</string>
     <string name="preferences_advanced_remove_admin_summary">Allows you to directly uninstall aeGis.</string>

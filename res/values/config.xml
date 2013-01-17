@@ -9,6 +9,7 @@
     <bool name="config_default_locate_lock_pref">false</bool>
     <bool name="config_default_locate_geocode_pref">true</bool>
     <bool name="config_default_advanced_enabled_confirmation_sms">true</bool>
+    <bool name="config_default_advanced_enable_abort_broadcast">true</bool>
     
     <string name="config_default_login_password">aeGis</string>
 

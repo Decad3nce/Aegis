@@ -11,11 +11,6 @@
                        <extra android:name="fromAegis" android:value="true" />
                     </intent>
             </Preference>
-        
-            <CheckBoxPreference android:key="advanced_enable_confirmation_sms"
-                android:title="@string/preferences_advanced_enabled_confirmaton_sms_title"
-                android:summary="@string/preferences_advanced_enabled_confirmaton_sms_summary"
-                android:defaultValue="@bool/config_default_advanced_enabled_confirmation_sms" />
             
             <Preference android:title="@string/preferences_advanced_install_to_system"
                 android:key="install_to_system"
@@ -26,4 +21,20 @@
                 android:summary="@string/preferences_advanced_remove_admin_summary" />
             
         </PreferenceCategory>
+        
+        <PreferenceCategory android:title="@string/preferences_advanced_sms_category"
+            android:key="advanceds_sms_category">
+            
+             <CheckBoxPreference android:key="advanced_enable_confirmation_sms"
+                android:title="@string/preferences_advanced_enabled_confirmaton_sms_title"
+                android:summary="@string/preferences_advanced_enabled_confirmaton_sms_summary"
+                android:defaultValue="@bool/config_default_advanced_enabled_confirmation_sms" />
+             
+             <CheckBoxPreference android:key="advanced_enable_abort_broadcast"
+                 android:title="@string/preferences_advanced_enable_abort_broadcast"
+                 android:summary="@string/preferences_advanced_enable_abort_broadcast_summary"
+                 android:defaultValue="@bool/config_default_advanced_enable_abort_broadcast" />
+             
+        </PreferenceCategory>
+        
 </PreferenceScreen>

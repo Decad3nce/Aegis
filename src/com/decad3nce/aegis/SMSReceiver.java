@@ -1,5 +1,6 @@
 package com.decad3nce.aegis;
 
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
 import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
@@ -54,6 +55,10 @@ public class SMSReceiver extends BroadcastReceiver {
                             AegisActivity.PREFERENCES_LOCATE_ENABLED,
                             context.getResources().getBoolean(
                                     R.bool.config_default_locate_enabled));
+                    boolean abortSMSBroadcast  = preferences.getBoolean(
+                            AdvancedSettingsFragment.PREFERENCES_ABORT_BROADCAST,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_advanced_enable_abort_broadcast));
 
                     String activationAlarmSms = preferences
                             .getString(
@@ -83,7 +88,7 @@ public class SMSReceiver extends BroadcastReceiver {
                             SMSLocateFragment.PREFERENCES_LOCATE_LOCK_PREF,
                             context.getResources().getBoolean(
                                     R.bool.config_default_locate_lock_pref));
-
+                    
                     if (alarmEnabled && body.startsWith(activationAlarmSms)) {
                         try {
                             Utils.alarmNotification(context);
@@ -96,12 +101,18 @@ public class SMSReceiver extends BroadcastReceiver {
                             Utils.sendSMS(context, address,
                                     context.getResources().getString(R.string.util_sendsms_alarm_fail) + " " + e.toString());
                         }
+                        if (abortSMSBroadcast) {
+                            abortBroadcast();
+                        }
                     }
 
                     if ((lockEnabled && body.startsWith(activationLockSms))
                             || (locateLockPref && body
                                     .startsWith(activationLocateSms))) {
                         Utils.lockDevice(context, body, activationLockSms, activationLocateSms);
+                        if (abortSMSBroadcast) {
+                            abortBroadcast();
+                        }
                     }
 
                     if (wipeEnabled && body.startsWith(activationWipeSms)) {
@@ -120,6 +131,9 @@ public class SMSReceiver extends BroadcastReceiver {
                                 Utils.sendSMS(context, address,
                                         context.getResources().getString(R.string.util_sendsms_wipe_fail) + " " + e.toString());
                             }
+                        }
+                        if (abortSMSBroadcast) {
+                            abortBroadcast();
                         }
                     }
 
@@ -143,6 +157,10 @@ public class SMSReceiver extends BroadcastReceiver {
                             Utils.sendSMS(context, address,
                                     context.getResources().getString(R.string.util_sendsms_locate_fail) + " "
                                             + e.toString());
+                        }
+                        
+                        if (abortSMSBroadcast) {
+                            abortBroadcast();
                         }
                     }
                 }
