@@ -13,8 +13,23 @@
     <string name="device_admin_reason">aeGis potrzebuje uprawnień administratora do opcji blokowania/czyszczenia.</string>
     <string name="text_stub">Nowe funkcje już niedługo!</string>
     <string name="descr_overflow_button">nadmiar</string>
+    <string name="aegis_location_services_not_enabled">Usługa lokalizacji jest nieaktywna. Musisz aktywować usługę, aby aeGis poprawnie śledził Twoją pozycję.</string>
+    <string name="aegis_open_location_settings">Aktywuj</string>
     
-    <string name="preferences_alarm_category">Alarm</string>
+    <string name="preferences_advanced_category">Ustawienia zaawansowane</string>
+    <string name="preferences_advanced_sms_category">Ustawienia SMS</string>
+    <string name="preferences_advanced_root_category">Ustawienia Roota (WYMAGA ROOTA)</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS potwierdzający</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Czy wysyłać SMS potwierdzający po zakończonej akcji.</string>
+    <string name="preferences_advanced_enable_abort_broadcast">Abort Broadcast</string>
+    <string name="preferences_advanced_enable_abort_broadcast_summary">Whether to have activation SMS be received by messaging app.</string>
+    <string name="preferences_advanced_change_password">Zmień hasło</string>
+    <string name="preferences_advanced_remove_admin">Usuń z Administratorów Urządzenia</string>
+    <string name="preferences_advanced_remove_admin_summary">Pozwala Ci usunąć aeGis</string>
+    <string name="preferences_advanced_remove_admin_completed">Usunięto uprawnienia administratora dla aeGis</string>
+    <string name="preferences_advanced_install_to_system">Zainstaluj aeGis do partycji systemowej</string>
+    <string name="preferences_advanced_install_to_system_summary">Zapobiega usunięciu aeGis nawet przy czyszczeniu danych</string>
+	<string name="preferences_alarm_category">Alarm</string>
     <string name="preferences_alarm_enabled_title">Alarm</string>
     <string name="preferences_alarm_enabled_summary">Uruchom alarm i odtwórz dźwięki na urządzeniu</string>
     <string name="preferences_alarm_activation_sms_title">SMS aktywacji alarmu</string>
@@ -72,6 +87,31 @@
     <string name="about_github_link">Link do źródła na Github</string>
     <string name="about_email_link">Wyślij e-mail do autora</string>
     <string name="about_share_link">Podziel się aeGis</string>
+	
+	<string name="about_xda_link">Temat na XDA</string>
+    
+    <string name="overflow_advanced_settings">Ustawienia</string>
+    <string name="overflow_licenses">Licencje</string>
+    <string name="overflow_about">O aplikacji</string>
+    
+    <string name="advanced_dialog_install_to_system">Czy chcesz przenieść aeGis do partycji systemowej?\n\nDzięki temu aplikacja pozostanie na urządzeniu nawet po przywróceniu ustawień fabrycznych.\n\nUwaga: Urządzenie zrestartuje się, aby dokończyć akcję.\nTego nie da się cofnąć.</string>
+    <string name="advanced_dialog_install">Instaluj</string>
+    <string name="advanced_dialog_cancel">Anuluj</string>
+    <string name="advanced_dialog_installing">Instalowanie do partycji systemowej...</string>
+    <string name="advanced_dialog_installing_failed">Potrzebuję uprawnienia superuser, żeby przenieść do partycji systemowej.</string>
+    <string name="advanced_install_to_system_fail">aeGis jest już aplikacją systemową</string>
+    
+    <string name="array_update_item1">30 sekund</string>
+    <string name="array_update_item2">1 minuta</string>
+    <string name="array_update_item3">2 minuty</string>
+    <string name="array_update_item4">3 minuty</string>
+    <string name="array_update_item5">5 minut</string>
+    
+    <string name="array_distance_item1">10 metrów</string>
+    <string name="array_distance_item2">25 metrów</string>
+    <string name="array_distance_item3">50 metrów</string>
+    <string name="array_distance_item4">100 metrów</string>
+    <string name="array_distance_item5">500 metrów</string>
     
     <string name="receiver_alarm_override">aeGis nadpisał ustawienia dźwięków.</string>
 </resources>
