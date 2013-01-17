@@ -26,8 +26,10 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class PhoneTrackerActivity extends Activity implements LocationListener {
 
@@ -59,6 +61,21 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         originatingAddress = extras.getString("address");
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         handler.post(getData);
+    }
+    
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent e) {
+            switch (keycode) {
+            case KeyEvent.KEYCODE_BACK:
+                if(!mDisableTracking){
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.disable_tracking_prevent_back),
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    finish();
+                }
+                return true;
+            }
+        return super.onKeyDown(keycode, e);
     }
 
     private final Runnable getData = new Runnable() {

@@ -10,6 +10,7 @@
     <string name="location_text">aeGis is tracking the devices location\nTo disable tracking, hit the Disable Tracking button</string>
 
     <string name="disable_tracking_button">Disable Tracking</string>
+    <string name="disable_tracking_prevent_back">Please disable tracking before exiting</string>
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
     <string name="text_stub">Features coming!</string>
     <string name="descr_overflow_button">overflow</string>
