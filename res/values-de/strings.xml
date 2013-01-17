@@ -17,8 +17,12 @@
     <string name="aegis_open_location_settings">Einschalten</string>
     
     <string name="preferences_advanced_category">Erweiterte Einstellungen</string>
+    <string name="preferences_advanced_sms_category">SMS Einstellungen</string>
+    <string name="preferences_advanced_root_category">Root Einstellungen(ROOT-RECHTE BENÖTIGT)</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Nach einer Aktion eine SMS zur Bestätigung zurücksenden.</string>
+    <string name="preferences_advanced_enable_abort_broadcast">Broadcast abbrechen</string>
+    <string name="preferences_advanced_enable_abort_broadcast_summary">Verhindert das Aktivierungs-SMS von weiteren SMS Apps erhalten wird</string>
     <string name="preferences_advanced_change_password">Passwort ändern</string>
     <string name="preferences_advanced_remove_admin">Als Geräte-Administrator entfernen</string>
     <string name="preferences_advanced_remove_admin_summary">Erlaubt es, aeGis direkt zu deinstallieren</string>
