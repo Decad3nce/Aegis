@@ -36,10 +36,12 @@
 
           <EditText
               android:id="@+id/login_password"
+              android:background="@drawable/outline_shape"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_marginTop="5dip"
               android:inputType="textPassword"
+              android:textSize="27sp"
               android:singleLine="true" >
 
               <requestFocus />

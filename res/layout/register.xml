@@ -20,10 +20,12 @@
 
         <EditText
             android:id="@+id/reg_password"
+            android:background="@drawable/outline_shape"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             android:inputType="textPassword"
+            android:textSize="27sp"
             android:singleLine="true" />
 
         <TextView
@@ -34,10 +36,12 @@
 
         <EditText
             android:id="@+id/reg_password_confirm"
+            android:background="@drawable/outline_shape"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             android:inputType="textPassword"
+            android:textSize="27sp"
             android:singleLine="true" />
 
         <CheckBox
@@ -54,12 +58,6 @@
             android:gravity="center_horizontal"
             android:text="@string/register_password_summary"
             android:textColor="#372c24" />
-
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/register_password_button" />
     </LinearLayout>
 
 </ScrollView>
