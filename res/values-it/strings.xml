@@ -13,10 +13,17 @@
     <string name="device_admin_reason">"aeGis richiede i controlli amministrativi per le funzioni di wipe e blocco."</string>
     <string name="text_stub">"Prossimamente!"</string>
     <string name="descr_overflow_button">"extra"</string>
+    <string name="aegis_location_services_not_enabled">I servizi di localizzazione sono disattivati. Devi attivarli nelle impostazioni per permettere ad aeGis di tracciare la posizione del dispositivo.</string>
+    <string name="aegis_open_location_settings">Attiva</string>
     
     <string name="preferences_advanced_category">Impostazioni avanzate</string>
+    <string name="preferences_advanced_sms_category">Impostazioni SMS</string>
+    <string name="preferences_advanced_root_category">Anti-reset(RICHIEDE ROOT)</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS di conferma</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Invio di un SMS di conferma per le azioni completate.</string>
+    <string name="preferences_advanced_enable_abort_broadcast">Disattiva Broadcast</string>
+    <string name="preferences_advanced_enable_abort_broadcast_summary">Impedisce all'app dei messaggi di notificare l'SMS di attivazione.</string>
+    
     <string name="preferences_advanced_change_password">Cambia password</string>
     <string name="preferences_advanced_remove_admin">Disattiva Amministrazione Dispositivo</string>
     <string name="preferences_advanced_remove_admin_summary">Permette la disinstallazione diretta di aeGis.</string>
