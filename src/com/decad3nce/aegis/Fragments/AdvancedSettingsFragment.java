@@ -28,7 +28,7 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
                 .getSystemService(Context.DEVICE_POLICY_SERVICE);
         
         if (mDPM.getActiveAdmins() == null || !mDPM.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-            PreferenceCategory mCategory = (PreferenceCategory) findPreference("advanced_category");
+            PreferenceCategory mCategory = (PreferenceCategory) findPreference("advanced_root_category");
             mCategory.removePreference(removeAdmin);
         }
 

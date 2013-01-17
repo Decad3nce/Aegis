@@ -12,10 +12,6 @@
                     </intent>
             </Preference>
             
-            <Preference android:title="@string/preferences_advanced_install_to_system"
-                android:key="install_to_system"
-                android:summary="@string/preferences_advanced_install_to_system_summary" />
-            
             <Preference android:title="@string/preferences_advanced_remove_admin"
                 android:key="remove_admin"
                 android:summary="@string/preferences_advanced_remove_admin_summary" />
@@ -23,7 +19,7 @@
         </PreferenceCategory>
         
         <PreferenceCategory android:title="@string/preferences_advanced_sms_category"
-            android:key="advanceds_sms_category">
+            android:key="advanced_sms_category">
             
              <CheckBoxPreference android:key="advanced_enable_confirmation_sms"
                 android:title="@string/preferences_advanced_enabled_confirmaton_sms_title"
@@ -34,6 +30,15 @@
                  android:title="@string/preferences_advanced_enable_abort_broadcast"
                  android:summary="@string/preferences_advanced_enable_abort_broadcast_summary"
                  android:defaultValue="@bool/config_default_advanced_enable_abort_broadcast" />
+             
+        </PreferenceCategory>
+        
+        <PreferenceCategory android:title="@string/preferences_advanced_root_category"
+            android:key="advanced_root_category">
+            
+             <Preference android:title="@string/preferences_advanced_install_to_system"
+                android:key="install_to_system"
+                android:summary="@string/preferences_advanced_install_to_system_summary" />
              
         </PreferenceCategory>
         
