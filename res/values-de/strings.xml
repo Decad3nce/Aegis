@@ -10,6 +10,8 @@
     <string name="location_text">"aeGis verfolgt den Standort des Gerätes.\nZum Abschalten \"Verfolgung deaktivieren\" drücken."</string>
 
     <string name="disable_tracking_button">"Standortverfolgung deaktivieren"</string>
+    <string name="disable_tracking_prevent_back">Bitte schalten Sie die Standortverfolgung vor dem Schließen ab</string>
+    <string name="tracking_returned_no_location">Standort konnte nicht erfasst werden</string>
     <string name="device_admin_reason">"aeGis benötigt Geräteadministratorrechte für die Löschen-/Sperren-Funktionen."</string>
     <string name="text_stub">"Zukünftige Funktionen!"</string>
     <string name="descr_overflow_button">"overflow"</string>
