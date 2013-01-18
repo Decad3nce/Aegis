@@ -345,11 +345,11 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
                 }
                 return strReturnedAddress.toString();
             } else {
-                return "No Location Determined";
+                return getResources().getString(R.string.tracking_returned_no_location);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return "No Location Determined";
+            return getResources().getString(R.string.tracking_returned_no_location);
         }
     }
 }
