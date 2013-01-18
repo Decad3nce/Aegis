@@ -22,7 +22,7 @@
     <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS di conferma</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Invio di un SMS di conferma per le azioni completate.</string>
     <string name="preferences_advanced_enable_abort_broadcast">Disattiva Broadcast</string>
-    <string name="preferences_advanced_enable_abort_broadcast_summary">Impedisce all'app dei messaggi di notificare l'SMS di attivazione.</string>
+    <string name="preferences_advanced_enable_abort_broadcast_summary">"Impedisce all'app dei messaggi di notificare l'SMS di attivazione."</string>
     
     <string name="preferences_advanced_change_password">Cambia password</string>
     <string name="preferences_advanced_remove_admin">Disattiva Amministrazione Dispositivo</string>
