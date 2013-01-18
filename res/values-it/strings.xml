@@ -10,6 +10,8 @@
     <string name="location_text">"aeGis sta tracciando la posizione del dispositivo\nPer disattivare il tracciamento, clicca sul pulsante Disattiva tracciamento"</string>
 
     <string name="disable_tracking_button">"Disattiva tracciamento"</string>
+    <string name="disable_tracking_prevent_back">Disabilita il tracciamento prima di uscire</string>
+    <string name="tracking_returned_no_location">Nessuna posizione determinata</string>
     <string name="device_admin_reason">"aeGis richiede i controlli amministrativi per le funzioni di wipe e blocco."</string>
     <string name="text_stub">"Prossimamente!"</string>
     <string name="descr_overflow_button">"extra"</string>
