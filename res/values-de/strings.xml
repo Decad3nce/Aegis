@@ -20,17 +20,17 @@
     
     <string name="preferences_advanced_category">Erweiterte Einstellungen</string>
     <string name="preferences_advanced_sms_category">SMS Einstellungen</string>
-    <string name="preferences_advanced_root_category">Root Einstellungen(ROOT-RECHTE BENÖTIGT)</string>
+    <string name="preferences_advanced_root_category">Root Einstellungen (ROOT-RECHTE BENÖTIGT)</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
-    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Nach einer Aktion eine SMS zur Bestätigung zurücksenden.</string>
-    <string name="preferences_advanced_enable_abort_broadcast">Broadcast abbrechen</string>
-    <string name="preferences_advanced_enable_abort_broadcast_summary">Verhindert das Aktivierungs-SMS von weiteren SMS Apps erhalten wird</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Bestätigt eine Aktion mit einer SMS</string>
+    <string name="preferences_advanced_enable_abort_broadcast">Broadcast unterdrücken</string>
+    <string name="preferences_advanced_enable_abort_broadcast_summary">Die Aktivierungs-SMS wird nicht von weiteren Apps erhalten</string>
     <string name="preferences_advanced_change_password">Passwort ändern</string>
     <string name="preferences_advanced_remove_admin">Als Geräte-Administrator entfernen</string>
     <string name="preferences_advanced_remove_admin_summary">Erlaubt es, aeGis direkt zu deinstallieren</string>
     <string name="preferences_advanced_remove_admin_completed">Kein Geräte-Administrator mehr</string>
     <string name="preferences_advanced_install_to_system">aeGis als Systemanwendung installieren</string>
-    <string name="preferences_advanced_install_to_system_summary">App wird vor dem Zurücksetzen des Gerätes geschützt</string>
+    <string name="preferences_advanced_install_to_system_summary">Schützt aeGis beim Zurücksetzen des Gerätes</string>
     <string name="preferences_alarm_category">"Alarm"</string>
     <string name="preferences_alarm_enabled_title">"Alarm"</string>
     <string name="preferences_alarm_enabled_summary">"Alarm abspielen und Klingelton aktivieren."</string>
