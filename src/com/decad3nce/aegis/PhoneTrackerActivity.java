@@ -183,7 +183,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
     public void disableTracking(View view) {
         final Button disableButton = (Button) findViewById(R.id.disable_tracking_button);
-        disableButton.setText("Tracking Disabled");
+        disableButton.setText(getResources().getString(R.string.tracking_disabled));
         mDisableTracking = true;
     }
 
@@ -337,7 +337,8 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
             if (addresses != null) {
                 Address returnedAddress = addresses.get(0);
                 StringBuilder strReturnedAddress = new StringBuilder(
-                        "Address:\n");
+                        getResources().getString(R.string.tracking_address));
+                strReturnedAddress.append("\n");
                 for (int i = 0; i < returnedAddress.getMaxAddressLineIndex(); i++) {
                     strReturnedAddress
                             .append(returnedAddress.getAddressLine(i)).append(
