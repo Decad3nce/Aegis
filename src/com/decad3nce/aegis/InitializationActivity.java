@@ -1,19 +1,23 @@
 package com.decad3nce.aegis;
 
-import android.app.Activity;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.app.SherlockActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.webkit.WebView;
 
-public class InitializationActivity extends Activity {
+public class InitializationActivity extends SherlockActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.initialization_activity);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         WebView mWebView;
         mWebView = (WebView) findViewById(R.id.web_view);

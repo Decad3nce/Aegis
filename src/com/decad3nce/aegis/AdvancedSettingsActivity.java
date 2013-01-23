@@ -6,6 +6,10 @@ import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.InstallToSystemDialogFragment;
 import eu.chainfire.libsuperuser.Shell;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -17,18 +21,17 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class AdvancedSettingsActivity extends PreferenceActivity implements InstallToSystemDialogFragment.NoticeDialogListener {
+public class AdvancedSettingsActivity extends SherlockPreferenceActivity implements InstallToSystemDialogFragment.NoticeDialogListener {
     private static final String TAG = "aeGis";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         getActionBar().setDisplayHomeAsUpEnabled(true);
+         ActionBar actionBar = getSupportActionBar();
+         actionBar.setDisplayHomeAsUpEnabled(true);
         
          getFragmentManager().beginTransaction().replace(android.R.id.content,
          new AdvancedSettingsFragment()).commit();

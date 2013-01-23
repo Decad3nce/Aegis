@@ -5,8 +5,14 @@ import com.decad3nce.aegis.Fragments.SMSLockFragment;
 import com.decad3nce.aegis.Fragments.SMSWipeFragment;
 import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.admin.DevicePolicyManager;
@@ -19,18 +25,14 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class AegisActivity extends FragmentActivity {
+public class AegisActivity extends SherlockFragmentActivity {
     
     private static final String TAG = "aeGis";
 
@@ -69,7 +71,7 @@ public class AegisActivity extends FragmentActivity {
         mViewPager.setId(R.id.pager);
         setContentView(mViewPager);
 
-        final ActionBar bar = getActionBar();
+        final ActionBar bar = getSupportActionBar();
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE,
                 ActionBar.DISPLAY_SHOW_TITLE);
@@ -303,7 +305,7 @@ public class AegisActivity extends FragmentActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menu.clear();
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.full_menu, menu);
         fullMenu = menu;
 
@@ -347,7 +349,7 @@ public class AegisActivity extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == ACTIVATION_REQUEST) {
-                if (resultCode != Activity.RESULT_OK) {
+                if (resultCode != SherlockActivity.RESULT_OK) {
                     mLockEnabledPreference.setChecked(false);
                     mWipeEnabledPreference.setChecked(false);
                     lockEnabled = false;
@@ -410,7 +412,7 @@ public class AegisActivity extends FragmentActivity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.full_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
