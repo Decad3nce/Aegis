@@ -4,7 +4,7 @@ import com.decad3nce.aegis.R;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-public class SMSLocateFragment extends PreferenceFragment {
+public class SMSLocateFragment extends SherlockFragment {
     
     public static final String PREFERENCES_LOCATE_UPDATE_DURATION = "locate_update_duration";
     public static final String PREFERENCES_LOCATE_MINIMUM_DISTANCE = "locate_minimum_distance";

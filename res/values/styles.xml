@@ -1,5 +1,5 @@
-<resources>
-
-    <style name="AppTheme" parent="android:Theme.Holo" />
-
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="Theme" parent="Theme.Sherlock.Light.DarkActionBar" >
+        <item name="switchStyle">@style/Widget.Holo.CompoundButton.Switch</item>
+    </style>
 </resources>

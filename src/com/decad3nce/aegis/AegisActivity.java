@@ -6,12 +6,13 @@ import com.decad3nce.aegis.Fragments.SMSWipeFragment;
 import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+import org.jraf.android.backport.switchwidget.Switch;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -22,6 +23,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -29,7 +31,6 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.Toast;
 
 public class AegisActivity extends SherlockFragmentActivity {
@@ -88,6 +89,7 @@ public class AegisActivity extends SherlockFragmentActivity {
                 SMSWipeFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.locate_section),
                 SMSLocateFragment.class, null);
+        
         if (savedInstanceState != null) {
             bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
         }
@@ -114,7 +116,7 @@ public class AegisActivity extends SherlockFragmentActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+        outState.putInt("tab", mTabsAdapter.getCurrentTab());
     }
 
     @Override

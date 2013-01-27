@@ -41,17 +41,17 @@ public class RegisterActivity extends SherlockActivity {
         setContentView(R.layout.register);
 
         Intent intent = getIntent();
+        final ActionBar bar = getSupportActionBar();
 
         if (intent.hasExtra("fromAegis")) {
             mFromAegis = true;
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+            bar.setDisplayHomeAsUpEnabled(true);
         } else {
-            getActionBar().setHomeButtonEnabled(false);
+            bar.setHomeButtonEnabled(false);
         }
 
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        final ActionBar bar = getSupportActionBar();
         bar.setTitle(R.string.app_name);
         bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE,
                 ActionBar.DISPLAY_SHOW_TITLE);

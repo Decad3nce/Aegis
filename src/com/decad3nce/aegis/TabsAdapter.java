@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 public class TabsAdapter extends FragmentPagerAdapter implements
@@ -36,7 +36,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements
     }
 
     public TabsAdapter(SherlockFragmentActivity activity, ViewPager pager) {
-        super(activity.getFragmentManager());
+        super(activity.getSupportFragmentManager());
         mContext = activity;
         mActivity = activity;
         mActionBar = activity.getSupportActionBar();
