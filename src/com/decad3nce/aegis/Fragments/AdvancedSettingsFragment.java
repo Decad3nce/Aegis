@@ -1,11 +1,14 @@
 package com.decad3nce.aegis.Fragments;
 
+import com.decad3nce.aegis.AdvancedSettingsActivity;
 import com.decad3nce.aegis.AegisActivity;
 import com.decad3nce.aegis.R;
 
 import android.app.DialogFragment;
 import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -15,6 +18,7 @@ import android.preference.PreferenceFragment;
 public class AdvancedSettingsFragment extends PreferenceFragment {
     public static final String PREFERENCES_CONFIRMATION_SMS = "advanced_enable_confirmation_sms";
     public static final String PREFERENCES_ABORT_BROADCAST = "advanced_enable_abort_broadcast";
+    public static final String PREFERENCES_HIDE_FROM_LAUNCHER = "advanced_hide_from_launcher";
     private static final String ADVANCED_PREFERENCES_REMOVE_ADMIN = "remove_admin";
     private static final String ADVANCED_PREFERENCES_INSTALL_TO_SYSTEM = "install_to_system";
 

@@ -23,6 +23,8 @@
     <string name="preferences_advanced_category">Advanced Settings</string>
     <string name="preferences_advanced_sms_category">SMS Settings</string>
     <string name="preferences_advanced_root_category">Root Settings(REQUIRES ROOT)</string>
+    <string name="preferences_advanced_hide_from_launcher_title">Launch From Dialer</string>
+    <string name="preferences_advanced_hide_from_launcher_summary">When enabled, allow you to launch aeGis via the secret dialer code: "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Confirmation SMS</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Whether to send confirmation SMS on completed action.</string>
     <string name="preferences_advanced_enable_abort_broadcast">Abort Broadcast</string>

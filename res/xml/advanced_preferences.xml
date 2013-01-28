@@ -12,6 +12,11 @@
                     </intent>
             </Preference>
             
+            <CheckBoxPreference android:key="advanced_hide_from_launcher"
+                android:title="@string/preferences_advanced_hide_from_launcher_title"
+                android:summary="@string/preferences_advanced_hide_from_launcher_summary"
+                android:defaultValue="@bool/config_default_advanced_hide_from_launcher" />
+            
             <Preference android:title="@string/preferences_advanced_remove_admin"
                 android:key="remove_admin"
                 android:summary="@string/preferences_advanced_remove_admin_summary" />

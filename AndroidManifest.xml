@@ -34,37 +34,37 @@
         <activity android:name=".AegisActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity android:name=".AdvancedSettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity android:name=".InitializationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity android:name=".PhoneTrackerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <receiver android:name=".SMSReceiver"
@@ -72,6 +72,14 @@
                    android:exported="true">
             <intent-filter android:priority="214783648">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".DialerCodeReceiver"
+                   android:enabled="true"
+                   android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SECRET_CODE"/>
+                <data android:scheme="android_secret_code" android:host="23447" />
             </intent-filter>
         </receiver>
         <receiver android:name=".DeviceAdmin" android:permission="android.permission.BIND_DEVICE_ADMIN">
