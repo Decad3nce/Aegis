@@ -2,6 +2,7 @@ package com.decad3nce.aegis;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -29,7 +30,9 @@ import com.google.api.client.http.FileContent;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
+import com.google.api.services.drive.Drive.Files;
 import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.ParentReference;
 
 public class BackupAccountsActivity extends SherlockActivity {
@@ -43,6 +46,7 @@ public class BackupAccountsActivity extends SherlockActivity {
     private Context context;
     private static Uri fileUri;
     private static Drive service;
+    private boolean folderCreated = false;
     private String address;
     private ContentResolver cr;
     private GoogleAccountCredential credential;
@@ -134,11 +138,19 @@ public class BackupAccountsActivity extends SherlockActivity {
             e.printStackTrace();
             Log.i(TAG, "Exception: " + e.toString());
         }
-        createAegisFolder();
+        if(!isAegisFolderAvailable()) {
+            createAegisFolder();
+        }
         finish();
     }
 
     private void createAegisFolder() {
+        if(folderCreated){
+            return;
+        }
+        
+        Log.i(TAG, "Creating aeGis folder");
+        folderCreated = true;
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -147,7 +159,6 @@ public class BackupAccountsActivity extends SherlockActivity {
                   body.setTitle("aeGis Backup");
                   body.setDescription("Backup stored by aeGis");
                   body.setMimeType("application/vnd.google-apps.folder");
-                  body.setId("0A43GFD239pfg");
                   File file = service.files().insert(body).execute();
                 if (file != null) {
                   finish();
@@ -161,9 +172,46 @@ public class BackupAccountsActivity extends SherlockActivity {
           });
           t.start();
     }
+    
+    private static boolean isAegisFolderAvailable() {
+        
+        if(getAegisFolder() == null) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private static String getAegisFolder() {
+        Files.List request = null;
+        String folderID = null;
+            try {
+                request = service.files().list().setQ("mimeType= 'application/vnd.google-apps.folder' and title = 'aeGis Backup' and trashed = false");
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+            
+            do {
+                    FileList files;
+                    try {
+                        files = request.execute();
+                        for (File file : files.getItems()) {
+                            folderID = file.getId();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+            } while (request.getPageToken() != null && request.getPageToken().length() > 0);
+            
+            Log.i(TAG, "FolderID: " + folderID);
+        return folderID;
+    }
 
     private void recoverData() {
         Log.i(TAG, "Recovering data");
+        
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
@@ -199,13 +247,17 @@ public class BackupAccountsActivity extends SherlockActivity {
           @Override
           public void run() {
             try {
+                if(!isAegisFolderAvailable()) {
+                    createAegisFolder();
+                }
+              
               Log.i(TAG, "Generating new file to upload");
               java.io.File fileContent = new java.io.File(fileUri.getPath());
               FileContent mediaContent = new FileContent("text/plain", fileContent);
 
               File body = new File();
               body.setTitle(fileContent.getName());
-              //body.setParents(Arrays.asList(new ParentReference().setId("0A43GFD239pfg")));
+              body.setParents(Arrays.asList(new ParentReference().setId(getAegisFolder())));
               body.setMimeType("text/plain");
 
               File file = service.files().insert(body, mediaContent).execute();

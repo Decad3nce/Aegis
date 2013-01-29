@@ -258,6 +258,8 @@ public class AegisActivity extends SherlockFragmentActivity {
             public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                 Intent dataIntent = new Intent(AegisActivity.this, BackupAccountsActivity.class);
                 startActivity(dataIntent);
+                dataEnabled = true;
+                mDataEnabledPreference.setChecked(true);
             }
         });
         dialog.setNegativeButton(getResources().getString(R.string.advanced_dialog_cancel), new DialogInterface.OnClickListener() {
@@ -281,7 +283,6 @@ public class AegisActivity extends SherlockFragmentActivity {
         if(googleAccount.equals(mStub)){
             return false;
         }
-        dataEnabled = true;
         return true;
     }
 
