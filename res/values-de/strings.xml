@@ -23,6 +23,8 @@
     <string name="preferences_advanced_category">Erweiterte Einstellungen</string>
     <string name="preferences_advanced_sms_category">SMS Einstellungen</string>
     <string name="preferences_advanced_root_category">Root Einstellungen (ROOT-RECHTE BENÖTIGT)</string>
+    <string name="preferences_advanced_hide_from_launcher_title">Vom Wählfeld ausführen</string>
+    <string name="preferences_advanced_hide_from_launcher_summary">Startet aeGis durch das Wählen von "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Bestätigt eine Aktion mit einer SMS</string>
     <string name="preferences_advanced_enable_abort_broadcast">Broadcast unterdrücken</string>
