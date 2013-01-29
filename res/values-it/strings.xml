@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">"aeGis"</string>
-    <string name="wipe_section">"Wipe"</string>
+    <string name="data_section">Dati</string>
     <string name="lock_section">"Blocco"</string>
     <string name="alarm_section">"Allarme"</string>
     <string name="locate_section">"Localizza"</string>
@@ -12,25 +12,32 @@
     <string name="disable_tracking_button">"Disattiva tracciamento"</string>
     <string name="disable_tracking_prevent_back">Disabilita il tracciamento prima di uscire</string>
     <string name="tracking_returned_no_location">Nessuna posizione determinata</string>
+    <string name="tracking_address">Indirizzo:</string>
+    <string name="tracking_disabled">Tracciamento disattivato</string>
     <string name="device_admin_reason">"aeGis richiede i controlli amministrativi per le funzioni di wipe e blocco."</string>
     <string name="text_stub">"Prossimamente!"</string>
     <string name="descr_overflow_button">"extra"</string>
     <string name="aegis_location_services_not_enabled">I servizi di localizzazione sono disattivati. Devi attivarli nelle impostazioni per permettere ad aeGis di tracciare la posizione del dispositivo.</string>
     <string name="aegis_open_location_settings">Attiva</string>
+    <string name="aegis_backup_service_not_enabled">Seleziona un account di backup nelle impostazioni prima di attivare il recupero dei dati .</string>
+    <string name="aegis_backup_service_open_settings">Scegli</string>
     
     <string name="preferences_advanced_category">Impostazioni avanzate</string>
     <string name="preferences_advanced_sms_category">Impostazioni SMS</string>
     <string name="preferences_advanced_root_category">Anti-reset(RICHIEDE ROOT)</string>
+    <string name="preferences_advanced_backup_accounts_category">Accounts di backup</string>
+    <string name="preferences_advanced_hide_from_launcher_title">Apri tramite Dialer</string>
+    <string name="preferences_advanced_hide_from_launcher_summary">Quando attivo, permette di avviare aeGis componendo il numero telefonico segreto: "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS di conferma</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_summary">Invio di un SMS di conferma per le azioni completate.</string>
     <string name="preferences_advanced_enable_abort_broadcast">Disattiva Broadcast</string>
     <string name="preferences_advanced_enable_abort_broadcast_summary">"Impedisce all'app dei messaggi di notificare l'SMS di attivazione."</string>
-    
     <string name="preferences_advanced_change_password">Cambia password</string>
     <string name="preferences_advanced_remove_admin">Disattiva Amministrazione Dispositivo</string>
     <string name="preferences_advanced_remove_admin_summary">Permette la disinstallazione diretta di aeGis.</string>
     <string name="preferences_advanced_remove_admin_completed">Amministrazione dispositivo disattivata</string>
     <string name="preferences_advanced_install_to_system">Installa aeGis come app di sistema</string>
+    <string name="preferences_advanced_google_account_title">Account Google Drive</string>
     <string name="preferences_advanced_install_to_system_summary">Evita la rimozione di aeGis in caso di reset del dispositivo.</string>
     <string name="preferences_alarm_category">"Allarme"</string>
     <string name="preferences_alarm_enabled_title">"Allarme"</string>
@@ -43,14 +50,20 @@
     <string name="preferences_lock_enabled_title">"Blocco"</string>
     <string name="preferences_lock_enabled_summary">"Blocca il dispositivo quando viene inviato il relativo SMS di attivazione."</string>
     <string name="preferences_lock_activation_sms_title">"SMS attivazione blocco"</string>
-    <string name="preferences_lock_activation_sms_summary">"Scegli il testo da inviare per bloccare il dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del blocco. "</string>
+    <string name="preferences_lock_activation_sms_summary">"Scegli il testo da inviare per bloccare il dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del blocco."</string>
     <string name="preferences_lock_password_title">"Password di default"</string>
     <string name="preferences_lock_password_summary">"Scegli la password da utilizzare per il blocco del dispositivo. Questa sarà la password impostata di default, ma ne può essere impostata una diversa durante l'invio aggiungendola nell'SMS stesso dopo il comando di attivazione. Se non impostata durante l'invio, il dispositivo verrà bloccato utilizzando la password esistente."</string>
-    <string name="preferences_wipe_category">"Wipe"</string>
-    <string name="preferences_wipe_enabled_title">"Wipe"</string>
-    <string name="preferences_wipe_enabled_summary">"Wipe del dispositivo quando viene inviato il relativo SMS di attivazione."</string>
-    <string name="preferences_wipe_activation_sms_title">"SMS attivazione wipe"</string>
-    <string name="preferences_wipe_activation_sms_summary">"Scegli il testo da inviare per eseguire il wipe del dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del wipe. "</string>
+    <string name="preferences_lock_wipe_pref_title">Wipe Dispositivo</string>
+    <string name="preferences_lock_wipe_pref_summary">"Effettua il wipe del dispositivo alla ricezione dell'SMS di blocco."</string>
+    <string name="preferences_data_category">Dati</string>
+    <string name="preferences_data_enabled_title">Dati</string>
+    <string name="preferences_data_enabled_summary">""Recupera dati sul dispositivo alla ricezione dell'SMS di attivazione."</string>
+    <string name="preferences_data_activation_sms_title">SMS attivazione recupero dati</string>
+    <string name="preferences_data_activation_sms_summary">"Scegli il testo da inviare per recuperare i dati dal dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del blocco."</string>
+    <string name="preferences_data_backup_call_logs_title">Backup log chiamate</string>
+    <string name="preferences_data_backup_call_logs_summary">"Effettua il recupero della cronologia chiamate sull'account di backup."</string>
+    <string name="preferences_data_backup_sms_logs_title">Backup log SMS</string>
+    <string name="preferences_data_backup_sms_logs_summary">Effettua il recupero della cronologia SMS sull'account di backup.</string>
     <string name="preferences_locate_category">"Localizzazione"</string>
     <string name="preferences_locate_enabled_title">"Localizzazione"</string>
     <string name="preferences_locate_enabled_summary">"Localizza il dispositivo quando viene inviato il relativo SMS di attivazione"</string>
@@ -69,6 +82,8 @@
     <string name="util_sendsms_alarm_fail">"aeGis: Impossibile modificare le impostazioni audio. Errore:"</string>
     <string name="util_sendsms_lock_pass">"aeGis: Dispositivo bloccato con la password:"</string>
     <string name="util_sendsms_lock_fail">"aeGis: Impossibile bloccare il dispositivo. Errore:"</string>
+    <string name="util_sendsms_data_recovery_pass">""aeGis: File recuperati:"</string>
+    <string name="util_sendsms_data_recovery_fail">""aeGis: Recupero file fallito"</string>
     <string name="util_sendsms_wipe_pass">"aeGis: Wiping del dispositivo in corso."</string>
     <string name="util_sendsms_wipe_fail">"aeGis: Impossibile fare il wipe del dispositivo. Errore:"</string>
     <string name="util_sendsms_locate_fail">"aeGis: Impossibile localizzare il dispositivo. Errore:"</string>
