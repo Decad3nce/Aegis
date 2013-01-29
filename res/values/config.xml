@@ -1,9 +1,11 @@
 <resources>
     <bool name="config_default_alarm_enabled">true</bool>
     <bool name="config_default_lock_enabled">false</bool>
-    <bool name="config_default_wipe_enabled">false</bool>
+    <bool name="config_default_lock_wipe_pref">false</bool>
+    <bool name="config_default_data_enabled">false</bool>
+    <bool name="config_default_data_backup_call_logs">true</bool>
+    <bool name="config_default_data_backup_sms_logs">true</bool>
     <bool name="config_default_locate_enabled">false</bool>
-    <bool name="config_default_aegis_initialized">false</bool>
     <bool name="config_default_password_set">false</bool>
     <bool name="config_default_password_wanted">true</bool>
     <bool name="config_default_locate_lock_pref">false</bool>
@@ -12,11 +14,12 @@
     <bool name="config_default_advanced_enable_abort_broadcast">true</bool>
     <bool name="config_default_advanced_hide_from_launcher">false</bool>
     
+    <string name="config_default_google_account">NONE</string>
     <string name="config_default_login_password">aeGis</string>
 
     <string name="config_default_alarm_activation_sms">aeGis alarm</string>
     <string name="config_default_lock_activation_sms">aeGis lock</string>
-    <string name="config_default_wipe_activation_sms">aeGis wipe</string>
+    <string name="config_default_data_activation_sms">aeGis data</string>
     <string name="config_default_locate_activation_sms">aeGis locate</string>
 
     <string name="config_default_alarm_vibrate">true</string>

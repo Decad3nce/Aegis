@@ -2,7 +2,7 @@ package com.decad3nce.aegis;
 
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
-import com.decad3nce.aegis.Fragments.SMSWipeFragment;
+import com.decad3nce.aegis.Fragments.SMSDataFragment;
 import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -37,12 +37,12 @@ public class AegisActivity extends SherlockFragmentActivity {
     private static final String TAG = "aeGis";
 
     public static final String PREFERENCES_ALARM_ENABLED = "alarm_toggle";
-    public static final String PREFERENCES_WIPE_ENABLED = "wipe_toggle";
+    public static final String PREFERENCES_DATA_ENABLED = "data_toggle";
     public static final String PREFERENCES_LOCK_ENABLED = "lock_toggle";
     public static final String PREFERENCES_LOCATE_ENABLED = "locate_toggle";
 
     protected static boolean alarmEnabled;
-    protected static boolean wipeEnabled;
+    protected static boolean dataEnabled;
     protected static boolean lockEnabled;
     protected static boolean locateEnabled;
 
@@ -50,7 +50,7 @@ public class AegisActivity extends SherlockFragmentActivity {
 
     private Switch mAlarmEnabledPreference;
     private Switch mLockEnabledPreference;
-    private Switch mWipeEnabledPreference;
+    private Switch mDataEnabledPreference;
     private Switch mLocateEnabledPreference;
     
     private Menu fullMenu;
@@ -84,8 +84,8 @@ public class AegisActivity extends SherlockFragmentActivity {
                 SMSAlarmFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.lock_section),
                 SMSLockFragment.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.wipe_section),
-                SMSWipeFragment.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText(R.string.data_section),
+                SMSDataFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.locate_section),
                 SMSLocateFragment.class, null);
         if (savedInstanceState != null) {
@@ -98,8 +98,8 @@ public class AegisActivity extends SherlockFragmentActivity {
         alarmEnabled = preferences
                 .getBoolean(PREFERENCES_ALARM_ENABLED, this.getResources()
                         .getBoolean(R.bool.config_default_alarm_enabled));
-        wipeEnabled = preferences.getBoolean(PREFERENCES_WIPE_ENABLED, this
-                .getResources().getBoolean(R.bool.config_default_wipe_enabled));
+        dataEnabled = preferences.getBoolean(PREFERENCES_DATA_ENABLED, this
+                .getResources().getBoolean(R.bool.config_default_data_enabled));
         lockEnabled = preferences.getBoolean(PREFERENCES_LOCK_ENABLED, this
                 .getResources().getBoolean(R.bool.config_default_lock_enabled));
         locateEnabled = preferences.getBoolean(PREFERENCES_LOCATE_ENABLED, this
@@ -198,24 +198,22 @@ public class AegisActivity extends SherlockFragmentActivity {
                 
                 if (isChecked
                         && !mDevicePolicyManager
-                                .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+                                .isAdminActive(DEVICE_ADMIN_COMPONENT) && locateEnabled) {
                     addAdmin();
                 }
 
                 break;
 
-            case R.id.wipe_toggle:
+            case R.id.data_toggle:
 
                 if (isChecked) {
-                    wipeEnabled = true;
+                    if(isGoogleAuthed()) {
+                        dataEnabled = true;
+                    } else {
+                        showGoogleDriveServicesDialog();
+                    }
                 } else {
-                    wipeEnabled = false;
-                }
-
-                if (isChecked
-                        && !mDevicePolicyManager
-                                .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
-                    addAdmin();
+                    dataEnabled = false;
                 }
 
                 break;
@@ -249,6 +247,42 @@ public class AegisActivity extends SherlockFragmentActivity {
                 getResources().getString(
                         R.string.device_admin_reason));
         startActivityForResult(intent, ACTIVATION_REQUEST);
+    }
+
+    protected void showGoogleDriveServicesDialog() {
+        Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(getResources().getString(R.string.aegis_backup_service_not_enabled));
+        dialog.setPositiveButton(getResources().getString(R.string.aegis_backup_service_open_settings), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                Intent dataIntent = new Intent(AegisActivity.this, BackupAccountsActivity.class);
+                startActivity(dataIntent);
+            }
+        });
+        dialog.setNegativeButton(getResources().getString(R.string.advanced_dialog_cancel), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+            }
+        });
+        dialog.show();
+        
+    }
+
+    protected boolean isGoogleAuthed() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        
+        String googleAccount = preferences
+                .getString(BackupAccountsActivity.PREFERENCES_BACKUP_CHOSEN_ACCOUNT, this.getResources().getString(R.string.config_default_google_account));
+        String mStub = "NONE";
+        
+        if(googleAccount.equals(mStub)){
+            return false;
+        }
+        dataEnabled = true;
+        return true;
     }
 
     protected void showLocationServicesDialog() {
@@ -293,10 +327,6 @@ public class AegisActivity extends SherlockFragmentActivity {
                     mLockEnabledPreference.setChecked(false);
                     lockEnabled = false;
                 }
-                if (mWipeEnabledPreference != null) {
-                    mWipeEnabledPreference.setChecked(false);
-                    wipeEnabled = false;
-                }
             }
         }
     }
@@ -327,11 +357,11 @@ public class AegisActivity extends SherlockFragmentActivity {
             break;
 
         case 2:
-            showItem(R.id.wipe_menu_settings, menu);
-            mWipeEnabledPreference = (Switch) menu
-                    .findItem(R.id.wipe_menu_settings).getActionView()
-                    .findViewById(R.id.wipe_toggle);
-            addAdminListener(R.id.wipe_toggle, wipeEnabled, mWipeEnabledPreference);
+            showItem(R.id.data_menu_settings, menu);
+            mDataEnabledPreference = (Switch) menu
+                    .findItem(R.id.data_menu_settings).getActionView()
+                    .findViewById(R.id.data_toggle);
+            addAdminListener(R.id.data_toggle, dataEnabled, mDataEnabledPreference);
             break;
 
         case 3:
@@ -351,9 +381,7 @@ public class AegisActivity extends SherlockFragmentActivity {
             if (requestCode == ACTIVATION_REQUEST) {
                 if (resultCode != SherlockActivity.RESULT_OK) {
                     mLockEnabledPreference.setChecked(false);
-                    mWipeEnabledPreference.setChecked(false);
                     lockEnabled = false;
-                    wipeEnabled = false;
                 }
                 return;
             }
@@ -374,15 +402,14 @@ public class AegisActivity extends SherlockFragmentActivity {
     
     private void addAdminListener(int toggle, boolean what, Switch who) {
         switch(toggle) {
+        case R.id.data_toggle:
         case R.id.alarm_toggle:
             if(what) {
                 who.setChecked(true);
                 }
             break;
-        case R.id.lock_toggle:
-        case R.id.wipe_toggle:
         case R.id.locate_toggle:
-            
+        case R.id.lock_toggle:
             mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE); 
             if (mDevicePolicyManager.getActiveAdmins() != null) {
                 if (what && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
@@ -405,7 +432,7 @@ public class AegisActivity extends SherlockFragmentActivity {
         SharedPreferences.Editor editor = preferences.edit();;
         editor.putBoolean("alarm_toggle", alarmEnabled);
         editor.putBoolean("lock_toggle", lockEnabled);
-        editor.putBoolean("wipe_toggle", wipeEnabled);
+        editor.putBoolean("data_toggle", dataEnabled);
         editor.putBoolean("locate_toggle", locateEnabled);
         editor.commit();
     }

@@ -15,11 +15,11 @@
         android:showAsAction="ifRoom|withText"
         android:visible="false"
         android:actionLayout="@layout/locate_toggle_button" />
-        <item android:id="@+id/wipe_menu_settings"
+        <item android:id="@+id/data_menu_settings"
         android:title="@string/menu_settings"
         android:showAsAction="ifRoom|withText"
         android:visible="false"
-        android:actionLayout="@layout/wipe_toggle_button" />
+        android:actionLayout="@layout/data_toggle_button" />
         <item android:id="@+id/full_menu_settings"
         android:title="@string/menu_settings"
         android:showAsAction="always"

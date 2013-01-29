@@ -19,7 +19,6 @@ import android.util.Log;
 
 public class Utils {
     private static final String TAG = "aeGis";
-
     
     protected static void sendSMS(Context context, String address, String content)
     {        

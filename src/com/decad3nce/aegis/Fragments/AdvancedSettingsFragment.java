@@ -2,13 +2,13 @@ package com.decad3nce.aegis.Fragments;
 
 import com.decad3nce.aegis.AdvancedSettingsActivity;
 import com.decad3nce.aegis.AegisActivity;
+import com.decad3nce.aegis.BackupAccountsActivity;
 import com.decad3nce.aegis.R;
 
 import android.app.DialogFragment;
 import android.app.admin.DevicePolicyManager;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -28,6 +28,9 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
 
         final Preference removeAdmin = (Preference) findPreference("remove_admin");
         final Preference installToSystem = (Preference) findPreference("install_to_system");
+        final Preference googleAccount = (Preference) findPreference("chosen_google_account");
+        googleAccount.setSummary(AdvancedSettingsActivity.getAccountName());
+        
         final DevicePolicyManager mDPM = (DevicePolicyManager) getActivity()
                 .getSystemService(Context.DEVICE_POLICY_SERVICE);
         

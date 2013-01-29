@@ -38,6 +38,20 @@
              
         </PreferenceCategory>
         
+        <PreferenceCategory android:title="@string/preferences_advanced_backup_accounts_category"
+            android:key="advanced_google_accounts_category">
+            
+             <Preference android:title="@string/preferences_advanced_google_account_title"
+                android:key="chosen_google_account">
+                    <intent
+                        android:action="android.intent.action.VIEW"
+                        android:targetPackage="com.decad3nce.aegis"
+                        android:targetClass="com.decad3nce.aegis.BackupAccountsActivity" >                        
+                    </intent>
+             </Preference>
+             
+        </PreferenceCategory>
+        
         <PreferenceCategory android:title="@string/preferences_advanced_root_category"
             android:key="advanced_root_category">
             

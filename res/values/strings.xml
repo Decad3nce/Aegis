@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">aeGis</string>
-    <string name="wipe_section">Wipe</string>
+    <string name="data_section">Data</string>
     <string name="lock_section">Lock</string>
     <string name="alarm_section">Alarm</string>
     <string name="locate_section">Locate</string>
@@ -19,10 +19,13 @@
     <string name="descr_overflow_button">overflow</string>
     <string name="aegis_location_services_not_enabled">Location services are not active. You need to enable location services for aeGis to be able to track your device.</string>
     <string name="aegis_open_location_settings">Enable</string>
+    <string name="aegis_backup_service_not_enabled">Please choose a backup account before proceeding to enable data recovery.</string>
+    <string name="aegis_backup_service_open_settings">Choose</string>
     
     <string name="preferences_advanced_category">Advanced Settings</string>
     <string name="preferences_advanced_sms_category">SMS Settings</string>
     <string name="preferences_advanced_root_category">Root Settings(REQUIRES ROOT)</string>
+    <string name="preferences_advanced_backup_accounts_category">Backup Accounts</string>
     <string name="preferences_advanced_hide_from_launcher_title">Launch From Dialer</string>
     <string name="preferences_advanced_hide_from_launcher_summary">When enabled, allow you to launch aeGis via the secret dialer code: "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Confirmation SMS</string>
@@ -35,6 +38,7 @@
     <string name="preferences_advanced_remove_admin_completed">No longer a device admin</string>
     <string name="preferences_advanced_install_to_system">Install aeGis to system</string>
     <string name="preferences_advanced_install_to_system_summary">Prevents aeGis from being removed even if device is reset.</string>
+    <string name="preferences_advanced_google_account_title">Google Drive Account</string>
     <string name="preferences_alarm_category">Alarm</string>
     <string name="preferences_alarm_enabled_title">Alarm</string>
     <string name="preferences_alarm_enabled_summary">Play an alarm and enable ringer sound on device.</string>
@@ -49,11 +53,17 @@
     <string name="preferences_lock_activation_sms_summary">Choose what text to send to lock the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized locking.</string>
     <string name="preferences_lock_password_title">Default password</string>
     <string name="preferences_lock_password_summary">Choose what password will be used to lock the device. This is the default password that will be set, custom passwords can be provided when sending SMS by appending the requested password to the SMS. If set to blank, the password/lock method will not be changed but the device will get locked to force re-authentication using the existing password.</string>
-    <string name="preferences_wipe_category">Wipe</string>
-    <string name="preferences_wipe_enabled_title">Wipe</string>
-    <string name="preferences_wipe_enabled_summary">Wipe the device when activation sms is sent.</string>
-    <string name="preferences_wipe_activation_sms_title">Wipe Activation SMS</string>
-    <string name="preferences_wipe_activation_sms_summary">Choose what text to send to wipe the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized wiping.</string>
+    <string name="preferences_lock_wipe_pref_title">Wipe Device</string>
+    <string name="preferences_lock_wipe_pref_summary">Whether to wipe device when activation SMS for lock tab is received by device.</string>
+    <string name="preferences_data_category">Data</string>
+    <string name="preferences_data_enabled_title">Data</string>
+    <string name="preferences_data_enabled_summary">Recover data to device when activation sms is sent.</string>
+    <string name="preferences_data_activation_sms_title">Data Recovery Activation SMS</string>
+    <string name="preferences_data_activation_sms_summary">Choose what to text to recover data from the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized usage.</string>
+    <string name="preferences_data_backup_call_logs_title">Backup Call Logs</string>
+    <string name="preferences_data_backup_call_logs_summary">Whether to backup call logs to your backup account.</string>
+    <string name="preferences_data_backup_sms_logs_title">Backup SMS Logs</string>
+    <string name="preferences_data_backup_sms_logs_summary">Whether to backup sms logs to your backup account.</string>
     <string name="preferences_locate_category">Locate</string>
     <string name="preferences_locate_enabled_title">Locate</string>
     <string name="preferences_locate_enabled_summary">Locate the device when activation sms is sent.</string>
@@ -72,6 +82,8 @@
     <string name="util_sendsms_alarm_fail">aeGis: Failed to override sound settings. Error:</string>
     <string name="util_sendsms_lock_pass">aeGis: Locked device with password:</string>
     <string name="util_sendsms_lock_fail">aeGis: Failed to lock device. Error:</string>
+    <string name="util_sendsms_data_recovery_pass">aeGis: Recovered file:</string>
+    <string name="util_sendsms_data_recovery_fail">aeGis: Failed to recover files</string>
     <string name="util_sendsms_wipe_pass">aeGis: Wiping device.</string>
     <string name="util_sendsms_wipe_fail">aeGis: Failed to wipe device. Error:</string>
     <string name="util_sendsms_locate_fail">aeGis: Failed to locate device. Error:</string>

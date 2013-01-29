@@ -2,9 +2,9 @@ package com.decad3nce.aegis;
 
 import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
+import com.decad3nce.aegis.Fragments.SMSDataFragment;
 import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
-import com.decad3nce.aegis.Fragments.SMSWipeFragment;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
@@ -47,10 +47,10 @@ public class SMSReceiver extends BroadcastReceiver {
                             AegisActivity.PREFERENCES_LOCK_ENABLED,
                             context.getResources().getBoolean(
                                     R.bool.config_default_lock_enabled));
-                    boolean wipeEnabled = preferences.getBoolean(
-                            AegisActivity.PREFERENCES_WIPE_ENABLED,
+                    boolean dataEnabled = preferences.getBoolean(
+                            AegisActivity.PREFERENCES_DATA_ENABLED,
                             context.getResources().getBoolean(
-                                    R.bool.config_default_wipe_enabled));
+                                    R.bool.config_default_data_enabled));
                     boolean locateEnabled = preferences.getBoolean(
                             AegisActivity.PREFERENCES_LOCATE_ENABLED,
                             context.getResources().getBoolean(
@@ -72,12 +72,12 @@ public class SMSReceiver extends BroadcastReceiver {
                                     context.getResources()
                                             .getString(
                                                     R.string.config_default_lock_activation_sms));
-                    String activationWipeSms = preferences
+                    String activationDataSms = preferences
                             .getString(
-                                    SMSWipeFragment.PREFERENCES_WIPE_ACTIVATION_SMS,
+                                    SMSDataFragment.PREFERENCES_DATA_ACTIVATION_SMS,
                                     context.getResources()
                                             .getString(
-                                                    R.string.config_default_wipe_activation_sms));
+                                                    R.string.config_default_data_activation_sms));
                     String activationLocateSms = preferences
                             .getString(
                                     SMSLocateFragment.PREFERENCES_LOCATE_ACTIVATION_SMS,
@@ -88,6 +88,10 @@ public class SMSReceiver extends BroadcastReceiver {
                             SMSLocateFragment.PREFERENCES_LOCATE_LOCK_PREF,
                             context.getResources().getBoolean(
                                     R.bool.config_default_locate_lock_pref));
+                    boolean lockWipePref = preferences.getBoolean(
+                            SMSLockFragment.PREFERENCES_LOCK_WIPE_PREF,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_lock_wipe_pref));
                     
                     if (alarmEnabled && body.startsWith(activationAlarmSms)) {
                         try {
@@ -110,28 +114,39 @@ public class SMSReceiver extends BroadcastReceiver {
                             || (locateLockPref && body
                                     .startsWith(activationLocateSms))) {
                         Utils.lockDevice(context, body, activationLockSms, activationLocateSms);
+                        
+                        if(body.startsWith(activationLockSms) && lockWipePref) {
+                            DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
+                                    .getSystemService(Context.DEVICE_POLICY_SERVICE);
+                            if (devicePolicyManager
+                                    .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
+                                try {
+                                    Log.i(TAG, "Wiping device");
+                                    devicePolicyManager.wipeData(0);
+                                    Utils.sendSMS(context, address,
+                                            context.getResources().getString(R.string.util_sendsms_wipe_pass));
+                                } catch (Exception e) {
+                                    Log.e(TAG, "Failed to wipe device");
+                                    Log.e(TAG, e.toString());
+                                    Utils.sendSMS(context, address,
+                                            context.getResources().getString(R.string.util_sendsms_wipe_fail) + " " + e.toString());
+                                }
+                            }
+                        }
+                            
                         if (abortSMSBroadcast) {
                             abortBroadcast();
                         }
                     }
 
-                    if (wipeEnabled && body.startsWith(activationWipeSms)) {
-                        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
-                                .getSystemService(Context.DEVICE_POLICY_SERVICE);
-                        if (devicePolicyManager
-                                .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                            try {
-                                Log.i(TAG, "Wiping device");
-                                devicePolicyManager.wipeData(0);
-                                Utils.sendSMS(context, address,
-                                        context.getResources().getString(R.string.util_sendsms_wipe_pass));
-                            } catch (Exception e) {
-                                Log.e(TAG, "Failed to wipe device");
-                                Log.e(TAG, e.toString());
-                                Utils.sendSMS(context, address,
-                                        context.getResources().getString(R.string.util_sendsms_wipe_fail) + " " + e.toString());
-                            }
-                        }
+                    if (dataEnabled && body.startsWith(activationDataSms)) {
+                        Intent backupIntent = new Intent(context, BackupAccountsActivity.class);
+                        backupIntent.addFlags(
+                                Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                        .putExtra("fromReceiver", address);
+                        context.startActivity(backupIntent);
                         if (abortSMSBroadcast) {
                             abortBroadcast();
                         }
