@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.decad3nce.aegis.Fragments.SMSDataFragment;
@@ -43,10 +44,13 @@ public class BackupAccountsActivity extends SherlockActivity {
     static final int REQUEST_AUTHORIZATION = 2;
     static final int UPLOAD_CALL_LOGS = 3;
 
+    private ProgressBar progressBar;
     private Context context;
-    private static Uri fileUri;
+    private static Uri callLogFileUri;
+    private static Uri smsLogFileUri;
     private static Drive service;
-    private boolean folderCreated = false;
+    private boolean callLogs;
+    private boolean smsLogs;
     private String address;
     private ContentResolver cr;
     private GoogleAccountCredential credential;
@@ -54,6 +58,11 @@ public class BackupAccountsActivity extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
+      setContentView(R.layout.backup_layout);
+      
+      progressBar = (ProgressBar) findViewById(R.id.progressBar);
+      progressBar.setVisibility(ProgressBar.VISIBLE);
+      
       context = this;
       Intent intent;
       cr = getContentResolver();
@@ -64,10 +73,10 @@ public class BackupAccountsActivity extends SherlockActivity {
           
           if (intent.hasExtra("fromReceiver")) {
               address = intent.getStringExtra("fromReceiver");
-              Log.i(TAG, "backup intent from receiver");
+              Log.i(TAG, "Backup intent from receiver");
               recoverData();
           } else {
-              Log.i(TAG, "backup intent from elsewhere");
+              Log.i(TAG, "Backup intent from elsewhere");
               startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
           }
           
@@ -75,7 +84,7 @@ public class BackupAccountsActivity extends SherlockActivity {
           recoverData();
       }
     }
-    
+
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
       switch (requestCode) {
@@ -144,13 +153,8 @@ public class BackupAccountsActivity extends SherlockActivity {
         finish();
     }
 
-    private void createAegisFolder() {
-        if(folderCreated){
-            return;
-        }
-        
+    private void createAegisFolder() {    
         Log.i(TAG, "Creating aeGis folder");
-        folderCreated = true;
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -205,7 +209,7 @@ public class BackupAccountsActivity extends SherlockActivity {
                     }
             } while (request.getPageToken() != null && request.getPageToken().length() > 0);
             
-            Log.i(TAG, "FolderID: " + folderID);
+            //Log.i(TAG, "FolderID: " + folderID);
         return folderID;
     }
 
@@ -218,8 +222,8 @@ public class BackupAccountsActivity extends SherlockActivity {
         
         String googleAccount = preferences
                 .getString(PREFERENCES_BACKUP_CHOSEN_ACCOUNT, this.getResources().getString(R.string.config_default_google_account));
-        boolean callLogs = preferences.getBoolean(SMSDataFragment.PREFERENCES_BACKUP_CALL_LOGS, this.getResources().getBoolean(R.bool.config_default_data_backup_call_logs));
-        boolean smsLogs = preferences.getBoolean(SMSDataFragment.PREFERENCES_BACKUP_SMS_LOGS, this.getResources().getBoolean(R.bool.config_default_data_backup_sms_logs));
+        callLogs = preferences.getBoolean(SMSDataFragment.PREFERENCES_BACKUP_CALL_LOGS, this.getResources().getBoolean(R.bool.config_default_data_backup_call_logs));
+        smsLogs = preferences.getBoolean(SMSDataFragment.PREFERENCES_BACKUP_SMS_LOGS, this.getResources().getBoolean(R.bool.config_default_data_backup_sms_logs));
         
         credential.setSelectedAccountName(googleAccount);
         service = getDriveService(credential);
@@ -227,19 +231,18 @@ public class BackupAccountsActivity extends SherlockActivity {
         if (callLogs) {
             Log.i(TAG, "Recovering call logs data");
             java.io.File internalFile = getFileStreamPath("call_logs_" + timeStamp + ".txt");
-            Uri internal = Uri.fromFile(internalFile);
-            fileUri = BackupUtils.getAllCallLogs(cr, internal, this, timeStamp);
-            saveFileToDrive();
+            Uri internalCallLogs = Uri.fromFile(internalFile);
+            callLogFileUri = BackupUtils.getAllCallLogs(cr, internalCallLogs, this, timeStamp);
         }
 
         if (smsLogs) {
             Log.i(TAG, "Recovering sms logs data");
             java.io.File internalFile = getFileStreamPath("sms_logs_" + timeStamp + ".txt");
-            Uri internal = Uri.fromFile(internalFile);
-            fileUri = BackupUtils.getSMSLogs(cr, internal, this, timeStamp);
-            saveFileToDrive();
+            Uri internalSMSLogs = Uri.fromFile(internalFile);
+            smsLogFileUri = BackupUtils.getSMSLogs(cr, internalSMSLogs, this, timeStamp);
         }
-        finish();
+        
+        saveFileToDrive();
     }
     
     private void saveFileToDrive() {
@@ -250,25 +253,53 @@ public class BackupAccountsActivity extends SherlockActivity {
                 if(!isAegisFolderAvailable()) {
                     createAegisFolder();
                 }
+                
+                FileContent mediaContent = null;
+                File body = new File();
+                File file = null;
               
-              Log.i(TAG, "Generating new file to upload");
-              java.io.File fileContent = new java.io.File(fileUri.getPath());
-              FileContent mediaContent = new FileContent("text/plain", fileContent);
-
-              File body = new File();
-              body.setTitle(fileContent.getName());
-              body.setParents(Arrays.asList(new ParentReference().setId(getAegisFolder())));
-              body.setMimeType("text/plain");
-
-              File file = service.files().insert(body, mediaContent).execute();
-              if (file != null) {
-                Log.i(TAG, "File uploaded successfully");
-                Utils.sendSMS(context, address,
-                        context.getResources().getString(R.string.util_sendsms_data_recovery_pass) + " "
-                                + fileContent.getName());
-                deleteFile(fileContent.getName());
-                finish();
+              if(callLogs) {
+                  Log.i(TAG, "Generating new file to upload: " + callLogFileUri);
+                  java.io.File callFileContent = new java.io.File(callLogFileUri.getPath());
+                  mediaContent = new FileContent("text/plain", callFileContent);
+                  
+                  body.setTitle(callFileContent.getName());
+                  body.setParents(Arrays.asList(new ParentReference().setId(getAegisFolder())));
+                  body.setMimeType("text/plain");
+                  
+                  file = service.files().insert(body, mediaContent).execute();
+                  
+                  if (file != null) {
+                      Log.i(TAG, "File uploaded successfully: " + file.getTitle());
+                      Utils.sendSMS(context, address,
+                              context.getResources().getString(R.string.util_sendsms_data_recovery_pass) + " "
+                                      + file.getTitle());
+                      deleteFile(file.getTitle());
+                      finish();
+                    }
               }
+              
+              if(smsLogs) {
+                  Log.i(TAG, "Generating new file to upload: " + smsLogFileUri);
+                  java.io.File smsFileContent = new java.io.File(smsLogFileUri.getPath());
+                  mediaContent = new FileContent("text/plain", smsFileContent);
+                  
+                  body.setTitle(smsFileContent.getName());
+                  body.setParents(Arrays.asList(new ParentReference().setId(getAegisFolder())));
+                  body.setMimeType("text/plain");
+                  
+                  file = service.files().insert(body, mediaContent).execute();
+                  
+                  if (file != null) {
+                      Log.i(TAG, "File uploaded successfully: " + file.getTitle());
+                      Utils.sendSMS(context, address,
+                              context.getResources().getString(R.string.util_sendsms_data_recovery_pass) + " "
+                                      + file.getTitle());
+                      deleteFile(file.getTitle());
+                      finish();
+                    }
+              }
+
             } catch (UserRecoverableAuthIOException e) {
               Log.i(TAG, "Exception: " + e.toString());
               startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
@@ -281,7 +312,7 @@ public class BackupAccountsActivity extends SherlockActivity {
           }
         });
         t.start();
-      }
+    }
 
       private Drive getDriveService(GoogleAccountCredential credential) {
         return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential)
