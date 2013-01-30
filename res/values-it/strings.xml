@@ -57,13 +57,13 @@
     <string name="preferences_lock_wipe_pref_summary">"Effettua il wipe del dispositivo alla ricezione dell'SMS di blocco."</string>
     <string name="preferences_data_category">Dati</string>
     <string name="preferences_data_enabled_title">Dati</string>
-    <string name="preferences_data_enabled_summary">""Recupera dati sul dispositivo alla ricezione dell'SMS di attivazione."</string>
+    <string name="preferences_data_enabled_summary">"Recupera dati sul dispositivo alla ricezione dell\'SMS di attivazione."</string>
     <string name="preferences_data_activation_sms_title">SMS attivazione recupero dati</string>
     <string name="preferences_data_activation_sms_summary">"Scegli il testo da inviare per recuperare i dati dal dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del blocco."</string>
     <string name="preferences_data_backup_call_logs_title">Backup log chiamate</string>
     <string name="preferences_data_backup_call_logs_summary">"Effettua il recupero della cronologia chiamate sull'account di backup."</string>
     <string name="preferences_data_backup_sms_logs_title">Backup log SMS</string>
-    <string name="preferences_data_backup_sms_logs_summary">Effettua il recupero della cronologia SMS sull'account di backup.</string>
+    <string name="preferences_data_backup_sms_logs_summary">"Effettua il recupero della cronologia SMS sull\'account di backup."</string>
     <string name="preferences_locate_category">"Localizzazione"</string>
     <string name="preferences_locate_enabled_title">"Localizzazione"</string>
     <string name="preferences_locate_enabled_summary">"Localizza il dispositivo quando viene inviato il relativo SMS di attivazione"</string>
