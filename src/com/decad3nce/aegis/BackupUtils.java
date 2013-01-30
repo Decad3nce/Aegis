@@ -19,7 +19,7 @@ public class BackupUtils extends Utils {
 
     public static Uri getAllCallLogs(ContentResolver cr, Uri internal, Context context, String timeStamp) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy HH:mm");
-        String[] callLogArray = new String[4];
+        String[] callLogArray = new String[3];
         String strOrder = android.provider.CallLog.Calls.DATE + " DESC";
         Uri callUri = Uri.parse("content://call_log/calls");
         Cursor cur = cr.query(callUri, null, null, null, strOrder);
