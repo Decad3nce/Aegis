@@ -22,6 +22,7 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.BackupAccountsDialogFragment;
 import com.decad3nce.aegis.Fragments.SMSDataFragment;
 
@@ -242,6 +243,12 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
     }
     
     private void storeGoogleAccounts(String accountName) {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor1 = preferences.edit();;
+        editor1.putBoolean(AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED, true);
+        editor1.commit();
+        
         SharedPreferences.Editor editor = getSharedPreferences(ACCOUNT_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putString(CHOSEN_GOOGLE_ACCOUNT, accountName);
         editor.commit();
@@ -254,6 +261,12 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
     }
     
     private void clearGoogleAccounts() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor1 = preferences.edit();;
+        editor1.putBoolean(AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED, false);
+        editor1.commit();
+        
         SharedPreferences prefs = getSharedPreferences(ACCOUNT_PREFS_NAME, MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.clear();

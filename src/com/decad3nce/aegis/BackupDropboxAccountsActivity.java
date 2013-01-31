@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.BackupAccountsDialogFragment;
 import com.decad3nce.aegis.Fragments.ChooseBackupProgramDialogFragment;
 
@@ -37,8 +38,8 @@ import com.dropbox.client2.DropboxAPI.Entry;
 public class BackupDropboxAccountsActivity extends SherlockActivity implements BackupAccountsDialogFragment.NoticeDialogListener{
     private static final String TAG = "aeGis";
     
-    final static private String APP_KEY = "XXXXXXXXXXXXX";
-    final static private String APP_SECRET = "XXXXXXXXXXXXX";
+    final static private String APP_KEY = "kd1v3dkvtddpqm6";
+    final static private String APP_SECRET = "XXXXXXXXXXXXXX";
     
     final static private AccessType ACCESS_TYPE = AccessType.APP_FOLDER;
     
@@ -97,14 +98,9 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
         if (mDBApi.getSession().authenticationSuccessful() && !isLoggedIn) {
             try {
                 Log.e(TAG, "Authentication was successful");
-                // MANDATORY call to complete auth.
-                // Sets the access token on the session
                 mDBApi.getSession().finishAuthentication();
 
                 AccessTokenPair tokens = mDBApi.getSession().getAccessTokenPair();
-
-                // Provide your own storeKeys to persist the access token pair
-                // A typical way to store tokens is using SharedPreferences
                 storeKeys(tokens.key, tokens.secret);
                 Log.e(TAG, "Storing keys");
                 isLoggedIn = true;
@@ -120,7 +116,6 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
         }
     }
     
-
     private void recoverData() {
         Log.i(TAG, "Recovering data");
 
@@ -225,6 +220,12 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
     }
     
     private void clearKeys() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor1 = preferences.edit();;
+        editor1.putBoolean(AdvancedSettingsFragment.PREFERENCES_DROPBOX_BACKUP_CHECKED, false);
+        editor1.commit();
+        
         SharedPreferences prefs = getSharedPreferences(ACCOUNT_PREFS_NAME, MODE_PRIVATE);
         Editor edit = prefs.edit();
         edit.clear();
@@ -232,6 +233,12 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
     }
 
     private void storeKeys(String key, String secret) {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor1 = preferences.edit();;
+        editor1.putBoolean(AdvancedSettingsFragment.PREFERENCES_DROPBOX_BACKUP_CHECKED, true);
+        editor1.commit();
+        
         SharedPreferences.Editor editor = getSharedPreferences(ACCOUNT_PREFS_NAME, MODE_PRIVATE).edit();;
         editor.putString("dropbox_access_key", key);
         editor.putString("dropbox_secret_key", secret);

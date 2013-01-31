@@ -328,6 +328,11 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
             if(mDataEnabledPreference != null) {
                 mDataEnabledPreference.setChecked(false);
             }
+        } else if (isGoogleAuthed() || isDropboxAuthed()) {
+            dataEnabled = true;
+            if(mDataEnabledPreference != null) {
+                mDataEnabledPreference.setChecked(true);
+            }
         }
         
         mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);

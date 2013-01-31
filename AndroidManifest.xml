@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.decad3nce.aegis"
-    android:versionCode="30"
-    android:versionName="1.3.3.1" >
+    android:versionCode="31"
+    android:versionName="1.3.3.2" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -34,7 +34,7 @@
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboard">
             <intent-filter>
-                <data android:scheme="db-XXXXXXXXXX"/>
+                <data android:scheme="db-kd1v3dkvtddpqm6"/>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT" />
