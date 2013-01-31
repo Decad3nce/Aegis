@@ -37,8 +37,8 @@ import com.dropbox.client2.DropboxAPI.Entry;
 public class BackupDropboxAccountsActivity extends SherlockActivity implements BackupAccountsDialogFragment.NoticeDialogListener{
     private static final String TAG = "aeGis";
     
-    final static private String APP_KEY = "XXXXXXXXXXXX";
-    final static private String APP_SECRET = "XXXXXXXXXXXX";
+    final static private String APP_KEY = "XXXXXXXXXXXXX";
+    final static private String APP_SECRET = "XXXXXXXXXXXXX";
     
     final static private AccessType ACCESS_TYPE = AccessType.APP_FOLDER;
     
