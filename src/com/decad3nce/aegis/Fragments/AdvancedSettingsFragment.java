@@ -2,34 +2,53 @@ package com.decad3nce.aegis.Fragments;
 
 import com.decad3nce.aegis.AdvancedSettingsActivity;
 import com.decad3nce.aegis.AegisActivity;
-import com.decad3nce.aegis.BackupAccountsActivity;
+import com.decad3nce.aegis.BackupDropboxAccountsActivity;
 import com.decad3nce.aegis.R;
 
 import android.app.DialogFragment;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 
 public class AdvancedSettingsFragment extends PreferenceFragment {
+    public static final String PREFERENCES_GOOGLE_BACKUP_CHECKED = "chosen_google_account";
+    public static final String PREFERENCES_DROPBOX_BACKUP_CHECKED = "chosen_dropbox_account";
     public static final String PREFERENCES_CONFIRMATION_SMS = "advanced_enable_confirmation_sms";
     public static final String PREFERENCES_ABORT_BROADCAST = "advanced_enable_abort_broadcast";
     public static final String PREFERENCES_HIDE_FROM_LAUNCHER = "advanced_hide_from_launcher";
     private static final String ADVANCED_PREFERENCES_REMOVE_ADMIN = "remove_admin";
     private static final String ADVANCED_PREFERENCES_INSTALL_TO_SYSTEM = "install_to_system";
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.advanced_preferences);
 
         final Preference removeAdmin = (Preference) findPreference("remove_admin");
         final Preference installToSystem = (Preference) findPreference("install_to_system");
-        final Preference googleAccount = (Preference) findPreference("chosen_google_account");
-        googleAccount.setSummary(AdvancedSettingsActivity.getAccountName());
+        final CheckBoxPreference googleAccount = (CheckBoxPreference) findPreference("chosen_google_account");
+        final CheckBoxPreference dropboxAccount = (CheckBoxPreference) findPreference("chosen_dropbox_account");
+        
+        if(AdvancedSettingsActivity.getAccountName() != null) {
+            googleAccount.setSummary(AdvancedSettingsActivity.getAccountName());
+            googleAccount.setChecked(true);
+        } else {
+            googleAccount.setSummary(R.string.preferences_advanced_dropbox_account_summary_inactive);
+            googleAccount.setChecked(false);
+        }
+        
+        if (AdvancedSettingsActivity.getDropboxAccess()) {
+            dropboxAccount.setSummary(R.string.preferences_advanced_dropbox_account_summary_active);
+            dropboxAccount.setChecked(true);
+        } else {
+            dropboxAccount.setSummary(R.string.preferences_advanced_dropbox_account_summary_inactive);
+            dropboxAccount.setChecked(false);
+        }
         
         final DevicePolicyManager mDPM = (DevicePolicyManager) getActivity()
                 .getSystemService(Context.DEVICE_POLICY_SERVICE);

@@ -31,22 +31,46 @@ import android.widget.Toast;
 public class AdvancedSettingsActivity extends SherlockPreferenceActivity implements InstallToSystemDialogFragment.NoticeDialogListener {
     private static final String TAG = "aeGis";
     private static String accountName;
+    private static boolean dropboxAccess;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          ActionBar actionBar = getSupportActionBar();
          actionBar.setDisplayHomeAsUpEnabled(true);
-         
-         final SharedPreferences preferences = PreferenceManager
-                 .getDefaultSharedPreferences(this);
-         accountName = preferences.getString(BackupAccountsActivity.PREFERENCES_BACKUP_CHOSEN_ACCOUNT, this.getResources().getString(R.string.config_default_google_account));
-        
-         getFragmentManager().beginTransaction().replace(android.R.id.content,
-         new AdvancedSettingsFragment()).commit();
     }
     
-    public static String getAccountName() {       
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences prefs = getSharedPreferences("google_prefs", MODE_PRIVATE);
+        accountName = prefs.getString("chosen_google_account_name", null);
+        
+        SharedPreferences prefs1 = getSharedPreferences("dropbox_prefs", MODE_PRIVATE);
+        String key = prefs1.getString("dropbox_access_key", null);
+        dropboxAccess = getKeyHonesty(key);
+        
+        getFragmentManager().beginTransaction().replace(android.R.id.content,
+        new AdvancedSettingsFragment()).commit();
+    }
+    
+    private boolean getKeyHonesty(String key) {
+        if(key != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static String getAccountName() {
+        if(accountName == null) {
+            return null;
+        }
         return accountName;
+    }
+    
+    public static boolean getDropboxAccess() {
+        return dropboxAccess;
     }
 
     @Override

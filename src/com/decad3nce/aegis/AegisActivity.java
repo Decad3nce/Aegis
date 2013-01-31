@@ -1,12 +1,13 @@
 package com.decad3nce.aegis;
 
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
 import com.decad3nce.aegis.Fragments.SMSDataFragment;
 import com.decad3nce.aegis.Fragments.SMSLocateFragment;
+import com.decad3nce.aegis.Fragments.ChooseBackupProgramDialogFragment;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -15,6 +16,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.DialogFragment;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -28,11 +30,12 @@ import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class AegisActivity extends SherlockFragmentActivity {
+public class AegisActivity extends SherlockFragmentActivity implements ChooseBackupProgramDialogFragment.ChooseBackupDialogListener{
     
     private static final String TAG = "aeGis";
 
@@ -207,10 +210,11 @@ public class AegisActivity extends SherlockFragmentActivity {
             case R.id.data_toggle:
 
                 if (isChecked) {
-                    if(isGoogleAuthed()) {
+                    if(isGoogleAuthed() || isDropboxAuthed()) {
                         dataEnabled = true;
                     } else {
-                        showGoogleDriveServicesDialog();
+                        DialogFragment dialog = new ChooseBackupProgramDialogFragment();
+                        dialog.show(getFragmentManager(), "ChooseBackupProgramDialogFragment");
                     }
                 } else {
                     dataEnabled = false;
@@ -249,41 +253,30 @@ public class AegisActivity extends SherlockFragmentActivity {
         startActivityForResult(intent, ACTIVATION_REQUEST);
     }
 
-    protected void showGoogleDriveServicesDialog() {
-        Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage(getResources().getString(R.string.aegis_backup_service_not_enabled));
-        dialog.setPositiveButton(getResources().getString(R.string.aegis_backup_service_open_settings), new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                Intent dataIntent = new Intent(AegisActivity.this, BackupAccountsActivity.class);
-                startActivity(dataIntent);
-                dataEnabled = true;
-                mDataEnabledPreference.setChecked(true);
-            }
-        });
-        dialog.setNegativeButton(getResources().getString(R.string.advanced_dialog_cancel), new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-            }
-        });
-        dialog.show();
-        
-    }
-
     protected boolean isGoogleAuthed() {
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        
-        String googleAccount = preferences
-                .getString(BackupAccountsActivity.PREFERENCES_BACKUP_CHOSEN_ACCOUNT, this.getResources().getString(R.string.config_default_google_account));
-        String mStub = "NONE";
-        
-        if(googleAccount.equals(mStub)){
-            return false;
+        boolean googleBackup = preferences.getBoolean(
+                AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED,
+                getResources().getBoolean(
+                        R.bool.config_default_google_backup_enabled));
+        if(googleBackup){
+            return true;
         }
-        return true;
+        return false;
+    }
+    
+    protected boolean isDropboxAuthed() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        boolean dropboxBackup = preferences.getBoolean(
+                AdvancedSettingsFragment.PREFERENCES_DROPBOX_BACKUP_CHECKED,
+                getResources().getBoolean(
+                        R.bool.config_default_dropbox_backup_enabled));
+        if (dropboxBackup) {
+            return true;
+        }
+        return false;
     }
 
     protected void showLocationServicesDialog() {
@@ -319,6 +312,13 @@ public class AegisActivity extends SherlockFragmentActivity {
     @Override
     public void onResume() {
         super.onResume();
+        
+        if(!isGoogleAuthed() && !isDropboxAuthed()) {
+            dataEnabled = false;
+            if(mDataEnabledPreference != null) {
+                mDataEnabledPreference.setChecked(false);
+            }
+        }
         
         mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 

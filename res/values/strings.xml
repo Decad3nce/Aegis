@@ -21,6 +21,10 @@
     <string name="aegis_open_location_settings">Enable</string>
     <string name="aegis_backup_service_not_enabled">Please choose a backup account before proceeding to enable data recovery.</string>
     <string name="aegis_backup_service_open_settings">Choose</string>
+    <string name="aegis_backup_service_choose_account">Choose Account</string>
+    <string name="aegis_backup_service_logout_from_account">Logout</string>
+    <string name="aegis_backup_service_options_menu">Account Options</string>
+    <string name="aegis_choose_backup_application">Choose Backup Service</string>
     
     <string name="preferences_advanced_category">Advanced Settings</string>
     <string name="preferences_advanced_sms_category">SMS Settings</string>
@@ -39,6 +43,9 @@
     <string name="preferences_advanced_install_to_system">Install aeGis to system</string>
     <string name="preferences_advanced_install_to_system_summary">Prevents aeGis from being removed even if device is reset.</string>
     <string name="preferences_advanced_google_account_title">Google Drive Account</string>
+    <string name="preferences_advanced_dropbox_account_title">Dropbox Account</string>
+    <string name="preferences_advanced_dropbox_account_summary_active">Active</string>
+    <string name="preferences_advanced_dropbox_account_summary_inactive">Inactive</string>
     <string name="preferences_alarm_category">Alarm</string>
     <string name="preferences_alarm_enabled_title">Alarm</string>
     <string name="preferences_alarm_enabled_summary">Play an alarm and enable ringer sound on device.</string>
@@ -131,6 +138,9 @@
     <string name="array_distance_item3">50 Meters</string>
     <string name="array_distance_item4">100 Meters</string>
     <string name="array_distance_item5">500 Meters</string>
+    
+    <string name="aegis_choose_backup_application_1">Google Drive</string>
+    <string name="aegis_choose_backup_application_2">Dropbox</string>
     
     <string name="receiver_alarm_override">aeGis has overriden sound settings.</string>
 </resources>

@@ -41,14 +41,25 @@
         <PreferenceCategory android:title="@string/preferences_advanced_backup_accounts_category"
             android:key="advanced_google_accounts_category">
             
-             <Preference android:title="@string/preferences_advanced_google_account_title"
-                android:key="chosen_google_account">
+             <CheckBoxPreference android:title="@string/preferences_advanced_google_account_title"
+                android:key="chosen_google_account"
+                android:defaultValue="@bool/config_default_google_backup_enabled">
                     <intent
                         android:action="android.intent.action.VIEW"
                         android:targetPackage="com.decad3nce.aegis"
-                        android:targetClass="com.decad3nce.aegis.BackupAccountsActivity" >                        
+                        android:targetClass="com.decad3nce.aegis.BackupGoogleAccountsActivity" >                        
                     </intent>
-             </Preference>
+             </CheckBoxPreference>
+             
+             <CheckBoxPreference android:title="@string/preferences_advanced_dropbox_account_title"
+                 android:key="chosen_dropbox_account"
+                 android:defaultValue="@bool/config_default_dropbox_backup_enabled">
+                     <intent
+                         android:action="android.intent.action.VIEW"
+                         android:targetPackage="com.decad3nce.aegis"
+                         android:targetClass="com.decad3nce.aegis.BackupDropboxAccountsActivity" >                        
+                    </intent>
+             </CheckBoxPreference>
              
         </PreferenceCategory>
         

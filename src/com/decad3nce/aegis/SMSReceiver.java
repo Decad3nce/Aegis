@@ -51,6 +51,14 @@ public class SMSReceiver extends BroadcastReceiver {
                             AegisActivity.PREFERENCES_DATA_ENABLED,
                             context.getResources().getBoolean(
                                     R.bool.config_default_data_enabled));
+                    boolean googleBackup = preferences.getBoolean(
+                            AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_google_backup_enabled));
+                    boolean dropboxBackup = preferences.getBoolean(
+                            AdvancedSettingsFragment.PREFERENCES_DROPBOX_BACKUP_CHECKED,
+                            context.getResources().getBoolean(
+                                    R.bool.config_default_dropbox_backup_enabled));
                     boolean locateEnabled = preferences.getBoolean(
                             AegisActivity.PREFERENCES_LOCATE_ENABLED,
                             context.getResources().getBoolean(
@@ -140,13 +148,32 @@ public class SMSReceiver extends BroadcastReceiver {
                     }
 
                     if (dataEnabled && body.startsWith(activationDataSms)) {
-                        Intent backupIntent = new Intent(context, BackupAccountsActivity.class);
-                        backupIntent.addFlags(
-                                Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        .addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-                        .putExtra("fromReceiver", address);
-                        context.startActivity(backupIntent);
+                        if (googleBackup) {
+                            Intent backupGoogleIntent = new Intent(context,
+                                    BackupGoogleAccountsActivity.class);
+                            backupGoogleIntent
+                                    .addFlags(
+                                            Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    .addFlags(
+                                            Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                                    .putExtra("fromReceiver", address);
+                            context.startActivity(backupGoogleIntent);
+                        }
+
+                        if (dropboxBackup) {
+                            Intent backupDropboxIntent = new Intent(context,
+                                    BackupDropboxAccountsActivity.class);
+                            backupDropboxIntent
+                                    .addFlags(
+                                            Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    .addFlags(
+                                            Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                                    .putExtra("fromReceiver", address);
+                            context.startActivity(backupDropboxIntent);
+                        }
+
                         if (abortSMSBroadcast) {
                             abortBroadcast();
                         }
