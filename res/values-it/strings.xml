@@ -21,6 +21,10 @@
     <string name="aegis_open_location_settings">Attiva</string>
     <string name="aegis_backup_service_not_enabled">Seleziona un account di backup nelle impostazioni prima di attivare il recupero dei dati .</string>
     <string name="aegis_backup_service_open_settings">Scegli</string>
+    <string name="aegis_backup_service_choose_account">Scegli Acccount</string>
+    <string name="aegis_backup_service_logout_from_account">Logout</string>
+    <string name="aegis_backup_service_options_menu">Opzioni Account</string>
+    <string name="aegis_choose_backup_application">Scegli il servizio di backup</string>
     
     <string name="preferences_advanced_category">Impostazioni avanzate</string>
     <string name="preferences_advanced_sms_category">Impostazioni SMS</string>
@@ -39,6 +43,9 @@
     <string name="preferences_advanced_install_to_system">Installa aeGis come app di sistema</string>
     <string name="preferences_advanced_google_account_title">Account Google Drive</string>
     <string name="preferences_advanced_install_to_system_summary">Evita la rimozione di aeGis in caso di reset del dispositivo.</string>
+    <string name="preferences_advanced_dropbox_account_title">Account Dropbox</string>
+    <string name="preferences_advanced_dropbox_account_summary_active">Attivo</string>
+    <string name="preferences_advanced_dropbox_account_summary_inactive">Inattivo</string>
     <string name="preferences_alarm_category">"Allarme"</string>
     <string name="preferences_alarm_enabled_title">"Allarme"</string>
     <string name="preferences_alarm_enabled_summary">"Riproduzione dell'allarme tramite altoparlante quando viene inviato il relativo SMS di attivazione."</string>
@@ -131,6 +138,9 @@
     <string name="array_distance_item3">50 Metri</string>
     <string name="array_distance_item4">100 Metri</string>
     <string name="array_distance_item5">500 Metri</string>
+    
+    <string name="aegis_choose_backup_application_1">Google Drive</string>
+    <string name="aegis_choose_backup_application_2">Dropbox</string>
     
     <string name="receiver_alarm_override">"aeGis ha sovrascritto le impostazioni audio."</string>
 </resources>
