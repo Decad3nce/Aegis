@@ -1,41 +1,51 @@
 package com.decad3nce.aegis;
 
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
-import com.decad3nce.aegis.Fragments.SMSWipeFragment;
+import com.decad3nce.aegis.Fragments.SMSDataFragment;
 import com.decad3nce.aegis.Fragments.SMSLocateFragment;
+import com.decad3nce.aegis.Fragments.ChooseBackupProgramDialogFragment;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.DialogFragment;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
+import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class AegisActivity extends FragmentActivity {
+public class AegisActivity extends SherlockFragmentActivity implements ChooseBackupProgramDialogFragment.ChooseBackupDialogListener{
     
     private static final String TAG = "aeGis";
 
     public static final String PREFERENCES_ALARM_ENABLED = "alarm_toggle";
-    public static final String PREFERENCES_WIPE_ENABLED = "wipe_toggle";
+    public static final String PREFERENCES_DATA_ENABLED = "data_toggle";
     public static final String PREFERENCES_LOCK_ENABLED = "lock_toggle";
     public static final String PREFERENCES_LOCATE_ENABLED = "locate_toggle";
 
     protected static boolean alarmEnabled;
-    protected static boolean wipeEnabled;
+    protected static boolean dataEnabled;
     protected static boolean lockEnabled;
     protected static boolean locateEnabled;
 
@@ -43,7 +53,7 @@ public class AegisActivity extends FragmentActivity {
 
     private Switch mAlarmEnabledPreference;
     private Switch mLockEnabledPreference;
-    private Switch mWipeEnabledPreference;
+    private Switch mDataEnabledPreference;
     private Switch mLocateEnabledPreference;
     
     private Menu fullMenu;
@@ -64,7 +74,7 @@ public class AegisActivity extends FragmentActivity {
         mViewPager.setId(R.id.pager);
         setContentView(mViewPager);
 
-        final ActionBar bar = getActionBar();
+        final ActionBar bar = getSupportActionBar();
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE,
                 ActionBar.DISPLAY_SHOW_TITLE);
@@ -77,8 +87,8 @@ public class AegisActivity extends FragmentActivity {
                 SMSAlarmFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.lock_section),
                 SMSLockFragment.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.wipe_section),
-                SMSWipeFragment.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText(R.string.data_section),
+                SMSDataFragment.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.locate_section),
                 SMSLocateFragment.class, null);
         if (savedInstanceState != null) {
@@ -91,8 +101,8 @@ public class AegisActivity extends FragmentActivity {
         alarmEnabled = preferences
                 .getBoolean(PREFERENCES_ALARM_ENABLED, this.getResources()
                         .getBoolean(R.bool.config_default_alarm_enabled));
-        wipeEnabled = preferences.getBoolean(PREFERENCES_WIPE_ENABLED, this
-                .getResources().getBoolean(R.bool.config_default_wipe_enabled));
+        dataEnabled = preferences.getBoolean(PREFERENCES_DATA_ENABLED, this
+                .getResources().getBoolean(R.bool.config_default_data_enabled));
         lockEnabled = preferences.getBoolean(PREFERENCES_LOCK_ENABLED, this
                 .getResources().getBoolean(R.bool.config_default_lock_enabled));
         locateEnabled = preferences.getBoolean(PREFERENCES_LOCATE_ENABLED, this
@@ -180,31 +190,34 @@ public class AegisActivity extends FragmentActivity {
             case R.id.locate_toggle:
 
                 if (isChecked) {
-                    locateEnabled = true;
+                    if (isLocationServicesEnabled()) {
+                        locateEnabled = true;
+                    } else {
+                        showLocationServicesDialog();
+                    }
                 } else {
                     locateEnabled = false;
                 }
                 
                 if (isChecked
                         && !mDevicePolicyManager
-                                .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
+                                .isAdminActive(DEVICE_ADMIN_COMPONENT) && locateEnabled) {
                     addAdmin();
                 }
 
                 break;
 
-            case R.id.wipe_toggle:
+            case R.id.data_toggle:
 
                 if (isChecked) {
-                    wipeEnabled = true;
+                    if(isGoogleAuthed() || isDropboxAuthed()) {
+                        dataEnabled = true;
+                    } else {
+                        DialogFragment dialog = new ChooseBackupProgramDialogFragment();
+                        dialog.show(getFragmentManager(), "ChooseBackupProgramDialogFragment");
+                    }
                 } else {
-                    wipeEnabled = false;
-                }
-
-                if (isChecked
-                        && !mDevicePolicyManager
-                                .isAdminActive(DEVICE_ADMIN_COMPONENT)) {
-                    addAdmin();
+                    dataEnabled = false;
                 }
 
                 break;
@@ -240,9 +253,72 @@ public class AegisActivity extends FragmentActivity {
         startActivityForResult(intent, ACTIVATION_REQUEST);
     }
 
+    protected boolean isGoogleAuthed() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        boolean googleBackup = preferences.getBoolean(
+                AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED,
+                getResources().getBoolean(
+                        R.bool.config_default_google_backup_enabled));
+        if(googleBackup){
+            return true;
+        }
+        return false;
+    }
+    
+    protected boolean isDropboxAuthed() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        boolean dropboxBackup = preferences.getBoolean(
+                AdvancedSettingsFragment.PREFERENCES_DROPBOX_BACKUP_CHECKED,
+                getResources().getBoolean(
+                        R.bool.config_default_dropbox_backup_enabled));
+        if (dropboxBackup) {
+            return true;
+        }
+        return false;
+    }
+
+    protected void showLocationServicesDialog() {
+        Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(getResources().getString(R.string.aegis_location_services_not_enabled));
+        dialog.setPositiveButton(getResources().getString(R.string.aegis_open_location_settings), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                Intent locIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(locIntent);
+            }
+        });
+        dialog.setNegativeButton(getResources().getString(R.string.advanced_dialog_cancel), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+            }
+        });
+        dialog.show();
+        
+    }
+
+    protected boolean isLocationServicesEnabled() {
+        LocationManager mLM = (LocationManager) this.getSystemService(this.LOCATION_SERVICE);
+        
+        if(!mLM.isProviderEnabled(LocationManager.GPS_PROVIDER) && !mLM.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        
+        if(!isGoogleAuthed() && !isDropboxAuthed()) {
+            dataEnabled = false;
+            if(mDataEnabledPreference != null) {
+                mDataEnabledPreference.setChecked(false);
+            }
+        }
         
         mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 
@@ -252,10 +328,6 @@ public class AegisActivity extends FragmentActivity {
                     mLockEnabledPreference.setChecked(false);
                     lockEnabled = false;
                 }
-                if (mWipeEnabledPreference != null) {
-                    mWipeEnabledPreference.setChecked(false);
-                    wipeEnabled = false;
-                }
             }
         }
     }
@@ -264,7 +336,7 @@ public class AegisActivity extends FragmentActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menu.clear();
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.full_menu, menu);
         fullMenu = menu;
 
@@ -286,11 +358,11 @@ public class AegisActivity extends FragmentActivity {
             break;
 
         case 2:
-            showItem(R.id.wipe_menu_settings, menu);
-            mWipeEnabledPreference = (Switch) menu
-                    .findItem(R.id.wipe_menu_settings).getActionView()
-                    .findViewById(R.id.wipe_toggle);
-            addAdminListener(R.id.wipe_toggle, wipeEnabled, mWipeEnabledPreference);
+            showItem(R.id.data_menu_settings, menu);
+            mDataEnabledPreference = (Switch) menu
+                    .findItem(R.id.data_menu_settings).getActionView()
+                    .findViewById(R.id.data_toggle);
+            addAdminListener(R.id.data_toggle, dataEnabled, mDataEnabledPreference);
             break;
 
         case 3:
@@ -308,11 +380,9 @@ public class AegisActivity extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == ACTIVATION_REQUEST) {
-                if (resultCode != Activity.RESULT_OK) {
+                if (resultCode != SherlockActivity.RESULT_OK) {
                     mLockEnabledPreference.setChecked(false);
-                    mWipeEnabledPreference.setChecked(false);
                     lockEnabled = false;
-                    wipeEnabled = false;
                 }
                 return;
             }
@@ -333,15 +403,15 @@ public class AegisActivity extends FragmentActivity {
     
     private void addAdminListener(int toggle, boolean what, Switch who) {
         switch(toggle) {
+        case R.id.data_toggle:
         case R.id.alarm_toggle:
             if(what) {
                 who.setChecked(true);
                 }
             break;
-        case R.id.lock_toggle:
-        case R.id.wipe_toggle:
         case R.id.locate_toggle:
-            
+        case R.id.lock_toggle:
+            mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE); 
             if (mDevicePolicyManager.getActiveAdmins() != null) {
                 if (what && mDevicePolicyManager.isAdminActive(DEVICE_ADMIN_COMPONENT)) {
                     who.setChecked(true);
@@ -363,13 +433,15 @@ public class AegisActivity extends FragmentActivity {
         SharedPreferences.Editor editor = preferences.edit();;
         editor.putBoolean("alarm_toggle", alarmEnabled);
         editor.putBoolean("lock_toggle", lockEnabled);
-        editor.putBoolean("wipe_toggle", wipeEnabled);
+        editor.putBoolean("data_toggle", dataEnabled);
         editor.putBoolean("locate_toggle", locateEnabled);
         editor.commit();
     }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.full_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 }

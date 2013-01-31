@@ -2,11 +2,15 @@ package com.decad3nce.aegis;
 
 import java.util.ArrayList;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.app.ActionBar.Tab;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -15,7 +19,7 @@ import android.support.v4.view.ViewPager;
 public class TabsAdapter extends FragmentPagerAdapter implements
         ActionBar.TabListener, ViewPager.OnPageChangeListener {    
     TabsAdapter mTabsAdapter;
-    private final Activity mActivity;
+    private final SherlockFragmentActivity mActivity;
     private final Context mContext;
     private final ActionBar mActionBar;
     private final ViewPager mViewPager;
@@ -31,11 +35,11 @@ public class TabsAdapter extends FragmentPagerAdapter implements
         }
     }
 
-    public TabsAdapter(Activity activity, ViewPager pager) {
+    public TabsAdapter(SherlockFragmentActivity activity, ViewPager pager) {
         super(activity.getFragmentManager());
         mContext = activity;
         mActivity = activity;
-        mActionBar = activity.getActionBar();
+        mActionBar = activity.getSupportActionBar();
         mViewPager = pager;
         mViewPager.setAdapter(this);
         mViewPager.setOnPageChangeListener(this);
@@ -76,7 +80,9 @@ public class TabsAdapter extends FragmentPagerAdapter implements
     public void onPageScrollStateChanged(int state) {
     }
 
-    public void onTabSelected(Tab tab, FragmentTransaction ft) {
+    @Override
+    public void onTabSelected(Tab tab,
+            android.support.v4.app.FragmentTransaction ft) {
         Object tag = tab.getTag();
         for (int i = 0; i < mTabs.size(); i++) {
             if (mTabs.get(i) == tag) {
@@ -86,9 +92,17 @@ public class TabsAdapter extends FragmentPagerAdapter implements
         }
     }
 
-    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    @Override
+    public void onTabUnselected(Tab tab,
+            android.support.v4.app.FragmentTransaction ft) {
+        // TODO Auto-generated method stub
+        
     }
 
-    public void onTabReselected(Tab tab, FragmentTransaction ft) {
+    @Override
+    public void onTabReselected(Tab tab,
+            android.support.v4.app.FragmentTransaction ft) {
+        // TODO Auto-generated method stub
+        
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center" android:orientation="vertical" >
+    
+    <Button
+        android:id="@+id/first_backup_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/aegis_choose_backup_application_1" />
+
+    <Button
+        android:id="@+id/second_backup_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/aegis_choose_backup_application_2" />
+
+    <Button
+        android:id="@+id/backup_cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/advanced_dialog_cancel" />
+
+</LinearLayout>

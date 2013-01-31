@@ -4,11 +4,11 @@
     android:layout_height="match_parent" >
 
     <Switch
-        android:id="@+id/wipe_toggle"
+        android:id="@+id/data_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:defaultValue="@bool/config_default_wipe_enabled"/>
+        android:defaultValue="@bool/config_default_data_enabled"/>
 
 </RelativeLayout>

@@ -9,23 +9,39 @@
     <string name="title_activity_main">"aeGis"</string>
     <string name="location_text">"aeGis verfolgt den Standort des Gerätes.\nZum Abschalten \"Verfolgung deaktivieren\" drücken."</string>
 
-    <string name="disable_tracking_button">"Standortverfolgung deaktivieren"</string>
+    <string name="disable_tracking_button">"Verfolgung deaktivieren"</string>
+    <string name="disable_tracking_prevent_back">Bitte schalten Sie die Standortverfolgung vor dem Schließen ab</string>
+    <string name="tracking_returned_no_location">Standort konnte nicht erfasst werden</string>
+    <string name="tracking_address">Adresse:</string>
+    <string name="tracking_disabled">Verfolgung abgeschaltet</string>
     <string name="device_admin_reason">"aeGis benötigt Geräteadministratorrechte für die Löschen-/Sperren-Funktionen."</string>
     <string name="text_stub">"Zukünftige Funktionen!"</string>
     <string name="descr_overflow_button">"overflow"</string>
+    <string name="aegis_location_services_not_enabled">Damit aeGis den Standort des Gerätes erfassen kann, müssen Sie zuerst der Standortzugriff freigeben.</string>
+    <string name="aegis_open_location_settings">Einschalten</string>
     
     <string name="preferences_advanced_category">Erweiterte Einstellungen</string>
+    <string name="preferences_advanced_sms_category">SMS Einstellungen</string>
+    <string name="preferences_advanced_root_category">Root Einstellungen (ROOT-RECHTE BENÖTIGT)</string>
+    <string name="preferences_advanced_hide_from_launcher_title">Vom Wählfeld ausführen</string>
+    <string name="preferences_advanced_hide_from_launcher_summary">Startet aeGis durch das Wählen von "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
-    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Nach einer Aktion eine SMS zur Bestätigung zurücksenden.</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Bestätigt eine Aktion mit einer SMS</string>
+    <string name="preferences_advanced_enable_abort_broadcast">Broadcast unterdrücken</string>
+    <string name="preferences_advanced_enable_abort_broadcast_summary">Die Aktivierungs-SMS wird nicht von weiteren Apps erhalten</string>
     <string name="preferences_advanced_change_password">Passwort ändern</string>
-    
+    <string name="preferences_advanced_remove_admin">Als Geräte-Administrator entfernen</string>
+    <string name="preferences_advanced_remove_admin_summary">Erlaubt es, aeGis direkt zu deinstallieren</string>
+    <string name="preferences_advanced_remove_admin_completed">Kein Geräte-Administrator mehr</string>
+    <string name="preferences_advanced_install_to_system">aeGis als Systemanwendung installieren</string>
+    <string name="preferences_advanced_install_to_system_summary">Schützt aeGis beim Zurücksetzen des Gerätes</string>
     <string name="preferences_alarm_category">"Alarm"</string>
     <string name="preferences_alarm_enabled_title">"Alarm"</string>
     <string name="preferences_alarm_enabled_summary">"Alarm abspielen und Klingelton aktivieren."</string>
     <string name="preferences_alarm_activation_sms_title">"Alarm-SMS"</string>
     <string name="preferences_alarm_activation_sms_summary">"Text der SMS festlegen, mit der der Alarm aktiviert wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Aktivierungen zu verhindern."</string>
     <string name="preferences_alarm_vibrate_title">"Vibrieren"</string>
-    <string name="preferences_alarm_vibrate_summary">"Vibrieren bei aktivem Alarm."</string>
+    <string name="preferences_alarm_vibrate_summary">"Vibrieren bei aktivem Alarm"</string>
     <string name="preferences_lock_category">"Sperren"</string>
     <string name="preferences_lock_enabled_title">"Sperren"</string>
     <string name="preferences_lock_enabled_summary">"Gerät sperren, wenn Aktivierungs-SMS empfangen wird."</string>
@@ -44,13 +60,13 @@
     <string name="preferences_locate_activation_sms_title">"Lokalisierungs-SMS"</string>
     <string name="preferences_locate_activation_sms_summary">"Text der SMS festlegen, mit der das Gerät lokalisiert wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigtes Lokalisieren zu verhindern."</string>
     <string name="preferences_locate_lock_pref_title">"Gerät sperren"</string>
-    <string name="preferences_locate_lock_pref_summary">"Legt fest, ob bei einer Lokalisierung das Gerät zusätzlich auch gesperrt wird."</string>
+    <string name="preferences_locate_lock_pref_summary">"Gerät wird bei Lokalisierung gesperrt"</string>
     <string name="preferences_locate_geocode_pref_title">Adresse zurücksenden</string>
-    <string name="preferences_locate_geocode_pref_summary">Adresse aus Gerätestandort ermitteln und zurücksenden.</string>
-    <string name="preferences_locate_update_duration_title">"Standort-Aktualisierung"</string>
-    <string name="preferences_locate_update_duration_summary">"Legt fest, wie häufig der Gerätestandort aktualisiert werden soll. Kürzere Zeiten verursachen einen höheren Batterieverbrauch."</string>
+    <string name="preferences_locate_geocode_pref_summary">Gerätestandort als Adresse zurücksenden</string>
+    <string name="preferences_locate_update_duration_title">"Standort Aktualisierungsintervall"</string>
+    <string name="preferences_locate_update_duration_summary">"Kürzere Zeiten verursachen einen höheren Batterieverbrauch"</string>
     <string name="preferences_locate_minimum_distance_title">"Standort-Mindestabstand"</string>
-    <string name="preferences_locate_minimum_distance_summary">"Legt den Mindestabstand zum vorherigen Standort fest, ab dem ein neuer Standort gespeichert wird."</string>
+    <string name="preferences_locate_minimum_distance_summary">"Entfernung zum vorherigen Standort, ab der ein neuer Standort erfasst wird"</string>
     
     <string name="util_sendsms_alarm_pass">"aeGis: Sound erfolgreich aktiviert."</string>
     <string name="util_sendsms_alarm_fail">"aeGis: Fehler beim Überschreiben der Sound-Einstellungen:"</string>
@@ -62,27 +78,35 @@
     
     <string name="register_password_textview">"Passwort"</string>
     <string name="register_password_confirm_textview">"Passwort bestätigen"</string>
-    <string name="register_password_button">"Weiter"</string>
+    <string name="register_password_button">"Speichern"</string>
     <string name="register_password_toast_password_set">"Passwort geändert"</string>
-    <string name="register_password_toast_password_fail">"Bitte geben Sie ein Passwort ein und bestätigen Sie es."</string>
-    <string name="register_password_toast_password_match_fail">"Die Passwörter stimmen nicht überein."</string>
-    <string name="register_password_checkbox_summary">"Passwort-Anmeldung deaktivieren."</string>
+    <string name="register_password_toast_password_fail">"Bitte geben Sie ein Passwort ein und bestätigen Sie es"</string>
+    <string name="register_password_toast_password_match_fail">"Die Passwörter stimmen nicht überein"</string>
+    <string name="register_password_checkbox_summary">"Passwort-Anmeldung deaktivieren"</string>
     <string name="register_password_summary">"Bitte geben Sie ein Passwort ein, mit dem aeGis gesperrt wird, wenn Sie das Programm verlassen."</string>
     
     <string name="login_password_textview">"Passwort"</string>
     <string name="login_password_button">"Anmelden"</string>
     <string name="login_password_toast_password_fail">"Falsches Passwort"</string>
     <string name="login_password_toast_password_enter">"Bitte geben Sie das Passwort ein"</string>
-    <string name="login_password_summary">"Bitte melden Sie sich an, um aeGis zu starten."</string>
+    <string name="login_password_summary">"Bitte melden Sie sich an, um aeGis zu starten"</string>
     
     <string name="about_developer_name">"Copyright(©) 2013 Adnan Begovic"</string>
     <string name="about_github_link">"Github-Link"</string>
     <string name="about_email_link">"E-Mail an Entwickler senden"</string>
     <string name="about_share_link">"aeGis teilen"</string>
+    <string name="about_xda_link">Support-Thread bei XDA</string>
     
     <string name="overflow_advanced_settings">Einstellungen</string>
     <string name="overflow_licenses">Lizenzen</string>
     <string name="overflow_about">Über</string>
+
+    <string name="advanced_dialog_install_to_system">Möchten Sie aeGis als System-App installieren?\n\nDies verhindert, dass aeGis bei dem Zurücksetzen des Gerätes entfernt wird.\n\nAchtung: Ihr Gerät wird zur Bestätigung neu starten.\nDies kann nicht rückgängig gemacht werden.</string>
+    <string name="advanced_dialog_install">Installieren</string>
+    <string name="advanced_dialog_cancel">Abbrechen</string>
+    <string name="advanced_dialog_installing">Wird ins System installiert...</string>
+    <string name="advanced_dialog_installing_failed">Superuser-Rechte werden für die Systeminstallation benötigt</string>
+    <string name="advanced_install_to_system_fail">aeGis ist bereits als System App installiert</string>
 
     <string name="array_update_item1">30 Sekunden</string>
     <string name="array_update_item2">1 Minute</string>
@@ -96,5 +120,5 @@
     <string name="array_distance_item4">100 Meter</string>
     <string name="array_distance_item5">500 Meter</string>
 
-    <string name="receiver_alarm_override">"aeGis hat die Sound-Einstellungen überschrieben."</string>
+    <string name="receiver_alarm_override">"aeGis hat die Sound-Einstellungen überschrieben"</string>
 </resources>

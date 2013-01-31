@@ -39,6 +39,19 @@
         android:paddingLeft="20dp"
         android:text="@string/about_share_link"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <Button
+        android:id="@+id/xdaclick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/shareclick"
+        android:clickable="true"
+        android:drawableRight="@drawable/ic_xda"
+        android:onClick="onXDAClick"
+        android:paddingLeft="20dp"
+        android:text="@string/about_xda_link"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/developername"

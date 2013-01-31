@@ -8,6 +8,7 @@ public class SMSLockFragment extends PreferenceFragment {
 
     public static final String PREFERENCES_LOCK_ACTIVATION_SMS = "lock_activation_sms";
     public static final String PREFERENCES_LOCK_PASSWORD = "lock_password";
+    public static final String PREFERENCES_LOCK_WIPE_PREF = "lock_wipe_pref";
     
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -26,8 +26,10 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class PhoneTrackerActivity extends Activity implements LocationListener {
 
@@ -59,6 +61,21 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         originatingAddress = extras.getString("address");
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         handler.post(getData);
+    }
+    
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent e) {
+            switch (keycode) {
+            case KeyEvent.KEYCODE_BACK:
+                if(!mDisableTracking){
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.disable_tracking_prevent_back),
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    finish();
+                }
+                return true;
+            }
+        return super.onKeyDown(keycode, e);
     }
 
     private final Runnable getData = new Runnable() {
@@ -166,7 +183,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
 
     public void disableTracking(View view) {
         final Button disableButton = (Button) findViewById(R.id.disable_tracking_button);
-        disableButton.setText("Tracking Disabled");
+        disableButton.setText(getResources().getString(R.string.tracking_disabled));
         mDisableTracking = true;
     }
 
@@ -320,7 +337,8 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
             if (addresses != null) {
                 Address returnedAddress = addresses.get(0);
                 StringBuilder strReturnedAddress = new StringBuilder(
-                        "Address:\n");
+                        getResources().getString(R.string.tracking_address));
+                strReturnedAddress.append("\n");
                 for (int i = 0; i < returnedAddress.getMaxAddressLineIndex(); i++) {
                     strReturnedAddress
                             .append(returnedAddress.getAddressLine(i)).append(
@@ -328,11 +346,11 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
                 }
                 return strReturnedAddress.toString();
             } else {
-                return "No Location Determined";
+                return getResources().getString(R.string.tracking_returned_no_location);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return "No Location Determined";
+            return getResources().getString(R.string.tracking_returned_no_location);
         }
     }
 }

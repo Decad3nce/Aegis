@@ -12,5 +12,9 @@
                 android:maxLength="16"
                 android:defaultValue="@string/config_default_lock_password"
                 android:inputType="textPassword" />
+        <CheckBoxPreference android:key="lock_wipe_pref"
+                android:title="@string/preferences_lock_wipe_pref_title"
+                android:summary="@string/preferences_lock_wipe_pref_summary"
+                android:defaultValue="@bool/config_default_lock_wipe_pref" />
      </PreferenceCategory>
 </PreferenceScreen>

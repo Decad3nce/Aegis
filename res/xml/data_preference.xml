@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:title="@string/preferences_data_category" >
+        <EditTextPreference android:key="data_activation_sms"
+                android:title="@string/preferences_data_activation_sms_title"
+                android:summary="@string/preferences_data_activation_sms_summary"
+                android:maxLength="160"
+                android:defaultValue="@string/config_default_data_activation_sms" />
+        <CheckBoxPreference android:key="data_backup_call_logs"
+                android:title="@string/preferences_data_backup_call_logs_title"
+                android:summary="@string/preferences_data_backup_call_logs_summary"
+                android:defaultValue="@bool/config_default_data_backup_call_logs" />
+        <CheckBoxPreference android:key="data_backup_sms_logs"
+                android:title="@string/preferences_data_backup_sms_logs_title"
+                android:summary="@string/preferences_data_backup_sms_logs_summary"
+                android:defaultValue="@bool/config_default_data_backup_sms_logs" />
+    </PreferenceCategory>
+</PreferenceScreen>
