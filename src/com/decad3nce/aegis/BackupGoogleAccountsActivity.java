@@ -247,6 +247,7 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
                 .getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor1 = preferences.edit();;
         editor1.putBoolean(AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED, true);
+        editor1.putBoolean(AegisActivity.PREFERENCES_DATA_ENABLED, true);
         editor1.commit();
         
         SharedPreferences.Editor editor = getSharedPreferences(ACCOUNT_PREFS_NAME, MODE_PRIVATE).edit();
@@ -265,6 +266,7 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
                 .getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor1 = preferences.edit();;
         editor1.putBoolean(AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED, false);
+        editor1.putBoolean(AegisActivity.PREFERENCES_DATA_ENABLED, false);
         editor1.commit();
         
         SharedPreferences prefs = getSharedPreferences(ACCOUNT_PREFS_NAME, MODE_PRIVATE);
