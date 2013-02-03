@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">"aeGis"</string>
-    <string name="wipe_section">"Löschen"</string>
+    <string name="data_section">Daten</string>
     <string name="lock_section">"Sperren"</string>
     <string name="alarm_section">"Alarm"</string>
     <string name="locate_section">"Lokalisieren"</string>
@@ -17,12 +17,22 @@
     <string name="device_admin_reason">"aeGis benötigt Geräteadministratorrechte für die Löschen-/Sperren-Funktionen."</string>
     <string name="text_stub">"Zukünftige Funktionen!"</string>
     <string name="descr_overflow_button">"overflow"</string>
+    
+    <string name="aegis_showcaseview_alarm_toggle">Benutze den Schalter um die Alarmfunktion zu aktivieren.\nDie Funktion ist nur aktiv wenn der Schalter in "An" Position ist.</string>
+    
     <string name="aegis_location_services_not_enabled">Damit aeGis den Standort des Gerätes erfassen kann, müssen Sie zuerst der Standortzugriff freigeben.</string>
     <string name="aegis_open_location_settings">Einschalten</string>
-    
+    <string name="aegis_backup_service_not_enabled">Bitte wählen Sie ein Backup Konto um mit der Datensicherung fortzufahren</string>
+    <string name="aegis_backup_service_open_settings">Auswählen</string>
+    <string name="aegis_backup_service_choose_account">Konto wählen</string>
+    <string name="aegis_backup_service_logout_from_account">Abmelden</string>
+    <string name="aegis_backup_service_options_menu">Konto Optionen</string>
+    <string name="aegis_choose_backup_application">Backupdienst auswählen</string>
+   
     <string name="preferences_advanced_category">Erweiterte Einstellungen</string>
     <string name="preferences_advanced_sms_category">SMS Einstellungen</string>
     <string name="preferences_advanced_root_category">Root Einstellungen (ROOT-RECHTE BENÖTIGT)</string>
+    <string name="preferences_advanced_backup_accounts_category">Backup Konten</string>
     <string name="preferences_advanced_hide_from_launcher_title">Vom Wählfeld ausführen</string>
     <string name="preferences_advanced_hide_from_launcher_summary">Startet aeGis durch das Wählen von "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
@@ -35,6 +45,10 @@
     <string name="preferences_advanced_remove_admin_completed">Kein Geräte-Administrator mehr</string>
     <string name="preferences_advanced_install_to_system">aeGis als Systemanwendung installieren</string>
     <string name="preferences_advanced_install_to_system_summary">Schützt aeGis beim Zurücksetzen des Gerätes</string>
+    <string name="preferences_advanced_google_account_title">Google Drive Konto</string>
+    <string name="preferences_advanced_dropbox_account_title">Dropbox Konto</string>
+    <string name="preferences_advanced_dropbox_account_summary_active">Aktiv</string>
+    <string name="preferences_advanced_dropbox_account_summary_inactive">Inaktiv</string>
     <string name="preferences_alarm_category">"Alarm"</string>
     <string name="preferences_alarm_enabled_title">"Alarm"</string>
     <string name="preferences_alarm_enabled_summary">"Alarm abspielen und Klingelton aktivieren."</string>
@@ -49,11 +63,17 @@
     <string name="preferences_lock_activation_sms_summary">"Text der SMS festlegen, mit der das Gerät gesperrt wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigtes Sperren zu verhindern."</string>
     <string name="preferences_lock_password_title">"Standard-Passwort"</string>
     <string name="preferences_lock_password_summary">"Passwort für den Sperrbildschirm festlegen. Dieses Passwort kann geändert werden, indem das gewünschte Passwort an die Aktivierungs-SMS angehängt wird. Falls Sie das Feld leer lassen, wird der Sperrbildschirm nicht geändert. Das Gerät wird nur gesperrt und der Benutzer muss es mit der in den Systemeinstellungen festgelegten Methode entsperren."</string>
-    <string name="preferences_wipe_category">"Löschen"</string>
-    <string name="preferences_wipe_enabled_title">"Löschen"</string>
-    <string name="preferences_wipe_enabled_summary">"Beim Empfang der Aktivierungs-SMS werden alle Daten auf dem Gerät gelöscht."</string>
-    <string name="preferences_wipe_activation_sms_title">"Lösch-SMS"</string>
-    <string name="preferences_wipe_activation_sms_summary">"Text der SMS festlegen, mit der alle Daten auf dem Gerät gelöscht werden. Es wird dringend empfohlen, eine PIN zu benutzen, um unberechtigtes Löschen zu verhindern."</string>
+    <string name="preferences_lock_wipe_pref_title">Gerätedaten löschen</string>
+    <string name="preferences_lock_wipe_pref_summary">Gerätedaten werden bei Aktivierungs-SMS gelöscht</string>
+    <string name="preferences_data_category">Daten</string>
+    <string name="preferences_data_enabled_title">Daten</string>
+    <string name="preferences_data_enabled_summary">Daten bei Aktivierungs-SMS sichern</string>
+    <string name="preferences_data_activation_sms_title">Datensicherungs-SMS</string>
+    <string name="preferences_data_activation_sms_summary">"Text der SMS festlegen, mit der eine Datensicherung ausgelöst wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Nutzung zu verhindern."</string>
+    <string name="preferences_data_backup_call_logs_title">Anrufverlauf sichern</string>
+    <string name="preferences_data_backup_call_logs_summary">Verlauf ankommender und abgehender Anrufe sichern</string>
+    <string name="preferences_data_backup_sms_logs_title">SMS Verlauf sichern</string>
+    <string name="preferences_data_backup_sms_logs_summary">Verlauf ankommender und abgehender SMS sichern</string>
     <string name="preferences_locate_category">"Lokalisieren"</string>
     <string name="preferences_locate_enabled_title">"Lokalisieren"</string>
     <string name="preferences_locate_enabled_summary">"Gerät lokalisieren, wenn die Aktivierungs-SMS empfangen wird."</string>
@@ -72,6 +92,8 @@
     <string name="util_sendsms_alarm_fail">"aeGis: Fehler beim Überschreiben der Sound-Einstellungen:"</string>
     <string name="util_sendsms_lock_pass">"aeGis: Gerät gesperrt mit Passwort:"</string>
     <string name="util_sendsms_lock_fail">"aeGis: Fehler beim Sperren des Gerätes:"</string>
+    <string name="util_sendsms_data_recovery_pass">aeGis: Datei gesichert:</string>
+    <string name="util_sendsms_data_recovery_fail">aeGis: Datensicherung fehlgeschlagen</string>
     <string name="util_sendsms_wipe_pass">"aeGis: Alle Daten werden gelöscht."</string>
     <string name="util_sendsms_wipe_fail">"aeGis: Fehler beim Löschen aller Daten:"</string>
     <string name="util_sendsms_locate_fail">"aeGis: Fehler beim Lokalisieren des Gerätes:"</string>
@@ -97,6 +119,7 @@
     <string name="about_share_link">"aeGis teilen"</string>
     <string name="about_xda_link">Support-Thread bei XDA</string>
     
+    <string name="overflow_help">Hilfe</string>
     <string name="overflow_advanced_settings">Einstellungen</string>
     <string name="overflow_licenses">Lizenzen</string>
     <string name="overflow_about">Über</string>
@@ -119,6 +142,9 @@
     <string name="array_distance_item3">50 Meter</string>
     <string name="array_distance_item4">100 Meter</string>
     <string name="array_distance_item5">500 Meter</string>
+    
+    <string name="aegis_choose_backup_application_1">Google Drive</string>
+    <string name="aegis_choose_backup_application_2">Dropbox</string>
 
     <string name="receiver_alarm_override">"aeGis hat die Sound-Einstellungen überschrieben"</string>
 </resources>
