@@ -155,11 +155,11 @@ public class AdvancedSettingsActivity extends SherlockPreferenceActivity impleme
                 suResult = Shell.SU.run(new String[] {
                     "id",
                     "busybox mount -o remount,rw /system",
-                    "busybox cp /data/app/com.decad3nce.aegis-*.apk /system/app/",
-                    "busybox chmod 644 /system/app/com.decad3nce.aegis-*.apk",
+                    "busybox cp /data/app/com.decad3nce.aegis*.apk /system/app/",
+                    "busybox chmod 644 /system/app/com.decad3nce.aegis*.apk",
                     "busybox pm uninstall com.decad3nce.aegis",
                     "busybox rmdir /data/app-lib/com.decad3nce*",
-                    "busybox rm /data/app/com.decad3nce.aegis-*.apk",
+                    "busybox rm /data/app/com.decad3nce.aegis*.apk",
                     "busybox mount -o remount,ro /system",
                     "busybox reboot"
                 });

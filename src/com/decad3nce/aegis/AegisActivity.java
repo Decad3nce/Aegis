@@ -30,7 +30,6 @@ import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -39,6 +38,7 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
     
     private static final String TAG = "aeGis";
 
+    private static final String PREFERENCES_AEGIS_INITIALIZED = "aegis_initialized";
     public static final String PREFERENCES_ALARM_ENABLED = "alarm_toggle";
     public static final String PREFERENCES_DATA_ENABLED = "data_toggle";
     public static final String PREFERENCES_LOCK_ENABLED = "lock_toggle";
@@ -56,6 +56,7 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
     private Switch mDataEnabledPreference;
     private Switch mLocateEnabledPreference;
     
+    private boolean mInitialized;
     private Menu fullMenu;
 
     TabsAdapter mTabsAdapter;
@@ -69,6 +70,17 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); 
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        
+        mInitialized = preferences
+                .getBoolean(PREFERENCES_AEGIS_INITIALIZED, this.getResources()
+                        .getBoolean(R.bool.config_default_aegis_initialized));
+        
+        if(!mInitialized) {
+            launchActivity(HelpActivity.class);
+            mInitialized = true;
+        }
 
         mViewPager = new ViewPager(this);
         mViewPager.setId(R.id.pager);
@@ -94,9 +106,6 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
         if (savedInstanceState != null) {
             bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
         }
-
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
         
         alarmEnabled = preferences
                 .getBoolean(PREFERENCES_ALARM_ENABLED, this.getResources()
@@ -147,28 +156,29 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
         switch (item.getItemId()) {
             case android.R.id.home:
                 return true;
+            case R.id.help:
+                launchActivity(HelpActivity.class);
+                return true;
             case R.id.settings:
-                Intent settingsIntent = new Intent(AegisActivity.this,
-                        AdvancedSettingsActivity.class);
-                settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                settingsIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                startActivity(settingsIntent);
+                launchActivity(AdvancedSettingsActivity.class);
                 return true;
             case R.id.licenses:
-                Intent initialIntent = new Intent(AegisActivity.this, InitializationActivity.class);
-                initialIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                initialIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                startActivity(initialIntent);
+                launchActivity(LicensesActivity.class);
                 return true;
             case R.id.about:
-                Intent aboutIntent = new Intent(AegisActivity.this, AboutActivity.class);
-                aboutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                aboutIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                startActivity(aboutIntent);
+                launchActivity(AboutActivity.class);
                 return true;
         }
         
         return false;
+    }
+    
+    private void launchActivity(Class<?> mClass) {
+        Intent intent = new Intent(AegisActivity.this,
+                mClass);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        startActivity(intent);
     }
 
     CompoundButton.OnCheckedChangeListener deviceAdminPreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -318,6 +328,11 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
             if(mDataEnabledPreference != null) {
                 mDataEnabledPreference.setChecked(false);
             }
+        } else if (isGoogleAuthed() || isDropboxAuthed()) {
+            dataEnabled = true;
+            if(mDataEnabledPreference != null) {
+                mDataEnabledPreference.setChecked(true);
+            }
         }
         
         mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
@@ -400,7 +415,6 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
         item.setVisible(true);
     }
     
-    
     private void addAdminListener(int toggle, boolean what, Switch who) {
         switch(toggle) {
         case R.id.data_toggle:
@@ -431,10 +445,11 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
                 .getDefaultSharedPreferences(this);
 
         SharedPreferences.Editor editor = preferences.edit();;
-        editor.putBoolean("alarm_toggle", alarmEnabled);
-        editor.putBoolean("lock_toggle", lockEnabled);
-        editor.putBoolean("data_toggle", dataEnabled);
-        editor.putBoolean("locate_toggle", locateEnabled);
+        editor.putBoolean(PREFERENCES_ALARM_ENABLED, alarmEnabled);
+        editor.putBoolean(PREFERENCES_LOCK_ENABLED, lockEnabled);
+        editor.putBoolean(PREFERENCES_DATA_ENABLED, dataEnabled);
+        editor.putBoolean(PREFERENCES_LOCATE_ENABLED, locateEnabled);
+        editor.putBoolean(PREFERENCES_AEGIS_INITIALIZED, mInitialized);
         editor.commit();
     }
     

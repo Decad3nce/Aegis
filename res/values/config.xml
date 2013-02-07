@@ -1,4 +1,5 @@
 <resources>
+    <bool name="config_default_aegis_initialized">false</bool>
     <bool name="config_default_alarm_enabled">true</bool>
     
     <bool name="config_default_lock_enabled">false</bool>

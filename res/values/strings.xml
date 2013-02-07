@@ -17,6 +17,9 @@
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
     <string name="text_stub">Features coming!</string>
     <string name="descr_overflow_button">overflow</string>
+    
+    <string name="aegis_showcaseview_alarm_toggle">Toggle the switch to enable the alarm feature for when the Activation SMS is sent to the device.\n Feature will only work when toggle is on "ON" position.</string>
+    
     <string name="aegis_location_services_not_enabled">Location services are not active. You need to enable location services for aeGis to be able to track your device.</string>
     <string name="aegis_open_location_settings">Enable</string>
     <string name="aegis_backup_service_not_enabled">Please choose a backup account before proceeding to enable data recovery.</string>
@@ -116,6 +119,7 @@
     <string name="about_share_link">Share aeGis</string>
     <string name="about_xda_link">Support thread on XDA</string>
     
+    <string name="overflow_help">Help</string>
     <string name="overflow_advanced_settings">Settings</string>
     <string name="overflow_licenses">Licenses</string>
     <string name="overflow_about">About</string>

@@ -26,6 +26,8 @@
         android:icon="@drawable/ic_action_overflow">
             <menu xmlns:android="http://schemas.android.com/apk/res/android" >
                <group android:id="@+id/group_popupmenu">
+                     <item android:id="@+id/help"
+                           android:title="@string/overflow_help" />
                      <item android:id="@+id/settings"
                            android:title="@string/overflow_advanced_settings"/>
                      <item android:id="@+id/licenses"

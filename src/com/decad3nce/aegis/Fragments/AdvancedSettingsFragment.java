@@ -16,8 +16,8 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 
 public class AdvancedSettingsFragment extends PreferenceFragment {
-    public static final String PREFERENCES_GOOGLE_BACKUP_CHECKED = "chosen_google_account";
-    public static final String PREFERENCES_DROPBOX_BACKUP_CHECKED = "chosen_dropbox_account";
+    public static final String PREFERENCES_GOOGLE_BACKUP_CHECKED = "google_account_chosen";
+    public static final String PREFERENCES_DROPBOX_BACKUP_CHECKED = "dropbox_account_chosen";
     public static final String PREFERENCES_CONFIRMATION_SMS = "advanced_enable_confirmation_sms";
     public static final String PREFERENCES_ABORT_BROADCAST = "advanced_enable_abort_broadcast";
     public static final String PREFERENCES_HIDE_FROM_LAUNCHER = "advanced_hide_from_launcher";
@@ -31,8 +31,8 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
 
         final Preference removeAdmin = (Preference) findPreference("remove_admin");
         final Preference installToSystem = (Preference) findPreference("install_to_system");
-        final CheckBoxPreference googleAccount = (CheckBoxPreference) findPreference("chosen_google_account");
-        final CheckBoxPreference dropboxAccount = (CheckBoxPreference) findPreference("chosen_dropbox_account");
+        final CheckBoxPreference googleAccount = (CheckBoxPreference) findPreference("google_account_chosen");
+        final CheckBoxPreference dropboxAccount = (CheckBoxPreference) findPreference("dropbox_account_chosen");
         
         if(AdvancedSettingsActivity.getAccountName() != null) {
             googleAccount.setSummary(AdvancedSettingsActivity.getAccountName());
