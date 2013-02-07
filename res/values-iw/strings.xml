@@ -1,27 +1,60 @@
-<resources>    
-    <string name="app_name">aeGis</string>
-	<string name="wipe_section">מחיקה</string>
+<resources>
+    
+	<string name="app_name">aeGis</string>
+	<string name="data_section">נתונים</string>
 	<string name="lock_section">נעילה</string>
 	<string name="alarm_section">אזעקה</string>
 	<string name="locate_section">איתור</string>
 	<string name="menu_settings">הגדרות</string>
 	<string name="title_activity_main">aeGis</string>
 	<string name="location_text">aeGis עוקב אחרי המכשירים\nכדי לבטל את אפשרות המעקב, לחץ על "אל-תאפשר מעקב"."</string>
+
 	<string name="disable_tracking_button">אל-תאפשר מעקב</string>
-	<string name="device_admin_reason">aeGis צריך הרשאות מנהל על-מנת למחוק/לנעול את המכשיר.</string>
+	<string name="disable_tracking_prevent_back">נא בטל מעקב לפני היציאה מהיישום</string>
+	<string name="tracking_returned_no_location">מיקום לא מוגדר</string>
+	<string name="tracking_address">כתובת:</string>
+	<string name="tracking_disabled">איתור לא-פעיל</string>
+	<string name="device_admin_reason">aeGis צריך הרשאות מנהל על-מנת למחוק/לנעול את המכשיר</string>
 	<string name="text_stub">אפשרויות נוספות!</string>
 	<string name="descr_overflow_button">תפריט צף</string>
-	<string name="preferences_advanced_category">הגדרות מתקדמות</string>
+	<string name="aegis_location_services_not_enabled">שירותי מיקום לא פעילים. הינך צריך לאפשר שירותי מיקום כדי ש- aeGis יוכל לעקוב אחרי המכשיר.</string>
+	<string name="aegis_open_location_settings">אפשר</string>
+	<string name="aegis_backup_service_not_enabled">נא בחר חשבון גיבוי לפני שתמשיך בתהליך גיבוי המידע.</string>
+	<string name="aegis_backup_service_open_settings">בחר</string>
+	<string name="aegis_backup_service_choose_account">בחר חשבון</string>
+	<string name="aegis_backup_service_logout_from_account">התנתק</string>
+	<string name="aegis_backup_service_options_menu">אפשרויות חשבון</string>
+	<string name="aegis_choose_backup_application">בחר שירות גיבוי</string>
+    
+	<string name="preferences_advanced_category">הגדרות מתקדמות</string>
+	<string name="preferences_advanced_sms_category">SMS הגדרות</string>
+	<string name="preferences_advanced_root_category">הגדרות הרשאה(נדרש ROOT)</string>
+	<string name="preferences_advanced_backup_accounts_category">לקוח גיבוי</string>
+	<string name="preferences_advanced_hide_from_launcher_title">הפעל מתוך החייגן</string>
+	<string name="preferences_advanced_hide_from_launcher_summary">כאשר מאופשר, נותן לך את היכולת להריץ את aeGis דרך קוד סודי בחייגן: "*#*#23447#*#*"</string>
 	<string name="preferences_advanced_enabled_confirmaton_sms_title">אישור SMS</string>
-	<string name="preferences_advanced_enabled_confirmaton_sms_summary">האם לשלוח SMS אישור על פעולה שהושלמה.</string>
+	<string name="preferences_advanced_enabled_confirmaton_sms_summary">האם לשלוח הודעת אישור כאשר פעולה בוצעה בהצלה.</string>
+	<string name="preferences_advanced_enable_abort_broadcast">בטל שידור</string>
+	<string name="preferences_advanced_enable_abort_broadcast_summary">האם יישום ההודעות יקבל את ההודעה.</string>
 	<string name="preferences_advanced_change_password">שנה סיסמה</string>
+	<string name="preferences_advanced_remove_admin">הסר כמנהל מכשיר</string>
+	<string name="preferences_advanced_remove_admin_summary">מאפשר לך להסיר את aeGis ישירות.</string>
+	<string name="preferences_advanced_remove_admin_completed">כבר לא מנהל מכשיר</string>
+	<string name="preferences_advanced_install_to_system">התקן את aeGis למערכת</string>
+	<string name="preferences_advanced_install_to_system_summary">מנע מ- aeGis מלהמחק אפילו אם המכשיר עובר מחיקה כוללת.</string>
+	<string name="preferences_advanced_google_account_title">Google Drive לקוח</string>
+	<string name="preferences_advanced_dropbox_account_title">Dropbox לקוח</string>
+	<string name="preferences_advanced_dropbox_account_summary_active">פעיל</string>
+	<string name="preferences_advanced_dropbox_account_summary_inactive">לא-פעיל</string>
+  
 	<string name="preferences_alarm_category">אזעקה</string>
 	<string name="preferences_alarm_enabled_title">אזעקה</string>
 	<string name="preferences_alarm_enabled_summary">הפעל אזעקה וצליל במכשירך.</string>
 	<string name="preferences_alarm_activation_sms_title">להפעלת אזעקה SMS</string>
 	<string name="preferences_alarm_activation_sms_summary">בחר מה הטקסט שישלח כדי להפעיל את האזעקה. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך כדי להימנע מהפעלה בלתי מורשה של האזעקה.</string>
 	<string name="preferences_alarm_vibrate_title">רטט</string>
-	<string name="preferences_alarm_vibrate_summary">האם המכשיר ירטוט כאשר האזעקה מופעלת.</string>	
+	<string name="preferences_alarm_vibrate_summary">האם המכשיר ירטוט כאשר האזעקה מופעלת.</string>
+
 	<string name="preferences_lock_category">נעילה</string>
 	<string name="preferences_lock_enabled_title">נעילה</string>
 	<string name="preferences_lock_enabled_summary">נעל את המכשיר כאשר קוד ה-SMS נשלח.</string>
@@ -29,11 +62,19 @@
 	<string name="preferences_lock_activation_sms_summary">בחר מה הטקסט שישלח כדי לנעול את המכשיר. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך, כדי למנוע נעילה לא מורשה.</string>
 	<string name="preferences_lock_password_title">סיסמת ברירת-מחדל</string>
 	<string name="preferences_lock_password_summary">בחר מה הסיסמא שתשמש כדי לנעול את המכשיר. זו סיסמת ברירת-המחדל שתקבע, סיסמאות מותאמות אישית יכולות להיות מסופקות בעת שליחת SMS על ידי צירוף הסיסמה המבוקשת ל-SMS. אם הוגדר כריק, סיסמת הנעילה לא תשתנה אבל המכשיר יחייב אימות מחדש באמצעות הסיסמא הקיימת.</string>
-		<string name="preferences_wipe_category">מחיקה</string>
-	<string name="preferences_wipe_enabled_title">מחיקה</string>
-	<string name="preferences_wipe_enabled_summary">מחק את המכשיר כאשר קוד ה-SMS נשלח.</string>
-	<string name="preferences_wipe_activation_sms_title">מחיקה SMS</string>
-	<string name="preferences_wipe_activation_sms_summary">בחר מה הטקסט שישלח כדי למחוק את תוכן המכשיר. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך כדי להימנע ממחיקה לא מכוונת.</string>
+	<string name="preferences_lock_wipe_pref_title">מחק מכשיר.</string>
+	<string name="preferences_lock_wipe_pref_summary">האם המכשיר ימחק כאשר מתקבלת הודעת נעילה ב-SMS.</string>
+ 
+	<string name="preferences_data_category">נתונים</string>
+	<string name="preferences_data_enabled_title">נתונים</string>
+	<string name="preferences_data_enabled_summary">אחזר נתונים למכשיר כאשר מתקבלת הודעת SMS לאחזור.</string>
+	<string name="preferences_data_activation_sms_title">SMS הפעלת אחזור</string>
+	<string name="preferences_data_activation_sms_summary">בחר מה הטקסט שישלח כדי להפעיל את אחזור הנתונים. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך כדי להימנע מהפעלה בלתי מורשה של האחזור.</string>
+	<string name="preferences_data_backup_call_logs_title">גבה יומן שיחות</string>
+	<string name="preferences_data_backup_call_logs_summary">גיבוי של יומן השיחות אל חשבון הגיבוי.</string>
+	<string name="preferences_data_backup_sms_logs_title">גבה הודעות</string>
+	<string name="preferences_data_backup_sms_logs_summary">גיבוי של ההודעות אל חשבון הגיבוי.</string>
+  
 	<string name="preferences_locate_category">איתור</string>
 	<string name="preferences_locate_enabled_title">איתור</string>
 	<string name="preferences_locate_enabled_summary">אתר את המכשיר כאשר קוד ה-SMS נשלח.</string>
@@ -46,15 +87,18 @@
 	<string name="preferences_locate_update_duration_title">תדירות עדכון האיתור</string>
 	<string name="preferences_locate_update_duration_summary">קבע כל כמה זמן היישום יבקש מיקום יותר מדויק, זמן קצר יותר יגרום לצריכת סוללה גבוהה יותר.</string>
 	<string name="preferences_locate_minimum_distance_title">מרחק מינימלי לאיתור</string>
-	<string name="preferences_locate_minimum_distance_summary">המרחק המינימלי שיעבור המכשיר שבו יופעל עידכון איתור.</string>
+	<string name="preferences_locate_minimum_distance_summary">המרחק המינימלי שיעבור המכשיר שבו יופעל עידכון איתור.</string>
+
 	<string name="util_sendsms_alarm_pass">aeGis: צליל הופעל.</string>
-	<string name="receiver_alarm_override">aeGis: הפעלת צליל הצליחה.</string>
 	<string name="util_sendsms_alarm_fail">aeGis: שגיאה: הפעלת צליל נכשלה</string>
 	<string name="util_sendsms_lock_pass">aeGis: המכשיר ננעל.</string>
 	<string name="util_sendsms_lock_fail">aeGis: שגיאה: נעילה נכשלה</string>
+	<string name="util_sendsms_data_recovery_pass">aeGis: קובץ אוחזר:</string>
+	<string name="util_sendsms_data_recovery_fail">aeGis: נכשל באחזור קבצים</string>
 	<string name="util_sendsms_wipe_pass">aeGis: מוחק מכשיר.</string>
 	<string name="util_sendsms_wipe_fail">aeGis: שגיאה: מחיקה נכשלה</string>
-	<string name="util_sendsms_locate_fail">aeGis: שגיאה: איתור המכשיר נכשל</string>
+	<string name="util_sendsms_locate_fail">aeGis: שגיאה: איתור המכשיר נכשל</string>
+
 	<string name="register_password_textview">סיסמה</string>
 	<string name="register_password_confirm_textview">אשר סיסמה</string>
 	<string name="register_password_button">המשך</string>
@@ -62,35 +106,46 @@
 	<string name="register_password_toast_password_fail">הכנס סיסמה ואשר אותה</string>
 	<string name="register_password_toast_password_match_fail">סיסמאות לא תואמות</string>
 	<string name="register_password_checkbox_summary">בטל כניסה באמצעות סיסמה</string>
-	<string name="register_password_summary">הכנס סיסמה שתנעל את aeGis בכל פעם שתצא מהיישום.</string>
+	<string name="register_password_summary">הכנס סיסמה שתנעל את aeGis בכל פעם שתצא מהיישום.</string>
+
 	<string name="login_password_textview">סיסמה</string>
 	<string name="login_password_button">היכנס</string>
 	<string name="login_password_toast_password_fail">סיסמה שגויה</string>
 	<string name="login_password_toast_password_enter">הכנס סיסמה</string>
-	<string name="login_password_summary">התחבר על-מנת להשתמש ב- aeGis</string>
-    <string name="advanced_dialog_install_to_system">אתה רוצה להתקין את aeGis ליישומי המערכת?\n\nדבר זה ימנע מחיקה של היישום גם אם יבוצע אתחול ומחיקה של כל המידע על המכשיר.\n\nאזהרה: יבוצע אתחול מחדש של המכשיר כדי לאמת שהיישום הותקן.\nזוהי פעולה בלתי-הפיכה.</string>
-    <string name="advanced_dialog_install">התקן</string>
-    <string name="advanced_dialog_cancel">ביטול</string>
-    <string name="advanced_dialog_installing">מתקין ליישומי המערכת.</string>
-    <string name="advanced_dialog_installing_failed">זקוק לאישורי superuser כדי להתקין את aeGis במערכת.</string>
-    <string name="advanced_install_to_system_fail">aeGis כבר נמצא ביישומי המערכת.</string>
+	<string name="login_password_summary">התחבר על-מנת להשתמש ב- aeGis</string>
 
 	<string name="about_developer_name">Copyright(&#169;) 2013 Adnan Begovic</string>
 	<string name="about_github_link">קוד מקור ב-Github</string>
 	<string name="about_email_link">שלח אימייל למפתח</string>
 	<string name="about_share_link">שתף את aeGis</string>
+	<string name="about_xda_link">שרשור תמיכה ב- XDA</string>
+	
 	<string name="overflow_advanced_settings">הגדרות</string>
 	<string name="overflow_licenses">אישורים</string>
-	<string name="overflow_about">אודות</string>
+	<string name="overflow_about">אודות</string>
+
+	<string name="advanced_dialog_install_to_system">אתה רוצה להתקין את aeGis ליישומי המערכת?\n\nדבר זה ימנע מחיקה של היישום גם אם יבוצע אתחול ומחיקה של כל המידע על המכשיר.\n\nאזהרה: יבוצע אתחול מחדש של המכשיר כדי לאמת שהיישום הותקן.\nזוהי פעולה בלתי-הפיכה.</string>
+	<string name="advanced_dialog_install">התקן</string>
+	<string name="advanced_dialog_cancel">ביטול</string>
+	<string name="advanced_dialog_installing">מתקין ליישומי המערכת.</string>
+	<string name="advanced_dialog_installing_failed">זקוק לאישורי superuser כדי להתקין את aeGis במערכת.</string>
+	<string name="advanced_install_to_system_fail">aeGis כבר נמצא ביישומי המערכת.</string>
+
 	<string name="array_update_item1">30 שניות</string>
 	<string name="array_update_item2">דקה</string>
 	<string name="array_update_item3">2 דקות</string>
 	<string name="array_update_item4">3 דקות</string>
-	<string name="array_update_item5">5 דקות</string>
-
+	<string name="array_update_item5">5 דקות</string>
+
 	<string name="array_distance_item1">10 מטרים</string>
 	<string name="array_distance_item2">25 מטרים</string>
 	<string name="array_distance_item3">50 מטרים</string>
 	<string name="array_distance_item4">100 מטרים</string>
 	<string name="array_distance_item5">500 מטרים</string>
+	
+	<string name="aegis_choose_backup_application_1">Google Drive</string>
+	<string name="aegis_choose_backup_application_2">Dropbox</string>
+    
+	<string name="receiver_alarm_override">aeGis דרס את הגדרות הצליל.</string>
+	
 </resources>
