@@ -35,12 +35,14 @@ public class InstallToSystemDialogFragment extends DialogFragment {
         builder.setMessage(R.string.advanced_dialog_install_to_system)
                 .setPositiveButton(R.string.advanced_dialog_install,
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int id) {
                             mListener.onDialogPositiveClick(InstallToSystemDialogFragment.this);
                             }
                         })
                 .setNegativeButton(R.string.advanced_dialog_cancel,
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int id) {
                             mListener.onDialogNegativeClick(InstallToSystemDialogFragment.this);
                             }

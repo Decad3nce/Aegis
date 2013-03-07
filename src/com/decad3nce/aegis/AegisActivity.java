@@ -8,12 +8,12 @@ import com.decad3nce.aegis.Fragments.SMSLocateFragment;
 import com.decad3nce.aegis.Fragments.ChooseBackupProgramDialogFragment;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.DialogFragment;
@@ -28,7 +28,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -311,7 +310,7 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
     }
 
     protected boolean isLocationServicesEnabled() {
-        LocationManager mLM = (LocationManager) this.getSystemService(this.LOCATION_SERVICE);
+        LocationManager mLM = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         
         if(!mLM.isProviderEnabled(LocationManager.GPS_PROVIDER) && !mLM.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             return false;
@@ -395,7 +394,7 @@ public class AegisActivity extends SherlockFragmentActivity implements ChooseBac
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == ACTIVATION_REQUEST) {
-                if (resultCode != SherlockActivity.RESULT_OK) {
+                if (resultCode != Activity.RESULT_OK) {
                     mLockEnabledPreference.setChecked(false);
                     lockEnabled = false;
                 }

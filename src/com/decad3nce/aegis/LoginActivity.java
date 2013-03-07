@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,6 +74,7 @@ public class LoginActivity extends Activity {
         // Listening to Login Screen button
         loginScreen.setOnClickListener(new View.OnClickListener() {
 
+            @Override
             public void onClick(View arg0) {
                 if (mPassword == null) {
                     Toast.makeText(getApplicationContext(),

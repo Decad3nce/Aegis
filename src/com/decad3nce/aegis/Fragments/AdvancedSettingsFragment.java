@@ -2,7 +2,6 @@ package com.decad3nce.aegis.Fragments;
 
 import com.decad3nce.aegis.AdvancedSettingsActivity;
 import com.decad3nce.aegis.AegisActivity;
-import com.decad3nce.aegis.BackupDropboxAccountsActivity;
 import com.decad3nce.aegis.R;
 
 import android.app.DialogFragment;
@@ -29,8 +28,8 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.advanced_preferences);
 
-        final Preference removeAdmin = (Preference) findPreference("remove_admin");
-        final Preference installToSystem = (Preference) findPreference("install_to_system");
+        final Preference removeAdmin = findPreference("remove_admin");
+        final Preference installToSystem = findPreference("install_to_system");
         final CheckBoxPreference googleAccount = (CheckBoxPreference) findPreference("google_account_chosen");
         final CheckBoxPreference dropboxAccount = (CheckBoxPreference) findPreference("dropbox_account_chosen");
         
@@ -59,6 +58,7 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
         }
 
         Preference.OnPreferenceClickListener preferenceListener = (new OnPreferenceClickListener() {
+                    @Override
                     public boolean onPreferenceClick(Preference preference) {
                         if(preference.getKey().equals(ADVANCED_PREFERENCES_REMOVE_ADMIN)) {
                             if (mDPM.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {

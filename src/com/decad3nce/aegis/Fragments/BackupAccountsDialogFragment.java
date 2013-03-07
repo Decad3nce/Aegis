@@ -34,12 +34,14 @@ public class BackupAccountsDialogFragment extends DialogFragment{
         builder.setMessage(R.string.aegis_backup_service_options_menu)
                 .setPositiveButton(R.string.aegis_backup_service_choose_account,
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int id) {
                             mListener.onDialogPositiveClick(BackupAccountsDialogFragment.this);
                             }
                         })
                 .setNegativeButton(R.string.aegis_backup_service_logout_from_account,
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int id) {
                             mListener.onDialogNegativeClick(BackupAccountsDialogFragment.this);
                             }

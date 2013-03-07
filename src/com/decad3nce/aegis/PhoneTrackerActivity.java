@@ -79,6 +79,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     }
 
     private final Runnable getData = new Runnable() {
+        @Override
         public void run() {
             getDataFrame();
         }
