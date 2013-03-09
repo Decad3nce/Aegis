@@ -4,13 +4,9 @@ import java.util.ArrayList;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -69,14 +65,17 @@ public class TabsAdapter extends FragmentPagerAdapter implements
         return mViewPager.getCurrentItem();
     }
 
+    @Override
     public void onPageScrolled(int position, float positionOffset,
             int positionOffsetPixels) {
     }
 
+    @Override
     public void onPageSelected(int position) {
         mActionBar.setSelectedNavigationItem(position);
     }
 
+    @Override
     public void onPageScrollStateChanged(int state) {
     }
 

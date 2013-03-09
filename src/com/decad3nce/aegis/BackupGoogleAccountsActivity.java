@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -67,7 +68,7 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
       setContentView(R.layout.backup_layout);
       
       progressBar = (ProgressBar) findViewById(R.id.progressBar);
-      progressBar.setVisibility(ProgressBar.VISIBLE);
+      progressBar.setVisibility(View.VISIBLE);
       
       context = this;
       Intent intent;

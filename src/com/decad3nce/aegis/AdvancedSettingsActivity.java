@@ -10,7 +10,6 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
@@ -19,13 +18,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 public class AdvancedSettingsActivity extends SherlockPreferenceActivity implements InstallToSystemDialogFragment.NoticeDialogListener {

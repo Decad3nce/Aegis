@@ -4,14 +4,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
 import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.BackupAccountsDialogFragment;
-import com.decad3nce.aegis.Fragments.ChooseBackupProgramDialogFragment;
-
 import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -22,6 +19,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -64,7 +62,7 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
         setContentView(R.layout.backup_layout);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(ProgressBar.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
         cr = getContentResolver();
         context = this;
         Intent intent;
@@ -91,6 +89,7 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
         }
     }
     
+    @Override
     protected void onResume() {
         super.onResume();
         Log.e(TAG, "Resuming");
@@ -201,7 +200,6 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
                         }
                   }     
               } catch (DropboxUnlinkedException e) {
-                  // User has unlinked, ask them to link again here.
                   Log.e("DbExampleLog", "User has unlinked.");
               } catch (DropboxException e) {
                   Log.e("DbExampleLog", "Something went wrong while uploading.");
