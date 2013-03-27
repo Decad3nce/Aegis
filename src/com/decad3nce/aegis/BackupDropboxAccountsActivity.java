@@ -118,7 +118,7 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
     private void recoverData() {
         Log.i(TAG, "Recovering data");
 
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        final String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date()) + "_Dropbox";
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
         
@@ -127,20 +127,48 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
         
         
         if (callLogs) {
-            Log.i(TAG, "Recovering call logs data");
-            java.io.File internalFile = getFileStreamPath("call_logs_" + timeStamp + ".txt");
-            Uri internalCallLogs = Uri.fromFile(internalFile);
-            callLogFileUri = BackupUtils.getAllCallLogs(cr, internalCallLogs, this, timeStamp);
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG, "Recovering call logs data");
+                    java.io.File internalFile = getFileStreamPath("call_logs_"
+                            + timeStamp + ".txt");
+                    Uri internalCallLogs = Uri.fromFile(internalFile);
+                    callLogFileUri = BackupUtils.getAllCallLogs(cr,
+                            internalCallLogs, context, timeStamp);
+                }
+            });
+            t.start();
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
         if (smsLogs) {
-            Log.i(TAG, "Recovering sms logs data");
-            java.io.File internalFile = getFileStreamPath("sms_logs_" + timeStamp + ".txt");
-            Uri internalSMSLogs = Uri.fromFile(internalFile);
-            smsLogFileUri = BackupUtils.getSMSLogs(cr, internalSMSLogs, this, timeStamp);
+            Thread t2 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG, "Recovering sms logs data");
+                    java.io.File internalFile = getFileStreamPath("sms_logs_"
+                            + timeStamp + ".txt");
+                    Uri internalSMSLogs = Uri.fromFile(internalFile);
+                    smsLogFileUri = BackupUtils.getSMSLogs(cr, internalSMSLogs,
+                            context, timeStamp);
+                }
+            });
+            t2.start();
+            try {
+                t2.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         
-        saveFileToDropbox();
+        
+        saveFilesToDropbox();
     }
     
     private String[] getStoredKeys() {
@@ -158,7 +186,7 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
         }
     }
 
-    private void saveFileToDropbox() {
+    private void saveFilesToDropbox() {
         Thread t = new Thread(new Runnable() {
           @Override
           public void run() {   
@@ -171,7 +199,7 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
                       java.io.File file = new java.io.File(callLogFileUri.getPath());
                       inputStream = new FileInputStream(file);
                       Entry newEntry = mDBApi.putFile(callLogFileUri.getLastPathSegment(), inputStream, file.length(), null, null);
-                      Log.i("DbExampleLog", "The uploaded file's rev is: " + newEntry.rev);
+                      Log.i(TAG, "The uploaded file's rev is: " + newEntry.rev);
                       
                       if (file != null) {
                           Log.i(TAG, "File uploaded successfully: " + file.getName());
@@ -188,7 +216,7 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
                       java.io.File file = new java.io.File(smsLogFileUri.getPath());
                       inputStream = new FileInputStream(file);
                       Entry newEntry = mDBApi.putFile(smsLogFileUri.getLastPathSegment(), inputStream, file.length(), null, null);
-                      Log.i("DbExampleLog", "The uploaded file's rev is: " + newEntry.rev);
+                      Log.i(TAG, "The uploaded file's rev is: " + newEntry.rev);
                       
                       if (file != null) {
                           Log.i(TAG, "File uploaded successfully: " + file.getName());
@@ -200,11 +228,11 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
                         }
                   }     
               } catch (DropboxUnlinkedException e) {
-                  Log.e("DbExampleLog", "User has unlinked.");
+                  Log.e(TAG, "User has unlinked.");
               } catch (DropboxException e) {
-                  Log.e("DbExampleLog", "Something went wrong while uploading.");
+                  Log.e(TAG, "Something went wrong while uploading.");
               } catch (FileNotFoundException e) {
-                  Log.e("DbExampleLog", "File not found.");
+                  Log.e(TAG, "File not found.");
               } finally {
                   if (inputStream != null) {
                       try {
@@ -215,6 +243,12 @@ public class BackupDropboxAccountsActivity extends SherlockActivity implements B
           }
         });
         t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
     private void clearKeys() {
