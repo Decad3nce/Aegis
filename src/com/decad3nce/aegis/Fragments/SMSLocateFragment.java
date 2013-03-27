@@ -11,6 +11,7 @@ public class SMSLocateFragment extends PreferenceFragment {
     public static final String PREFERENCES_LOCATE_ACTIVATION_SMS = "locate_activation_sms";
     public static final String PREFERENCES_LOCATE_LOCK_PREF = "locate_lock_pref";
     public static final String PREFERENCES_LOCATE_GEOCODE_PREF = "locate_geocode_pref";
+    public static final String PREFERENCES_LOCATE_STOP_SMS = "locate_stop_sms";
     
     @Override
     public void onCreate(Bundle savedInstanceState) {

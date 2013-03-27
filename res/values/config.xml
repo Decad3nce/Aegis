@@ -27,6 +27,7 @@
     <string name="config_default_lock_activation_sms">aeGis lock</string>
     <string name="config_default_data_activation_sms">aeGis data</string>
     <string name="config_default_locate_activation_sms">aeGis locate</string>
+    <string name="config_default_locate_stop_sms">aeGis stop tracking</string>
 
     <string name="config_default_alarm_vibrate">true</string>
     <string name="config_default_alarm_duration">15</string>
