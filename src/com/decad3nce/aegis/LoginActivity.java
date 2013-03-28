@@ -63,6 +63,7 @@ public class LoginActivity extends Activity {
                     RegisterActivity.class);
             registerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             registerIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            registerIntent.putExtra("fromLogin", true);
             startActivity(registerIntent);
             finish();
         }

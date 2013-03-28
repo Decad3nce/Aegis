@@ -43,8 +43,10 @@ public class RegisterActivity extends SherlockActivity {
         if (intent.hasExtra("fromAegis")) {
             mFromAegis = true;
             getActionBar().setDisplayHomeAsUpEnabled(true);
-        } else {
+        } else if (intent.hasExtra("fromLogin")) {
             getActionBar().setHomeButtonEnabled(false);
+        } else {
+            finish();
         }
 
         final SharedPreferences preferences = PreferenceManager

@@ -6,6 +6,11 @@
                 android:summary="@string/preferences_locate_activation_sms_summary"
                 android:maxLength="160"
                 android:defaultValue="@string/config_default_locate_activation_sms" />
+        <EditTextPreference android:key="locate_stop_sms"
+                android:title="@string/preferences_locate_stop_sms_title"
+                android:summary="@string/preferences_locate_stop_sms_summary"
+                android:maxLength="160"
+                android:defaultValue="@string/config_default_locate_stop_sms" />
         <CheckBoxPreference android:key="locate_lock_pref"
                 android:title="@string/preferences_locate_lock_pref_title"
                 android:summary="@string/preferences_locate_lock_pref_summary"

@@ -92,6 +92,13 @@ public class SMSReceiver extends BroadcastReceiver {
                                     context.getResources()
                                             .getString(
                                                     R.string.config_default_locate_activation_sms));
+                    String stopLocateSms = preferences
+                            .getString(
+                                    SMSLocateFragment.PREFERENCES_LOCATE_STOP_SMS,
+                                    context.getResources()
+                                            .getString(
+                                                    R.string.config_default_locate_stop_sms));
+                    
                     boolean locateLockPref = preferences.getBoolean(
                             SMSLocateFragment.PREFERENCES_LOCATE_LOCK_PREF,
                             context.getResources().getBoolean(
@@ -201,6 +208,14 @@ public class SMSReceiver extends BroadcastReceiver {
                                             + e.toString());
                         }
                         
+                        if (abortSMSBroadcast) {
+                            abortBroadcast();
+                        }
+                    }
+                
+                    if (locateEnabled && body.startsWith(stopLocateSms)) {
+                        PhoneTrackerActivity.remoteStop(address);
+
                         if (abortSMSBroadcast) {
                             abortBroadcast();
                         }

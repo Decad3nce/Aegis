@@ -129,7 +129,7 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
                 return null;
             }
         };
-        task.execute((Void)null);
+        task.execute();
     }
 
     void getFirstAuth() {
@@ -215,7 +215,7 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
     private void recoverData() {
         Log.i(TAG, "Recovering data");
         
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date()) + "_GDrive";
 
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);

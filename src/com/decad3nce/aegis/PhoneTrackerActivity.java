@@ -39,6 +39,8 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     private boolean mLocationTracking = false;
     private boolean mDisableTracking = false;
     private boolean mFirstTrack = true;
+    
+    protected static PhoneTrackerActivity pTActivity;
 
     private LocationManager mLocationManager;
     private String mBestProvider;
@@ -52,6 +54,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     public void onCreate(Bundle savedInstances) {
         super.onCreate(savedInstances);
         setContentView(R.layout.location_layout);
+        pTActivity = this;
     }
     
     @Override
@@ -123,6 +126,14 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     public void stopTracking() {
         mLocationManager.removeUpdates(this);
         handler.removeCallbacksAndMessages(null);
+    }
+    
+    public static void remoteStop(String address) {
+        if (pTActivity != null) {
+            pTActivity.stopTracking();
+            pTActivity.finish();
+            Utils.sendSMS(pTActivity, address, pTActivity.getString(R.string.util_sendsms_locate_stopped));
+        }
     }
 
     public void startTracking() {
