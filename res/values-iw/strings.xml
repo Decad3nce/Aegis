@@ -16,6 +16,9 @@
 	<string name="device_admin_reason">aeGis צריך הרשאות מנהל על-מנת למחוק/לנעול את המכשיר</string>
 	<string name="text_stub">אפשרויות נוספות!</string>
 	<string name="descr_overflow_button">תפריט צף</string>
+	
+    <string name="aegis_showcaseview_alarm_toggle">שנה את המתג כדי להפעיל אזעקה כאשר SMS הפעלה נשלח מהמכשיר. \n התכונה תפעל רק כאשר המתג נמצא על "פועל".</string>
+	
 	<string name="aegis_location_services_not_enabled">שירותי מיקום לא פעילים. הינך צריך לאפשר שירותי מיקום כדי ש- aeGis יוכל לעקוב אחרי המכשיר.</string>
 	<string name="aegis_open_location_settings">אפשר</string>
 	<string name="aegis_backup_service_not_enabled">נא בחר חשבון גיבוי לפני שתמשיך בתהליך גיבוי המידע.</string>
@@ -45,7 +48,6 @@
 	<string name="preferences_advanced_dropbox_account_title">Dropbox לקוח</string>
 	<string name="preferences_advanced_dropbox_account_summary_active">פעיל</string>
 	<string name="preferences_advanced_dropbox_account_summary_inactive">לא-פעיל</string>
-  
 	<string name="preferences_alarm_category">אזעקה</string>
 	<string name="preferences_alarm_enabled_title">אזעקה</string>
 	<string name="preferences_alarm_enabled_summary">הפעל אזעקה וצליל במכשירך.</string>
@@ -53,7 +55,6 @@
 	<string name="preferences_alarm_activation_sms_summary">בחר מה הטקסט שישלח כדי להפעיל את האזעקה. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך כדי להימנע מהפעלה בלתי מורשה של האזעקה.</string>
 	<string name="preferences_alarm_vibrate_title">רטט</string>
 	<string name="preferences_alarm_vibrate_summary">האם המכשיר ירטוט כאשר האזעקה מופעלת.</string>
-
 	<string name="preferences_lock_category">נעילה</string>
 	<string name="preferences_lock_enabled_title">נעילה</string>
 	<string name="preferences_lock_enabled_summary">נעל את המכשיר כאשר קוד ה-SMS נשלח.</string>
@@ -63,7 +64,6 @@
 	<string name="preferences_lock_password_summary">בחר מה הסיסמא שתשמש כדי לנעול את המכשיר. זו סיסמת ברירת-המחדל שתקבע, סיסמאות מותאמות אישית יכולות להיות מסופקות בעת שליחת SMS על ידי צירוף הסיסמה המבוקשת ל-SMS. אם הוגדר כריק, סיסמת הנעילה לא תשתנה אבל המכשיר יחייב אימות מחדש באמצעות הסיסמא הקיימת.</string>
 	<string name="preferences_lock_wipe_pref_title">מחק מכשיר.</string>
 	<string name="preferences_lock_wipe_pref_summary">האם המכשיר ימחק כאשר מתקבלת הודעת נעילה ב-SMS.</string>
- 
 	<string name="preferences_data_category">נתונים</string>
 	<string name="preferences_data_enabled_title">נתונים</string>
 	<string name="preferences_data_enabled_summary">אחזר נתונים למכשיר כאשר מתקבלת הודעת SMS לאחזור.</string>
@@ -73,12 +73,13 @@
 	<string name="preferences_data_backup_call_logs_summary">גיבוי של יומן השיחות אל חשבון הגיבוי.</string>
 	<string name="preferences_data_backup_sms_logs_title">גבה הודעות</string>
 	<string name="preferences_data_backup_sms_logs_summary">גיבוי של ההודעות אל חשבון הגיבוי.</string>
-  
 	<string name="preferences_locate_category">איתור</string>
 	<string name="preferences_locate_enabled_title">איתור</string>
 	<string name="preferences_locate_enabled_summary">אתר את המכשיר כאשר קוד ה-SMS נשלח.</string>
 	<string name="preferences_locate_activation_sms_title">איתור SMS</string>
 	<string name="preferences_locate_activation_sms_summary">בחר מה הטקסט שישלח כדי לאתר את המכשיר. מומלץ להשתמש בקוד אישי ב-SMS ההפעלה שלך, כדי למנוע מעקב לא מורשה אחר מיקומך.</string>
+	<string name="preferences_locate_stop_sms_title">SMS לביטול מעקב</string>
+	<string name="preferences_locate_stop_sms_summary">בחר מה הטקסט שיישלח על-מנת להפסיק את המעקב מרחוק</string>
 	<string name="preferences_locate_lock_pref_title">נעל מכשיר</string>
 	<string name="preferences_locate_lock_pref_summary">האם לנעול את המכשיר עם סיסמת ברירת-המחדל של נעילה או דרוש סיסמה כאשר האיתור מופעל.</string>
 	<string name="preferences_locate_geocode_pref_title">אפשר תגובה מעוצבת</string>
@@ -97,6 +98,7 @@
 	<string name="util_sendsms_wipe_pass">aeGis: מוחק מכשיר.</string>
 	<string name="util_sendsms_wipe_fail">aeGis: שגיאה: מחיקה נכשלה</string>
 	<string name="util_sendsms_locate_fail">aeGis: שגיאה: איתור המכשיר נכשל</string>
+    <string name="util_sendsms_locate_stopped">aeGis: מעקב מיקום כבוי</string>
 
 	<string name="register_password_textview">סיסמה</string>
 	<string name="register_password_confirm_textview">אשר סיסמה</string>
@@ -119,6 +121,7 @@
 	<string name="about_share_link">שתף את aeGis</string>
 	<string name="about_xda_link">שרשור תמיכה ב- XDA</string>
 	
+	<string name="overflow_help">עזרה</string>
 	<string name="overflow_advanced_settings">הגדרות</string>
 	<string name="overflow_licenses">אישורים</string>
 	<string name="overflow_about">אודות</string>
