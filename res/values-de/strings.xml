@@ -79,6 +79,8 @@
     <string name="preferences_locate_enabled_summary">"Gerät lokalisieren, wenn die Aktivierungs-SMS empfangen wird."</string>
     <string name="preferences_locate_activation_sms_title">"Lokalisierungs-SMS"</string>
     <string name="preferences_locate_activation_sms_summary">"Text der SMS festlegen, mit der das Gerät lokalisiert wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigtes Lokalisieren zu verhindern."</string>
+    <string name="preferences_locate_stop_sms_title">Lokalisierung-Beenden SMS</string>
+    <string name="preferences_locate_stop_sms_summary">"Text der SMS festlegen, mit der die Lokalisierung aus der Ferne beendet wird"</string>
     <string name="preferences_locate_lock_pref_title">"Gerät sperren"</string>
     <string name="preferences_locate_lock_pref_summary">"Gerät wird bei Lokalisierung gesperrt"</string>
     <string name="preferences_locate_geocode_pref_title">Adresse zurücksenden</string>
@@ -97,6 +99,7 @@
     <string name="util_sendsms_wipe_pass">"aeGis: Alle Daten werden gelöscht."</string>
     <string name="util_sendsms_wipe_fail">"aeGis: Fehler beim Löschen aller Daten:"</string>
     <string name="util_sendsms_locate_fail">"aeGis: Fehler beim Lokalisieren des Gerätes:"</string>
+    <string name="util_sendsms_locate_stopped">aeGis: Lokalisierung deaktiviert</string>
     
     <string name="register_password_textview">"Passwort"</string>
     <string name="register_password_confirm_textview">"Passwort bestätigen"</string>
