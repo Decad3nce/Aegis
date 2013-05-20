@@ -4,7 +4,7 @@
         android:title="@string/menu_settings"
         android:showAsAction="ifRoom|withText"
         android:visible="false"
-        android:actionLayout="@layout/alarm_toggle_button" />
+        android:actionLayout="@layout/alarm_toggle_button"/>
         <item android:id="@+id/lock_menu_settings"
         android:title="@string/menu_settings"
         android:showAsAction="ifRoom|withText"
@@ -20,21 +20,4 @@
         android:showAsAction="ifRoom|withText"
         android:visible="false"
         android:actionLayout="@layout/data_toggle_button" />
-        <item android:id="@+id/full_menu_settings"
-        android:title="@string/menu_settings"
-        android:showAsAction="always"
-        android:icon="@drawable/ic_action_overflow">
-            <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-               <group android:id="@+id/group_popupmenu">
-                     <item android:id="@+id/help"
-                           android:title="@string/overflow_help" />
-                     <item android:id="@+id/settings"
-                           android:title="@string/overflow_advanced_settings"/>
-                     <item android:id="@+id/licenses"
-                           android:title="@string/overflow_licenses"/>
-                     <item android:id="@+id/about"
-                           android:title="@string/overflow_about"/>
-               </group>
-            </menu>
-         </item>
 </menu>

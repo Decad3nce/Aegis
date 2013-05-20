@@ -1,5 +1,7 @@
 package com.decad3nce.aegis;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
@@ -145,5 +147,15 @@ public class Utils {
                         context.getResources().getString(R.string.util_sendsms_lock_fail) + " " + e.toString());
             }
         }
+    }
+
+    public static void showItem(int id, Menu menu) {
+        MenuItem item = menu.findItem(id);
+        item.setVisible(true);
+    }
+
+    public static void hideItem(int id, Menu menu) {
+        MenuItem item = menu.findItem(id);
+        item.setVisible(false);
     }
 }

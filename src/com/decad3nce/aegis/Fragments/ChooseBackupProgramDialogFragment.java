@@ -19,12 +19,12 @@ public class ChooseBackupProgramDialogFragment extends DialogFragment{
     private Button mCancelButton;
     
     public interface ChooseBackupDialogListener {
-        //
+        // Future use
     }
 
     
     public ChooseBackupProgramDialogFragment() {
-        //
+        // Future use
     }
     
     @Override

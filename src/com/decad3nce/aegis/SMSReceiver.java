@@ -40,15 +40,15 @@ public class SMSReceiver extends BroadcastReceiver {
                     // TODO: whitelist/blacklist of allowed senders
 
                     boolean alarmEnabled = preferences.getBoolean(
-                            AegisActivity.PREFERENCES_ALARM_ENABLED,
+                            SMSAlarmFragment.PREFERENCES_ALARM_ENABLED,
                             context.getResources().getBoolean(
                                     R.bool.config_default_alarm_enabled));
                     boolean lockEnabled = preferences.getBoolean(
-                            AegisActivity.PREFERENCES_LOCK_ENABLED,
+                            SMSLockFragment.PREFERENCES_LOCK_ENABLED,
                             context.getResources().getBoolean(
                                     R.bool.config_default_lock_enabled));
                     boolean dataEnabled = preferences.getBoolean(
-                            AegisActivity.PREFERENCES_DATA_ENABLED,
+                            SMSDataFragment.PREFERENCES_DATA_ENABLED,
                             context.getResources().getBoolean(
                                     R.bool.config_default_data_enabled));
                     boolean googleBackup = preferences.getBoolean(
@@ -60,7 +60,7 @@ public class SMSReceiver extends BroadcastReceiver {
                             context.getResources().getBoolean(
                                     R.bool.config_default_dropbox_backup_enabled));
                     boolean locateEnabled = preferences.getBoolean(
-                            AegisActivity.PREFERENCES_LOCATE_ENABLED,
+                            SMSLocateFragment.PREFERENCES_LOCATE_ENABLED,
                             context.getResources().getBoolean(
                                     R.bool.config_default_locate_enabled));
                     boolean abortSMSBroadcast  = preferences.getBoolean(

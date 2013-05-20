@@ -1,11 +1,7 @@
 package com.decad3nce.aegis;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.Menu;
-
+import android.app.Activity;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,7 +13,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class RegisterActivity extends SherlockActivity {
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
+public class RegisterActivity extends Activity {
     private static final String TAG = "aeGis";
 
     public static final String PREFERENCES_AEGIS_PASSWORD_SET = "password_set";
@@ -51,7 +51,7 @@ public class RegisterActivity extends SherlockActivity {
 
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        final ActionBar bar = getSupportActionBar();
+        final ActionBar bar = getActionBar();
         bar.setTitle(R.string.app_name);
         bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE,
                 ActionBar.DISPLAY_SHOW_TITLE);
@@ -75,7 +75,7 @@ public class RegisterActivity extends SherlockActivity {
         super.onPrepareOptionsMenu(menu);
         menu.clear();
         
-        MenuInflater inflater = getSupportMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.register_menu, menu);
         registerScreen = (Button) menu.findItem(R.id.confirm_password_settings).getActionView().findViewById(R.id.btnRegister);
         registerScreen.setOnClickListener(confirmPasswordsListener);

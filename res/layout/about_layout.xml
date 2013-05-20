@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:drawableRight="@drawable/ic_content_email"
-        android:onClick="onEmailClick"
         android:paddingLeft="20dp"
         android:text="@string/about_email_link"
         android:textAppearance="?android:attr/textAppearanceMedium" />

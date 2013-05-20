@@ -1,8 +1,12 @@
 package com.decad3nce.aegis.Fragments;
 
-import com.decad3nce.aegis.AdvancedSettingsActivity;
-import com.decad3nce.aegis.AegisActivity;
-import com.decad3nce.aegis.R;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
+import android.widget.Toast;
 
 import android.app.DialogFragment;
 import android.app.admin.DevicePolicyManager;
@@ -13,8 +17,17 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
+import eu.chainfire.libsuperuser.Shell;
+
+import com.decad3nce.aegis.AegisActivity;
+import com.decad3nce.aegis.R;
+
+import java.util.List;
 
 public class AdvancedSettingsFragment extends PreferenceFragment {
+    private static final String TAG = "aeGis";
+    private static String accountName;
+    private static boolean dropboxAccess;
     public static final String PREFERENCES_GOOGLE_BACKUP_CHECKED = "google_account_chosen";
     public static final String PREFERENCES_DROPBOX_BACKUP_CHECKED = "dropbox_account_chosen";
     public static final String PREFERENCES_CONFIRMATION_SMS = "advanced_enable_confirmation_sms";
@@ -33,15 +46,15 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
         final CheckBoxPreference googleAccount = (CheckBoxPreference) findPreference("google_account_chosen");
         final CheckBoxPreference dropboxAccount = (CheckBoxPreference) findPreference("dropbox_account_chosen");
         
-        if(AdvancedSettingsActivity.getAccountName() != null) {
-            googleAccount.setSummary(AdvancedSettingsActivity.getAccountName());
+        if(getAccountName() != null) {
+            googleAccount.setSummary(getAccountName());
             googleAccount.setChecked(true);
         } else {
             googleAccount.setSummary(R.string.preferences_advanced_dropbox_account_summary_inactive);
             googleAccount.setChecked(false);
         }
         
-        if (AdvancedSettingsActivity.getDropboxAccess()) {
+        if (getDropboxAccess()) {
             dropboxAccount.setSummary(R.string.preferences_advanced_dropbox_account_summary_active);
             dropboxAccount.setChecked(true);
         } else {
@@ -69,7 +82,7 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
                         }
                         if(preference.getKey().equals(ADVANCED_PREFERENCES_INSTALL_TO_SYSTEM)) {
                             DialogFragment dialog = new InstallToSystemDialogFragment();
-                            dialog.show(getFragmentManager(), "InstallToSystemDialogFragment");
+                            dialog.show(getActivity().getFragmentManager(), "InstallToSystemDialogFragment");
                         }
                         return false;
                     }
@@ -77,5 +90,35 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
         
         removeAdmin.setOnPreferenceClickListener(preferenceListener);
         installToSystem.setOnPreferenceClickListener(preferenceListener);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences prefs = getActivity().getSharedPreferences("google_prefs", 0);
+        accountName = prefs.getString("chosen_google_account_name", null);
+
+        SharedPreferences prefs1 = getActivity().getSharedPreferences("dropbox_prefs", 0);
+        String key = prefs1.getString("dropbox_access_key", null);
+        dropboxAccess = getKeyHonesty(key);
+    }
+
+    private boolean getKeyHonesty(String key) {
+        if(key != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static String getAccountName() {
+        if(accountName == null) {
+            return null;
+        }
+        return accountName;
+    }
+
+    public static boolean getDropboxAccess() {
+        return dropboxAccess;
     }
 }

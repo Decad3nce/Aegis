@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.decad3nce.aegis"
     android:versionCode="34"
-    android:versionName="1.3.3.5" >
+    android:versionName="2.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -9,6 +9,7 @@
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -54,13 +55,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".AdvancedSettingsActivity">
+        <activity android:name="BackupDropboxAccountsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -72,19 +67,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name="BackupDropboxAccountsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".HelpActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".LicensesActivity">
+        <activity android:name=".PhoneTrackerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RUN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -96,12 +79,13 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".PhoneTrackerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.RUN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+        <receiver android:name=".SIMStateReceiver"
+                   android:enabled="true"
+                   android:exported="true">
+            <intent-filter android:priority="214783648">
+                <action android:name="android.intent.action.SIM_STATE_CHANGED"/>
             </intent-filter>
-        </activity>
+        </receiver>
         <receiver android:name=".SMSReceiver"
                    android:enabled="true"
                    android:exported="true">

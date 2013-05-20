@@ -22,7 +22,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.BackupAccountsDialogFragment;
 import com.decad3nce.aegis.Fragments.SMSDataFragment;
@@ -41,7 +40,7 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.ParentReference;
 
-public class BackupGoogleAccountsActivity extends SherlockActivity implements BackupAccountsDialogFragment.NoticeDialogListener{
+public class BackupGoogleAccountsActivity extends Activity implements BackupAccountsDialogFragment.NoticeDialogListener{
     private static final String TAG = "aeGis";
     
     final static private String ACCOUNT_PREFS_NAME = "google_prefs";
@@ -248,7 +247,7 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
                 .getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor1 = preferences.edit();;
         editor1.putBoolean(AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED, true);
-        editor1.putBoolean(AegisActivity.PREFERENCES_DATA_ENABLED, true);
+        editor1.putBoolean(SMSDataFragment.PREFERENCES_DATA_ENABLED, true);
         editor1.commit();
         
         SharedPreferences.Editor editor = getSharedPreferences(ACCOUNT_PREFS_NAME, MODE_PRIVATE).edit();
@@ -267,7 +266,7 @@ public class BackupGoogleAccountsActivity extends SherlockActivity implements Ba
                 .getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor1 = preferences.edit();;
         editor1.putBoolean(AdvancedSettingsFragment.PREFERENCES_GOOGLE_BACKUP_CHECKED, false);
-        editor1.putBoolean(AegisActivity.PREFERENCES_DATA_ENABLED, false);
+        editor1.putBoolean(SMSDataFragment.PREFERENCES_DATA_ENABLED, false);
         editor1.commit();
         
         SharedPreferences prefs = getSharedPreferences(ACCOUNT_PREFS_NAME, MODE_PRIVATE);
