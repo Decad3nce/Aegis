@@ -123,6 +123,7 @@
     <string name="about_xda_link">Support-Thread bei XDA</string>
     
     <string name="overflow_help">Hilfe</string>
+    <string name="overflow_simlist">Erlaubte SIM-Karten</string>
     <string name="overflow_advanced_settings">Einstellungen</string>
     <string name="overflow_licenses">Lizenzen</string>
     <string name="overflow_about">Über</string>
@@ -148,6 +149,13 @@
     
     <string name="aegis_choose_backup_application_1">Google Drive</string>
     <string name="aegis_choose_backup_application_2">Dropbox</string>
+    
+    <string name="sim_menu_add">IMEI hinzufügen</string>
+    <string name="sim_menu_remove">IMEI entfernen</string>
+    <string name="sim_menu_edit">IMEI bearbeiten</string>
+    
+    <string name="drawer_open">Navigation öffnen</string>
+    <string name="drawer_close">Navigation schließen</string>
 
     <string name="receiver_alarm_override">"aeGis hat die Sound-Einstellungen überschrieben"</string>
 </resources>
