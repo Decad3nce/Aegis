@@ -138,8 +138,15 @@ public class Utils {
             try {
                 Log.i(TAG, "Locking device");
                 devicePolicyManager.lockNow();
-                Utils.sendSMS(context, SMSReceiver.address,
-                        context.getResources().getString(R.string.util_sendsms_lock_pass) + " " + password);
+		        boolean sendPasswordInSMSEnabled  = preferences.getBoolean(
+		                SMSLockFragment.PREFERENCES_LOCK_SEND_PASSWORD_PREF,
+		                context.getResources().getBoolean(
+		                        R.bool.config_default_send_password_in_sms_pref));
+		        
+                String messageText = sendPasswordInSMSEnabled ?
+                		context.getResources().getString(R.string.util_sendsms_lock_pass) + " " + password :
+                		context.getResources().getString(R.string.util_sendsms_lock_message);
+                Utils.sendSMS(context, SMSReceiver.address, messageText);
             } catch (Exception e) {
                 Log.wtf(TAG, "Failed to lock device");
                 Log.wtf(TAG, e.toString());
