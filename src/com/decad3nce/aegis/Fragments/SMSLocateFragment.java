@@ -100,6 +100,8 @@ public class SMSLocateFragment extends PreferenceFragment {
                             .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT) && locateEnabled) {
                         addAdmin();
                         commitToShared();
+                    } else {
+                        commitToShared();
                     }
 
                     break;
