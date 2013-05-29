@@ -6,7 +6,7 @@
     <Button
         android:id="@+id/emailclick"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:clickable="true"
         android:drawableRight="@drawable/ic_content_email"
         android:paddingLeft="20dp"
@@ -16,7 +16,7 @@
     <Button
         android:id="@+id/githubclick"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/emailclick"
         android:clickable="true"
@@ -29,7 +29,7 @@
     <Button
         android:id="@+id/shareclick"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/githubclick"
         android:clickable="true"
@@ -42,7 +42,7 @@
     <Button
         android:id="@+id/xdaclick"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/shareclick"
         android:clickable="true"
@@ -55,7 +55,7 @@
     <Button
         android:id="@+id/quicklyclick"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/xdaclick"
         android:clickable="true"
