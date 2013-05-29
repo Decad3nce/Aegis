@@ -126,6 +126,7 @@
     <string name="about_email_link">Send email to developer</string>
     <string name="about_share_link">Share aeGis</string>
     <string name="about_xda_link">Support thread on XDA</string>
+    <string name="about_quickly_link">Support Developer</string>
     
     <string name="overflow_help">Help</string>
     <string name="overflow_simlist">Accepted SIMs</string>

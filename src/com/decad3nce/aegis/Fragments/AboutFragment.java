@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.decad3nce.aegis.R;
 
 public class AboutFragment extends Fragment implements OnClickListener {
-    private Button onClickEmail, onClickGithub, onClickShare, onClickXDA;
+    private Button onClickEmail, onClickGithub, onClickShare, onClickXDA, onClickQuickly;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,10 +33,12 @@ public class AboutFragment extends Fragment implements OnClickListener {
         onClickGithub = (Button) mainView.findViewById(R.id.githubclick);
         onClickShare = (Button) mainView.findViewById(R.id.shareclick);
         onClickXDA = (Button) mainView.findViewById(R.id.xdaclick);
+        onClickQuickly = (Button) mainView.findViewById(R.id.quicklyclick);
         onClickEmail.setOnClickListener(this);
         onClickGithub.setOnClickListener(this);
         onClickShare.setOnClickListener(this);
         onClickXDA.setOnClickListener(this);
+        onClickQuickly.setOnClickListener(this);
         tV.setText(version);
         return mainView;
     }
@@ -74,6 +76,12 @@ public class AboutFragment extends Fragment implements OnClickListener {
                 break;
             case R.id.xdaclick:
                 url = "http://forum.xda-developers.com/showthread.php?t=2038762";
+                i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                break;
+            case R.id.quicklyclick:
+                url = "https://play.google.com/store/apps/details?id=com.decad3nce.quickly";
                 i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);

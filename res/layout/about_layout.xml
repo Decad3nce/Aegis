@@ -52,6 +52,19 @@
         android:text="@string/about_xda_link"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <Button
+        android:id="@+id/quicklyclick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/quicklyclick"
+        android:clickable="true"
+        android:drawableRight="@drawable/ic_quickly"
+        android:onClick="onQuicklyClick"
+        android:paddingLeft="20dp"
+        android:text="@string/about_quickly_link"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
     <TextView
         android:id="@+id/developername"
         android:layout_width="match_parent"
