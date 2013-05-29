@@ -11,11 +11,11 @@
             android:layout_height="match_parent" />
     <!-- The navigation drawer -->
     <ListView android:id="@+id/left_drawer"
-              android:layout_width="240dp"
+              android:layout_width="280dp"
               android:layout_height="match_parent"
               android:layout_gravity="start"
               android:choiceMode="singleChoice"
-              android:divider="@android:color/darker_gray"
-              android:dividerHeight="0.5dp"
-              android:background="#111"/>
+              android:divider="#EDEDED"
+              android:dividerHeight="0.3dp"
+              android:background="#FFF"/>
 </android.support.v4.widget.DrawerLayout>

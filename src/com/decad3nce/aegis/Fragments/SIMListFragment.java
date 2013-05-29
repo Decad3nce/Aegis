@@ -1,39 +1,55 @@
 package com.decad3nce.aegis.Fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
-
+import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.ListFragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.view.ActionMode;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.MenuInflater;
+import android.preference.PreferenceManager;
+import android.telephony.TelephonyManager;
+import android.view.*;
 import android.widget.*;
-import android.app.ListFragment;
 import android.widget.AdapterView.OnItemLongClickListener;
-
 import com.decad3nce.aegis.R;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class SIMListFragment extends ListFragment implements OnItemLongClickListener {
+    public static String PREFERENCES_SIM_LIST_INITIALIZED = "sim_list_initialized";
     private ArrayList<String> identifiers;
     private Menu thisMenu;
     private int listItemRemove = -1;
+    private Long listItemAdd = null;
     private int listItem;
     protected Object mActionMode;
+    private String backupNumber;
     ArrayAdapter<String> adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        identifiers = new ArrayList<String>();
-        
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(getActivity());
+;
+        backupNumber = preferences
+                .getString(AdvancedSettingsFragment.PREFERENCES_BACKUP_PHONE_NUMBER, getActivity().getResources()
+                .getString(R.string.config_default_advanced_backup_phone_number));
+
+        if(backupNumber == null || backupNumber.equals("0000000000")) {
+            //Send to settings fragment, toast.
+            FragmentManager fragmentManager = getActivity().getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new AdvancedSettingsFragment()).commit();
+            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sim_fragment_request_backup_number), Toast.LENGTH_LONG).show();
+        }
+
         adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1,
+                android.R.layout.simple_list_item_activated_1, android.R.id.text1,
                 getIdentifiers());
         setHasOptionsMenu(true);
         setListAdapter(adapter);
@@ -52,6 +68,13 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
         return false;
     }
 
+    private boolean setAdd() {
+        if(listItemAdd != null) {
+            return true;
+        }
+        return false;
+    }
+
     private void updateData() {
         if (adapter == null) {
             return;
@@ -59,7 +82,12 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
 
         if(setRemove()) {
             adapter.remove(identifiers.get(listItemRemove));
-            listItemRemove = -1;
+            listItemRemove = -1; //background workaround reset
+        }
+
+        if(setAdd()) {
+            adapter.add(Long.toString(listItemAdd));
+            listItemAdd = null;
         }
 
         saveList();
@@ -68,11 +96,18 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
     private void saveList() {
         Set<String> set = new HashSet<String>();
         set.addAll(identifiers);
-        SharedPreferences prefs = getActivity().getSharedPreferences("sim_list", 0);
+        SharedPreferences prefs = getActivity().getSharedPreferences("imsi_list", 0);
         Editor editor = prefs.edit();
         editor.clear();
         editor.putStringSet("identifiers", set);
         editor.commit();
+    }
+
+    private Set<String> getList() {
+        Set<String> set = new HashSet<String>();
+        SharedPreferences prefs = getActivity().getSharedPreferences("imsi_list", 0);
+        set = prefs.getStringSet("identifiers", null);
+        return set;
     }
 
     @Override
@@ -91,6 +126,75 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.sim_menu_add:
+                showAddDialog();
+        }
+        return true;
+    }
+
+    private void showAddDialog() {
+        final TelephonyManager mTelephonyManager = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(getActivity().getResources().getString(R.string.sim_fragment_add_dialog));
+        final EditText input = new EditText(getActivity());
+        alertDialog.setView(input);
+        String addButton = getActivity().getResources().getString(R.string.sim_fragment_add_dialog_add);
+        String readButton = getActivity().getResources().getString(R.string.sim_fragment_add_dialog_read);
+
+        alertDialog.setPositiveButton(addButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String inputText = input.getText().toString();
+                listItemAdd = Long.parseLong(inputText);
+                updateData();
+            }
+        });
+
+        alertDialog.setNegativeButton(readButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //meh
+            }
+        });
+        AlertDialog dialog = alertDialog.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                input.setText(mTelephonyManager.getSubscriberId());            }
+        });
+    }
+
+    private void showEditDialog(final int listItem) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(getActivity().getResources().getString(R.string.sim_fragment_edit_dialog));
+        final EditText input = new EditText(getActivity());
+        alertDialog.setView(input);
+        String addButton = getActivity().getResources().getString(R.string.sim_fragment_edit_dialog_save);
+        String readButton = getActivity().getResources().getString(R.string.sim_fragment_edit_dialog_cancel);
+
+        input.setText(identifiers.get(listItem));
+
+        alertDialog.setPositiveButton(addButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String inputText = input.getText().toString();
+                listItemRemove = listItem;
+                listItemAdd = Long.parseLong(inputText);
+                updateData();
+            }
+        });
+
+        alertDialog.setNegativeButton(readButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.show();
+
+    }
+
+    @Override
     public boolean onItemLongClick(AdapterView<?> adapter, View view, int listPosition, long id) {
         if (mActionMode != null) {
             return false;
@@ -99,22 +203,16 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
         listItem = listPosition;
         mActionMode = getActivity().startActionMode(mActionModeCallback);
         view.setSelected(true);
-        //view.setBackground(android.R.attr.activatedBackgroundIndicator);
         getListView().setItemChecked(listPosition, true);
         return true;
     }
     
     private List<String> getIdentifiers() {
-        Set<String> set = new HashSet<String>();
-        SharedPreferences prefs = getActivity().getSharedPreferences("sim_list", 0);
-        set = prefs.getStringSet("identifiers", null);
-
-        if(set != null) {
-            identifiers.addAll(set);
+        if(getList() != null) {
+            return identifiers = new ArrayList<String>(getList());
         } else {
-            identifiers.add("ADD AN IDENTIFIER");
+            return identifiers = new ArrayList<String>();
         }
-        return identifiers;
     }
     
     public boolean add(String imei) {
@@ -139,7 +237,7 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.sim_menu_edit:
-                    //TODO: Add dialogfragment to handle edit
+                    showEditDialog(listItem);
                     mode.finish();
                     return true;
                 case R.id.sim_menu_remove:
