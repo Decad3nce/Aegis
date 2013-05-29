@@ -62,7 +62,9 @@
     <string name="preferences_lock_activation_sms_title">Lock Activation SMS</string>
     <string name="preferences_lock_activation_sms_summary">Choose what text to send to lock the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized locking.</string>
     <string name="preferences_lock_password_title">Default password</string>
+    <string name="preferences_lock_password_send_in_sms_title">Send password in SMS</string>
     <string name="preferences_lock_password_summary">Choose what password will be used to lock the device. This is the default password that will be set, custom passwords can be provided when sending SMS by appending the requested password to the SMS. If set to blank, the password/lock method will not be changed but the device will get locked to force re-authentication using the existing password.</string>
+    <string name="preferences_lock_password_send_in_sms_summary">Include the password in the SMS text when when locking.</string>
     <string name="preferences_lock_wipe_pref_title">Wipe Device</string>
     <string name="preferences_lock_wipe_pref_summary">Whether to wipe device when activation SMS for lock tab is received by device.</string>
     <string name="preferences_data_category">Data</string>
@@ -92,6 +94,7 @@
     
     <string name="util_sendsms_alarm_pass">aeGis: Sound successfully enabled.</string>
     <string name="util_sendsms_alarm_fail">aeGis: Failed to override sound settings. Error:</string>
+    <string name="util_sendsms_lock_message">aeGis: Device successfully locked.</string>
     <string name="util_sendsms_lock_pass">aeGis: Locked device with password:</string>
     <string name="util_sendsms_lock_fail">aeGis: Failed to lock device. Error:</string>
     <string name="util_sendsms_data_recovery_pass">aeGis: Recovered file:</string>
