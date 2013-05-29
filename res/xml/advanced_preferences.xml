@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
         <PreferenceCategory android:title="@string/preferences_advanced_category"
         android:key="advanced_category">
-        
+
             <Preference android:title="@string/preferences_advanced_change_password">
                     <intent
                        android:action="android.intent.action.VIEW"
@@ -11,7 +11,7 @@
                        <extra android:name="fromAegis" android:value="true" />
                     </intent>
             </Preference>
-            
+
             <CheckBoxPreference android:key="advanced_hide_from_launcher"
                 android:title="@string/preferences_advanced_hide_from_launcher_title"
                 android:summary="@string/preferences_advanced_hide_from_launcher_summary"
@@ -35,12 +35,18 @@
                  android:title="@string/preferences_advanced_enable_abort_broadcast"
                  android:summary="@string/preferences_advanced_enable_abort_broadcast_summary"
                  android:defaultValue="@bool/config_default_advanced_enable_abort_broadcast" />
-             
+
+            <EditTextPreference android:key="advanced_backup_phone_number"
+                 android:title="@string/preferences_advanced_backup_phone_number_title"
+                 android:summary="@string/preferences_advanced_backup_phone_number_summary"
+                 android:defaultValue="@string/config_default_advanced_backup_phone_number"
+                 android:phoneNumber="true"/>
+
         </PreferenceCategory>
-        
+
         <PreferenceCategory android:title="@string/preferences_advanced_backup_accounts_category"
             android:key="advanced_google_accounts_category">
-            
+
              <CheckBoxPreference android:title="@string/preferences_advanced_google_account_title"
                 android:key="google_account_chosen"
                 android:defaultValue="@bool/config_default_google_backup_enabled">
@@ -50,7 +56,7 @@
                         android:targetClass="com.decad3nce.aegis.BackupGoogleAccountsActivity" >                        
                     </intent>
              </CheckBoxPreference>
-             
+
              <CheckBoxPreference android:title="@string/preferences_advanced_dropbox_account_title"
                  android:key="dropbox_account_chosen"
                  android:defaultValue="@bool/config_default_dropbox_backup_enabled">
@@ -60,16 +66,16 @@
                          android:targetClass="com.decad3nce.aegis.BackupDropboxAccountsActivity" >                        
                     </intent>
              </CheckBoxPreference>
-             
+
         </PreferenceCategory>
-        
+
         <PreferenceCategory android:title="@string/preferences_advanced_root_category"
             android:key="advanced_root_category">
-            
+
              <Preference android:title="@string/preferences_advanced_install_to_system"
                 android:key="install_to_system"
                 android:summary="@string/preferences_advanced_install_to_system_summary" />
-             
+
         </PreferenceCategory>
-        
+
 </PreferenceScreen>

@@ -1,14 +1,14 @@
 package com.decad3nce.aegis.Fragments;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import com.decad3nce.aegis.R;
 import android.os.Bundle;
-import android.widget.Switch;
-import android.widget.CompoundButton;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import com.decad3nce.aegis.R;
 import com.decad3nce.aegis.Utils;
 
 public class SMSAlarmFragment extends PreferenceFragment {

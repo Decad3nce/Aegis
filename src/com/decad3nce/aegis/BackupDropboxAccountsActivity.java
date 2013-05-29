@@ -1,14 +1,6 @@
 package com.decad3nce.aegis;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
-import com.decad3nce.aegis.Fragments.BackupAccountsDialogFragment;
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -21,17 +13,24 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.app.Activity;
-
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
+import com.decad3nce.aegis.Fragments.BackupAccountsDialogFragment;
 import com.decad3nce.aegis.Fragments.SMSDataFragment;
 import com.dropbox.client2.DropboxAPI;
+import com.dropbox.client2.DropboxAPI.Entry;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.exception.DropboxException;
 import com.dropbox.client2.exception.DropboxUnlinkedException;
 import com.dropbox.client2.session.AccessTokenPair;
 import com.dropbox.client2.session.AppKeyPair;
 import com.dropbox.client2.session.Session.AccessType;
-import com.dropbox.client2.DropboxAPI.Entry;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class BackupDropboxAccountsActivity extends Activity implements BackupAccountsDialogFragment.NoticeDialogListener{
     private static final String TAG = "aeGis";

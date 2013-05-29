@@ -1,38 +1,33 @@
 package com.decad3nce.aegis;
 
 import android.app.*;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.support.v4.view.GravityCompat;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
-import android.widget.Toast;
-import com.decad3nce.aegis.Fragments.*;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.support.v4.app.FragmentActivity;
-
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-
-import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.view.*;
+import android.widget.*;
+import com.decad3nce.aegis.Fragments.*;
 
-import android.view.View;
-
-import android.util.Log;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class AegisActivity extends FragmentActivity implements InstallToSystemDialogFragment.NoticeDialogListener {
-    
+
     private static final String TAG = "aeGis";
 
     private int mIndex;
@@ -59,21 +54,15 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); 
+        super.onCreate(savedInstanceState);
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        
+
         mInitialized = preferences
                 .getBoolean(PREFERENCES_AEGIS_INITIALIZED, this.getResources()
                         .getBoolean(R.bool.config_default_aegis_initialized));
 
         FragmentManager fragmentManager = getFragmentManager();
-        
-        if(!mInitialized) {
-            Fragment helpFragment = new LicensesFragment();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, helpFragment).commit();
-            mInitialized = true;
-        }
 
         setContentView(R.layout.drawer_layout);
 
@@ -86,40 +75,40 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
         mTitle = mDrawerTitle = getTitle();
-        mMenuTitles = getResources().getStringArray(R.array.menu_array);
+        mMenuTitles = getMenuTitles();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        Log.v(TAG, mDrawerList.toString());
-        Log.v(TAG, mMenuTitles.toString());
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
 
-            /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
-                getActionBar().setTitle(getResources().getString(R.string.app_name));
+                getActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
             }
 
-            /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 getActionBar().setTitle("Menu");
                 invalidateOptionsMenu();
             }
         };
 
-        // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mMenuTitles));
+        mDrawerList.setAdapter(new CustomAdapter(this, R.layout.drawer_list_item, mMenuTitles, "Roboto-Thin.ttf"));
+
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 
         if (savedInstanceState == null) {
-            selectItem(0);
+            if(!mInitialized) {
+                Fragment helpFragment = new HelpFragment();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, helpFragment).commit();
+                mInitialized = true;
+            } else {
+                selectItem(0);
+            }
         }
     }
 
@@ -132,7 +121,6 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }
 
@@ -190,18 +178,22 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
                     editor.putBoolean(SMSLocateFragment.PREFERENCES_LOCATE_ENABLED, false);
                     editor.commit();
                 }
-               return;
+                return;
             }
         } else {
             Toast.makeText(this, R.string.device_admin_reason,
-                   Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    
-    protected void saveSettings() {
+    private String[] getMenuTitles() {
+        return getResources().getStringArray(R.array.menu_array);
+    }
+
+
+    private void saveSettings() {
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
 
@@ -216,7 +208,7 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -234,7 +226,6 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
     private void selectItem(int position) {
         mIndex = position;
         FragmentManager fragmentManager = getFragmentManager();
-
         switch(position) {
             case 0:
                 Fragment alarmFragment = new SMSAlarmFragment();
@@ -322,5 +313,39 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
             return false;
         }
         return false;
+    }
+    class CustomAdapter extends ArrayAdapter<String>{
+
+        Context context;
+        int layoutResourceId;
+        String data[] = null;
+        List<String> list;
+        Typeface tf;
+
+        public CustomAdapter(Context context, int layoutResourceId, String[] data, String FONT ) {
+            super(context, layoutResourceId, data);
+            this.layoutResourceId = layoutResourceId;
+            this.context = context;
+            this.data = data;
+            this.list = new ArrayList<String>(Arrays.asList(data));
+            this.tf = Typeface.createFromAsset(context.getAssets(), "Roboto-Light.ttf");
+        }
+
+        @Override
+        public View getView(int position, View v, ViewGroup parent) {
+            View mView = v;
+            if(mView == null) {
+                LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                mView = vi.inflate(layoutResourceId, null);
+            }
+            if(list.get(position) != null)
+            {
+                TextView text = (TextView) mView.findViewById(R.id.text1);
+                text.setTypeface(tf);
+                text.setText(list.get(position));
+            }
+            return mView;
+        }
+
     }
 }

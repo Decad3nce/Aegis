@@ -4,6 +4,7 @@
     
     <bool name="config_default_lock_enabled">false</bool>
     <bool name="config_default_lock_wipe_pref">false</bool>
+    <bool name="config_default_send_password_in_sms_pref">false</bool>
     
     <bool name="config_default_data_enabled">false</bool>
     <bool name="config_default_data_backup_call_logs">true</bool>
@@ -36,4 +37,6 @@
     
     <string name="config_default_locate_update_duration">120</string>
     <string name="config_default_locate_minimum_distance">10</string>
+
+    <string name="config_default_advanced_backup_phone_number">0000000000</string>
 </resources>

@@ -1,13 +1,12 @@
 package com.decad3nce.aegis.Fragments;
 
-import com.decad3nce.aegis.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import com.decad3nce.aegis.R;
 
 public class InstallToSystemDialogFragment extends DialogFragment {
     

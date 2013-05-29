@@ -1,17 +1,16 @@
 package com.decad3nce.aegis.Fragments;
 
-import com.decad3nce.aegis.BackupDropboxAccountsActivity;
-import com.decad3nce.aegis.BackupGoogleAccountsActivity;
-import com.decad3nce.aegis.R;
-
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
+import com.decad3nce.aegis.BackupDropboxAccountsActivity;
+import com.decad3nce.aegis.BackupGoogleAccountsActivity;
+import com.decad3nce.aegis.R;
 
 public class ChooseBackupProgramDialogFragment extends DialogFragment{
     private Button mFirstBackup;

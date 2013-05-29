@@ -1,11 +1,5 @@
 package com.decad3nce.aegis;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
-import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
-import com.decad3nce.aegis.Fragments.SMSLockFragment;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -18,6 +12,11 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
+import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
+import com.decad3nce.aegis.Fragments.SMSLockFragment;
 
 public class Utils {
     private static final String TAG = "aeGis";
@@ -97,6 +96,21 @@ public class Utils {
         mManager.notify(1336, notification);
 
     }
+
+    protected static void lockDeviceDefault(Context context) {
+        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
+                .getSystemService(Context.DEVICE_POLICY_SERVICE);
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String password = preferences.getString(
+                SMSLockFragment.PREFERENCES_LOCK_PASSWORD,
+                context.getResources().getString(
+                        R.string.config_default_lock_password));
+        if (password.length() > 0) {
+            devicePolicyManager.resetPassword(password, 0);
+        }
+        devicePolicyManager.lockNow();
+    }
     
     protected static void lockDevice(Context context, String body, String activationLockSms, String activationLocateSms) {
         
@@ -138,8 +152,15 @@ public class Utils {
             try {
                 Log.i(TAG, "Locking device");
                 devicePolicyManager.lockNow();
-                Utils.sendSMS(context, SMSReceiver.address,
-                        context.getResources().getString(R.string.util_sendsms_lock_pass) + " " + password);
+ 		        boolean sendPasswordInSMSEnabled  = preferences.getBoolean(
+		                SMSLockFragment.PREFERENCES_LOCK_SEND_PASSWORD_PREF,
+		                context.getResources().getBoolean(
+		                        R.bool.config_default_send_password_in_sms_pref));
+
+                String messageText = sendPasswordInSMSEnabled ?
+                		context.getResources().getString(R.string.util_sendsms_lock_pass) + " " + password :
+                		context.getResources().getString(R.string.util_sendsms_lock_message);
+                Utils.sendSMS(context, SMSReceiver.address, messageText);
             } catch (Exception e) {
                 Log.wtf(TAG, "Failed to lock device");
                 Log.wtf(TAG, e.toString());

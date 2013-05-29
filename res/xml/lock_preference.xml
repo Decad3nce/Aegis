@@ -12,6 +12,10 @@
                 android:maxLength="16"
                 android:defaultValue="@string/config_default_lock_password"
                 android:inputType="textPassword" />
+        <CheckBoxPreference android:key="lock_send_password_in_sms_pref"
+                android:title="@string/preferences_lock_password_send_in_sms_title"
+                android:summary="@string/preferences_lock_password_send_in_sms_summary"
+                android:defaultValue="@bool/config_default_send_password_in_sms_pref" />
         <CheckBoxPreference android:key="lock_wipe_pref"
                 android:title="@string/preferences_lock_wipe_pref_title"
                 android:summary="@string/preferences_lock_wipe_pref_summary"

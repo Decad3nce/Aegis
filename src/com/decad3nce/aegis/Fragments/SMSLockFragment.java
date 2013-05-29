@@ -3,6 +3,8 @@ package com.decad3nce.aegis.Fragments;
 import android.app.admin.DevicePolicyManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,14 +12,13 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import com.decad3nce.aegis.AegisActivity;
 import com.decad3nce.aegis.R;
-import android.os.Bundle;
-import android.preference.PreferenceFragment;
 import com.decad3nce.aegis.Utils;
 
 public class SMSLockFragment extends PreferenceFragment {
 
     public static final String PREFERENCES_LOCK_ACTIVATION_SMS = "lock_activation_sms";
     public static final String PREFERENCES_LOCK_PASSWORD = "lock_password";
+    public static final String PREFERENCES_LOCK_SEND_PASSWORD_PREF = "lock_send_password_in_sms_pref";
     public static final String PREFERENCES_LOCK_WIPE_PREF = "lock_wipe_pref";
     public static final String PREFERENCES_LOCK_ENABLED = "lock_toggle";
 
@@ -51,7 +52,7 @@ public class SMSLockFragment extends PreferenceFragment {
         super.onPrepareOptionsMenu(menu);
         //TODO: This is a fucking mess.
         //Stop coding hungover
-        if (devicePolicyManager.getActiveAdmins() != null) {
+        if (devicePolicyManager != null && devicePolicyManager.getActiveAdmins() != null) {
             if (!devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
                 if (mLockEnabledPreference != null) {
                     lockEnabled = false;
@@ -105,7 +106,7 @@ public class SMSLockFragment extends PreferenceFragment {
         editor.commit();
     }
 
-    public void addAdmin() {
+    private void addAdmin() {
         Intent intent = new Intent(
                 DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,

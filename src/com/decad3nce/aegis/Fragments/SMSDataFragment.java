@@ -1,18 +1,16 @@
 package com.decad3nce.aegis.Fragments;
 
+import android.app.DialogFragment;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.os.Bundle;
-import android.app.DialogFragment;
-import android.preference.PreferenceFragment;
-
 import com.decad3nce.aegis.R;
 import com.decad3nce.aegis.Utils;
-import com.decad3nce.aegis.Fragments.ChooseBackupProgramDialogFragment;
 
 
 public class SMSDataFragment extends PreferenceFragment implements ChooseBackupProgramDialogFragment.ChooseBackupDialogListener {

@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.LocationManager;
+import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
@@ -15,8 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import com.decad3nce.aegis.AegisActivity;
 import com.decad3nce.aegis.R;
-import android.os.Bundle;
-import android.preference.PreferenceFragment;
 import com.decad3nce.aegis.Utils;
 
 public class SMSLocateFragment extends PreferenceFragment {
@@ -50,7 +50,7 @@ public class SMSLocateFragment extends PreferenceFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if (devicePolicyManager.getActiveAdmins() != null) {
+        if (devicePolicyManager != null && devicePolicyManager.getActiveAdmins() != null) {
             if (!devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
                 if (mLocateEnabledPreference != null) {
                     locateEnabled = false;
@@ -116,7 +116,7 @@ public class SMSLocateFragment extends PreferenceFragment {
         editor.commit();
     }
 
-    public void addAdmin() {
+    private void addAdmin() {
         Intent intent = new Intent(
                 DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
@@ -128,7 +128,7 @@ public class SMSLocateFragment extends PreferenceFragment {
         startActivityForResult(intent, AegisActivity.ACTIVATION_REQUEST);
     }
 
-    protected void showLocationServicesDialog() {
+    private void showLocationServicesDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
         dialog.setMessage(getResources().getString(R.string.aegis_location_services_not_enabled));
         dialog.setPositiveButton(getResources().getString(R.string.aegis_open_location_settings), new DialogInterface.OnClickListener() {
@@ -149,7 +149,7 @@ public class SMSLocateFragment extends PreferenceFragment {
 
     }
 
-    protected boolean isLocationServicesEnabled() {
+    private boolean isLocationServicesEnabled() {
         LocationManager mLM = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         if(!mLM.isProviderEnabled(LocationManager.GPS_PROVIDER) && !mLM.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {

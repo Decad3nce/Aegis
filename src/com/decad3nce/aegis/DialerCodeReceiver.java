@@ -1,12 +1,11 @@
 package com.decad3nce.aegis;
 
-import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 
 public class DialerCodeReceiver extends BroadcastReceiver {
     private static final String TAG = "aeGis";

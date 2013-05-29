@@ -1,21 +1,20 @@
 package com.decad3nce.aegis;
 
-import android.app.Activity;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 public class RegisterActivity extends Activity {
     private static final String TAG = "aeGis";

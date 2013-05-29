@@ -1,11 +1,11 @@
 package com.decad3nce.aegis.Fragments;
 
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.webkit.WebView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
 import com.decad3nce.aegis.R;
 
 public class LicensesFragment extends Fragment {

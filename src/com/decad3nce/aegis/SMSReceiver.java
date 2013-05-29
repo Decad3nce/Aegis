@@ -1,11 +1,5 @@
 package com.decad3nce.aegis;
 
-import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
-import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
-import com.decad3nce.aegis.Fragments.SMSDataFragment;
-import com.decad3nce.aegis.Fragments.SMSLocateFragment;
-import com.decad3nce.aegis.Fragments.SMSLockFragment;
-
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
+import com.decad3nce.aegis.Fragments.*;
 
 public class SMSReceiver extends BroadcastReceiver {
     private static final String TAG = "aeGis";
