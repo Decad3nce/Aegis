@@ -1,11 +1,5 @@
 package com.decad3nce.aegis;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
-import com.decad3nce.aegis.Fragments.SMSLocateFragment;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,12 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.location.Address;
-import android.location.Criteria;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.location.*;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +19,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.decad3nce.aegis.Fragments.SMSLocateFragment;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class PhoneTrackerActivity extends Activity implements LocationListener {
 
@@ -304,22 +298,23 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        
+                .getDefaultSharedPreferences(this);;
+
         String mLocationToSend = null;
         boolean mLocateGeocodePref = preferences.getBoolean(
                 SMSLocateFragment.PREFERENCES_LOCATE_GEOCODE_PREF, getResources()
                 .getBoolean(R.bool.config_default_locate_geocode_pref));
 
         if (mLocateGeocodePref) {
-            mLocationToSend = geoCodeMyLocation(location.getLatitude(),
-                    location.getLongitude());
+            mLocationToSend = (geoCodeMyLocation(location.getLatitude(),
+                    location.getLongitude())) + "\nWith accuracy of: " + location.getAccuracy() +
+                    "\nProvider: " + location.getProvider();
         } else {
-            mLocationToSend = String.format("latitude = %f longitude = %f",
-                    location.getLatitude(), location.getLongitude());
+            mLocationToSend = "Your phone is here: \n" + "https://maps.google.com/maps?q=" + location.getLatitude() + ",+" + location.getLongitude() + "+" + "(Current+phone+location)\n"
+                    + "With accuracy of: " + location.getAccuracy() + "\nProvider: " + location.getProvider();
         }
 
-        if ((isBetterLocation(location, mLocation) && Geocoder.isPresent()) || mFirstTrack) {
+        if ((isBetterLocation(location, mLocation)) || mFirstTrack) {
             try {
                 Log.i(TAG, "Sending SMS location update");
                 Utils.sendSMS(this, originatingAddress, mLocationToSend);
