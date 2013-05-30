@@ -33,6 +33,8 @@
     <string name="preferences_advanced_sms_category">SMS Einstellungen</string>
     <string name="preferences_advanced_root_category">Root Einstellungen (ROOT-RECHTE BENÖTIGT)</string>
     <string name="preferences_advanced_backup_accounts_category">Backup Konten</string>
+    <string name="preferences_advanced_backup_phone_number_title">Backup Telefonnummer</string>
+    <string name="preferences_advanced_backup_phone_number_summary">Backup Nummer, welche zur Standorterfassung genutzt wird, wenn eine neue SIM Karte im Gerät erkannt wurde</string>
     <string name="preferences_advanced_hide_from_launcher_title">Vom Wählfeld ausführen</string>
     <string name="preferences_advanced_hide_from_launcher_summary">Startet aeGis durch das Wählen von "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
@@ -62,7 +64,9 @@
     <string name="preferences_lock_activation_sms_title">"Sperr-SMS"</string>
     <string name="preferences_lock_activation_sms_summary">"Text der SMS festlegen, mit der das Gerät gesperrt wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigtes Sperren zu verhindern."</string>
     <string name="preferences_lock_password_title">"Standard-Passwort"</string>
+    <string name="preferences_lock_password_send_in_sms_title">Passwort in SMS zurücksenden</string>
     <string name="preferences_lock_password_summary">"Passwort für den Sperrbildschirm festlegen. Dieses Passwort kann geändert werden, indem das gewünschte Passwort an die Aktivierungs-SMS angehängt wird. Falls Sie das Feld leer lassen, wird der Sperrbildschirm nicht geändert. Das Gerät wird nur gesperrt und der Benutzer muss es mit der in den Systemeinstellungen festgelegten Methode entsperren."</string>
+    <string name="preferences_lock_password_send_in_sms_summary">Das Sperr-Passwort beim bestätigen der Sperrung per SMS mitsenden</string> 
     <string name="preferences_lock_wipe_pref_title">Gerätedaten löschen</string>
     <string name="preferences_lock_wipe_pref_summary">Gerätedaten werden bei Aktivierungs-SMS gelöscht</string>
     <string name="preferences_data_category">Daten</string>
@@ -92,6 +96,7 @@
     
     <string name="util_sendsms_alarm_pass">"aeGis: Sound erfolgreich aktiviert."</string>
     <string name="util_sendsms_alarm_fail">"aeGis: Fehler beim Überschreiben der Sound-Einstellungen:"</string>
+    <string name="util_sendsms_lock_message">aeGis: Gerät erfolgreich gesperrt</string>
     <string name="util_sendsms_lock_pass">"aeGis: Gerät gesperrt mit Passwort:"</string>
     <string name="util_sendsms_lock_fail">"aeGis: Fehler beim Sperren des Gerätes:"</string>
     <string name="util_sendsms_data_recovery_pass">aeGis: Datei gesichert:</string>
@@ -121,6 +126,7 @@
     <string name="about_email_link">"E-Mail an Entwickler senden"</string>
     <string name="about_share_link">"aeGis teilen"</string>
     <string name="about_xda_link">Support-Thread bei XDA</string>
+    <string name="about_quickly_link">Entwickler unterstützen</string>
     
     <string name="overflow_help">Hilfe</string>
     <string name="overflow_simlist">Erlaubte SIM-Karten</string>
@@ -154,8 +160,17 @@
     <string name="sim_menu_remove">IMEI entfernen</string>
     <string name="sim_menu_edit">IMEI bearbeiten</string>
     
-    <string name="drawer_open">Navigation öffnen</string>
-    <string name="drawer_close">Navigation schließen</string>
+    <string name="sim_fragment_request_backup_number">Bitte tragen Sie eine gültige Backup-Telefonnummer ein, um diese Funktion zu nutzen</string>
+    <string name="sim_fragment_add_dialog">IMSI zur Liste hinzufügen</string>
+    <string name="sim_fragment_add_dialog_add">Hinzufügen</string>
+    <string name="sim_fragment_add_dialog_read">Auslesen</string>
+
+    <string name="sim_fragment_edit_dialog">IMSI aus der Liste bearbeiten</string>
+    <string name="sim_fragment_edit_dialog_save">Speichern</string>
+    <string name="sim_fragment_edit_dialog_cancel">Abbrechen</string>
+
+    <string name="drawer_open">Drawer geöffnet</string>
+    <string name="drawer_close">Drawer geschlossen</string>
 
     <string name="receiver_alarm_override">"aeGis hat die Sound-Einstellungen überschrieben"</string>
 </resources>
