@@ -3,10 +3,7 @@ package com.decad3nce.aegis;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -15,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.BackupAccountsDialogFragment;
 import com.decad3nce.aegis.Fragments.SMSDataFragment;
@@ -350,7 +348,11 @@ public class BackupGoogleAccountsActivity extends Activity implements BackupAcco
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         //Generate new login session
+        try {
         startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getResources().getString(R.string.aegis_backup_service_upgrade_to_play_store), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

@@ -28,6 +28,7 @@
     <string name="aegis_backup_service_logout_from_account">Logout</string>
     <string name="aegis_backup_service_options_menu">Account Options</string>
     <string name="aegis_choose_backup_application">Choose Backup Service</string>
+    <string name="aegis_backup_service_upgrade_to_play_store">If you\'re using a real device(not emulated), please upgrade the play store application</string>
     
     <string name="preferences_advanced_category">Advanced Settings</string>
     <string name="preferences_advanced_sms_category">SMS Settings</string>
@@ -156,9 +157,9 @@
     <string name="aegis_choose_backup_application_1">Google Drive</string>
     <string name="aegis_choose_backup_application_2">Dropbox</string>
     
-    <string name="sim_menu_add">Add IMEI</string>
-    <string name="sim_menu_remove">Remove IMEI</string>
-    <string name="sim_menu_edit">Edit IMEI</string>
+    <string name="sim_menu_add">Add IMSI</string>
+    <string name="sim_menu_remove">Remove IMSI</string>
+    <string name="sim_menu_edit">Edit IMSI</string>
 
     <string name="sim_fragment_request_backup_number">Please add a valid backup number to utilize this feature</string>
     <string name="sim_fragment_add_dialog">Add IMSI to list</string>
