@@ -82,7 +82,16 @@ public class SIMStateReceiver extends BroadcastReceiver {
      * to usage.
      */
     private boolean isInList(String imsi) {
-        ArrayList<String> identifiers = new ArrayList<String>(getList());
+        ArrayList<String> identifiers;
+        if(getList() == null) {
+            identifiers = new ArrayList<String>();
+        } else {
+            identifiers = new ArrayList<String>(getList());
+        }
+
+        if(identifiers == null)
+            return true;
+
         if(identifiers.contains(imsi) || identifiers.isEmpty()) {
             return true;
         }
@@ -93,6 +102,8 @@ public class SIMStateReceiver extends BroadcastReceiver {
         Set<String> set = new HashSet<String>();
         SharedPreferences prefs = mContext.getSharedPreferences("imsi_list", 0);
         set = prefs.getStringSet("identifiers", null);
+        if(set == null)
+            return null;
         Log.v(TAG, set.toString());
         return set;
     }
