@@ -17,6 +17,9 @@
     <string name="device_admin_reason">"aeGis richiede i controlli amministrativi per le funzioni di wipe e blocco."</string>
     <string name="text_stub">"Prossimamente!"</string>
     <string name="descr_overflow_button">"extra"</string>
+    
+    <string name="aegis_showcaseview_alarm_toggle">Sposta l\'interruttore per attivare la funzione allarme quando viene inviato il relativo SMS di attivazione.\n La funzione sarà attiva solo se l\'interruttore è su ON.</string>
+    
     <string name="aegis_location_services_not_enabled">I servizi di localizzazione sono disattivati. Devi attivarli nelle impostazioni per permettere ad aeGis di tracciare la posizione del dispositivo.</string>
     <string name="aegis_open_location_settings">Attiva</string>
     <string name="aegis_backup_service_not_enabled">Seleziona un account di backup nelle impostazioni prima di attivare il recupero dei dati .</string>
@@ -30,6 +33,8 @@
     <string name="preferences_advanced_sms_category">Impostazioni SMS</string>
     <string name="preferences_advanced_root_category">Anti-reset(RICHIEDE ROOT)</string>
     <string name="preferences_advanced_backup_accounts_category">Accounts di backup</string>
+    <string name="preferences_advanced_backup_phone_number_title">Numero telefonico di backup</string>
+    <string name="preferences_advanced_backup_phone_number_summary">Questo numero di appoggio sarà utilizzato per la localizzazione se aeGis rileverà una nuova SIM inserita nel dispositivo.</string>
     <string name="preferences_advanced_hide_from_launcher_title">Apri tramite Dialer</string>
     <string name="preferences_advanced_hide_from_launcher_summary">Quando attivo, permette di avviare aeGis componendo il numero telefonico segreto: "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS di conferma</string>
@@ -59,7 +64,9 @@
     <string name="preferences_lock_activation_sms_title">"SMS attivazione blocco"</string>
     <string name="preferences_lock_activation_sms_summary">"Scegli il testo da inviare per bloccare il dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del blocco."</string>
     <string name="preferences_lock_password_title">"Password di default"</string>
+    <string name="preferences_lock_password_send_in_sms_title">Invia password tramite SMS</string>
     <string name="preferences_lock_password_summary">"Scegli la password da utilizzare per il blocco del dispositivo. Questa sarà la password impostata di default, ma ne può essere impostata una diversa durante l'invio aggiungendola nell'SMS stesso dopo il comando di attivazione. Se non impostata durante l'invio, il dispositivo verrà bloccato utilizzando la password esistente."</string>
+    <string name="preferences_lock_password_send_in_sms_summary">Notifica la password di sblocco nel SMS di conferma del blocco del dispositivo.</string>
     <string name="preferences_lock_wipe_pref_title">Wipe Dispositivo</string>
     <string name="preferences_lock_wipe_pref_summary">"Effettua il wipe del dispositivo alla ricezione dell'SMS di blocco."</string>
     <string name="preferences_data_category">Dati</string>
@@ -76,6 +83,8 @@
     <string name="preferences_locate_enabled_summary">"Localizza il dispositivo quando viene inviato il relativo SMS di attivazione"</string>
     <string name="preferences_locate_activation_sms_title">"SMS attivazione localizzazione"</string>
     <string name="preferences_locate_activation_sms_summary">"Scegli il testo da inviare per localizzare il dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie della localizzazione. "</string>
+    <string name="preferences_locate_stop_sms_title">SMS disattivazione localizzazione</string>
+    <string name="preferences_locate_stop_sms_summary">Scegli il testo da inviare per bloccare la localizzazione.</string>
     <string name="preferences_locate_lock_pref_title">"Blocca il dispositivo"</string>
     <string name="preferences_locate_lock_pref_summary">"Blocca il dispositivo con la password di default o aggiunta all'SMS di attivazione quando viene attivata la localizzazione."</string>
     <string name="preferences_locate_geocode_pref_title">Geocodifica coordinate</string>
@@ -87,6 +96,7 @@
     
     <string name="util_sendsms_alarm_pass">"aeGis: Suoni abilitati con successo."</string>
     <string name="util_sendsms_alarm_fail">"aeGis: Impossibile modificare le impostazioni audio. Errore:"</string>
+    <string name="util_sendsms_lock_message">aeGis: Dispositivo bloccato con successo.</string>
     <string name="util_sendsms_lock_pass">"aeGis: Dispositivo bloccato con la password:"</string>
     <string name="util_sendsms_lock_fail">"aeGis: Impossibile bloccare il dispositivo. Errore:"</string>
     <string name="util_sendsms_data_recovery_pass">""aeGis: File recuperati:"</string>
@@ -94,6 +104,7 @@
     <string name="util_sendsms_wipe_pass">"aeGis: Wiping del dispositivo in corso."</string>
     <string name="util_sendsms_wipe_fail">"aeGis: Impossibile fare il wipe del dispositivo. Errore:"</string>
     <string name="util_sendsms_locate_fail">"aeGis: Impossibile localizzare il dispositivo. Errore:"</string>
+    <string name="util_sendsms_locate_stopped">aeGis: Localizzazione disattivata</string>
     
     <string name="register_password_textview">"Password"</string>
     <string name="register_password_confirm_textview">"Conferma password"</string>
@@ -115,7 +126,10 @@
     <string name="about_email_link">"Invia un'email allo sviluppatore"</string>
     <string name="about_share_link">"Condividi aeGis"</string>
     <string name="about_xda_link">Discussione di supporto su XDA</string>
+    <string name="about_quickly_link">Supporta lo sviluppatore</string>
     
+    <string name="overflow_help">Aiuto</string>
+    <string name="overflow_simlist">SIM accettate</string>
     <string name="overflow_advanced_settings">Impostazioni</string>
     <string name="overflow_licenses">Licenza</string>
     <string name="overflow_about">Info e contatti</string>
@@ -141,6 +155,22 @@
     
     <string name="aegis_choose_backup_application_1">Google Drive</string>
     <string name="aegis_choose_backup_application_2">Dropbox</string>
+    
+    <string name="sim_menu_add">Aggiungi IMEI</string>
+    <string name="sim_menu_remove">Rimuovi IMEI</string>
+    <string name="sim_menu_edit">Modifica IMEI</string>
+    
+    <string name="sim_fragment_request_backup_number">Aggiungi un numero telefonico valido.</string>
+    <string name="sim_fragment_add_dialog">Aggiungi IMSI alla lista</string>
+    <string name="sim_fragment_add_dialog_add">Aggiungi</string>
+    <string name="sim_fragment_add_dialog_read">Autorilevamento</string>
+    
+    <string name="sim_fragment_edit_dialog">Modifica IMSI nella lista</string>
+    <string name="sim_fragment_edit_dialog_save">Salva</string>
+    <string name="sim_fragment_edit_dialog_cancel">Annulla</string>
+    
+    <string name="drawer_open">Apertura Drawer</string>
+    <string name="drawer_close">Chiusura Drawer</string>
     
     <string name="receiver_alarm_override">"aeGis ha sovrascritto le impostazioni audio."</string>
 </resources>
