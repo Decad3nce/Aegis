@@ -28,13 +28,14 @@
     <string name="aegis_backup_service_logout_from_account">Abmelden</string>
     <string name="aegis_backup_service_options_menu">Konto Optionen</string>
     <string name="aegis_choose_backup_application">Backupdienst auswählen</string>
+    <string name="aegis_backup_service_upgrade_to_play_store">"Falls Sie ein echtes Gerät nutzen (keinen Emulator), updaten Sie bitte die Play Store Applikation"</string> 
    
     <string name="preferences_advanced_category">Erweiterte Einstellungen</string>
     <string name="preferences_advanced_sms_category">SMS Einstellungen</string>
     <string name="preferences_advanced_root_category">Root Einstellungen (ROOT-RECHTE BENÖTIGT)</string>
     <string name="preferences_advanced_backup_accounts_category">Backup Konten</string>
     <string name="preferences_advanced_backup_phone_number_title">Backup Telefonnummer</string>
-    <string name="preferences_advanced_backup_phone_number_summary">Backup Nummer, welche zur Standorterfassung genutzt wird, wenn eine neue SIM Karte im Gerät erkannt wurde</string>
+    <string name="preferences_advanced_backup_phone_number_summary">Backupnummer, welche zur Standorterfassung genutzt wird, wenn eine neue SIM Karte im Gerät erkannt wurde</string>
     <string name="preferences_advanced_hide_from_launcher_title">Vom Wählfeld ausführen</string>
     <string name="preferences_advanced_hide_from_launcher_summary">Startet aeGis durch das Wählen von "*#*#23447#*#*"</string>
     <string name="preferences_advanced_enabled_confirmaton_sms_title">Bestätigungs-SMS</string>
@@ -66,7 +67,7 @@
     <string name="preferences_lock_password_title">"Standard-Passwort"</string>
     <string name="preferences_lock_password_send_in_sms_title">Passwort in SMS zurücksenden</string>
     <string name="preferences_lock_password_summary">"Passwort für den Sperrbildschirm festlegen. Dieses Passwort kann geändert werden, indem das gewünschte Passwort an die Aktivierungs-SMS angehängt wird. Falls Sie das Feld leer lassen, wird der Sperrbildschirm nicht geändert. Das Gerät wird nur gesperrt und der Benutzer muss es mit der in den Systemeinstellungen festgelegten Methode entsperren."</string>
-    <string name="preferences_lock_password_send_in_sms_summary">Das Sperr-Passwort beim bestätigen der Sperrung per SMS mitsenden</string> 
+    <string name="preferences_lock_password_send_in_sms_summary">Das Sperrpasswort beim Bestätigen der Sperrung per SMS mitsenden</string> 
     <string name="preferences_lock_wipe_pref_title">Gerätedaten löschen</string>
     <string name="preferences_lock_wipe_pref_summary">Gerätedaten werden bei Aktivierungs-SMS gelöscht</string>
     <string name="preferences_data_category">Daten</string>
@@ -156,9 +157,9 @@
     <string name="aegis_choose_backup_application_1">Google Drive</string>
     <string name="aegis_choose_backup_application_2">Dropbox</string>
     
-    <string name="sim_menu_add">IMEI hinzufügen</string>
-    <string name="sim_menu_remove">IMEI entfernen</string>
-    <string name="sim_menu_edit">IMEI bearbeiten</string>
+    <string name="sim_menu_add">IMSI hinzufügen</string>
+    <string name="sim_menu_remove">IMSI entfernen</string>
+    <string name="sim_menu_edit">IMSI bearbeiten</string>
     
     <string name="sim_fragment_request_backup_number">Bitte tragen Sie eine gültige Backup-Telefonnummer ein, um diese Funktion zu nutzen</string>
     <string name="sim_fragment_add_dialog">IMSI zur Liste hinzufügen</string>
