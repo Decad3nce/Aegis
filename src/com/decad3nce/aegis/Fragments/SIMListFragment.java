@@ -2,7 +2,7 @@ package com.decad3nce.aegis.Fragments;
 
 import android.app.AlertDialog;
 import android.app.FragmentManager;
-import android.app.ListFragment;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -10,17 +10,19 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
+import android.text.InputType;
+import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import android.widget.AdapterView.OnItemLongClickListener;
+import com.decad3nce.aegis.FontAdapter;
 import com.decad3nce.aegis.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class SIMListFragment extends ListFragment implements OnItemLongClickListener {
+public class SIMListFragment extends Fragment implements OnItemLongClickListener {
     public static String PREFERENCES_SIM_LIST_INITIALIZED = "sim_list_initialized";
     private ArrayList<String> identifiers;
     private Menu thisMenu;
@@ -29,13 +31,15 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
     private int listItem;
     protected Object mActionMode;
     private String backupNumber;
+    private ListView mSIMList;
     ArrayAdapter<String> adapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(getActivity());
+        View mainView = inflater.inflate(R.layout.list_fragment_layout, container, false);
 ;
         backupNumber = preferences
                 .getString(AdvancedSettingsFragment.PREFERENCES_BACKUP_PHONE_NUMBER, getActivity().getResources()
@@ -47,12 +51,21 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
             fragmentManager.beginTransaction().replace(R.id.content_frame, new AdvancedSettingsFragment()).commit();
             Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sim_fragment_request_backup_number), Toast.LENGTH_LONG).show();
         }
-
-        adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_activated_1, android.R.id.text1,
-                getIdentifiers());
+        identifiers = getIdentifiers();
         setHasOptionsMenu(true);
-        setListAdapter(adapter);
+        mSIMList = (ListView) mainView.findViewById(R.id.sim_list);
+        mSIMList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                //future use
+                mSIMList.setItemChecked(pos, false);
+            }
+
+        });
+        adapter = new FontAdapter(getActivity(), R.layout.list_fragment_item, identifiers);
+        mSIMList.setAdapter(adapter);
+        return mainView;
     }
 
     @Override
@@ -113,8 +126,8 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        getListView().setOnItemLongClickListener(this);
+        mSIMList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        mSIMList.setOnItemLongClickListener(this);
     }
 
     @Override
@@ -139,15 +152,24 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle(getActivity().getResources().getString(R.string.sim_fragment_add_dialog));
         final EditText input = new EditText(getActivity());
+        input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_NUMBER_FLAG_SIGNED);
         alertDialog.setView(input);
         String addButton = getActivity().getResources().getString(R.string.sim_fragment_add_dialog_add);
         String readButton = getActivity().getResources().getString(R.string.sim_fragment_add_dialog_read);
 
         alertDialog.setPositiveButton(addButton, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                String inputText = input.getText().toString();
-                listItemAdd = Long.parseLong(inputText);
-                updateData();
+                if(input.getText().toString() != null) {
+                    String inputText = input.getText().toString();
+                    if(!inputText.isEmpty() || !inputText.trim().equals("")) {
+                        listItemAdd = Long.parseLong(inputText);
+                        updateData();
+                        mSIMList.setItemChecked(listItem, false);
+                        return;
+                    }
+                }
+                Toast.makeText(getActivity(), getResources().getString(R.string.sim_fragment_edit_dialog_null), Toast.LENGTH_LONG).show();
+                mSIMList.setItemChecked(listItem, false);
             }
         });
 
@@ -170,6 +192,7 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle(getActivity().getResources().getString(R.string.sim_fragment_edit_dialog));
         final EditText input = new EditText(getActivity());
+        input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_NUMBER_FLAG_SIGNED);
         alertDialog.setView(input);
         String addButton = getActivity().getResources().getString(R.string.sim_fragment_edit_dialog_save);
         String readButton = getActivity().getResources().getString(R.string.sim_fragment_edit_dialog_cancel);
@@ -178,10 +201,18 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
 
         alertDialog.setPositiveButton(addButton, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                String inputText = input.getText().toString();
-                listItemRemove = listItem;
-                listItemAdd = Long.parseLong(inputText);
-                updateData();
+                if(input.getText().toString() != null) {
+                    String inputText = input.getText().toString();
+                    if(!inputText.isEmpty() || !inputText.trim().equals("")) {
+                        listItemRemove = listItem;
+                        listItemAdd = Long.parseLong(inputText);
+                        updateData();
+                        mSIMList.setItemChecked(listItem, false);
+                        return;
+                    }
+                }
+                mSIMList.setItemChecked(listItem, false);
+                Toast.makeText(getActivity(), getResources().getString(R.string.sim_fragment_edit_dialog_null), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -202,16 +233,16 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
 
         listItem = listPosition;
         mActionMode = getActivity().startActionMode(mActionModeCallback);
-        view.setSelected(true);
-        getListView().setItemChecked(listPosition, true);
+        //view.setSelected(true);
+        mSIMList.setItemChecked(listPosition, true);
         return true;
     }
     
-    private List<String> getIdentifiers() {
+    private ArrayList<String> getIdentifiers() {
         if(getList() != null) {
-            return identifiers = new ArrayList<String>(getList());
+            return new ArrayList<String>(getList());
         } else {
-            return identifiers = new ArrayList<String>();
+            return new ArrayList<String>();
         }
     }
     
@@ -252,6 +283,7 @@ public class SIMListFragment extends ListFragment implements OnItemLongClickList
 
         public void onDestroyActionMode(ActionMode mode) {
             mActionMode = null;
+            mSIMList.setItemChecked(listItem, false);
         }
     };
 
