@@ -3,67 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/emailclick"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:clickable="true"
-        android:drawableRight="@drawable/ic_content_email"
-        android:paddingLeft="20dp"
-        android:text="@string/about_email_link"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Button
-        android:id="@+id/githubclick"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/emailclick"
-        android:clickable="true"
-        android:drawableRight="@drawable/ic_github"
-        android:onClick="onGithubClick"
-        android:paddingLeft="20dp"
-        android:text="@string/about_github_link"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Button
-        android:id="@+id/shareclick"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/githubclick"
-        android:clickable="true"
-        android:drawableRight="@drawable/ic_social_share"
-        android:onClick="onShareClick"
-        android:paddingLeft="20dp"
-        android:text="@string/about_share_link"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    
-    <Button
-        android:id="@+id/xdaclick"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/shareclick"
-        android:clickable="true"
-        android:drawableRight="@drawable/ic_xda"
-        android:onClick="onXDAClick"
-        android:paddingLeft="20dp"
-        android:text="@string/about_xda_link"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Button
-        android:id="@+id/quicklyclick"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/xdaclick"
-        android:clickable="true"
-        android:drawableRight="@drawable/ic_quickly"
-        android:onClick="onQuicklyClick"
-        android:paddingLeft="20dp"
-        android:text="@string/about_quickly_link"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <ListView android:id="@+id/about_list" android:layout_height="wrap_content"
+              android:layout_width="match_parent"/>
 
     <TextView
         android:id="@+id/developername"
