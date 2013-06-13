@@ -3,6 +3,7 @@
     <string name="app_name">aeGis</string>
     <string name="data_section">Data</string>
     <string name="lock_section">Lock</string>
+    <string name="wipe_section">Wipe</string>
     <string name="alarm_section">Alarm</string>
     <string name="locate_section">Locate</string>
     <string name="menu_settings">Settings</string>
@@ -17,8 +18,11 @@
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
     <string name="text_stub">Features coming!</string>
     <string name="descr_overflow_button">overflow</string>
-    
-    <string name="aegis_showcaseview_alarm_toggle">Toggle the switch to enable the alarm feature for when the Activation SMS is sent to the device.\n Feature will only work when toggle is on "ON" position.</string>
+
+    <string name="aegis_showcaseview_drawer_menu_title">Welcome to Aegis</string>
+    <string name="aegis_showcaseview_drawer_menu_content">Use the drawer menu item to access various options</string>
+    <string name="aegis_showcaseview_alarm_toggle_title">Alarm Trigger</string>
+    <string name="aegis_showcaseview_alarm_toggle_content">Toggle the switch to enable the alarm feature for when the Activation SMS is sent to the device.\nFeature will only work when toggle is on "ON" position.</string>
     
     <string name="aegis_location_services_not_enabled">Location services are not active. You need to enable location services for aeGis to be able to track your device.</string>
     <string name="aegis_open_location_settings">Enable</string>
@@ -68,8 +72,11 @@
     <string name="preferences_lock_password_send_in_sms_title">Send password in SMS</string>
     <string name="preferences_lock_password_summary">Choose what password will be used to lock the device. This is the default password that will be set, custom passwords can be provided when sending SMS by appending the requested password to the SMS. If set to blank, the password/lock method will not be changed but the device will get locked to force re-authentication using the existing password.</string>
     <string name="preferences_lock_password_send_in_sms_summary">Include the password in the confirmation SMS text when locking.</string>
-    <string name="preferences_lock_wipe_pref_title">Wipe Device</string>
-    <string name="preferences_lock_wipe_pref_summary">Whether to wipe device when activation SMS for lock tab is received by device.</string>
+    <string name="preferences_wipe_category">Wipe</string>
+    <string name="preferences_wipe_enabled_title">Wipe</string>
+    <string name="preferences_wipe_enabled_summary">Wipe the device when activation sms is sent.</string>
+    <string name="preferences_wipe_activation_sms_title">Wipe Activation SMS</string>
+    <string name="preferences_wipe_activation_sms_summary">Choose what text to send to wipe the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized wiping.</string>
     <string name="preferences_data_category">Data</string>
     <string name="preferences_data_enabled_title">Data</string>
     <string name="preferences_data_enabled_summary">Recover data to device when activation sms is sent.</string>
@@ -128,6 +135,7 @@
     <string name="about_share_link">Share aeGis</string>
     <string name="about_xda_link">Support thread on XDA</string>
     <string name="about_quickly_link">Support Developer</string>
+    <string name="about_changelog_link">What\'s New?</string>
     
     <string name="overflow_help">Help</string>
     <string name="overflow_simlist">Accepted SIMs</string>
@@ -169,6 +177,7 @@
     <string name="sim_fragment_edit_dialog">Edit IMSI in list</string>
     <string name="sim_fragment_edit_dialog_save">Save</string>
     <string name="sim_fragment_edit_dialog_cancel">Cancel</string>
+    <string name="sim_fragment_edit_dialog_null">Please enter a valid input</string>
 
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>

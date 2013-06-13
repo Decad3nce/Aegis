@@ -14,27 +14,28 @@ import com.decad3nce.aegis.AegisActivity;
 import com.decad3nce.aegis.R;
 import com.decad3nce.aegis.Utils;
 
-public class SMSLockFragment extends PreferenceFragment {
+/**
+ * Created by adnan on 6/13/13.
+ */
+public class SMSWipeFragment extends PreferenceFragment {
 
-    public static final String PREFERENCES_LOCK_ACTIVATION_SMS = "lock_activation_sms";
-    public static final String PREFERENCES_LOCK_PASSWORD = "lock_password";
-    public static final String PREFERENCES_LOCK_SEND_PASSWORD_PREF = "lock_send_password_in_sms_pref";
-    public static final String PREFERENCES_LOCK_ENABLED = "lock_toggle";
+    public static final String PREFERENCES_WIPE_ACTIVATION_SMS = "lock_activation_sms";
+    public static final String PREFERENCES_WIPE_ENABLED = "lock_toggle";
 
     private static final String TAG = "aeGis";
 
-    protected static boolean lockEnabled;
-    private Switch mLockEnabledPreference;
+    protected static boolean wipeEnabled;
+    private Switch mWipeEnabledPreference;
     private DevicePolicyManager devicePolicyManager;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.lock_preference);
+        addPreferencesFromResource(R.xml.wipe_preference);
         setHasOptionsMenu(true);
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        lockEnabled = preferences
-                .getBoolean(PREFERENCES_LOCK_ENABLED, getActivity().getResources().getBoolean(R.bool.config_default_lock_enabled));
+        wipeEnabled = preferences
+                .getBoolean(PREFERENCES_WIPE_ENABLED, getActivity().getResources().getBoolean(R.bool.config_default_wipe_enabled));
 
         devicePolicyManager = (DevicePolicyManager) getActivity()
                 .getSystemService(getActivity().DEVICE_POLICY_SERVICE);
@@ -53,39 +54,39 @@ public class SMSLockFragment extends PreferenceFragment {
         //Stop coding hungover
         if (devicePolicyManager != null && devicePolicyManager.getActiveAdmins() != null) {
             if (!devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                if (mLockEnabledPreference != null) {
-                    lockEnabled = false;
-                    mLockEnabledPreference.setChecked(false);
+                if (mWipeEnabledPreference != null) {
+                    wipeEnabled = false;
+                    mWipeEnabledPreference.setChecked(false);
                 }
             } else {
-                mLockEnabledPreference.setChecked(lockEnabled);
+                mWipeEnabledPreference.setChecked(wipeEnabled);
             }
         } else {
-            lockEnabled = false;
-            mLockEnabledPreference.setChecked(false);
+            wipeEnabled = false;
+            mWipeEnabledPreference.setChecked(false);
         }
 
-        if (mLockEnabledPreference != null)
-            mLockEnabledPreference.setOnCheckedChangeListener(lockPreferencesOnChangeListener);
+        if (mWipeEnabledPreference != null)
+            mWipeEnabledPreference.setOnCheckedChangeListener(wipePreferencesOnChangeListener);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        Utils.showItem(R.id.lock_menu_settings, menu);
-        mLockEnabledPreference = (Switch) menu
-                .findItem(R.id.lock_menu_settings).getActionView()
-                .findViewById(R.id.lock_toggle);
+        Utils.showItem(R.id.wipe_menu_settings, menu);
+        mWipeEnabledPreference = (Switch) menu
+                .findItem(R.id.wipe_menu_settings).getActionView()
+                .findViewById(R.id.wipe_toggle);
     }
 
-    CompoundButton.OnCheckedChangeListener lockPreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
+    CompoundButton.OnCheckedChangeListener wipePreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView,
                                      boolean isChecked) {
             switch (buttonView.getId()) {
-                case R.id.lock_toggle:
+                case R.id.wipe_toggle:
                     if (isChecked && !devicePolicyManager
-                        .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
+                            .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
                         addAdmin();
                         commitToShared();
                     } else {
@@ -101,7 +102,7 @@ public class SMSLockFragment extends PreferenceFragment {
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(PREFERENCES_LOCK_ENABLED, mLockEnabledPreference.isChecked());
+        editor.putBoolean(PREFERENCES_WIPE_ENABLED, mWipeEnabledPreference.isChecked());
         editor.commit();
     }
 

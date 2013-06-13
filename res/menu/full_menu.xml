@@ -10,6 +10,11 @@
         android:showAsAction="ifRoom|withText"
         android:visible="false"
         android:actionLayout="@layout/lock_toggle_button" />
+        <item android:id="@+id/wipe_menu_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="ifRoom|withText"
+        android:visible="false"
+        android:actionLayout="@layout/wipe_toggle_button" />
         <item android:id="@+id/locate_menu_settings"
         android:title="@string/menu_settings"
         android:showAsAction="ifRoom|withText"

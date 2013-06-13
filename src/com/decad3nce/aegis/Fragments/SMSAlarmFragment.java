@@ -34,7 +34,6 @@ public class SMSAlarmFragment extends PreferenceFragment {
     @Override
     public void onResume() {
         super.onResume();
-        //
     }
 
     @Override

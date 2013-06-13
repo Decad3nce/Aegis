@@ -1,13 +1,16 @@
 package com.decad3nce.aegis.Fragments;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.*;
+import android.webkit.WebView;
 import android.widget.*;
 import com.decad3nce.aegis.R;
 
@@ -22,7 +25,7 @@ public class AboutFragment extends Fragment {
         View mainView = inflater.inflate(R.layout.about_layout, container, false);
         setHasOptionsMenu(true);
         String version = "UKNOWN";
-        String[] values = new String[] { getResourceString(R.string.about_email_link), getResourceString(R.string.about_github_link), getResourceString(R.string.about_xda_link)};
+        String[] values = new String[] { getResourceString(R.string.about_email_link), getResourceString(R.string.about_github_link), getResourceString(R.string.about_xda_link), getResourceString(R.string.about_changelog_link)};
         mButtonList = (ListView) mainView.findViewById(R.id.about_list);
         mButtonList.setAdapter(new aboutImageAdapter(getActivity(), values));
         mButtonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,6 +57,20 @@ public class AboutFragment extends Fragment {
                         i = new Intent(Intent.ACTION_VIEW);
                         i.setData(Uri.parse(url));
                         startActivity(i);
+                        break;
+                    case 3:
+                        WebView webView = new WebView(getActivity());
+                        webView.loadUrl("file:///android_asset/changelog.html");
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setView(webView);
+                        dialog.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                        break;
                 }
             }
         });
@@ -144,8 +161,10 @@ public class AboutFragment extends Fragment {
                 imageView.setImageResource(R.drawable.ic_content_email);
             } else if(s.contains(getResourceString(R.string.about_github_link))) {
                 imageView.setImageResource(R.drawable.ic_github);
-            } else {
+            } else if(s.contains(getResourceString(R.string.about_xda_link))){
                 imageView.setImageResource(R.drawable.ic_xda);
+            } else {
+                imageView.setImageResource(android.R.drawable.ic_menu_help);
             }
 
             return rowView;

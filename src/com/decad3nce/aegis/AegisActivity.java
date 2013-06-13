@@ -1,41 +1,36 @@
 package com.decad3nce.aegis;
 
 import android.app.*;
-import android.app.admin.DevicePolicyManager;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.*;
+import android.webkit.WebView;
 import android.widget.*;
 import com.decad3nce.aegis.Fragments.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class AegisActivity extends FragmentActivity implements InstallToSystemDialogFragment.NoticeDialogListener {
 
     private static final String TAG = "aeGis";
 
-    private int mIndex;
-    private String MENU_INDEX;
+    private int mIndex = 0;
+    private String MENU_INDEX = "index";
 
-    private static final String PREFERENCES_AEGIS_INITIALIZED = "aegis_initialized";
-
-    private DevicePolicyManager mDevicePolicyManager;
+    public static final String PREFERENCES_AEGIS_VERSION = "aegis_version";
+    public static final String PREFERENCES_AEGIS = "aegis_pref";
 
     private ListView mDrawerList;
     private CharSequence mDrawerTitle;
@@ -44,8 +39,7 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
     private ActionBarDrawerToggle mDrawerToggle;
     private String[] mMenuTitles;
 
-    private boolean mInitialized;
-    private Menu fullMenu;
+    private String mVersion;
 
     public static final ComponentName DEVICE_ADMIN_COMPONENT = new ComponentName(
             DeviceAdmin.class.getPackage().getName(),
@@ -55,12 +49,9 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
+        final SharedPreferences preferences = getSharedPreferences(PREFERENCES_AEGIS, MODE_PRIVATE);
 
-        mInitialized = preferences
-                .getBoolean(PREFERENCES_AEGIS_INITIALIZED, this.getResources()
-                        .getBoolean(R.bool.config_default_aegis_initialized));
+        mVersion = preferences.getString(PREFERENCES_AEGIS_VERSION, "35");
 
         FragmentManager fragmentManager = getFragmentManager();
 
@@ -93,29 +84,48 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
         };
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        mDrawerList.setAdapter(new CustomAdapter(this, R.layout.drawer_list_item, mMenuTitles, "Roboto-Thin.ttf"));
+        mDrawerList.setAdapter(new FontAdapter(this, R.layout.drawer_list_item, new ArrayList(Arrays.asList(mMenuTitles))));
 
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+        int versionCode = 0;
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            versionCode = packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            //shwat
+        }
 
         if (savedInstanceState == null) {
-            if(!mInitialized) {
-                Fragment helpFragment = new HelpFragment();
-                fragmentManager.beginTransaction().replace(R.id.content_frame, helpFragment).commit();
-                mInitialized = true;
+            if(versionCode > Integer.parseInt(mVersion)) {
+                mVersion = String.valueOf(versionCode);
+                WebView webView = new WebView(this);
+                webView.loadUrl("file:///android_asset/changelog.html");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setView(webView);
+                dialog.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString(PREFERENCES_AEGIS_VERSION, mVersion); // value to store
+                        editor.commit();
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             } else {
                 selectItem(0);
             }
+        } else {
+            selectItem(mIndex);
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        saveSettings();
     }
 
     @Override
@@ -127,7 +137,6 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
     @Override
     protected void onStop() {
         super.onStop();
-        saveSettings();
     }
 
     @Override
@@ -192,16 +201,6 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
         return getResources().getStringArray(R.array.menu_array);
     }
 
-
-    private void saveSettings() {
-        SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-
-        SharedPreferences.Editor editor = preferences.edit();;
-        editor.putBoolean(PREFERENCES_AEGIS_INITIALIZED, mInitialized);
-        editor.commit();
-    }
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -238,42 +237,48 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 2:
+                Fragment wipeFragment = new SMSWipeFragment();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, wipeFragment).commit();
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            case 3:
                 Fragment dataFragment = new SMSDataFragment();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, dataFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
-            case 3:
+            case 4:
                 Fragment locateFragment = new SMSLocateFragment();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, locateFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
-            case 4:
+            case 5:
                 Fragment settingsFragment = new AdvancedSettingsFragment();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, settingsFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
-            case 5:
+            case 6:
                 Fragment simListFragment = new SIMListFragment();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, simListFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
-            case 6:
+            case 7:
                 Fragment licensesFragment = new LicensesFragment();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, licensesFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
-            case 7:
+            case 8:
                 Fragment aboutFragment = new AboutFragment();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, aboutFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
-            case 8:
+            case 9:
                 Fragment helpFragment = new HelpFragment();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, helpFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
         }
 
+        mIndex = position;
         mDrawerList.setItemChecked(position, true);
         setTitle(mMenuTitles[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
@@ -296,7 +301,6 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
         }
     }
 
-
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
     }
@@ -313,39 +317,5 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
             return false;
         }
         return false;
-    }
-    class CustomAdapter extends ArrayAdapter<String>{
-
-        Context context;
-        int layoutResourceId;
-        String data[] = null;
-        List<String> list;
-        Typeface tf;
-
-        public CustomAdapter(Context context, int layoutResourceId, String[] data, String FONT ) {
-            super(context, layoutResourceId, data);
-            this.layoutResourceId = layoutResourceId;
-            this.context = context;
-            this.data = data;
-            this.list = new ArrayList<String>(Arrays.asList(data));
-            this.tf = Typeface.createFromAsset(context.getAssets(), "Roboto-Light.ttf");
-        }
-
-        @Override
-        public View getView(int position, View v, ViewGroup parent) {
-            View mView = v;
-            if(mView == null) {
-                LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                mView = vi.inflate(layoutResourceId, null);
-            }
-            if(list.get(position) != null)
-            {
-                TextView text = (TextView) mView.findViewById(R.id.text1);
-                text.setTypeface(tf);
-                text.setText(list.get(position));
-            }
-            return mView;
-        }
-
     }
 }
