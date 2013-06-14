@@ -1,0 +1,186 @@
+<resources>
+
+    <string name="app_name">aeGis</string>
+    <string name="data_section">Dados</string>
+    <string name="lock_section">Bloquear</string>
+    <string name="wipe_section">Eliminar dados</string>
+    <string name="alarm_section">Alarme</string>
+    <string name="locate_section">Localizar</string>
+    <string name="menu_settings">Configuracão</string>
+    <string name="title_activity_main">aeGis</string>
+    <string name="location_text">aeGis está a determinar a localização do dispositivo. Para desactivar a localização, pressione desactivar localização</string>
+
+    <string name="disable_tracking_button">Desactivar localização</string>
+    <string name="disable_tracking_prevent_back">Por favor desactive a localização antes de sair</string>
+    <string name="tracking_returned_no_location">Localização indeterminada</string>
+    <string name="tracking_address">Local:</string>
+    <string name="tracking_disabled">Localização desactivada</string>
+    <string name="device_admin_reason">aeGis necessita de ecesso como administrador de dispositivo para poder eliminar dados e bloquear o dispositivo.</string>
+    <string name="text_stub">Características futuras!</string>
+    <string name="descr_overflow_button">overflow</string>
+
+    <string name="aegis_showcaseview_drawer_menu_title">Bem-vindo ao Aegis</string>
+    <string name="aegis_showcaseview_drawer_menu_content">Use o menu para configurar as várias opções</string>
+    <string name="aegis_showcaseview_Alarme_toggle_title">Alarme</string>
+    <string name="aegis_showcaseview_Alarme_toggle_content">Mova o botão para activar o Alarme quando o SMS de activação for enviado para o dispositivo. Esta acção só funcionará quando o botão estiver na posição "ON".</string>
+    
+    <string name="aegis_location_services_not_enabled">Os serviços de localização não estão activos. É necessário activar os serviços de localização para o aeGis poder localizar o dispositivo.</string>
+    <string name="aegis_open_location_settings">Activar</string>
+    <string name="aegis_backup_service_not_enabled">Por favor escolha uma conta para backup antes de prosseguir para a activação de recuperação de dados.</string>
+    <string name="aegis_backup_service_open_settings">Escolha</string>
+    <string name="aegis_backup_service_choose_account">Escolha a conta</string>
+    <string name="aegis_backup_service_logout_from_account">Logout</string>
+    <string name="aegis_backup_service_options_menu">Opções de conta</string>
+    <string name="aegis_choose_backup_application">Escolha o serviço de Backup</string>
+    <string name="aegis_backup_service_upgrade_to_play_store">Se está a usar um dispositivo real (não emulado) por favor actualize a versão da play store</string>
+    
+    <string name="preferences_advanced_category">Opções avançadas</string>
+    <string name="preferences_advanced_sms_category">Opções de SMS</string>
+    <string name="preferences_advanced_root_category">Opções de Root (NECESSÁRIO ROOT)</string>
+    <string name="preferences_advanced_backup_accounts_category">Contas de Backup</string>
+    <string name="preferences_advanced_backup_phone_number_title">Backup do Número de Telefone</string>
+    <string name="preferences_advanced_backup_phone_number_summary">Backup do número que será utilizado para seguir a localização quando aeGis detectar que um novo cartão SIM foi colocado no dispositivo.</string>
+    <string name="preferences_advanced_hide_from_launcher_title">Iniciar a partir do marcador do telefone</string>
+    <string name="preferences_advanced_hide_from_launcher_summary">Quando activo permite iniciar aeGis a partir do marcador do telefone digitando o seguinte código:  "*#*#23447#*#*"</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_title">SMS de confirmação</string>
+    <string name="preferences_advanced_enabled_confirmaton_sms_summary">Envia SMS de confirmação após a acção ser efectuada.</string>
+    <string name="preferences_advanced_enable_abort_broadcast">Cancelar transmissão</string>
+    <string name="preferences_advanced_enable_abort_broadcast_summary">Evita que o SMS de activação seja recebido pela aplicação de mensagens do dispositivo.</string>
+    <string name="preferences_advanced_change_password">Alterar Password</string>
+    <string name="preferences_advanced_remove_admin">Remove aeGis de administrador de dispositivo.</string>
+    <string name="preferences_advanced_remove_admin_summary">Permite desinstalar aeGis do dispositivo.</string>
+    <string name="preferences_advanced_remove_admin_completed">seGis foi removido de Administrador de dispositivo</string>
+    <string name="preferences_advanced_install_to_system">Instalar aeGis como aplicação de sistema.</string>
+    <string name="preferences_advanced_install_to_system_summary">Evita que aeGis seja desinstalado apesar de um restauro do sistema.</string>
+    <string name="preferences_advanced_google_account_title">Conta Google Drive</string>
+    <string name="preferences_advanced_dropbox_account_title">Conta Dropbox</string>
+    <string name="preferences_advanced_dropbox_account_summary_active">Activada</string>
+    <string name="preferences_advanced_dropbox_account_summary_inactive">Desactivada</string>
+    <string name="preferences_alarm_category">Alarme</string>
+    <string name="preferences_alarm_enabled_title">Alarme</string>
+    <string name="preferences_alarm_enabled_summary">Toca um alarme e activa o som de alarme no dispositivo.</string>
+    <string name="preferences_alarm_activation_sms_title">SMS de activação do alarme</string>
+    <string name="preferences_alarm_activation_sms_summary">Escolha um texto para activar o Alarme. É recomendado o uso de um PIN nas suas SMS para evitar a activação não autorizada do Alarme.</string>
+    <string name="preferences_alarm_vibrate_title">Vibrar</string>
+    <string name="preferences_alarm_vibrate_summary">Vibra quando o alarme for activado.</string>
+    <string name="preferences_lock_category">Bloquear</string>
+    <string name="preferences_lock_enabled_title">Bloquear</string>
+    <string name="preferences_lock_enabled_summary">Bloqueia o dispositivo quando for enviado o sms de activação.</string>
+    <string name="preferences_lock_activation_sms_title">SMS de activação de bloqueio</string>
+    <string name="preferences_lock_activation_sms_summary">Escolha o texto para bloquear o dispositivo. É recomendado o uso de un PIN nas suas SMS para evitar a activação não autorizada do bloqueio.</string>
+    <string name="preferences_lock_password_title">Código por defeito.</string>
+    <string name="preferences_lock_password_send_in_sms_title">Enviar o código no SMS</string>
+    <string name="preferences_lock_password_summary">Escolha o código que será usado para bloquear o dsipositivo. Este será o código a usar por defeito. Códigos personalizados podem ser usados acrescentando o código ao SMS. Se deixar em branco, o código de bloqueio não será alterado, mas o dispositivo será desligado para obrigar à reautenticação com o código existente.</string>
+    <string name="preferences_lock_password_send_in_sms_summary">Incluir o código no SMS de confirmação quando bloquear.</string>
+    <string name="preferences_wipe_category">Eliminar dados</string>
+    <string name="preferences_wipe_enabled_title">Eliminar dados</string>
+    <string name="preferences_wipe_enabled_summary">Elimina os dados do dispositivo quando o SMS de activação é enviado.</string>
+    <string name="preferences_wipe_activation_sms_title">SMS de activação de eliminar dados</string>
+    <string name="preferences_wipe_activation_sms_summary">Escolha o texto a usar para eliminar os dados do dispositivo. É recomendado o uso de un PIN nas suas SMS para evitar a activação não autorizada da opção eliminar dados.</string>
+    <string name="preferences_data_category">Dados</string>
+    <string name="preferences_data_enabled_title">Dados</string>
+    <string name="preferences_data_enabled_summary">Recuperar os dados do dispositivo quando o SMS de activação for enviado.</string>
+    <string name="preferences_data_activation_sms_title">SMS de activação de Recuperação de Dados</string>
+    <string name="preferences_data_activation_sms_summary">Escolha o texto a usar para recuperar os dados do dispositivo. É recomendado o uso de un PIN nas suas SMS para evitar a activação não autorizada.</string>
+    <string name="preferences_data_backup_call_logs_title">Backup do registo de chamadas</string>
+    <string name="preferences_data_backup_call_logs_summary">Backup do registo de chamadas para a sua conta de Backup.</string>
+    <string name="preferences_data_backup_sms_logs_title">Backup do registo de SMS</string>
+    <string name="preferences_data_backup_sms_logs_summary">Backup do registo de SMS para a sua conta de Backup.</string>
+    <string name="preferences_locate_category">Localizar</string>
+    <string name="preferences_locate_enabled_title">Localizar</string>
+    <string name="preferences_locate_enabled_summary">Localizar o dispositivo quando o SMS de localização for enviado.</string>
+    <string name="preferences_locate_activation_sms_title">SMS de activação de localização</string>
+    <string name="preferences_locate_activation_sms_summary">Escolha um texto para activar a localização do dispositivo. É recomendado o uso de un PIN nas suas SMS para evitar a activação não autorizada da opção de localização</string>
+    <string name="preferences_locate_stop_sms_title">SMS de desactivação da localização</string>
+    <string name="preferences_locate_stop_sms_summary">Escolha o texto a enviar para desactivar a localização remota.</string>
+    <string name="preferences_locate_lock_pref_title">Bloquear dispositivo</string>
+    <string name="preferences_locate_lock_pref_summary">Bloqueia o dispositivo com o código por defeito ou com o código enviado quando a localização é activada.</string>
+    <string name="preferences_locate_geocode_pref_title">Activar resposta geocodificada</string>
+    <string name="preferences_locate_geocode_pref_summary">Devolver a localização baseada em localização US.</string>
+    <string name="preferences_locate_update_duration_title">Intervalo de pedido de actualização da localização</string>
+    <string name="preferences_locate_update_duration_summary">Frequência das tentativas destinadas a obter a localização. Um tempo menor fará com que a bateria se esgote mais rápidamente.</string>
+    <string name="preferences_locate_minimum_distance_title">Distância mínima de localização</string>
+    <string name="preferences_locate_minimum_distance_summary">Escolher a distância mínima de alteração da localização que provocará uma actualização da localização.</string>
+    
+    <string name="util_sendsms_alarm_pass">aeGis: Som activado com sucesso.</string>
+    <string name="util_sendsms_alarm_fail">aeGis: Não foi possivel alterar a configuração de som. Erro:</string>
+    <string name="util_sendsms_lock_message">aeGis: Dispositivo bloqueado com sucesso.</string>
+    <string name="util_sendsms_lock_pass">aeGis: Dispositivo bloqueado com código:</string>
+    <string name="util_sendsms_lock_fail">aeGis: Não foi possivel bloquear o dispositivo. Erro:</string>
+    <string name="util_sendsms_data_recovery_pass">aeGis: Ficheiro recuperado:</string>
+    <string name="util_sendsms_data_recovery_fail">aeGis: Não foi possivel recuperar os ficheiros</string>
+    <string name="util_sendsms_wipe_pass">aeGis: Eliminar dados.</string>
+    <string name="util_sendsms_wipe_fail">aeGis: Não foi possivel eliminar os dados do dispositivo. Erro:</string>
+    <string name="util_sendsms_locate_fail">aeGis: Não foi possivel localizar o dispositivo. Erro:</string>
+    <string name="util_sendsms_locate_stopped">aeGis: Localização de dispositivo desactivada</string>
+    
+    <string name="register_password_textview">Código</string>
+    <string name="register_password_confirm_textview">Confirme o Código</string>
+    <string name="register_password_button">Seguinte</string>
+    <string name="register_password_toast_password_set">Alterar Código</string>
+    <string name="register_password_toast_password_fail">Introduza o código e confirme</string>
+    <string name="register_password_toast_password_match_fail">Erro de concordância</string>
+    <string name="register_password_checkbox_summary">Desactivar Código de Login</string>
+    <string name="register_password_summary">Por favor, introduza um código para bloquear aeGis durante cada sessão.</string>
+    
+    <string name="login_password_textview">Código</string>
+    <string name="login_password_button">Login</string>
+    <string name="login_password_toast_password_fail">Código incorrecto</string>
+    <string name="login_password_toast_password_enter">Por favor introduza o Código</string>
+    <string name="login_password_summary">Por favor, inicie sessão para desbloquear aeGis</string>
+    
+    <string name="about_developer_name">Copyright(&#169;) 2013 Adnan Begovic</string>
+    <string name="about_github_link">Github source link</string>
+    <string name="about_email_link">Enviar email ao autor</string>
+    <string name="about_share_link">Partilhar aeGis</string>
+    <string name="about_xda_link">Tópico no XDA</string>
+    <string name="about_quickly_link">Apoie o criador</string>
+    <string name="about_changelog_link">Novidades?</string>
+    
+    <string name="overflow_help">Ajuda</string>
+    <string name="overflow_simlist">SIMs autorizados</string>
+    <string name="overflow_advanced_settings">Opções</string>
+    <string name="overflow_licenses">Licenças</string>
+    <string name="overflow_about">Acerca de</string>
+    
+    <string name="advanced_dialog_install_to_system">Deseja instalar aeGis como aplicação de sistema?\n\nEvita que aeGis seja desinstalado apesar de um restauro do sistema.\n\nAviso: O seu dispositivo será reiniciado.\nnão será possivel desfazer este procedimento.</string>
+    <string name="advanced_dialog_install">Instalar</string>
+    <string name="advanced_dialog_cancel">Cancelar</string>
+    <string name="advanced_dialog_installing">Instalar em sistema...</string>
+    <string name="advanced_dialog_installing_failed">Necessário permissão de superuser para instalar em sistema.</string>
+    <string name="advanced_install_to_system_fail">aeGis instalado em sistema com sucesso</string>
+    
+    <string name="array_update_item1">30 segundos</string>
+    <string name="array_update_item2">1 minuto</string>
+    <string name="array_update_item3">2 minutos</string>
+    <string name="array_update_item4">3 minutos</string>
+    <string name="array_update_item5">5 minutos</string>
+    
+    <string name="array_distance_item1">10 Metros</string>
+    <string name="array_distance_item2">25 Metros</string>
+    <string name="array_distance_item3">50 Metros</string>
+    <string name="array_distance_item4">100 Metros</string>
+    <string name="array_distance_item5">500 Metros</string>
+    
+    <string name="aegis_choose_backup_application_1">Google Drive</string>
+    <string name="aegis_choose_backup_application_2">Dropbox</string>
+    
+    <string name="sim_menu_add">Adicionar IMSI</string>
+    <string name="sim_menu_remove">Remover IMSI</string>
+    <string name="sim_menu_edit">Editar IMSI</string>
+
+    <string name="sim_fragment_request_backup_number">Por favor forneça um número de backup válido para usar esta opção</string>
+    <string name="sim_fragment_add_dialog">Adicionar IMSI à lista</string>
+    <string name="sim_fragment_add_dialog_add">Adicionar</string>
+    <string name="sim_fragment_add_dialog_read">Ler</string>
+
+    <string name="sim_fragment_edit_dialog">Editar IMSI na lista</string>
+    <string name="sim_fragment_edit_dialog_save">Guardar</string>
+    <string name="sim_fragment_edit_dialog_cancel">Cancelar</string>
+    <string name="sim_fragment_edit_dialog_null">Por favor introduza um valor válido</string>
+
+    <string name="drawer_open">Abrir Menu</string>
+    <string name="drawer_close">Fechar Menu</string>
+    
+    <string name="receiver_Alarme_override">aeGis alterou a configuração de som.</string>
+</resources>
