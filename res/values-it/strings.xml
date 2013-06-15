@@ -3,6 +3,7 @@
     <string name="app_name">"aeGis"</string>
     <string name="data_section">Dati</string>
     <string name="lock_section">"Blocco"</string>
+    <string name="wipe_section">Wipe</string>
     <string name="alarm_section">"Allarme"</string>
     <string name="locate_section">"Localizza"</string>
     <string name="menu_settings">"Impostazioni"</string>
@@ -18,7 +19,10 @@
     <string name="text_stub">"Prossimamente!"</string>
     <string name="descr_overflow_button">"extra"</string>
     
-    <string name="aegis_showcaseview_alarm_toggle">Sposta l\'interruttore per attivare la funzione allarme quando viene inviato il relativo SMS di attivazione.\n La funzione sarà attiva solo se l\'interruttore è su ON.</string>
+    <string name="aegis_showcaseview_drawer_menu_title">Benvenuto in Aegis</string>
+    <string name="aegis_showcaseview_drawer_menu_content">Usa il pulsante del drawer in alto a sx per accedere alle opzioni</string>
+    <string name="aegis_showcaseview_alarm_toggle_title">Interruttore Allarme</string>
+    <string name="aegis_showcaseview_alarm_toggle_content">Sposta l\'interruttore per attivare la funzione allarme quando viene inviato il relativo SMS di attivazione.\n La funzione sarà attiva solo se l\'interruttore è su ON.</string>
     
     <string name="aegis_location_services_not_enabled">I servizi di localizzazione sono disattivati. Devi attivarli nelle impostazioni per permettere ad aeGis di tracciare la posizione del dispositivo.</string>
     <string name="aegis_open_location_settings">Attiva</string>
@@ -28,6 +32,7 @@
     <string name="aegis_backup_service_logout_from_account">Logout</string>
     <string name="aegis_backup_service_options_menu">Opzioni Account</string>
     <string name="aegis_choose_backup_application">Scegli il servizio di backup</string>
+    <string name="aegis_backup_service_upgrade_to_play_store">Se stai usando un dispositivo reale e non emulato, aggiorna l\'app del PlayStore</string>
     
     <string name="preferences_advanced_category">Impostazioni avanzate</string>
     <string name="preferences_advanced_sms_category">Impostazioni SMS</string>
@@ -63,12 +68,15 @@
     <string name="preferences_lock_enabled_summary">"Blocca il dispositivo quando viene inviato il relativo SMS di attivazione."</string>
     <string name="preferences_lock_activation_sms_title">"SMS attivazione blocco"</string>
     <string name="preferences_lock_activation_sms_summary">"Scegli il testo da inviare per bloccare il dispositivo. Si raccomanda l'utilizzo di un PIN anzichè una parola per evitare attivazioni involontarie del blocco."</string>
-    <string name="preferences_lock_password_title">"Password di default"</string>
+    <string name="preferences_lock_password_title">Password di default</string>
     <string name="preferences_lock_password_send_in_sms_title">Invia password tramite SMS</string>
     <string name="preferences_lock_password_summary">"Scegli la password da utilizzare per il blocco del dispositivo. Questa sarà la password impostata di default, ma ne può essere impostata una diversa durante l'invio aggiungendola nell'SMS stesso dopo il comando di attivazione. Se non impostata durante l'invio, il dispositivo verrà bloccato utilizzando la password esistente."</string>
-    <string name="preferences_lock_password_send_in_sms_summary">Notifica la password di sblocco nel SMS di conferma del blocco del dispositivo.</string>
-    <string name="preferences_lock_wipe_pref_title">Wipe Dispositivo</string>
-    <string name="preferences_lock_wipe_pref_summary">"Effettua il wipe del dispositivo alla ricezione dell'SMS di blocco."</string>
+    <string name="preferences_lock_password_send_in_sms_summary">Notifica la password di sblocco nell\'SMS di conferma del blocco del dispositivo.</string>
+    <string name="preferences_wipe_category">Wipe</string>
+    <string name="preferences_wipe_enabled_title">Wipe</string>
+    <string name="preferences_wipe_enabled_summary">Wipe del dispositivo quando viene inviato il relativo SMS di attivazione.</string>
+    <string name="preferences_wipe_activation_sms_title">SMS attivazione Wipe</string>
+    <string name="preferences_wipe_activation_sms_summary">Scegli il testo da inviare per effettuare il wipe del dispositivo. Si raccomanda l\'utilizzo di un PIN anzichè una parola per evitare esecuzioni involontarie del wipe.</string>
     <string name="preferences_data_category">Dati</string>
     <string name="preferences_data_enabled_title">Dati</string>
     <string name="preferences_data_enabled_summary">"Recupera dati sul dispositivo alla ricezione dell\'SMS di attivazione."</string>
@@ -127,6 +135,7 @@
     <string name="about_share_link">"Condividi aeGis"</string>
     <string name="about_xda_link">Discussione di supporto su XDA</string>
     <string name="about_quickly_link">Supporta lo sviluppatore</string>
+    <string name="about_changelog_link">Novità</string>
     
     <string name="overflow_help">Aiuto</string>
     <string name="overflow_simlist">SIM accettate</string>
@@ -156,9 +165,9 @@
     <string name="aegis_choose_backup_application_1">Google Drive</string>
     <string name="aegis_choose_backup_application_2">Dropbox</string>
     
-    <string name="sim_menu_add">Aggiungi IMEI</string>
-    <string name="sim_menu_remove">Rimuovi IMEI</string>
-    <string name="sim_menu_edit">Modifica IMEI</string>
+    <string name="sim_menu_add">Aggiungi IMSI</string>
+    <string name="sim_menu_remove">Rimuovi IMSI</string>
+    <string name="sim_menu_edit">Modifica IMSI</string>
     
     <string name="sim_fragment_request_backup_number">Aggiungi un numero telefonico valido.</string>
     <string name="sim_fragment_add_dialog">Aggiungi IMSI alla lista</string>
@@ -168,6 +177,7 @@
     <string name="sim_fragment_edit_dialog">Modifica IMSI nella lista</string>
     <string name="sim_fragment_edit_dialog_save">Salva</string>
     <string name="sim_fragment_edit_dialog_cancel">Annulla</string>
+    <string name="sim_fragment_edit_dialog_null">Inserisci un input valido</string>
     
     <string name="drawer_open">Apertura Drawer</string>
     <string name="drawer_close">Chiusura Drawer</string>
