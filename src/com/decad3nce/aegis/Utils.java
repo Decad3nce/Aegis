@@ -1,19 +1,24 @@
 package com.decad3nce.aegis;
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import com.decad3nce.aegis.Fragments.AdvancedSettingsFragment;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
 import com.decad3nce.aegis.Fragments.SMSLockFragment;
@@ -171,12 +176,34 @@ public class Utils {
     }
 
     public static void showItem(int id, Menu menu) {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(true);
+        try {
+            MenuItem item = menu.findItem(id);
+            item.setVisible(true);
+        } catch (NullPointerException e) {
+            //Not inflated
+        }
     }
 
     public static void hideItem(int id, Menu menu) {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(false);
+        try {
+            MenuItem item = menu.findItem(id);
+            item.setVisible(false);
+        } catch (NullPointerException e) {
+            //Not inflated
+        }
+    }
+
+    public static void createWebViewDialog(String assetPath, Context context) {
+        WebView webView = new WebView(context);
+        webView.loadUrl(assetPath);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setView(webView);
+        dialog.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

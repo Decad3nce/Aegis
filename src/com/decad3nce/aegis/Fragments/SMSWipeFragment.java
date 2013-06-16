@@ -19,8 +19,8 @@ import com.decad3nce.aegis.Utils;
  */
 public class SMSWipeFragment extends PreferenceFragment {
 
-    public static final String PREFERENCES_WIPE_ACTIVATION_SMS = "lock_activation_sms";
-    public static final String PREFERENCES_WIPE_ENABLED = "lock_toggle";
+    public static final String PREFERENCES_WIPE_ACTIVATION_SMS = "wipe_activation_sms";
+    public static final String PREFERENCES_WIPE_ENABLED = "wipe_toggle";
 
     private static final String TAG = "aeGis";
 
@@ -33,6 +33,11 @@ public class SMSWipeFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.wipe_preference);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         wipeEnabled = preferences
                 .getBoolean(PREFERENCES_WIPE_ENABLED, getActivity().getResources().getBoolean(R.bool.config_default_wipe_enabled));
@@ -42,41 +47,27 @@ public class SMSWipeFragment extends PreferenceFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        //
-    }
-
-    @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        //TODO: This is a fucking mess.
-        //Stop coding hungover
+        inflateFullMenu(menu);
+        Utils.showItem(R.id.wipe_menu_settings, menu);
+        mWipeEnabledPreference = (Switch) menu
+                .findItem(R.id.wipe_menu_settings).getActionView()
+                .findViewById(R.id.wipe_toggle);
+        mWipeEnabledPreference.setChecked(false);
+
         if (devicePolicyManager != null && devicePolicyManager.getActiveAdmins() != null) {
-            if (!devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                if (mWipeEnabledPreference != null) {
-                    wipeEnabled = false;
-                    mWipeEnabledPreference.setChecked(false);
+            if (devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT) && wipeEnabled) {
+                    mWipeEnabledPreference.setChecked(true);
                 }
-            } else {
-                mWipeEnabledPreference.setChecked(wipeEnabled);
-            }
-        } else {
-            wipeEnabled = false;
-            mWipeEnabledPreference.setChecked(false);
         }
 
-        if (mWipeEnabledPreference != null)
-            mWipeEnabledPreference.setOnCheckedChangeListener(wipePreferencesOnChangeListener);
+        mWipeEnabledPreference.setOnCheckedChangeListener(wipePreferencesOnChangeListener);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        Utils.showItem(R.id.wipe_menu_settings, menu);
-        mWipeEnabledPreference = (Switch) menu
-                .findItem(R.id.wipe_menu_settings).getActionView()
-                .findViewById(R.id.wipe_toggle);
     }
 
     CompoundButton.OnCheckedChangeListener wipePreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -88,11 +79,8 @@ public class SMSWipeFragment extends PreferenceFragment {
                     if (isChecked && !devicePolicyManager
                             .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
                         addAdmin();
-                        commitToShared();
-                    } else {
-                        commitToShared();
                     }
-
+                    commitToShared();
                     break;
             }
         }
@@ -116,5 +104,10 @@ public class SMSWipeFragment extends PreferenceFragment {
                 getResources().getString(
                         R.string.device_admin_reason));
         startActivityForResult(intent, AegisActivity.ACTIVATION_REQUEST);
+    }
+
+    private void inflateFullMenu(Menu menu) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.full_menu, menu);
     }
 }

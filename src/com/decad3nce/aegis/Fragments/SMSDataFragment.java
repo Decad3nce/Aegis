@@ -27,43 +27,37 @@ public class SMSDataFragment extends PreferenceFragment implements ChooseBackupP
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.data_preference);
-
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         dataEnabled = preferences
                 .getBoolean(PREFERENCES_DATA_ENABLED, getActivity().getResources().getBoolean(R.bool.config_default_data_enabled));
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        //
-    }
-
-    @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if(!isGoogleAuthed() && !isDropboxAuthed()) {
-            if(mDataEnabledPreference != null) {
-                mDataEnabledPreference.setChecked(false);
-            }
-        } else if (isGoogleAuthed() || isDropboxAuthed()) {
-            if(mDataEnabledPreference != null) {
-                mDataEnabledPreference.setChecked(dataEnabled);
-            }
+        inflateFullMenu(menu);
+        Utils.showItem(R.id.data_menu_settings, menu);
+        mDataEnabledPreference = (Switch) menu
+                .findItem(R.id.data_menu_settings).getActionView()
+                .findViewById(R.id.data_toggle);
+        mDataEnabledPreference.setChecked(false);
+
+        if ((isGoogleAuthed() || isDropboxAuthed() && dataEnabled)) {
+                mDataEnabledPreference.setChecked(true);
         }
 
-        if (mDataEnabledPreference != null)
-            mDataEnabledPreference.setOnCheckedChangeListener(dataPreferencesOnChangeListener);
+        mDataEnabledPreference.setOnCheckedChangeListener(dataPreferencesOnChangeListener);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        Utils.showItem(R.id.data_menu_settings, menu);
-        mDataEnabledPreference = (Switch) menu
-                .findItem(R.id.data_menu_settings).getActionView()
-                .findViewById(R.id.data_toggle);
     }
 
     CompoundButton.OnCheckedChangeListener dataPreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -80,7 +74,6 @@ public class SMSDataFragment extends PreferenceFragment implements ChooseBackupP
                         } else {
                             DialogFragment dialog = new ChooseBackupProgramDialogFragment();
                             dialog.show(getActivity().getFragmentManager(), "ChooseBackupProgramDialogFragment");
-                            commitToShared();
                         }
                     } else {
                         commitToShared();
@@ -123,5 +116,10 @@ public class SMSDataFragment extends PreferenceFragment implements ChooseBackupP
             return true;
         }
         return false;
+    }
+
+    private void inflateFullMenu(Menu menu) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.full_menu, menu);
     }
 }

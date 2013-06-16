@@ -13,16 +13,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/text1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="22sp"
-    android:text="text"
-    android:gravity="center_vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:textColor="#150517"
-    android:background="?android:attr/activatedBackgroundIndicator"
-    android:minHeight="?android:attr/listPreferredItemHeight"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:orientation="horizontal" android:minHeight="?android:attr/listPreferredItemHeight" android:background="?android:attr/activatedBackgroundIndicator">
+    <ImageView android:layout_width="32dp" android:id="@+id/image1" android:layout_height="fill_parent" android:layout_gravity="right" android:layout_marginLeft="10dp"/>
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/text1"
+              android:layout_width="182dp"
+              android:layout_height="fill_parent"
+              android:textSize="22sp"
+              android:text="text"
+              android:gravity="center_vertical"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:textColor="#150517"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="fill_parent" android:id="@+id/enable" android:text="@string/indicator_off" android:gravity="center_vertical" android:visibility="invisible" android:layout_gravity="right" android:textColor="#ff0000"
+              android:textSize="16sp" android:textIsSelectable="false"/>
+</LinearLayout>

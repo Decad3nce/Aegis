@@ -32,6 +32,11 @@ public class SMSLockFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.lock_preference);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         lockEnabled = preferences
                 .getBoolean(PREFERENCES_LOCK_ENABLED, getActivity().getResources().getBoolean(R.bool.config_default_lock_enabled));
@@ -41,41 +46,27 @@ public class SMSLockFragment extends PreferenceFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        //
-    }
-
-    @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        //TODO: This is a fucking mess.
-        //Stop coding hungover
+        inflateFullMenu(menu);
+        Utils.showItem(R.id.lock_menu_settings, menu);
+        mLockEnabledPreference = (Switch) menu
+                .findItem(R.id.lock_menu_settings).getActionView()
+                .findViewById(R.id.lock_toggle);
+        mLockEnabledPreference.setChecked(false);
+
         if (devicePolicyManager != null && devicePolicyManager.getActiveAdmins() != null) {
-            if (!devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                if (mLockEnabledPreference != null) {
-                    lockEnabled = false;
-                    mLockEnabledPreference.setChecked(false);
-                }
-            } else {
-                mLockEnabledPreference.setChecked(lockEnabled);
+            if (devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT) && lockEnabled) {
+                    mLockEnabledPreference.setChecked(lockEnabled);
             }
-        } else {
-            lockEnabled = false;
-            mLockEnabledPreference.setChecked(false);
         }
 
-        if (mLockEnabledPreference != null)
-            mLockEnabledPreference.setOnCheckedChangeListener(lockPreferencesOnChangeListener);
+        mLockEnabledPreference.setOnCheckedChangeListener(lockPreferencesOnChangeListener);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        Utils.showItem(R.id.lock_menu_settings, menu);
-        mLockEnabledPreference = (Switch) menu
-                .findItem(R.id.lock_menu_settings).getActionView()
-                .findViewById(R.id.lock_toggle);
     }
 
     CompoundButton.OnCheckedChangeListener lockPreferencesOnChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -87,11 +78,8 @@ public class SMSLockFragment extends PreferenceFragment {
                     if (isChecked && !devicePolicyManager
                         .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
                         addAdmin();
-                        commitToShared();
-                    } else {
-                        commitToShared();
                     }
-
+                    commitToShared();
                     break;
             }
         }
@@ -115,5 +103,10 @@ public class SMSLockFragment extends PreferenceFragment {
                 getResources().getString(
                         R.string.device_admin_reason));
         startActivityForResult(intent, AegisActivity.ACTIVATION_REQUEST);
+    }
+
+    private void inflateFullMenu(Menu menu) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.full_menu, menu);
     }
 }

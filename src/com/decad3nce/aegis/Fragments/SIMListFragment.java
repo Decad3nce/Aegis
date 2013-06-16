@@ -132,6 +132,8 @@ public class SIMListFragment extends Fragment implements OnItemLongClickListener
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
+        //gdamnit android
+        menu.clear();
         thisMenu = menu;
         MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.sim_add_menu, thisMenu);

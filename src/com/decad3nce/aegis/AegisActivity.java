@@ -6,14 +6,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.*;
 import android.webkit.WebView;
 import android.widget.*;
@@ -38,6 +36,7 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private String[] mMenuTitles;
+    private Menu thisMenu;
 
     private String mVersion;
 
@@ -73,18 +72,25 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
                 R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
 
             public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
+                ((BaseAdapter) mDrawerList.getAdapter()).notifyDataSetChanged();
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
                 getActionBar().setTitle("Menu");
-                invalidateOptionsMenu();
+                ((BaseAdapter) mDrawerList.getAdapter()).notifyDataSetChanged();
+                //invalidateOptionsMenu();
+                Utils.hideItem(R.id.alarm_menu_settings, thisMenu);
+                Utils.hideItem(R.id.lock_menu_settings, thisMenu);
+                Utils.hideItem(R.id.locate_menu_settings, thisMenu);
+                Utils.hideItem(R.id.wipe_menu_settings, thisMenu);
+                Utils.hideItem(R.id.data_menu_settings, thisMenu);
+                Utils.showItem(R.id.action_help, thisMenu);
             }
         };
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        mDrawerList.setAdapter(new FontAdapter(this, R.layout.drawer_list_item, new ArrayList(Arrays.asList(mMenuTitles))));
+        mDrawerList.setAdapter(new DrawerLayoutAdapter(this, R.layout.drawer_list_item, new ArrayList(Arrays.asList(mMenuTitles))));
 
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -141,6 +147,12 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_help:
+                mDrawerLayout.closeDrawer(mDrawerList);
+                Utils.createWebViewDialog("file:///android_asset/help.html", this);
+                return true;
+        }
 
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
@@ -170,6 +182,9 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.full_menu, menu);
+        thisMenu = menu;
         return true;
     }
 
@@ -210,8 +225,6 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.full_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -262,18 +275,8 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
             case 7:
-                Fragment licensesFragment = new LicensesFragment();
-                fragmentManager.beginTransaction().replace(R.id.content_frame, licensesFragment).commit();
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 8:
                 Fragment aboutFragment = new AboutFragment();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, aboutFragment).commit();
-                mDrawerLayout.closeDrawer(mDrawerList);
-                break;
-            case 9:
-                Fragment helpFragment = new HelpFragment();
-                fragmentManager.beginTransaction().replace(R.id.content_frame, helpFragment).commit();
                 mDrawerLayout.closeDrawer(mDrawerList);
                 break;
         }

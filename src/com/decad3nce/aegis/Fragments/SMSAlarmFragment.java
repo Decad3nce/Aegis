@@ -24,16 +24,15 @@ public class SMSAlarmFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.alarm_preference);
         setHasOptionsMenu(true);
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(getActivity());
-        alarmEnabled = preferences
-                .getBoolean(PREFERENCES_ALARM_ENABLED, getActivity().getResources().getBoolean(R.bool.config_default_alarm_enabled));
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(getActivity());
+        alarmEnabled = preferences
+                .getBoolean(PREFERENCES_ALARM_ENABLED, getActivity().getResources().getBoolean(R.bool.config_default_alarm_enabled));
     }
 
     @Override
@@ -65,13 +64,12 @@ public class SMSAlarmFragment extends PreferenceFragment {
                     SharedPreferences.Editor editor = preferences.edit();;
 
                     if (isChecked) {
-                        editor.putBoolean(PREFERENCES_ALARM_ENABLED, mAlarmEnabledPreference.isChecked());
+                        editor.putBoolean(PREFERENCES_ALARM_ENABLED, true);
                         editor.commit();
                     } else {
-                        editor.putBoolean(PREFERENCES_ALARM_ENABLED, mAlarmEnabledPreference.isChecked());
+                        editor.putBoolean(PREFERENCES_ALARM_ENABLED, false);;
                         editor.commit();
                     }
-
                     break;
             }
         }

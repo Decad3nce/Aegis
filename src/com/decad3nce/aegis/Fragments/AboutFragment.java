@@ -13,6 +13,7 @@ import android.view.*;
 import android.webkit.WebView;
 import android.widget.*;
 import com.decad3nce.aegis.R;
+import com.decad3nce.aegis.Utils;
 
 public class AboutFragment extends Fragment {
     private Button onClickEmail, onClickGithub, onClickXDA, onClickQuickly;
@@ -25,7 +26,7 @@ public class AboutFragment extends Fragment {
         View mainView = inflater.inflate(R.layout.about_layout, container, false);
         setHasOptionsMenu(true);
         String version = "UKNOWN";
-        String[] values = new String[] { getResourceString(R.string.about_email_link), getResourceString(R.string.about_github_link), getResourceString(R.string.about_xda_link), getResourceString(R.string.about_changelog_link)};
+        String[] values = new String[] { getResourceString(R.string.about_email_link), getResourceString(R.string.about_github_link), getResourceString(R.string.about_xda_link), getResourceString(R.string.about_changelog_link), getResourceString(R.string.overflow_licenses)};
         mButtonList = (ListView) mainView.findViewById(R.id.about_list);
         mButtonList.setAdapter(new aboutImageAdapter(getActivity(), values));
         mButtonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,17 +60,10 @@ public class AboutFragment extends Fragment {
                         startActivity(i);
                         break;
                     case 3:
-                        WebView webView = new WebView(getActivity());
-                        webView.loadUrl("file:///android_asset/changelog.html");
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                        dialog.setView(webView);
-                        dialog.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        dialog.show();
+                        Utils.createWebViewDialog("file:///android_asset/changelog.html", getActivity());
+                        break;
+                    case 4:
+                        Utils.createWebViewDialog("file:///android_asset/licenses.html", getActivity());
                         break;
                 }
             }
@@ -138,6 +132,7 @@ public class AboutFragment extends Fragment {
         private final Context context;
         private final String[] values;
         Typeface tf;
+        private final Integer[] images = {R.drawable.ic_content_email, R.drawable.ic_github, R.drawable.ic_xda, R.drawable.ic_action_about, R.drawable.ic_licenses};
 
 
         public aboutImageAdapter(Context context, String[] values) {
@@ -155,17 +150,7 @@ public class AboutFragment extends Fragment {
 
             textView.setText(values[position]);
             textView.setTypeface(tf);
-
-            String s = values[position];
-            if(s.contains(getResourceString(R.string.about_email_link))) {
-                imageView.setImageResource(R.drawable.ic_content_email);
-            } else if(s.contains(getResourceString(R.string.about_github_link))) {
-                imageView.setImageResource(R.drawable.ic_github);
-            } else if(s.contains(getResourceString(R.string.about_xda_link))){
-                imageView.setImageResource(R.drawable.ic_xda);
-            } else {
-                imageView.setImageResource(android.R.drawable.ic_menu_help);
-            }
+            imageView.setImageResource(images[position]);
 
             return rowView;
         }

@@ -37,8 +37,6 @@
         <item>@string/locate_section</item>
         <item>@string/menu_settings</item>
         <item>@string/overflow_simlist</item>
-        <item>@string/overflow_licenses</item>
         <item>@string/overflow_about</item>
-        <item>@string/overflow_help</item>
     </string-array>
 </resources>

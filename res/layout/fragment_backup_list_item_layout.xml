@@ -2,8 +2,8 @@
               android:layout_width="match_parent" android:layout_height="wrap_content"
               android:orientation="horizontal" android:minHeight="?android:attr/listPreferredItemHeight">
 
-    <ImageView android:layout_width="32dp" android:id="@+id/about_image_view" android:layout_height="fill_parent" android:layout_gravity="right" android:layout_marginLeft="10dp"/>
-    <TextView android:id="@+id/about_text_view" android:text="TextView"
+    <ImageView android:layout_width="32dp" android:id="@+id/fragment_backup_image_view" android:layout_height="fill_parent" android:layout_gravity="right" android:layout_marginLeft="10dp"/>
+    <TextView android:id="@+id/fragment_backup_text_view" android:text="TextView"
               android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium"
               android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:textSize="22sp"
               android:layout_marginLeft="10dp"/>

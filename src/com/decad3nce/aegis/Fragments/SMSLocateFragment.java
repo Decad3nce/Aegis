@@ -39,6 +39,11 @@ public class SMSLocateFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.locate_preference);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         locateEnabled = preferences
                 .getBoolean(PREFERENCES_LOCATE_ENABLED, getActivity().getResources().getBoolean(R.bool.config_default_locate_enabled));
@@ -50,31 +55,25 @@ public class SMSLocateFragment extends PreferenceFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
+        inflateFullMenu(menu);
+        Utils.showItem(R.id.locate_menu_settings, menu);
+        mLocateEnabledPreference = (Switch) menu
+                .findItem(R.id.locate_menu_settings).getActionView()
+                .findViewById(R.id.locate_toggle);
+        mLocateEnabledPreference.setChecked(false);
+
         if (devicePolicyManager != null && devicePolicyManager.getActiveAdmins() != null) {
-            if (!devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                if (mLocateEnabledPreference != null) {
-                    locateEnabled = false;
-                    mLocateEnabledPreference.setChecked(false);
-                }
-            } else {
-                mLocateEnabledPreference.setChecked(locateEnabled);
+            if (devicePolicyManager.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT) && locateEnabled) {
+                mLocateEnabledPreference.setChecked(true);
             }
-        } else {
-            locateEnabled = false;
-            mLocateEnabledPreference.setChecked(false);
         }
 
-        if (mLocateEnabledPreference != null)
-            mLocateEnabledPreference.setOnCheckedChangeListener(locatePreferencesOnChangeListener);
+        mLocateEnabledPreference.setOnCheckedChangeListener(locatePreferencesOnChangeListener);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        Utils.showItem(R.id.locate_menu_settings, menu);
-        mLocateEnabledPreference = (Switch) menu
-                .findItem(R.id.locate_menu_settings).getActionView()
-                .findViewById(R.id.locate_toggle);
     }
 
 
@@ -89,7 +88,6 @@ public class SMSLocateFragment extends PreferenceFragment {
                         if (!isLocationServicesEnabled()) {
                             showLocationServicesDialog();
                             buttonView.setChecked(false);
-                            commitToShared();
                         } else {
                             locateEnabled = true;
                         }
@@ -99,11 +97,8 @@ public class SMSLocateFragment extends PreferenceFragment {
                             && !devicePolicyManager
                             .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT) && locateEnabled) {
                         addAdmin();
-                        commitToShared();
-                    } else {
-                        commitToShared();
                     }
-
+                    commitToShared();
                     break;
             }
         }
@@ -158,5 +153,10 @@ public class SMSLocateFragment extends PreferenceFragment {
             return false;
         }
         return true;
+    }
+
+    private void inflateFullMenu(Menu menu) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.full_menu, menu);
     }
 }

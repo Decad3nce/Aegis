@@ -19,11 +19,6 @@
     <string name="text_stub">Features coming!</string>
     <string name="descr_overflow_button">overflow</string>
 
-    <string name="aegis_showcaseview_drawer_menu_title">Welcome to Aegis</string>
-    <string name="aegis_showcaseview_drawer_menu_content">Use the drawer menu item to access various options</string>
-    <string name="aegis_showcaseview_alarm_toggle_title">Alarm Trigger</string>
-    <string name="aegis_showcaseview_alarm_toggle_content">Toggle the switch to enable the alarm feature for when the Activation SMS is sent to the device.\nFeature will only work when toggle is on "ON" position.</string>
-    
     <string name="aegis_location_services_not_enabled">Location services are not active. You need to enable location services for aeGis to be able to track your device.</string>
     <string name="aegis_open_location_settings">Enable</string>
     <string name="aegis_backup_service_not_enabled">Please choose a backup account before proceeding to enable data recovery.</string>
@@ -183,4 +178,7 @@
     <string name="drawer_close">Drawer Close</string>
     
     <string name="receiver_alarm_override">aeGis has overriden sound settings.</string>
+
+    <string name="indicator_off">OFF</string>
+    <string name="indicator_on">ON</string>
 </resources>

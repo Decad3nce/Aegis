@@ -1,5 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Holo" />
-
+  <style name="Theme" parent="android:Theme.Holo.Light.DarkActionBar">
+     <item name="android:activatedBackgroundIndicator">@drawable/light_grey_highlight</item>
+  </style>
 </resources>

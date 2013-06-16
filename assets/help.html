@@ -1,74 +1,74 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
-    <head> 
-        <meta name="viewport" content="width=320,user-scalable=false" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta name="viewport" content="width=320,user-scalable=false" />
     <style type="text/css">
-            body {
-                font-family: roboto;
-            }
-            pre {
-                background-color: #eeeeee;
-                padding: 1em;
-                white-space: pre-wrap;
-            }
-            img {
-		max-width: 100%;
-		height: auto;
-		width: auto;
-	    }
-        </style>
-        <title>aeGis WebView</title>
-    </head>
-    
-    <body>
-<font size="5"><strong>Welcome to aeGis!</strong></font>
-    <pre>
-Please reference this item when you have questions regarding the app.
-    </pre>
-    <ul>
-<li>To Enable A Feature:</li>
-    </ul>
-    <pre>
-To enable a feature, like the alarm triggering on incoming text message, enable the toggle for the feature by setting it to the "ON" position.
+        @font-face {
+        font-family: 'RobotoLight';
+        src: url('file:///android_asset/Roboto-Light.ttf');
+        }
+        body {
+        font-family: RobotoLight;
+        }
+        pre {
+        font-family: RobotoLight;
+        padding: 1em;
+        white-space: pre-wrap;
+        }
+        img {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+        }
+    </style>
+    <title>aeGis WebView</title>
+</head>
 
-(NOTE: Some features may request added permissions or configurations to be used properly.)
-    </pre>
+<body>
+<font size="6"><center><strong>Welcome to aeGis!</strong></center></font>
+<hr color="black" size="1"/>
+<font size="3"><pre>   Please reference this item when you have questions regarding the app.</pre></font>
+<hr color="black" size="1"/>
+<ul>
+    <font size="4"><li>To Enable A Feature:</li></font>
+</ul>
+    <pre>   To enable a feature, like the alarm triggering on incoming text message, enable the toggle for the feature by setting it to the "ON" position.
+
+    (NOTE: Some features may request added permissions or configurations to be used properly.)</pre>
+<hr color="black" size="1"/>
 <img src="toggle_show.png">
-    <ul>
-<li>To Trigger A Feature:</li>
-    </ul>
-    <pre>
-To trigger a feature, like the alarm on incoming text message. You need to first set the Activation SMS that will trigger it.
+<hr color="black" size="1"/>
+<ul>
+    <font size="4"><li>To Trigger A Feature:</li></font>
+</ul>
+    <pre>   To trigger a feature, like the alarm on incoming text message. You need to first set the Activation SMS that will trigger it.
 
-First click on the item that shows "Activation SMS" for the given feature. Which in this example is "Alarm Activation SMS".
-    </pre>
+    First click on the item that shows "Activation SMS" for the given feature. Which in this example is "Alarm Activation SMS".</pre>
+<hr color="black" size="1"/>
 <img src="activation_sms_show.png">
 <img src="activation_sms_edit_text_show.png">
-    <pre>
-When this Activation SMS is sent to the device, as long as the feature is enabled, the feature will trigger.
-    </pre>
-    <ul>
-<li>To Setup Backup Accounts:</li>
-    </ul>
-    <pre>
-To setup backup accounts, first click on the item in the action bar that brings up the overflow menu. From there click on "settings".
-    </pre>
+<hr color="black" size="1"/>
+<pre>   When this Activation SMS is sent to the device, as long as the feature is enabled, the feature will trigger.</pre>
+<hr color="black" size="1"/>
+<ul>
+    <font size="4"><li>To Setup Backup Accounts:</li></font>
+</ul>
+<pre>   To setup backup accounts, first click on the item in the action bar that brings up the overflow menu. From there click on "settings".</pre>
+<hr color="black" size="1"/>
 <img src="settings_menu_item_show.png">
-    <pre>
-To add or modify an account, click on the account type under the section "Backup Accounts".
-    </pre>
+<hr color="black" size="1"/>
+<pre>   To add or modify an account, click on the account type under the section "Backup Accounts".</pre>
+<hr color="black" size="1"/>
 <img src="settings_backup_accounts_show.png">
-    <pre>
-When you authorize a backup account, aeGis will create a folder in the backup service titled "aeGis Backup" where the options from the "DATA" tab will be stored when they are triggered.
-    </pre>
-    <ul>
-<li>To Set Up Accepted SIM Whitelist:</li>
-    </ul>
+<pre>   When you authorize a backup account, aeGis will create a folder in the backup service titled "aeGis Backup" where the options from the "DATA" tab will be stored when they are triggered.</pre>
+<hr color="black" size="1"/>
+<ul>
+    <font size="4"><li>To Set Up Accepted SIM Whitelist:</li></font>
+</ul>
 <img src="sim_list_fragment.png">
-  </body>
-  <pre>
-To set up a SIM entry in the whitelist, you'll first have to input a backup number within the settings page. Once that is created, you'll be able to hit the add button at the top of the fragment page. You can either "read" the imsi from the device or you can simply input your own manually.
+</body>
+<hr color="black" size="1"/>
+  <pre> To set up a SIM entry in the whitelist, you'll first have to input a backup number within the settings page. Once that is created, you'll be able to hit the add button at the top of the fragment page. You can either "read" the imsi from the device or you can simply input your own manually.
 
-Conversely, if you want to edit or remove the item, just long press on the entity and the actionmode will enable on it.
-  </pre>
+    Conversely, if you want to edit or remove the item, just long press on the entity and the actionmode will enable on it.</pre>
 </html>

@@ -5,11 +5,8 @@ import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
+import android.preference.*;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceFragment;
 import com.decad3nce.aegis.AegisActivity;
 import com.decad3nce.aegis.R;
 
@@ -47,9 +44,7 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
                     public boolean onPreferenceClick(Preference preference) {
                         if(preference.getKey().equals(ADVANCED_PREFERENCES_REMOVE_ADMIN)) {
                             if (mDPM.isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                                mDPM.removeActiveAdmin(AegisActivity.DEVICE_ADMIN_COMPONENT);
-                                removeAdmin.setTitle(R.string.preferences_advanced_remove_admin_completed);
-                                removeAdmin.setSummary(null);
+                                removeAdmin(mDPM, removeAdmin);
                             }
                         }
                         if(preference.getKey().equals(ADVANCED_PREFERENCES_INSTALL_TO_SYSTEM)) {
@@ -92,6 +87,23 @@ public class AdvancedSettingsFragment extends PreferenceFragment {
             dropboxAccount.setSummary(R.string.preferences_advanced_dropbox_account_summary_inactive);
             dropboxAccount.setChecked(false);
         }
+    }
+
+    private void removeAdmin(DevicePolicyManager mDPM, Preference removeAdmin) {
+        mDPM.removeActiveAdmin(AegisActivity.DEVICE_ADMIN_COMPONENT);
+        removeAdmin.setTitle(R.string.preferences_advanced_remove_admin_completed);
+        removeAdmin.setSummary(null);
+        disableDependents();
+    }
+
+    private void disableDependents() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(SMSLockFragment.PREFERENCES_LOCK_ENABLED, false);
+        editor.putBoolean(SMSLocateFragment.PREFERENCES_LOCATE_ENABLED, false);
+        editor.putBoolean(SMSWipeFragment.PREFERENCES_WIPE_ENABLED, false);
+        editor.commit();
     }
 
     private boolean getKeyHonesty(String key) {
