@@ -19,11 +19,6 @@
     <string name="text_stub">"Zukünftige Funktionen!"</string>
     <string name="descr_overflow_button">"overflow"</string>
     
-    <string name="aegis_showcaseview_drawer_menu_title">Willkommen bei Aegis</string> 
-    <string name="aegis_showcaseview_drawer_menu_content">Benutze den Navigationsmenü Eintrag, um auf verschiedene Optionen zuzugreifen</string> 
-    <string name="aegis_showcaseview_alarm_toggle_title">Alarm-Auslöser</string>
-    <string name="aegis_showcaseview_alarm_toggle_content">Lege den Schalter um, damit die Alarmfunktion aktiviert wird, wenn die Aktivierungs-SMS von dem Gerät empfangen wird.\nDie Funktion ist nur aktiv, wenn der Schalter auf der Position EIN steht.</string>
-      
     <string name="aegis_location_services_not_enabled">Damit aeGis den Standort des Gerätes erfassen kann, müssen Sie zuerst der Standortzugriff freigeben.</string>
     <string name="aegis_open_location_settings">Einschalten</string>
     <string name="aegis_backup_service_not_enabled">Bitte wählen Sie ein Backup Konto um mit der Datensicherung fortzufahren</string>
@@ -183,4 +178,7 @@
     <string name="drawer_close">Drawer geschlossen</string>
 
     <string name="receiver_alarm_override">"aeGis hat die Sound-Einstellungen überschrieben"</string>
+    
+    <string name="indicator_off">AUS</string>
+    <string name="indicator_on">AN</string> 
 </resources>
