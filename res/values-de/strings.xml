@@ -3,6 +3,7 @@
     <string name="app_name">"aeGis"</string>
     <string name="data_section">Daten</string>
     <string name="lock_section">"Sperren"</string>
+    <string name="wipe_section">Löschen</string>
     <string name="alarm_section">"Alarm"</string>
     <string name="locate_section">"Lokalisieren"</string>
     <string name="menu_settings">"Einstellungen"</string>
@@ -18,8 +19,11 @@
     <string name="text_stub">"Zukünftige Funktionen!"</string>
     <string name="descr_overflow_button">"overflow"</string>
     
-    <string name="aegis_showcaseview_alarm_toggle">Benutze den Schalter um die Alarmfunktion zu aktivieren.\nDie Funktion ist nur aktiv wenn der Schalter in "An" Position ist.</string>
-    
+    <string name="aegis_showcaseview_drawer_menu_title">Willkommen bei Aegis</string> 
+    <string name="aegis_showcaseview_drawer_menu_content">Benutze den Navigationsmenü Eintrag, um auf verschiedene Optionen zuzugreifen</string> 
+    <string name="aegis_showcaseview_alarm_toggle_title">Alarm-Auslöser</string>
+    <string name="aegis_showcaseview_alarm_toggle_content">Lege den Schalter um, damit die Alarmfunktion aktiviert wird, wenn die Aktivierungs-SMS von dem Gerät empfangen wird.\nDie Funktion ist nur aktiv, wenn der Schalter auf der Position EIN steht.</string>
+      
     <string name="aegis_location_services_not_enabled">Damit aeGis den Standort des Gerätes erfassen kann, müssen Sie zuerst der Standortzugriff freigeben.</string>
     <string name="aegis_open_location_settings">Einschalten</string>
     <string name="aegis_backup_service_not_enabled">Bitte wählen Sie ein Backup Konto um mit der Datensicherung fortzufahren</string>
@@ -54,22 +58,25 @@
     <string name="preferences_advanced_dropbox_account_summary_inactive">Inaktiv</string>
     <string name="preferences_alarm_category">"Alarm"</string>
     <string name="preferences_alarm_enabled_title">"Alarm"</string>
-    <string name="preferences_alarm_enabled_summary">"Alarm abspielen und Klingelton aktivieren."</string>
+    <string name="preferences_alarm_enabled_summary">"Alarm abspielen und Klingelton aktivieren"</string>
     <string name="preferences_alarm_activation_sms_title">"Alarm-SMS"</string>
     <string name="preferences_alarm_activation_sms_summary">"Text der SMS festlegen, mit der der Alarm aktiviert wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Aktivierungen zu verhindern."</string>
     <string name="preferences_alarm_vibrate_title">"Vibrieren"</string>
     <string name="preferences_alarm_vibrate_summary">"Vibrieren bei aktivem Alarm"</string>
     <string name="preferences_lock_category">"Sperren"</string>
     <string name="preferences_lock_enabled_title">"Sperren"</string>
-    <string name="preferences_lock_enabled_summary">"Gerät sperren, wenn Aktivierungs-SMS empfangen wird."</string>
+    <string name="preferences_lock_enabled_summary">"Gerät sperren, wenn Aktivierungs-SMS empfangen wird"</string>
     <string name="preferences_lock_activation_sms_title">"Sperr-SMS"</string>
     <string name="preferences_lock_activation_sms_summary">"Text der SMS festlegen, mit der das Gerät gesperrt wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigtes Sperren zu verhindern."</string>
     <string name="preferences_lock_password_title">"Standard-Passwort"</string>
     <string name="preferences_lock_password_send_in_sms_title">Passwort in SMS zurücksenden</string>
     <string name="preferences_lock_password_summary">"Passwort für den Sperrbildschirm festlegen. Dieses Passwort kann geändert werden, indem das gewünschte Passwort an die Aktivierungs-SMS angehängt wird. Falls Sie das Feld leer lassen, wird der Sperrbildschirm nicht geändert. Das Gerät wird nur gesperrt und der Benutzer muss es mit der in den Systemeinstellungen festgelegten Methode entsperren."</string>
     <string name="preferences_lock_password_send_in_sms_summary">Das Sperrpasswort beim Bestätigen der Sperrung per SMS mitsenden</string> 
-    <string name="preferences_lock_wipe_pref_title">Gerätedaten löschen</string>
-    <string name="preferences_lock_wipe_pref_summary">Gerätedaten werden bei Aktivierungs-SMS gelöscht</string>
+    <string name="preferences_wipe_category">Löschen</string>
+    <string name="preferences_wipe_enabled_title">Löschen</string>
+    <string name="preferences_wipe_enabled_summary">Gerätedaten löschen, wenn die Aktivieruns-SMS empfangen wird</string>
+    <string name="preferences_wipe_activation_sms_title">Aktivierungs-SMS des Löschvorgangs</string>
+    <string name="preferences_wipe_activation_sms_summary">Wähle einen Text, bei dessen Empfang die Gerätedaten gelöscht werden. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Nutzung zu verhindern.</string> 
     <string name="preferences_data_category">Daten</string>
     <string name="preferences_data_enabled_title">Daten</string>
     <string name="preferences_data_enabled_summary">Daten bei Aktivierungs-SMS sichern</string>
@@ -128,6 +135,7 @@
     <string name="about_share_link">"aeGis teilen"</string>
     <string name="about_xda_link">Support-Thread bei XDA</string>
     <string name="about_quickly_link">Entwickler unterstützen</string>
+    <string name="about_changelog_link">Was ist neu?</string>
     
     <string name="overflow_help">Hilfe</string>
     <string name="overflow_simlist">Erlaubte SIM-Karten</string>
@@ -169,6 +177,7 @@
     <string name="sim_fragment_edit_dialog">IMSI aus der Liste bearbeiten</string>
     <string name="sim_fragment_edit_dialog_save">Speichern</string>
     <string name="sim_fragment_edit_dialog_cancel">Abbrechen</string>
+    <string name="sim_fragment_edit_dialog_null">Bitte geben Sie gültige Daten an</string> 
 
     <string name="drawer_open">Drawer geöffnet</string>
     <string name="drawer_close">Drawer geschlossen</string>
