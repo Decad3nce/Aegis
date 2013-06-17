@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -11,10 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
 
 public class RegisterActivity extends Activity {
     private static final String TAG = "aeGis";
@@ -23,6 +21,7 @@ public class RegisterActivity extends Activity {
     public static final String PREFERENCES_PASSWORD_WANTED = "password_wanted";
     public static final String PREFERENCES_CURRENT_PASSWORD = "current_password";
 
+    Typeface tf;
     EditText mPassword;
     EditText mPasswordConfirm;
     Button registerScreen;
@@ -36,6 +35,7 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         // Set View to register.xml
         setContentView(R.layout.register);
+        tf = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
         Intent intent = getIntent();
 
@@ -64,9 +64,19 @@ public class RegisterActivity extends Activity {
                 RegisterActivity.PREFERENCES_PASSWORD_WANTED,
                 this.getResources().getBoolean(
                         R.bool.config_default_password_wanted));
+        TextView regTextPassword = (TextView) findViewById(R.id.reg_textPassword);
+        TextView regTextPasswordConfirm = (TextView) findViewById(R.id.reg_textPasswordConfirm);
+        TextView regTextPasswordSummary = (TextView) findViewById(R.id.reg_textPasswordSummary);
+
+        regTextPassword.setTypeface(tf);
+        regTextPasswordConfirm.setTypeface(tf);
+        regTextPasswordSummary.setTypeface(tf);
+
 
         mPassword = (EditText) findViewById(R.id.reg_password);
         mPasswordConfirm = (EditText) findViewById(R.id.reg_password_confirm);
+        mPassword.setTypeface(tf);
+        mPasswordConfirm.setTypeface(tf);
     }
     
     @Override
@@ -77,6 +87,7 @@ public class RegisterActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.register_menu, menu);
         registerScreen = (Button) menu.findItem(R.id.confirm_password_settings).getActionView().findViewById(R.id.btnRegister);
+        registerScreen.setTypeface(tf);
         registerScreen.setOnClickListener(confirmPasswordsListener);
         return true;
     }
@@ -90,6 +101,7 @@ public class RegisterActivity extends Activity {
     public void onResume() {
         super.onResume();
         CheckBox checkBox = (CheckBox) findViewById(R.id.disablePassword);
+        checkBox.setTypeface(tf);
         checkBox.setChecked(!mPasswordWanted);
     }
     

@@ -13,6 +13,7 @@
         android:padding="10dip" >
 
         <TextView
+            android:id="@+id/reg_textPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/register_password_textview"
@@ -29,6 +30,7 @@
             android:singleLine="true" />
 
         <TextView
+            android:id="@+id/reg_textPasswordConfirm"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/register_password_confirm_textview"
@@ -52,6 +54,7 @@
             android:text="@string/register_password_checkbox_summary" />
 
         <TextView
+            android:id="@+id/reg_textPasswordSummary"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"

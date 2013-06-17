@@ -3,11 +3,13 @@ package com.decad3nce.aegis;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
@@ -17,12 +19,17 @@ public class LoginActivity extends Activity {
     private static boolean mPasswordWanted;
     private String mCurrentPassword;
     EditText mPassword;
+    Typeface tf;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set View to login.xml
         setContentView(R.layout.login);
+
+        tf = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
+        TextView txtView1 = (TextView) findViewById(R.id.textView1);
+        txtView1.setTypeface(tf);
         
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
@@ -70,6 +77,8 @@ public class LoginActivity extends Activity {
 
         mPassword = (EditText) findViewById(R.id.login_password);
         Button loginScreen = (Button) findViewById(R.id.btnLogin);
+        mPassword.setTypeface(tf);
+        loginScreen.setTypeface(tf);
         loginScreen.getBackground().setAlpha(255);
 
         // Listening to Login Screen button
