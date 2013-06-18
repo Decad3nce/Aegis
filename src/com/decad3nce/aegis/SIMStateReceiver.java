@@ -83,7 +83,7 @@ public class SIMStateReceiver extends BroadcastReceiver {
      */
     private boolean isInList(String imsi) {
         ArrayList<String> identifiers;
-        Set<String> set = new HashSet<String>(getList());
+        Set<String> set = getList();
         if(set == null) {
             identifiers = new ArrayList<String>();
         } else {
