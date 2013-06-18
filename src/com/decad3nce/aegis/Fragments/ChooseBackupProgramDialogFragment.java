@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.*;
 import com.decad3nce.aegis.BackupDropboxAccountsActivity;
 import com.decad3nce.aegis.BackupGoogleAccountsActivity;
@@ -33,7 +34,7 @@ public class ChooseBackupProgramDialogFragment extends DialogFragment{
         values = new String[] {getResourceString(R.string.aegis_choose_backup_application_1), getResourceString(R.string.aegis_choose_backup_application_2), getResourceString(R.string.advanced_dialog_cancel)};
         mButtonList.setAdapter(new backupImageAdapter(getActivity(), values));
         mButtonList.setOnItemClickListener(backupButtonListener);
-        getDialog().setTitle(R.string.aegis_choose_backup_application);
+        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         return view;
     }
     
