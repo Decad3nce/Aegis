@@ -34,13 +34,12 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     private boolean mDisableTracking = false;
     private boolean mFirstTrack = true;
     
-    protected static PhoneTrackerActivity pTActivity;
+    private static PhoneTrackerActivity pTActivity;
 
     private LocationManager mLocationManager;
     private String mBestProvider;
 
-    protected Location mLocation;
-    protected LocationListener mLocationListener;
+    private Location mLocation;
 
     private final Handler handler = new Handler();
 
@@ -117,7 +116,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         handler.postDelayed(getData, 10000);
     }
 
-    public void stopTracking() {
+    private void stopTracking() {
         mLocationManager.removeUpdates(this);
         handler.removeCallbacksAndMessages(null);
     }
@@ -130,7 +129,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         }
     }
 
-    public void startTracking() {
+    private void startTracking() {
         final boolean gpsEnabled = mLocationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
         final boolean networkEnabled = mLocationManager
@@ -238,8 +237,8 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         }
     }
 
-    protected boolean isBetterLocation(Location location,
-            Location currentBestLocation) {
+    private boolean isBetterLocation(Location location,
+                                     Location currentBestLocation) {
         
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
@@ -251,7 +250,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
         //Multiply chosen value by 2 to return a location regardless if more accurate or not.
         mLocateUpdateDurationOlder = mLocateUpdateDurationOlder * 1000 * 2;
         
-        Log.i(TAG, "Signficantly Older interval is set at: " + mLocateUpdateDurationOlder);
+        Log.i(TAG, "Significantly Older interval is set at: " + mLocateUpdateDurationOlder);
                 
         if (currentBestLocation == null) {
             return true;
@@ -298,29 +297,38 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);;
+                .getDefaultSharedPreferences(this);
 
-        String mLocationToSend = null;
+        String mLocationToSend;
         boolean mLocateGeocodePref = preferences.getBoolean(
                 SMSLocateFragment.PREFERENCES_LOCATE_GEOCODE_PREF, getResources()
                 .getBoolean(R.bool.config_default_locate_geocode_pref));
 
         if (mLocateGeocodePref) {
-            mLocationToSend = (geoCodeMyLocation(location.getLatitude(),
-                    location.getLongitude())) + "\nWith accuracy of: " + location.getAccuracy() +
-                    "\nProvider: " + location.getProvider();
+            mLocationToSend = locationFormatForGeocode(location).trim();
+            if(mLocationToSend.equals(getResources().getString(R.string.tracking_returned_no_location).trim())) {
+                mLocationToSend = locationFormatForSite(location);
+            }
         } else {
-            mLocationToSend = "Your phone is here: \n" + "https://maps.google.com/maps?q=" + location.getLatitude() + ",+" + location.getLongitude() + "+" + "(Current+phone+location)\n"
-                    + "With accuracy of: " + location.getAccuracy() + "\nProvider: " + location.getProvider();
+            mLocationToSend = locationFormatForSite(location);
         }
 
         if ((isBetterLocation(location, mLocation)) || mFirstTrack) {
-            try {
                 Log.i(TAG, "Sending SMS location update");
                 Utils.sendSMS(this, originatingAddress, mLocationToSend);
-            } catch (IllegalArgumentException e) {
-            }
-        }
+        } else Utils.sendSMS(this, originatingAddress, getResources().getString(R.string.tracking_location_not_better));
+    }
+
+
+    private String locationFormatForSite(Location location) {
+        return "Your phone is here: \n" + "https://maps.google.com/maps?q=" + location.getLatitude() + ",+" + location.getLongitude() + "+" + "(Current+phone+location)&\n"
+                + "With accuracy of: " + location.getAccuracy() + " meters" + "\nProvider: " + location.getProvider();
+    }
+
+    private String locationFormatForGeocode(Location location) {
+        return (geoCodeMyLocation(location.getLatitude(),
+                location.getLongitude())) + "\nWith accuracy of: " + location.getAccuracy() + " meters" +
+                "\nProvider: " + location.getProvider();
     }
 
     @Override
@@ -335,7 +343,7 @@ public class PhoneTrackerActivity extends Activity implements LocationListener {
     public void onStatusChanged(String provider, int status, Bundle extras) {
     }
 
-    public String geoCodeMyLocation(double latitude, double longitude) {
+    private String geoCodeMyLocation(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude,
