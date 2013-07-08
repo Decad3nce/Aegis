@@ -74,12 +74,13 @@ public class AegisActivity extends FragmentActivity implements InstallToSystemDi
             public void onDrawerClosed(View view) {
                 ((BaseAdapter) mDrawerList.getAdapter()).notifyDataSetChanged();
                 invalidateOptionsMenu();
+                getActionBar().setTitle(mTitle);
             }
 
             public void onDrawerOpened(View drawerView) {
                 getActionBar().setTitle("Menu");
                 ((BaseAdapter) mDrawerList.getAdapter()).notifyDataSetChanged();
-                //invalidateOptionsMenu();
+                invalidateOptionsMenu();
                 Utils.hideItem(R.id.alarm_menu_settings, thisMenu);
                 Utils.hideItem(R.id.lock_menu_settings, thisMenu);
                 Utils.hideItem(R.id.locate_menu_settings, thisMenu);
