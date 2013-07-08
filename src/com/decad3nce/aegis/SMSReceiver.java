@@ -109,7 +109,8 @@ public class SMSReceiver extends BroadcastReceiver {
                     
                     if (alarmEnabled && body.startsWith(activationAlarmSms)) {
                         try {
-                            Utils.alarmNotification(context);
+                            Intent objIntent = new Intent(context, AlarmService.class);
+                            context.startService(objIntent);
                             Log.i(TAG, "Alarm successfully started");
                             Utils.sendSMS(context, address,
                                     context.getResources().getString(R.string.util_sendsms_alarm_pass));

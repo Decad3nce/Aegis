@@ -55,52 +55,6 @@ public class Utils {
             sms.sendTextMessage(address, null, content, sentPI, deliveredPI);
         }
     }
-    
-    @SuppressWarnings("deprecation")
-    protected static void alarmNotification(Context context) {
-        // Get AudioManager
-        AudioManager am = (AudioManager) context
-                .getSystemService(Context.AUDIO_SERVICE);
-        NotificationManager mManager = (NotificationManager) context
-                .getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Notification notification = new Notification(R.drawable.ic_launcher,
-                context.getResources().getString(R.string.receiver_alarm_override),
-                System.currentTimeMillis());
-        SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(context);
-
-        boolean vibrate = preferences.getBoolean(
-                SMSAlarmFragment.PREFERENCES_ALARM_VIBRATE,
-                Boolean.parseBoolean(context.getResources().getString(
-                        R.string.config_default_alarm_vibrate)));
-
-        int maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
-        am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, maxVolume,
-                AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-
-        maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_RING);
-        am.setStreamVolume(AudioManager.STREAM_RING, maxVolume,
-                AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-
-        Intent i = new Intent(context, LoginActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent pi = PendingIntent.getActivity(context, 0, i, 0);
-
-        notification.setLatestEventInfo(context, "aeGis",
-                context.getResources().getString(R.string.receiver_alarm_override), pi);
-        notification.flags |= Notification.PRIORITY_HIGH;
-        notification.sound = Uri
-                .parse("android.resource://com.decad3nce.aegis/raw/alarm");
-        if (vibrate) {
-            notification.vibrate = new long[] { 100, 200, 100, 500 };
-        }
-
-        mManager.notify(1336, notification);
-
-    }
 
     protected static void lockDeviceDefault(Context context) {
         DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
