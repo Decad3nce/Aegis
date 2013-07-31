@@ -14,6 +14,7 @@ import com.decad3nce.aegis.Utils;
 public class SMSAlarmFragment extends PreferenceFragment {
     public static final String PREFERENCES_ALARM_ENABLED = "alarm_toggle";
     public static final String PREFERENCES_ALARM_VIBRATE = "alarm_vibrate";
+    public static final String PREFERENCES_ALARM_DURATION = "alarm_duration";
     public static final String PREFERENCES_ALARM_ACTIVATION_SMS = "alarm_activation_sms";
 
     private Switch mAlarmEnabledPreference;

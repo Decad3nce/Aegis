@@ -60,6 +60,8 @@
     <string name="preferences_alarm_activation_sms_summary">Choose what text to send to activate the alarm. It is recommended to use a PIN in your activation SMS to avoid unauthorized activation of the alarm.</string>
     <string name="preferences_alarm_vibrate_title">Vibrate</string>
     <string name="preferences_alarm_vibrate_summary">Whether to vibrate when alarm is activated.</string>
+    <string name="preferences_alarm_duration_title">Alarm duration</string>
+    <string name="preferences_alarm_duration_summary">How long the alarm should last.</string>
     <string name="preferences_lock_category">Lock</string>
     <string name="preferences_lock_enabled_title">Lock</string>
     <string name="preferences_lock_enabled_summary">Lock the device when activation sms is sent.</string>

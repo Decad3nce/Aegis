@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import com.decad3nce.aegis.Fragments.SMSAlarmFragment;
@@ -21,6 +22,7 @@ import java.io.IOException;
  */
 public class AlarmService extends Service {
     private MediaPlayer mMediaPlayer;
+    private final Handler mHandler = new Handler();
 
     public AlarmService() {
     }
@@ -76,6 +78,10 @@ public class AlarmService extends Service {
                 Boolean.parseBoolean(context.getResources().getString(
                         R.string.config_default_alarm_vibrate)));
 
+        int duration = Integer.parseInt(preferences.getString(
+                SMSAlarmFragment.PREFERENCES_ALARM_DURATION, getResources()
+                .getString(R.string.config_default_alarm_duration)));
+
         int maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
         am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, maxVolume,
                 AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
@@ -110,6 +116,15 @@ public class AlarmService extends Service {
             return;
         }
         mMediaPlayer.start();
+
+        // Set duration time-out
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stopMediaPlayer();
+                stopForeground(true);
+            }
+        }, duration * 1000);
 
         notification.flags |= Notification.FLAG_NO_CLEAR;
         startForeground(1242, notification);
