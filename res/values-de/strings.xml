@@ -60,6 +60,8 @@
     <string name="preferences_alarm_activation_sms_summary">"Text der SMS festlegen, mit der der Alarm aktiviert wird. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Aktivierungen zu verhindern."</string>
     <string name="preferences_alarm_vibrate_title">"Vibrieren"</string>
     <string name="preferences_alarm_vibrate_summary">"Vibrieren bei aktivem Alarm"</string>
+    <string name="preferences_alarm_duration_title">Alarmdauer</string>
+    <string name="preferences_alarm_duration_summary">Dauer des Alarmtons</string> 
     <string name="preferences_lock_category">"Sperren"</string>
     <string name="preferences_lock_enabled_title">"Sperren"</string>
     <string name="preferences_lock_enabled_summary">"Gerät sperren, wenn Aktivierungs-SMS empfangen wird"</string>
