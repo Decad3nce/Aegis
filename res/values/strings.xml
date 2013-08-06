@@ -181,7 +181,7 @@
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
     
-    <string name="receiver_alarm_override">aeGis has overriden sound settings.</string>
+    <string name="receiver_alarm_override">Sound override. Click to disable.</string>
 
     <string name="indicator_off">OFF</string>
     <string name="indicator_on">ON</string>
