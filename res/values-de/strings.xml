@@ -181,7 +181,7 @@
     <string name="drawer_open">Drawer geöffnet</string>
     <string name="drawer_close">Drawer geschlossen</string>
 
-    <string name="receiver_alarm_override">"aeGis hat die Sound-Einstellungen überschrieben"</string>
+    <string name="receiver_alarm_override">Audio überschrieben. Zum Abschalten berühren.</string>
     
     <string name="indicator_off">AUS</string>
     <string name="indicator_on">AN</string> 
