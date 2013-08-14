@@ -6,5 +6,9 @@
                 android:summary="@string/preferences_wipe_activation_sms_summary"
                 android:maxLength="160"
                 android:defaultValue="@string/config_default_wipe_activation_sms" />
+        <CheckBoxPreference android:key="wipe_sdcard"
+                            android:title="@string/preferences_wipe_sdcard_title"
+                            android:summary="@string/preferences_wipe_sdcard_summary"
+                            android:defaultValue="@bool/config_default_wipe_sdcard" />
      </PreferenceCategory>
 </PreferenceScreen>

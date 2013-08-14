@@ -6,10 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import com.decad3nce.aegis.Fragments.*;
+
+import java.io.File;
 
 public class SMSReceiver extends BroadcastReceiver {
     private static final String TAG = "aeGis";
@@ -136,22 +139,10 @@ public class SMSReceiver extends BroadcastReceiver {
                     }
 
                     if(wipeEnabled && body.startsWith(activationWipeSms)) {
-                        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
-                                .getSystemService(Context.DEVICE_POLICY_SERVICE);
-                        if (devicePolicyManager
-                                .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
-                            try {
-                                Log.i(TAG, "Wiping device");
-                                devicePolicyManager.wipeData(0);
-                                Utils.sendSMS(context, address,
-                                        context.getResources().getString(R.string.util_sendsms_wipe_pass));
-                            } catch (Exception e) {
-                                Log.e(TAG, "Failed to wipe device");
-                                Log.e(TAG, e.toString());
-                                Utils.sendSMS(context, address,
-                                        context.getResources().getString(R.string.util_sendsms_wipe_fail) + " " + e.toString());
-                            }
-                        }
+                        File[] sdcards =  { new File(Environment
+                                .getExternalStorageDirectory().toString())};
+
+                        new WipeTask(context, sdcards, address);
 
                         if (abortSMSBroadcast) {
                             abortBroadcast();

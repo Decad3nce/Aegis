@@ -21,6 +21,7 @@ public class SMSWipeFragment extends PreferenceFragment {
 
     public static final String PREFERENCES_WIPE_ACTIVATION_SMS = "wipe_activation_sms";
     public static final String PREFERENCES_WIPE_ENABLED = "wipe_toggle";
+    public static final String PREFERENCES_WIPE_SDCARD_PREF = "wipe_sdcard";
 
     private static final String TAG = "aeGis";
 

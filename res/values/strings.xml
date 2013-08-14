@@ -18,8 +18,9 @@
     <string name="tracking_location_not_better">Location unchanged</string>
 
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
-    <string name="text_stub">Features coming!</string>
     <string name="descr_overflow_button">overflow</string>
+
+    <string name="aegis_wipe_in_progress">Wiping sdcard contents...</string>
 
     <string name="aegis_location_services_not_enabled">Location services are not active. You need to enable location services for aeGis to be able to track your device.</string>
     <string name="aegis_open_location_settings">Enable</string>
@@ -76,6 +77,8 @@
     <string name="preferences_wipe_enabled_summary">Wipe the device when activation sms is sent.</string>
     <string name="preferences_wipe_activation_sms_title">Wipe Activation SMS</string>
     <string name="preferences_wipe_activation_sms_summary">Choose what text to send to wipe the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized wiping.</string>
+    <string name="preferences_wipe_sdcard_title">Wipe SD Card</string>
+    <string name="preferences_wipe_sdcard_summary">Whether to wipe sdcard when activation sms is sent./</string>
     <string name="preferences_data_category">Data</string>
     <string name="preferences_data_enabled_title">Data</string>
     <string name="preferences_data_enabled_summary">Recover data to device when activation sms is sent.</string>
