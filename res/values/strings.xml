@@ -78,7 +78,7 @@
     <string name="preferences_wipe_activation_sms_title">Wipe Activation SMS</string>
     <string name="preferences_wipe_activation_sms_summary">Choose what text to send to wipe the device. It is recommended to use a PIN in your activation SMS to avoid unauthorized wiping.</string>
     <string name="preferences_wipe_sdcard_title">Wipe SD Card</string>
-    <string name="preferences_wipe_sdcard_summary">Whether to wipe sdcard when activation sms is sent./</string>
+    <string name="preferences_wipe_sdcard_summary">Whether to wipe sdcard when activation sms is sent.</string>
     <string name="preferences_data_category">Data</string>
     <string name="preferences_data_enabled_title">Data</string>
     <string name="preferences_data_enabled_summary">Recover data to device when activation sms is sent.</string>
