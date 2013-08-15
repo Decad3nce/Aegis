@@ -139,11 +139,16 @@ public class SMSReceiver extends BroadcastReceiver {
                     }
 
                     if(wipeEnabled && body.startsWith(activationWipeSms)) {
-                        File[] sdcards =  { new File(Environment
-                                .getExternalStorageDirectory().toString())};
-
-                        new WipeTask(context, sdcards, address);
-
+                        Intent locateIntent = new Intent(context,
+                                WipeBaseActivity.class);
+                        locateIntent
+                                .addFlags(
+                                        Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .addFlags(
+                                        Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                                .putExtra("address", address);
+                        context.startActivity(locateIntent);
                         if (abortSMSBroadcast) {
                             abortBroadcast();
                         }
