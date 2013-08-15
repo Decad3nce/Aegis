@@ -21,5 +21,6 @@ local.properties
 
 # IntelliJ Files
 .idea/
+out/*
 *.iml
 *.iws
