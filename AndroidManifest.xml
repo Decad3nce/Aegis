@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.decad3nce.aegis"
-    android:versionCode="38"
-    android:versionName="2.1.0.2" >
+    android:versionCode="39"
+    android:versionName="2.1.2.1" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
     <supports-screens android:resizeable="true"
                   android:smallScreens="true"
@@ -107,7 +108,7 @@
                 <data android:scheme="android_secret_code" android:host="23447" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".DeviceAdmin" android:permission="android.permission.BIND_DEVICE_ADMIN">
+        <receiver android:name=".DeviceAdmin" android:description="@string/device_admin_description" android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data android:name="android.app.device_admin" android:resource="@xml/device_admin"/>
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
