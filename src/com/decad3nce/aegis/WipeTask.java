@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.decad3nce.aegis.Fragments.SMSWipeFragment;
 
@@ -51,9 +52,11 @@ public class WipeTask extends AsyncTask<Void, Void, Void> {
                         R.bool.config_default_wipe_sdcard));
 
         if(wipesdcards) {
-            for(File sdcard: sdcards){
-                wipeSdcard(sdcard);
+            for(int i = 0; i < sdcards.length; ++i){
+                wipeSdcard(sdcards[i]);
             }
+            Utils.sendSMS(context, address,
+                    context.getResources().getString(R.string.util_sendsms_wipe_sdcard_pass));
         }
 
         return null;
@@ -67,9 +70,9 @@ public class WipeTask extends AsyncTask<Void, Void, Void> {
         if (devicePolicyManager
                 .isAdminActive(AegisActivity.DEVICE_ADMIN_COMPONENT)) {
             try {
-                devicePolicyManager.wipeData(0);
                 Utils.sendSMS(context, address,
                         context.getResources().getString(R.string.util_sendsms_wipe_pass));
+                devicePolicyManager.wipeData(0);
             } catch (Exception e) {
                 Utils.sendSMS(context, address,
                         context.getResources().getString(R.string.util_sendsms_wipe_fail) + " " + e.toString());
@@ -78,6 +81,7 @@ public class WipeTask extends AsyncTask<Void, Void, Void> {
     }
 
     public void wipeSdcard(File locations) {
+        Log.v("aeGis", "Wiping " + locations.getName());
         try {
             File[] filenames = locations.listFiles();
             if (filenames != null && filenames.length > 0) {

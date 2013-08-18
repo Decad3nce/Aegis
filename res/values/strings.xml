@@ -18,6 +18,7 @@
     <string name="tracking_location_not_better">Location unchanged</string>
 
     <string name="device_admin_reason">aeGis requires device admin control for the wipe/lock features.</string>
+    <string name="device_admin_description">Allows aeGis to wipe, lock, track, and backup device.</string>
     <string name="descr_overflow_button">overflow</string>
 
     <string name="aegis_wipe_in_progress">Wiping sdcard contents...</string>
@@ -112,6 +113,7 @@
     <string name="util_sendsms_data_recovery_pass">aeGis: Recovered file:</string>
     <string name="util_sendsms_data_recovery_fail">aeGis: Failed to recover files</string>
     <string name="util_sendsms_wipe_pass">aeGis: Wiping device.</string>
+    <string name="util_sendsms_wipe_sdcard_pass">aeGis: Wiping sdcard(s).</string>
     <string name="util_sendsms_wipe_fail">aeGis: Failed to wipe device. Error:</string>
     <string name="util_sendsms_locate_fail">aeGis: Failed to locate device. Error:</string>
     <string name="util_sendsms_locate_stopped">aeGis: Location tracking disabled</string>
