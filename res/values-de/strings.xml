@@ -78,7 +78,7 @@
     <string name="preferences_wipe_activation_sms_title">Aktivierungs-SMS des Löschvorgangs</string>
     <string name="preferences_wipe_activation_sms_summary">Wähle einen Text, bei dessen Empfang die Gerätedaten gelöscht werden. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Nutzung zu verhindern.</string> 
     <string name="preferences_wipe_sdcard_title">SD-Karte löschen</string> 
-    <string name="preferences_wipe_sdcard_summary">SD-Karte bei Aktivierungs-SMS ebenfalls löschen/</string>
+    <string name="preferences_wipe_sdcard_summary">SD-Karte bei Aktivierungs-SMS ebenfalls löschen</string>
     <string name="preferences_data_category">Daten</string>
     <string name="preferences_data_enabled_title">Daten</string>
     <string name="preferences_data_enabled_summary">Daten bei Aktivierungs-SMS sichern</string>
