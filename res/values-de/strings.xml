@@ -18,8 +18,9 @@
     <string name="tracking_location_not_better">Standort unverändert</string> 
     
     <string name="device_admin_reason">"aeGis benötigt Geräteadministratorrechte für die Löschen-/Sperren-Funktionen."</string>
-    <string name="text_stub">"Zukünftige Funktionen!"</string>
     <string name="descr_overflow_button">"overflow"</string>
+    
+    <string name="aegis_wipe_in_progress">Lösche Inhalt der SD-Karte...</string>
     
     <string name="aegis_location_services_not_enabled">Damit aeGis den Standort des Gerätes erfassen kann, müssen Sie zuerst der Standortzugriff freigeben.</string>
     <string name="aegis_open_location_settings">Einschalten</string>
@@ -76,6 +77,8 @@
     <string name="preferences_wipe_enabled_summary">Gerätedaten löschen, wenn die Aktivieruns-SMS empfangen wird</string>
     <string name="preferences_wipe_activation_sms_title">Aktivierungs-SMS des Löschvorgangs</string>
     <string name="preferences_wipe_activation_sms_summary">Wähle einen Text, bei dessen Empfang die Gerätedaten gelöscht werden. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Nutzung zu verhindern.</string> 
+    <string name="preferences_wipe_sdcard_title">SD-Karte löschen</string> 
+    <string name="preferences_wipe_sdcard_summary">SD-Karte bei Aktivierungs-SMS ebenfalls löschen/</string>
     <string name="preferences_data_category">Daten</string>
     <string name="preferences_data_enabled_title">Daten</string>
     <string name="preferences_data_enabled_summary">Daten bei Aktivierungs-SMS sichern</string>
