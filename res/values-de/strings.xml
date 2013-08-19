@@ -18,8 +18,10 @@
     <string name="tracking_location_not_better">Standort unverändert</string> 
     
     <string name="device_admin_reason">"aeGis benötigt Geräteadministratorrechte für die Löschen-/Sperren-Funktionen."</string>
-    <string name="text_stub">"Zukünftige Funktionen!"</string>
+    <string name="device_admin_description">Erlaubt es aeGis das Gerät zu löschen, sperren, verfolgen und eine Sicherung zu erstellen.</string> 
     <string name="descr_overflow_button">"overflow"</string>
+    
+    <string name="aegis_wipe_in_progress">Lösche Inhalt der SD-Karte...</string>
     
     <string name="aegis_location_services_not_enabled">Damit aeGis den Standort des Gerätes erfassen kann, müssen Sie zuerst der Standortzugriff freigeben.</string>
     <string name="aegis_open_location_settings">Einschalten</string>
@@ -76,6 +78,8 @@
     <string name="preferences_wipe_enabled_summary">Gerätedaten löschen, wenn die Aktivieruns-SMS empfangen wird</string>
     <string name="preferences_wipe_activation_sms_title">Aktivierungs-SMS des Löschvorgangs</string>
     <string name="preferences_wipe_activation_sms_summary">Wähle einen Text, bei dessen Empfang die Gerätedaten gelöscht werden. Es wird empfohlen, eine PIN zu benutzen, um unberechtigte Nutzung zu verhindern.</string> 
+    <string name="preferences_wipe_sdcard_title">SD-Karte löschen</string> 
+    <string name="preferences_wipe_sdcard_summary">SD-Karte bei Aktivierungs-SMS ebenfalls löschen</string>
     <string name="preferences_data_category">Daten</string>
     <string name="preferences_data_enabled_title">Daten</string>
     <string name="preferences_data_enabled_summary">Daten bei Aktivierungs-SMS sichern</string>
@@ -109,6 +113,7 @@
     <string name="util_sendsms_data_recovery_pass">aeGis: Datei gesichert:</string>
     <string name="util_sendsms_data_recovery_fail">aeGis: Datensicherung fehlgeschlagen</string>
     <string name="util_sendsms_wipe_pass">"aeGis: Alle Daten werden gelöscht."</string>
+    <string name="util_sendsms_wipe_sdcard_pass">aeGis: Lösche SD-Karte(n)</string>
     <string name="util_sendsms_wipe_fail">"aeGis: Fehler beim Löschen aller Daten:"</string>
     <string name="util_sendsms_locate_fail">"aeGis: Fehler beim Lokalisieren des Gerätes:"</string>
     <string name="util_sendsms_locate_stopped">aeGis: Lokalisierung deaktiviert</string>
